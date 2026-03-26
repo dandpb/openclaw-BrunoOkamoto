@@ -1,97 +1,97 @@
-# ❓ Q&A — Telegram (Config, Allowlist, Privacidade)
+# ❓ Q&A — Telegram (Config, Allowlist, Privacy)
 
-> Linguagem simples. Sem terminal. Cole o prompt no seu bot e ele resolve.
-
----
-
-## "Qualquer pessoa consegue mandar mensagem pro meu bot e ele responde"
-
-**O que aconteceu:** Seu bot está configurado como "aberto" — qualquer pessoa que descobrir o username dele pode usar. É como deixar a porta da sua casa aberta.
-
-**O que fazer:**
-Cole esse prompt no seu bot:
-
-```
-Meu bot está respondendo qualquer pessoa. Preciso restringir isso.
-Me ajuda a:
-1. Descobrir qual é o meu ID numérico do Telegram
-2. Configurar o dmPolicy para "allowlist" 
-3. Adicionar meu ID na lista de permitidos
-4. Confirmar que ficou certo testando
-Explica tudo passo a passo.
-```
+> Plain language. No terminal. Paste the prompt into your bot and it handles the rest.
 
 ---
 
-## "Meu bot não me responde mais depois que configurei a allowlist"
+## "Anyone can send messages to my bot and it responds"
 
-**O que provavelmente aconteceu:** Você colocou a allowlist mas esqueceu de incluir o SEU próprio ID — ou digitou errado.
+**What happened:** Your bot is configured as "open" — anyone who discovers its username can use it. It's like leaving the door to your house wide open.
 
-**O que fazer:**
-Cole esse prompt no seu bot (via outro canal, como chat direto se tiver):
-
-```
-Não consigo mais mandar mensagem pro meu bot principal. 
-Acho que me tranquei fora da allowlist.
-Me ajuda a verificar:
-1. Qual é o meu ID do Telegram? (me diz como descobrir)
-2. Como vejo quem está na allowlist atual?
-3. Como adiciono meu ID corretamente?
-```
-
-**Como descobrir seu ID do Telegram:** Mande `/start` para @userinfobot no Telegram — ele te responde com seu ID numérico.
-
----
-
-## "Bot não funciona em grupo / tópico"
-
-**O que fazer:**
-Cole esse prompt no seu bot:
+**What to do:**
+Paste this prompt into your bot:
 
 ```
-Meu bot não está respondendo no grupo/tópico do Telegram.
-Me ajuda a verificar:
-1. O Privacy Mode do bot está desativado? (precisa estar desativado pra funcionar em grupo)
-2. O ID do grupo está na configuração de canais permitidos?
-3. Tem alguma configuração de "allowFrom" ou "allowedIds" que precisa atualizar?
-Me guia passo a passo.
-```
-
-**Dica rápida:** No BotFather, envie `/mybots` → selecione seu bot → `Bot Settings` → `Group Privacy` → `Turn off`. Isso resolve 80% dos problemas em grupo.
-
----
-
-## "Apareceu um erro com allowedIds ou allowFrom — o que mudou?"
-
-**O que aconteceu:** O OpenClaw atualizou o formato da configuração. Versões antigas usavam `allowedIds` ou `allowFrom` — a versão atual usa `dmPolicy: "allowlist"` com `allowedUsers`.
-
-**O que fazer:**
-Cole esse prompt no seu bot:
-
-```
-Minha configuração do Telegram tem "allowedIds" ou "allowFrom" que parecem ser de uma versão antiga.
-Me ajuda a:
-1. Identificar qual formato estou usando
-2. Migrar para o formato atual (dmPolicy + allowedUsers)
-3. Verificar se a config ficou correta
-4. Reiniciar o gateway pra aplicar
+My bot is responding to anyone. I need to restrict this.
+Help me:
+1. Find out what my numeric Telegram ID is
+2. Configure dmPolicy to "allowlist"
+3. Add my ID to the allowed list
+4. Confirm it's correct by testing
+Explain everything step by step.
 ```
 
 ---
 
-## "Como adiciono mais pessoas pra poderem usar meu bot?"
+## "My bot stopped responding to me after I configured the allowlist"
 
-**O que fazer:**
-Cole esse prompt no seu bot:
+**What probably happened:** You set up the allowlist but forgot to include YOUR OWN ID — or you typed it wrong.
+
+**What to do:**
+Paste this prompt into your bot (via another channel, such as a direct chat if available):
 
 ```
-Quero adicionar uma nova pessoa para poder usar meu bot.
-O ID do Telegram dela é: [COLOQUE O ID AQUI]
-Me guia como adicionar ela na allowlist corretamente.
+I can no longer send messages to my main bot.
+I think I locked myself out of the allowlist.
+Help me check:
+1. What is my Telegram ID? (tell me how to find out)
+2. How do I see who is on the current allowlist?
+3. How do I correctly add my ID?
 ```
 
-**Como a pessoa descobre o ID dela:** Ela manda `/start` pro @userinfobot no Telegram.
+**How to find your Telegram ID:** Send `/start` to @userinfobot on Telegram — it will reply with your numeric ID.
 
 ---
 
-*Última atualização: Fev/2026*
+## "Bot doesn't work in a group / topic"
+
+**What to do:**
+Paste this prompt into your bot:
+
+```
+My bot is not responding in the Telegram group/topic.
+Help me check:
+1. Is the bot's Privacy Mode disabled? (it needs to be disabled to work in groups)
+2. Is the group ID in the allowed channels configuration?
+3. Is there any "allowFrom" or "allowedIds" configuration that needs to be updated?
+Guide me step by step.
+```
+
+**Quick tip:** In BotFather, send `/mybots` → select your bot → `Bot Settings` → `Group Privacy` → `Turn off`. This fixes 80% of group problems.
+
+---
+
+## "An error appeared with allowedIds or allowFrom — what changed?"
+
+**What happened:** OpenClaw updated the configuration format. Older versions used `allowedIds` or `allowFrom` — the current version uses `dmPolicy: "allowlist"` with `allowedUsers`.
+
+**What to do:**
+Paste this prompt into your bot:
+
+```
+My Telegram configuration has "allowedIds" or "allowFrom" that seem to be from an older version.
+Help me:
+1. Identify which format I'm using
+2. Migrate to the current format (dmPolicy + allowedUsers)
+3. Verify the config is correct
+4. Restart the gateway to apply it
+```
+
+---
+
+## "How do I add more people who can use my bot?"
+
+**What to do:**
+Paste this prompt into your bot:
+
+```
+I want to add a new person so they can use my bot.
+Their Telegram ID is: [PUT THE ID HERE]
+Guide me on how to add them to the allowlist correctly.
+```
+
+**How the person finds their ID:** They send `/start` to @userinfobot on Telegram.
+
+---
+
+*Last updated: Feb/2026*

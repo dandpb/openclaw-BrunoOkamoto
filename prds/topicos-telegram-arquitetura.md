@@ -1,77 +1,77 @@
-# Guia Completo: Tópicos no Telegram + Arquitetura de Agentes
+# Complete Guide: Telegram Topics + Agent Architecture
 
-**Objetivo:** Ensinar a criar e organizar tópicos no Telegram, configurar agentes para responder sem menção, e entender as diferenças arquiteturais entre **um agente MAIN compartilhado** vs **agentes isolados por tópico**.
-
----
-
-## 📱 Parte 1: Criando Tópicos no Telegram
-
-### O que são Tópicos (Topics)?
-
-Tópicos são **threads organizadas dentro de um grupo**. Cada tópico funciona como um canal separado, mas todos estão no mesmo grupo.
-
-**Quando usar:**
-- Separar projetos diferentes
-- Organizar conversas por assunto (suporte, dev, ideias)
-- Ter agentes especializados por contexto
-
-### Passo a Passo: Criar Grupo com Tópicos
-
-#### 1. Criar o Grupo
-
-1. Abra o Telegram
-2. Menu → **Novo Grupo**
-3. Nome: `Amora HQ` (ou o que preferir)
-4. Adicione pelo menos 1 pessoa (você mesmo pode ser suficiente)
-5. Finalize a criação
-
-#### 2. Transformar em Supergrupo
-
-1. Abra as **configurações do grupo** (clique no nome)
-2. **Tipo do Grupo** → **Grupo Público** (ou mantenha privado)
-3. Defina um `@username` para o grupo (ex: `@amorahq_bruno`)
-4. O Telegram automaticamente transforma em **Supergrupo**
-
-> ⚠️ **Importante:** Só supergrupos suportam tópicos!
-
-#### 3. Ativar Tópicos
-
-1. Configurações do grupo → **Tópicos**
-2. Toggle **"Ativar Tópicos"**
-3. O Telegram cria automaticamente o tópico **"Geral"** (id: `1`)
-
-#### 4. Criar Tópicos Adicionais
-
-1. Na tela do grupo, clique no **ícone de tópicos** (canto superior)
-2. **"Criar Tópico"**
-3. Dê um nome: `Curso OpenClaw`, `Suporte`, `Dev`, etc.
-4. Escolha um ícone/emoji
-5. Pronto! Cada tópico tem um **ID único** (ex: `2638`, `2640`)
+**Objective:** Teach how to create and organize topics on Telegram, configure agents to respond without mention, and understand the architectural differences between **one shared MAIN agent** vs **isolated agents per topic**.
 
 ---
 
-## 🤖 Parte 2: Adicionando Agentes aos Tópicos
+## 📱 Part 1: Creating Topics on Telegram
 
-### Opção A: Adicionar o Bot ao Grupo
+### What Are Topics?
 
-1. Vá em **@BotFather**
-2. `/mybots` → escolha seu bot
-3. **Bot Settings → Group Privacy → Desativar "Privacy Mode"**
-   - Isso permite o bot ver **todas as mensagens** do grupo
-4. Adicione o bot ao grupo: `@seubotaqui`
-5. Torne ele **administrador** (necessário para agir em tópicos)
+Topics are **organized threads within a group**. Each topic works as a separate channel, but all are in the same group.
 
-### Opção B: Usar Bot Existente (sem admin)
+**When to use:**
+- Separate different projects
+- Organize conversations by subject (support, dev, ideas)
+- Have specialized agents per context
 
-Se o bot NÃO for admin, ele só responde quando **marcado** (`@bot mensagem`).
+### Step by Step: Creating a Group with Topics
+
+#### 1. Create the Group
+
+1. Open Telegram
+2. Menu → **New Group**
+3. Name: `Amora HQ` (or whatever you prefer)
+4. Add at least 1 person (yourself can be enough)
+5. Finish creation
+
+#### 2. Convert to Supergroup
+
+1. Open the **group settings** (click the name)
+2. **Group Type** → **Public Group** (or keep private)
+3. Set a `@username` for the group (e.g., `@amorahq_bruno`)
+4. Telegram automatically converts to **Supergroup**
+
+> ⚠️ **Important:** Only supergroups support topics!
+
+#### 3. Enable Topics
+
+1. Group settings → **Topics**
+2. Toggle **"Enable Topics"**
+3. Telegram automatically creates the **"General"** topic (id: `1`)
+
+#### 4. Create Additional Topics
+
+1. On the group screen, click the **topics icon** (top corner)
+2. **"Create Topic"**
+3. Give it a name: `OpenClaw Course`, `Support`, `Dev`, etc.
+4. Choose an icon/emoji
+5. Done! Each topic has a **unique ID** (e.g., `2638`, `2640`)
 
 ---
 
-## ⚙️ Parte 3: Configurando Agentes para Responder SEM Menção
+## 🤖 Part 2: Adding Agents to Topics
 
-Por padrão, bots do Telegram só respondem quando mencionados. Para habilitar **resposta automática em tópicos específicos**, você precisa configurar no `config.yaml`.
+### Option A: Add the Bot to the Group
 
-### Estrutura do Config
+1. Go to **@BotFather**
+2. `/mybots` → choose your bot
+3. **Bot Settings → Group Privacy → Turn off "Privacy Mode"**
+   - This allows the bot to see **all messages** in the group
+4. Add the bot to the group: `@yourbothere`
+5. Make it **admin** (necessary to act in topics)
+
+### Option B: Use Existing Bot (without admin)
+
+If the bot is NOT admin, it only responds when **mentioned** (`@bot message`).
+
+---
+
+## ⚙️ Part 3: Configuring Agents to Respond WITHOUT Mention
+
+By default, Telegram bots only respond when mentioned. To enable **automatic response in specific topics**, you need to configure in `config.yaml`.
+
+### Config Structure
 
 ```yaml
 agents:
@@ -83,56 +83,56 @@ agents:
     activation:
       surfaces:
         - surface: telegram
-          mode: mention  # Padrão global: só quando marcada
+          mode: mention  # Global default: only when mentioned
           
           overrides:
-            # Tópico "Curso OpenClaw" — responde TUDO
+            # Topic "OpenClaw Course" — responds to EVERYTHING
             - chat: "telegram:-1003873964847:topic:2638"
               mode: all
             
-            # Tópico "Suporte" — responde TUDO
+            # Topic "Support" — responds to EVERYTHING
             - chat: "telegram:-1003873964847:topic:2640"
               mode: all
             
-            # Tópico "Geral" — só quando marcada
+            # Topic "General" — only when mentioned
             - chat: "telegram:-1003873964847:topic:1"
               mode: mention
 ```
 
-### Como Descobrir o Chat ID
+### How to Find the Chat ID
 
-1. Mande uma mensagem **no tópico** marcando o bot
-2. No terminal da VPS: `openclaw logs --tail 50`
-3. Procure por: `chat_id: "telegram:-1003873964847:topic:2638"`
-4. Copie esse ID e cole no config
+1. Send a message **in the topic** mentioning the bot
+2. On the VPS terminal: `openclaw logs --tail 50`
+3. Look for: `chat_id: "telegram:-1003873964847:topic:2638"`
+4. Copy this ID and paste in the config
 
-### Aplicar a Config
+### Apply the Config
 
 ```bash
 openclaw gateway restart
 ```
 
-Agora a Amora responde **automaticamente** nos tópicos configurados com `mode: all`.
+Now Amora responds **automatically** in topics configured with `mode: all`.
 
 ---
 
-## 🏗️ Parte 4: Arquitetura de Agentes — MAIN vs Isolados
+## 🏗️ Part 4: Agent Architecture — MAIN vs Isolated
 
-Aqui está a **decisão mais importante** do curso: como organizar seus agentes?
+Here is the **most important decision** of the course: how to organize your agents?
 
 ---
 
-### 🔵 Arquitetura 1: **UM Agente MAIN Compartilhado**
+### 🔵 Architecture 1: **ONE Shared MAIN Agent**
 
-**Como funciona:**
-- **1 agente** (`amora-main`) responde em **múltiplos tópicos**
-- Todos os tópicos compartilham:
-  - Mesmo **workspace**
-  - Mesma **memória** (`MEMORY.md`, `memory/2026-02-25.md`)
-  - Mesmos **crons** (heartbeats, lembretes)
-  - Mesmo **SOUL.md**, **USER.md**, **TOOLS.md**
+**How it works:**
+- **1 agent** (`amora-main`) responds in **multiple topics**
+- All topics share:
+  - Same **workspace**
+  - Same **memory** (`MEMORY.md`, `memory/2026-02-25.md`)
+  - Same **crons** (heartbeats, reminders)
+  - Same **SOUL.md**, **USER.md**, **TOOLS.md**
 
-**Exemplo de config:**
+**Example config:**
 
 ```yaml
 agents:
@@ -143,57 +143,57 @@ agents:
         - surface: telegram
           mode: mention
           overrides:
-            - chat: "telegram:-1003873964847:topic:2638"  # Curso
+            - chat: "telegram:-1003873964847:topic:2638"  # Course
               mode: all
-            - chat: "telegram:-1003873964847:topic:2640"  # Suporte
+            - chat: "telegram:-1003873964847:topic:2640"  # Support
               mode: all
-            - chat: "telegram:-1003873964847:topic:1"     # Geral
+            - chat: "telegram:-1003873964847:topic:1"     # General
               mode: mention
 ```
 
-#### ✅ Vantagens
+#### ✅ Advantages
 
-1. **Continuidade total** — A Amora lembra de TUDO que aconteceu em todos os tópicos
-2. **Economia de recursos** — 1 processo, 1 workspace, 1 memória
-3. **Crons únicos** — Heartbeats, lembretes, backups rodam 1 vez só
-4. **Contexto cruzado** — "Aquele arquivo que você criou no tópico X" funciona
-5. **Facilidade de setup** — Só um agente pra configurar
+1. **Total continuity** — Amora remembers EVERYTHING that happened in all topics
+2. **Resource savings** — 1 process, 1 workspace, 1 memory
+3. **Single crons** — Heartbeats, reminders, backups run only once
+4. **Cross-context** — "That file you created in topic X" works
+5. **Easy setup** — Only one agent to configure
 
-#### ❌ Desvantagens
+#### ❌ Disadvantages
 
-1. **Contexto poluído** — Conversas de tópicos diferentes se misturam no histórico
-2. **Sem isolamento** — Se alguém faz merda num tópico, afeta todo o workspace
-3. **Contexto explode rápido** — Múltiplos tópicos ativos = 100k tokens em dias
-4. **Privacidade zero** — A Amora pode citar coisas de um tópico privado em outro público
-5. **Comportamento único** — Não dá pra ter "Amora Técnica" vs "Amora Criativa"
+1. **Polluted context** — Conversations from different topics mix in history
+2. **No isolation** — If someone messes up in one topic, it affects the whole workspace
+3. **Context explodes fast** — Multiple active topics = 100k tokens in days
+4. **Zero privacy** — Amora can mention things from a private topic in a public one
+5. **Single behavior** — Can't have "Technical Amora" vs "Creative Amora"
 
-#### 🎯 Quando usar
+#### 🎯 When to use
 
-- **Você é o único humano** usando os tópicos
-- Quer **continuidade total** entre conversas
-- Tópicos são **variações do mesmo contexto** (projetos relacionados)
-- Não se importa com **memory bleed** entre tópicos
+- **You're the only human** using the topics
+- You want **total continuity** between conversations
+- Topics are **variations of the same context** (related projects)
+- You don't care about **memory bleed** between topics
 
 ---
 
-### 🟢 Arquitetura 2: **Agentes Isolados por Tópico**
+### 🟢 Architecture 2: **Isolated Agents per Topic**
 
-**Como funciona:**
-- **Cada tópico tem seu próprio agente** (`amora-curso`, `amora-suporte`, `amora-dev`)
-- Cada agente tem:
-  - **Workspace separado** (`/workspace-curso`, `/workspace-suporte`)
-  - **Memória isolada** (cada um tem seu `MEMORY.md`)
-  - **Crons independentes** (cada um pode ter heartbeats diferentes)
-  - **SOUL.md customizado** (comportamento especializado)
+**How it works:**
+- **Each topic has its own agent** (`amora-course`, `amora-support`, `amora-dev`)
+- Each agent has:
+  - **Separate workspace** (`/workspace-course`, `/workspace-support`)
+  - **Isolated memory** (each has its own `MEMORY.md`)
+  - **Independent crons** (each can have different heartbeats)
+  - **Custom SOUL.md** (specialized behavior)
 
-**Exemplo de config:**
+**Example config:**
 
 ```yaml
 agents:
-  # Agente do tópico "Curso OpenClaw"
-  - id: amora-curso
+  # Agent for topic "OpenClaw Course"
+  - id: amora-course
     model: anthropic/claude-sonnet-4-6
-    workspaceDir: /root/.openclaw/workspace-curso
+    workspaceDir: /root/.openclaw/workspace-course
     activation:
       surfaces:
         - surface: telegram
@@ -201,10 +201,10 @@ agents:
             - chat: "telegram:-1003873964847:topic:2638"
               mode: all
   
-  # Agente do tópico "Suporte"
-  - id: amora-suporte
-    model: anthropic/claude-haiku-4-5  # Mais barato
-    workspaceDir: /root/.openclaw/workspace-suporte
+  # Agent for topic "Support"
+  - id: amora-support
+    model: anthropic/claude-haiku-4-5  # Cheaper
+    workspaceDir: /root/.openclaw/workspace-support
     activation:
       surfaces:
         - surface: telegram
@@ -212,9 +212,9 @@ agents:
             - chat: "telegram:-1003873964847:topic:2640"
               mode: all
   
-  # Agente do tópico "Dev"
+  # Agent for topic "Dev"
   - id: amora-dev
-    model: anthropic/claude-opus-4-6  # Mais poderoso
+    model: anthropic/claude-opus-4-6  # More powerful
     thinking: on
     workspaceDir: /root/.openclaw/workspace-dev
     activation:
@@ -225,77 +225,77 @@ agents:
               mode: all
 ```
 
-#### ✅ Vantagens
+#### ✅ Advantages
 
-1. **Isolamento total** — Cada tópico tem sua própria sandbox
-2. **Especialização** — Agente de suporte usa Haiku (barato), Dev usa Opus (poderoso)
-3. **SOUL.md customizado** — "Amora Professora" no curso, "Amora DevOps" no suporte
-4. **Privacidade** — Dados de um tópico **nunca vazam** para outro
-5. **Contexto limpo** — Cada agente só vê mensagens do seu tópico
-6. **Controle granular** — Crons diferentes por agente (ex: heartbeat só no suporte)
-7. **Escalabilidade** — Adicionar novo tópico = novo agente, sem poluir os existentes
+1. **Total isolation** — Each topic has its own sandbox
+2. **Specialization** — Support agent uses Haiku (cheap), Dev uses Opus (powerful)
+3. **Custom SOUL.md** — "Teacher Amora" in course, "DevOps Amora" in support
+4. **Privacy** — Data from one topic **never leaks** to another
+5. **Clean context** — Each agent only sees messages from its topic
+6. **Granular control** — Different crons per agent (e.g., heartbeat only in support)
+7. **Scalability** — Adding a new topic = new agent, without polluting existing ones
 
-#### ❌ Desvantagens
+#### ❌ Disadvantages
 
-1. **Zero continuidade** — Agentes não sabem o que aconteceu em outros tópicos
-2. **Custo maior** — Múltiplos processos rodando (mais RAM, mais API calls)
-3. **Crons duplicados** — Se 3 agentes têm heartbeat, rodam 3x
-4. **Setup complexo** — Precisa criar workspace + config pra cada agente
-5. **Sem compartilhamento** — Arquivo criado no tópico X não existe no Y
+1. **Zero continuity** — Agents don't know what happened in other topics
+2. **Higher cost** — Multiple processes running (more RAM, more API calls)
+3. **Duplicated crons** — If 3 agents have heartbeat, they run 3x
+4. **Complex setup** — Need to create workspace + config for each agent
+5. **No sharing** — File created in topic X doesn't exist in Y
 
-#### 🎯 Quando usar
+#### 🎯 When to use
 
-- **Múltiplos humanos** usando tópicos diferentes
-- Precisa de **privacidade entre tópicos** (cliente A vs cliente B)
-- Quer **comportamentos especializados** (suporte vs desenvolvimento)
-- Tópicos têm **contextos completamente diferentes**
-- Quer **modelos diferentes por tópico** (Haiku no suporte, Opus no dev)
-
----
-
-## 📊 Comparação Direta
-
-| Aspecto | MAIN Compartilhado | Agentes Isolados |
-|---------|-------------------|------------------|
-| **Memória** | Compartilhada entre tópicos | Isolada por tópico |
-| **Workspace** | 1 único workspace | 1 workspace por agente |
-| **SOUL.md** | Comportamento global | Personalizado por tópico |
-| **USER.md** | 1 humano, contexto unificado | Pode ter USER.md diferente |
-| **TOOLS.md** | Ferramentas globais | Ferramentas por agente |
-| **Crons** | Rodam 1x (compartilhados) | Rodam N vezes (por agente) |
-| **Heartbeats** | 1 heartbeat global | 1 heartbeat por agente |
-| **Contexto** | Cruza entre tópicos | Nunca cruza |
-| **Privacidade** | Zero — tudo vaza | Total — isolamento completo |
-| **Custo (API)** | Mais barato | Mais caro |
-| **Custo (RAM)** | 1 processo | N processos |
-| **Setup** | Simples (1 agente) | Complexo (N agentes) |
-| **Uso ideal** | Projetos relacionados | Contextos isolados |
+- **Multiple humans** using different topics
+- You need **privacy between topics** (client A vs client B)
+- You want **specialized behaviors** (support vs development)
+- Topics have **completely different contexts**
+- You want **different models per topic** (Haiku for support, Opus for dev)
 
 ---
 
-## 🛠️ Parte 5: Configuração Avançada
+## 📊 Direct Comparison
 
-### Híbrido: MAIN + Agentes Especializados
+| Aspect | Shared MAIN | Isolated Agents |
+|---------|------------|-----------------|
+| **Memory** | Shared between topics | Isolated per topic |
+| **Workspace** | 1 single workspace | 1 workspace per agent |
+| **SOUL.md** | Global behavior | Customized per topic |
+| **USER.md** | 1 human, unified context | Can have different USER.md |
+| **TOOLS.md** | Global tools | Tools per agent |
+| **Crons** | Run 1x (shared) | Run N times (per agent) |
+| **Heartbeats** | 1 global heartbeat | 1 heartbeat per agent |
+| **Context** | Crosses between topics | Never crosses |
+| **Privacy** | Zero — everything leaks | Total — complete isolation |
+| **Cost (API)** | Cheaper | More expensive |
+| **Cost (RAM)** | 1 process | N processes |
+| **Setup** | Simple (1 agent) | Complex (N agents) |
+| **Ideal use** | Related projects | Isolated contexts |
 
-Você pode **misturar** as duas arquiteturas:
+---
+
+## 🛠️ Part 5: Advanced Configuration
+
+### Hybrid: MAIN + Specialized Agents
+
+You can **mix** both architectures:
 
 ```yaml
 agents:
-  # Agente MAIN — responde no privado e no "Geral"
+  # MAIN Agent — responds in private and "General"
   - id: amora-main
     workspaceDir: /root/.openclaw/workspace-amora
     activation:
       surfaces:
         - surface: telegram
-          mode: mention  # Padrão: só quando marcada
+          mode: mention  # Default: only when mentioned
           overrides:
-            - chat: "telegram:1983085858"  # Privado com Bruno
+            - chat: "telegram:1983085858"  # Private with Bruno
               mode: all
   
-  # Agente especializado — só no tópico "Curso"
-  - id: amora-curso
+  # Specialized agent — only in "Course" topic
+  - id: amora-course
     model: anthropic/claude-sonnet-4-6
-    workspaceDir: /root/.openclaw/workspace-curso
+    workspaceDir: /root/.openclaw/workspace-course
     activation:
       surfaces:
         - surface: telegram
@@ -303,10 +303,10 @@ agents:
             - chat: "telegram:-1003873964847:topic:2638"
               mode: all
   
-  # Agente especializado — só no tópico "Suporte"
-  - id: amora-suporte
+  # Specialized agent — only in "Support" topic
+  - id: amora-support
     model: anthropic/claude-haiku-4-5
-    workspaceDir: /root/.openclaw/workspace-suporte
+    workspaceDir: /root/.openclaw/workspace-support
     activation:
       surfaces:
         - surface: telegram
@@ -315,75 +315,75 @@ agents:
               mode: all
 ```
 
-**Vantagens:**
-- MAIN mantém contexto pessoal (privado com você)
-- Agentes especializados ficam isolados
-- Melhor dos dois mundos
+**Advantages:**
+- MAIN maintains personal context (private with you)
+- Specialized agents stay isolated
+- Best of both worlds
 
 ---
 
-## 🧠 Parte 6: Impacto na Memória e Contexto
+## 🧠 Part 6: Impact on Memory and Context
 
-### Cenário 1: MAIN Compartilhado
+### Scenario 1: Shared MAIN
 
-**Estrutura de memória:**
+**Memory structure:**
 
 ```
 /root/.openclaw/workspace-amora/
-├── MEMORY.md               ← Contexto global (lido em TODAS sessões)
+├── MEMORY.md               ← Global context (read in ALL sessions)
 ├── memory/
-│   ├── 2026-02-25.md       ← Log diário (mistura TODOS os tópicos)
+│   ├── 2026-02-25.md       ← Daily log (mixes ALL topics)
 │   ├── 2026-02-26.md
 ```
 
-**Quando a Amora responde no tópico "Curso":**
-1. Lê `MEMORY.md` (contexto global)
-2. Lê `memory/2026-02-25.md` (conversas de TODOS os tópicos)
-3. Responde com **contexto completo**
+**When Amora responds in the "Course" topic:**
+1. Reads `MEMORY.md` (global context)
+2. Reads `memory/2026-02-25.md` (conversations from ALL topics)
+3. Responds with **complete context**
 
-**Problema:**
-- Se você falou sobre "projeto secreto X" no tópico "Dev" de manhã
-- E alguém pergunta no tópico "Curso" à tarde
-- A Amora **pode citar o projeto secreto** (memory bleed)
-
----
-
-### Cenário 2: Agentes Isolados
-
-**Estrutura de memória:**
-
-```
-/root/.openclaw/workspace-curso/
-├── MEMORY.md               ← Contexto APENAS do curso
-├── memory/
-│   ├── 2026-02-25.md       ← Log APENAS do tópico Curso
-
-/root/.openclaw/workspace-suporte/
-├── MEMORY.md               ← Contexto APENAS do suporte
-├── memory/
-│   ├── 2026-02-25.md       ← Log APENAS do tópico Suporte
-```
-
-**Quando amora-curso responde:**
-1. Lê `MEMORY.md` do workspace-curso
-2. Lê `memory/2026-02-25.md` do workspace-curso
-3. **Não tem acesso** ao workspace-suporte
-
-**Benefício:**
-- Zero vazamento de contexto
-- Cada agente só sabe o que aconteceu no seu tópico
+**Problem:**
+- If you talked about "secret project X" in the "Dev" topic in the morning
+- And someone asks in the "Course" topic in the afternoon
+- Amora **might mention the secret project** (memory bleed)
 
 ---
 
-## 🔄 Parte 7: Impacto nos Crons
+### Scenario 2: Isolated Agents
 
-### MAIN Compartilhado
+**Memory structure:**
+
+```
+/root/.openclaw/workspace-course/
+├── MEMORY.md               ← Course context ONLY
+├── memory/
+│   ├── 2026-02-25.md       ← Course topic log ONLY
+
+/root/.openclaw/workspace-support/
+├── MEMORY.md               ← Support context ONLY
+├── memory/
+│   ├── 2026-02-25.md       ← Support topic log ONLY
+```
+
+**When amora-course responds:**
+1. Reads `MEMORY.md` from workspace-course
+2. Reads `memory/2026-02-25.md` from workspace-course
+3. **Does NOT have access** to workspace-support
+
+**Benefit:**
+- Zero context leakage
+- Each agent only knows what happened in its topic
+
+---
+
+## 🔄 Part 7: Impact on Crons
+
+### Shared MAIN
 
 ```yaml
 # /root/.openclaw/config.yaml
 cron:
   jobs:
-    - name: "Heartbeat Global"
+    - name: "Global Heartbeat"
       schedule:
         kind: every
         everyMs: 1800000  # 30 min
@@ -394,46 +394,46 @@ cron:
       delivery:
         mode: announce
         channel: telegram
-        to: "1983085858"  # Privado com Bruno
+        to: "1983085858"  # Private with Bruno
 ```
 
-**Como funciona:**
-- Roda **1 vez a cada 30 min**
-- Usa o **workspace global** (`/workspace-amora`)
-- Pode checar coisas de **todos os tópicos** (emails, calendário, etc.)
-- Economiza API calls (1 heartbeat vs 3)
+**How it works:**
+- Runs **once every 30 min**
+- Uses the **global workspace** (`/workspace-amora`)
+- Can check things from **all topics** (emails, calendar, etc.)
+- Saves API calls (1 heartbeat vs 3)
 
 ---
 
-### Agentes Isolados
+### Isolated Agents
 
 ```yaml
 cron:
   jobs:
-    # Heartbeat do agente "Curso"
-    - name: "Heartbeat Curso"
+    # "Course" agent heartbeat
+    - name: "Course Heartbeat"
       schedule:
         kind: every
         everyMs: 3600000  # 60 min
       payload:
         kind: agentTurn
-        message: "Checar se tem novas perguntas no curso"
-        agentId: amora-curso
+        message: "Check for new questions in the course"
+        agentId: amora-course
       sessionTarget: isolated
       delivery:
         mode: announce
         channel: telegram
         to: "-1003873964847:topic:2638"
     
-    # Heartbeat do agente "Suporte"
-    - name: "Heartbeat Suporte"
+    # "Support" agent heartbeat
+    - name: "Support Heartbeat"
       schedule:
         kind: every
         everyMs: 1800000  # 30 min
       payload:
         kind: agentTurn
-        message: "Checar tickets pendentes"
-        agentId: amora-suporte
+        message: "Check pending tickets"
+        agentId: amora-support
       sessionTarget: isolated
       delivery:
         mode: announce
@@ -441,25 +441,25 @@ cron:
         to: "-1003873964847:topic:2640"
 ```
 
-**Como funciona:**
-- Cada agente tem **seu próprio heartbeat**
-- Rodam em **workspaces separados**
-- **Mais API calls**, mas **contexto focado**
+**How it works:**
+- Each agent has **its own heartbeat**
+- They run on **separate workspaces**
+- **More API calls**, but **focused context**
 
 ---
 
-## 🧪 Parte 8: Casos de Uso Reais
+## 🧪 Part 8: Real Use Cases
 
-### Caso 1: Freelancer com Múltiplos Clientes
+### Case 1: Freelancer with Multiple Clients
 
-**Problema:** Precisa separar contexto de cada cliente (privacidade).
+**Problem:** Need to separate context for each client (privacy).
 
-**Solução:** Agentes isolados
+**Solution:** Isolated agents
 
 ```yaml
 agents:
-  - id: amora-cliente-a
-    workspaceDir: /workspace-cliente-a
+  - id: amora-client-a
+    workspaceDir: /workspace-client-a
     activation:
       surfaces:
         - surface: telegram
@@ -467,8 +467,8 @@ agents:
             - chat: "telegram:-1003873964847:topic:2638"
               mode: all
   
-  - id: amora-cliente-b
-    workspaceDir: /workspace-cliente-b
+  - id: amora-client-b
+    workspaceDir: /workspace-client-b
     activation:
       surfaces:
         - surface: telegram
@@ -477,18 +477,18 @@ agents:
               mode: all
 ```
 
-**Benefícios:**
-- Cliente A **nunca vê** dados do Cliente B
-- SOUL.md customizado por cliente (ex: "Fale formal com Cliente A")
-- Modelos diferentes (Haiku pra suporte, Opus pra dev)
+**Benefits:**
+- Client A **never sees** Client B's data
+- Custom SOUL.md per client (e.g., "Speak formally with Client A")
+- Different models (Haiku for support, Opus for dev)
 
 ---
 
-### Caso 2: Projetos Pessoais Relacionados
+### Case 2: Related Personal Projects
 
-**Problema:** Você trabalha em 3 projetos, mas são todos seus (ex: blog, app, curso).
+**Problem:** You work on 3 projects, but they're all yours (e.g., blog, app, course).
 
-**Solução:** MAIN compartilhado
+**Solution:** Shared MAIN
 
 ```yaml
 agents:
@@ -503,197 +503,197 @@ agents:
               mode: all
             - chat: "telegram:-1003873964847:topic:2"    # App
               mode: all
-            - chat: "telegram:-1003873964847:topic:3"    # Curso
+            - chat: "telegram:-1003873964847:topic:3"    # Course
               mode: all
 ```
 
-**Benefícios:**
-- Amora lembra de TUDO (contexto cruzado útil)
-- "Aquela ideia do app que falamos ontem" funciona no tópico do blog
-- Economiza recursos (1 processo)
+**Benefits:**
+- Amora remembers EVERYTHING (useful cross-context)
+- "That idea for the app we discussed yesterday" works in the blog topic
+- Saves resources (1 process)
 
 ---
 
-### Caso 3: Híbrido — Pessoal + Profissional
+### Case 3: Hybrid — Personal + Professional
 
-**Problema:** Você quer **privacidade** entre trabalho e vida pessoal.
+**Problem:** You want **privacy** between work and personal life.
 
-**Solução:** Híbrido
+**Solution:** Hybrid
 
 ```yaml
 agents:
-  # Agente pessoal — privado + tópico "Vida"
-  - id: amora-pessoal
-    workspaceDir: /workspace-pessoal
+  # Personal agent — private + "Life" topic
+  - id: amora-personal
+    workspaceDir: /workspace-personal
     activation:
       surfaces:
         - surface: telegram
           overrides:
-            - chat: "telegram:1983085858"                # Privado
+            - chat: "telegram:1983085858"                # Private
               mode: all
-            - chat: "telegram:-1003873964847:topic:1"    # Tópico "Vida"
+            - chat: "telegram:-1003873964847:topic:1"    # "Life" topic
               mode: all
   
-  # Agente profissional — tópico "Trabalho"
-  - id: amora-trabalho
+  # Professional agent — "Work" topic
+  - id: amora-work
     model: anthropic/claude-opus-4-6
-    workspaceDir: /workspace-trabalho
+    workspaceDir: /workspace-work
     activation:
       surfaces:
         - surface: telegram
           overrides:
-            - chat: "telegram:-1003873964847:topic:2"    # Tópico "Trabalho"
+            - chat: "telegram:-1003873964847:topic:2"    # "Work" topic
               mode: all
 ```
 
-**Benefícios:**
-- Zero vazamento entre vida pessoal e trabalho
-- Modelos diferentes (Haiku pessoal, Opus profissional)
-- Comportamento especializado (SOUL.md diferente)
+**Benefits:**
+- Zero leakage between personal life and work
+- Different models (Haiku personal, Opus professional)
+- Specialized behavior (different SOUL.md)
 
 ---
 
-## 🚨 Parte 9: Armadilhas Comuns
+## 🚨 Part 9: Common Pitfalls
 
-### Armadilha 1: Misturar Chat IDs
+### Pitfall 1: Mixing Chat IDs
 
-**Erro:**
+**Error:**
 ```yaml
-- chat: "telegram:-1003873964847"  # ID do grupo (sem :topic:)
+- chat: "telegram:-1003873964847"  # Group ID (without :topic:)
   mode: all
 ```
 
-**Resultado:** Amora responde em **TODOS os tópicos** do grupo (caos).
+**Result:** Amora responds in **ALL topics** of the group (chaos).
 
-**Correção:**
+**Fix:**
 ```yaml
-- chat: "telegram:-1003873964847:topic:2638"  # ID específico do tópico
+- chat: "telegram:-1003873964847:topic:2638"  # Specific topic ID
   mode: all
 ```
 
 ---
 
-### Armadilha 2: Esquecer de Tornar o Bot Admin
+### Pitfall 2: Forgetting to Make Bot Admin
 
-**Erro:** Adicionar bot ao grupo mas **não dar permissão de admin**.
+**Error:** Adding bot to the group but **not giving admin permissions**.
 
-**Resultado:** Bot não consegue ler mensagens em tópicos (só no "Geral").
+**Result:** Bot can't read messages in topics (only in "General").
 
-**Correção:**
-1. Configurações do grupo → **Administradores**
-2. Adicione o bot
-3. Ative permissão: **"Gerenciar Tópicos"**
-
----
-
-### Armadilha 3: Agentes Isolados Compartilhando Workspace
-
-**Erro:**
-```yaml
-agents:
-  - id: amora-curso
-    workspaceDir: /workspace-amora  # ❌ Mesmo workspace
-  - id: amora-suporte
-    workspaceDir: /workspace-amora  # ❌ Mesmo workspace
-```
-
-**Resultado:** Agentes pisam um no outro (arquivos sobrescritos, memória compartilhada).
-
-**Correção:**
-```yaml
-agents:
-  - id: amora-curso
-    workspaceDir: /workspace-curso  # ✅ Workspace isolado
-  - id: amora-suporte
-    workspaceDir: /workspace-suporte  # ✅ Workspace isolado
-```
+**Fix:**
+1. Group settings → **Administrators**
+2. Add the bot
+3. Enable permission: **"Manage Topics"**
 
 ---
 
-### Armadilha 4: Crons no Agente Errado
+### Pitfall 3: Isolated Agents Sharing Workspace
 
-**Erro:** Criar cron para `amora-curso` mas tentar acessar dados de `amora-suporte`.
+**Error:**
+```yaml
+agents:
+  - id: amora-course
+    workspaceDir: /workspace-amora  # ❌ Same workspace
+  - id: amora-support
+    workspaceDir: /workspace-amora  # ❌ Same workspace
+```
 
-**Resultado:** Cron não encontra os arquivos (workspaces diferentes).
+**Result:** Agents step on each other (overwritten files, shared memory).
 
-**Correção:** Certifique-se que o cron **usa o agentId correto**:
+**Fix:**
+```yaml
+agents:
+  - id: amora-course
+    workspaceDir: /workspace-course  # ✅ Isolated workspace
+  - id: amora-support
+    workspaceDir: /workspace-support  # ✅ Isolated workspace
+```
+
+---
+
+### Pitfall 4: Crons on the Wrong Agent
+
+**Error:** Creating a cron for `amora-course` but trying to access data from `amora-support`.
+
+**Result:** Cron can't find the files (different workspaces).
+
+**Fix:** Make sure the cron **uses the correct agentId**:
 
 ```yaml
 cron:
   jobs:
-    - name: "Checar curso"
+    - name: "Check course"
       payload:
         kind: agentTurn
-        message: "Checar novas perguntas"
-        agentId: amora-curso  # ✅ Usa o workspace correto
+        message: "Check new questions"
+        agentId: amora-course  # ✅ Uses the correct workspace
 ```
 
 ---
 
-## 📝 Parte 10: Checklist de Decisão
+## 📝 Part 10: Decision Checklist
 
-### Perguntas pra se fazer:
+### Questions to ask yourself:
 
-1. **Privacidade é crítica?**
-   - ❌ Não → MAIN compartilhado
-   - ✅ Sim → Agentes isolados
+1. **Is privacy critical?**
+   - ❌ No → Shared MAIN
+   - ✅ Yes → Isolated agents
 
-2. **Os tópicos têm contextos relacionados?**
-   - ✅ Sim (ex: projetos pessoais) → MAIN compartilhado
-   - ❌ Não (ex: clientes diferentes) → Agentes isolados
+2. **Do the topics have related contexts?**
+   - ✅ Yes (e.g., personal projects) → Shared MAIN
+   - ❌ No (e.g., different clients) → Isolated agents
 
-3. **Precisa de comportamentos especializados?**
-   - ❌ Não → MAIN compartilhado
-   - ✅ Sim (ex: Amora Professora vs DevOps) → Agentes isolados
+3. **Do you need specialized behaviors?**
+   - ❌ No → Shared MAIN
+   - ✅ Yes (e.g., Teacher Amora vs DevOps) → Isolated agents
 
-4. **Quer economizar recursos (RAM/API)?**
-   - ✅ Sim → MAIN compartilhado
-   - ❌ Não → Agentes isolados
+4. **Do you want to save resources (RAM/API)?**
+   - ✅ Yes → Shared MAIN
+   - ❌ No → Isolated agents
 
-5. **Contexto cruzado é útil ou perigoso?**
-   - Útil (ex: "lembra daquela ideia?") → MAIN compartilhado
-   - Perigoso (ex: vazamento de dados) → Agentes isolados
-
----
-
-## 🎯 Recomendação Final
-
-**Para iniciantes:**
-- Comece com **MAIN compartilhado**
-- É mais simples, econômico, e "just works"
-- Migre pra isolado quando sentir a dor (poluição de contexto, privacidade)
-
-**Para avançados:**
-- Use **agentes isolados** desde o início
-- Custa mais, mas escala melhor
-- Especialmente se trabalha com múltiplos clientes/projetos
-
-**Para a maioria:**
-- **Híbrido** é o sweet spot
-- MAIN pra contexto pessoal
-- Isolados pra contextos profissionais/privados
+5. **Is cross-context useful or dangerous?**
+   - Useful (e.g., "remember that idea?") → Shared MAIN
+   - Dangerous (e.g., data leakage) → Isolated agents
 
 ---
 
-## 🛠️ Parte 11: Exemplo de Setup Completo
+## 🎯 Final Recommendation
 
-### Estrutura de Grupo
+**For beginners:**
+- Start with **Shared MAIN**
+- It's simpler, more economical, and "just works"
+- Migrate to isolated when you feel the pain (context pollution, privacy)
+
+**For advanced users:**
+- Use **isolated agents** from the start
+- Costs more, but scales better
+- Especially if you work with multiple clients/projects
+
+**For most people:**
+- **Hybrid** is the sweet spot
+- MAIN for personal context
+- Isolated for professional/private contexts
+
+---
+
+## 🛠️ Part 11: Complete Setup Example
+
+### Group Structure
 
 ```
 Amora HQ (Telegram Group)
-├── 📌 Geral (id: 1) — só quando marcada
-├── 📚 Curso OpenClaw (id: 2638) — agente isolado, responde tudo
-├── 🛠️ Suporte (id: 2640) — agente isolado, responde tudo
-└── 💬 Bruno Privado (chat: 1983085858) — MAIN, responde tudo
+├── 📌 General (id: 1) — only when mentioned
+├── 📚 OpenClaw Course (id: 2638) — isolated agent, responds to everything
+├── 🛠️ Support (id: 2640) — isolated agent, responds to everything
+└── 💬 Bruno Private (chat: 1983085858) — MAIN, responds to everything
 ```
 
-### Config Completo
+### Complete Config
 
 ```yaml
 # /root/.openclaw/config.yaml
 
 agents:
-  # Agente MAIN — privado com Bruno
+  # MAIN Agent — private with Bruno
   - id: amora-main
     model: anthropic/claude-sonnet-4-6
     thinking: off
@@ -703,14 +703,14 @@ agents:
         - surface: telegram
           mode: mention
           overrides:
-            - chat: "telegram:1983085858"  # Privado
+            - chat: "telegram:1983085858"  # Private
               mode: all
 
-  # Agente do Curso — isolado
-  - id: amora-curso
+  # Course Agent — isolated
+  - id: amora-course
     model: anthropic/claude-sonnet-4-6
     thinking: off
-    workspaceDir: /root/.openclaw/workspace-curso
+    workspaceDir: /root/.openclaw/workspace-course
     activation:
       surfaces:
         - surface: telegram
@@ -718,11 +718,11 @@ agents:
             - chat: "telegram:-1003873964847:topic:2638"
               mode: all
 
-  # Agente de Suporte — isolado, modelo barato
-  - id: amora-suporte
+  # Support Agent — isolated, cheaper model
+  - id: amora-support
     model: anthropic/claude-haiku-4-5
     thinking: off
-    workspaceDir: /root/.openclaw/workspace-suporte
+    workspaceDir: /root/.openclaw/workspace-support
     activation:
       surfaces:
         - surface: telegram
@@ -732,8 +732,8 @@ agents:
 
 cron:
   jobs:
-    # Heartbeat MAIN — só pro Bruno
-    - name: "Heartbeat Pessoal"
+    # MAIN Heartbeat — only for Bruno
+    - name: "Personal Heartbeat"
       schedule:
         kind: every
         everyMs: 1800000  # 30 min
@@ -746,15 +746,15 @@ cron:
         channel: telegram
         to: "1983085858"
     
-    # Heartbeat Curso — checks a cada 1h
-    - name: "Heartbeat Curso"
+    # Course Heartbeat — checks every 1h
+    - name: "Course Heartbeat"
       schedule:
         kind: every
         everyMs: 3600000
       payload:
         kind: agentTurn
-        message: "Checar novas dúvidas no curso"
-        agentId: amora-curso
+        message: "Check for new questions in the course"
+        agentId: amora-course
       sessionTarget: isolated
       delivery:
         mode: announce
@@ -762,71 +762,71 @@ cron:
         to: "-1003873964847:topic:2638"
 ```
 
-### Estrutura de Workspaces
+### Workspace Structure
 
 ```
 /root/.openclaw/
-├── workspace-amora/           # MAIN (pessoal)
-│   ├── SOUL.md                # "Seja íntima, casual, use gírias"
-│   ├── USER.md                # Contexto do Bruno
-│   ├── MEMORY.md              # Memória pessoal
+├── workspace-amora/           # MAIN (personal)
+│   ├── SOUL.md                # "Be intimate, casual, use slang"
+│   ├── USER.md                # Bruno's context
+│   ├── MEMORY.md              # Personal memory
 │   ├── memory/
 │   │   └── 2026-02-25.md
-│   └── HEARTBEAT.md           # Checks pessoais
+│   └── HEARTBEAT.md           # Personal checks
 │
-├── workspace-curso/           # Agente isolado
-│   ├── SOUL.md                # "Seja professora, didática, paciente"
-│   ├── USER.md                # Perfil dos alunos
-│   ├── MEMORY.md              # Dúvidas comuns, decisões do curso
+├── workspace-course/           # Isolated agent
+│   ├── SOUL.md                # "Be a teacher, didactic, patient"
+│   ├── USER.md                # Student profiles
+│   ├── MEMORY.md              # Common questions, course decisions
 │   ├── memory/
 │   │   └── 2026-02-25.md
-│   └── HEARTBEAT.md           # Checar novas perguntas
+│   └── HEARTBEAT.md           # Check for new questions
 │
-└── workspace-suporte/         # Agente isolado
-    ├── SOUL.md                # "Seja técnica, objetiva, rápida"
-    ├── USER.md                # Perfil dos clientes
-    ├── MEMORY.md              # Tickets resolvidos, bugs conhecidos
+└── workspace-support/         # Isolated agent
+    ├── SOUL.md                # "Be technical, objective, fast"
+    ├── USER.md                # Client profiles
+    ├── MEMORY.md              # Resolved tickets, known bugs
     ├── memory/
     │   └── 2026-02-25.md
-    └── HEARTBEAT.md           # Checar tickets pendentes
+    └── HEARTBEAT.md           # Check pending tickets
 ```
 
 ---
 
-## 🎓 Conclusão
+## 🎓 Conclusion
 
-### Resumo do Resumo
+### Summary of the Summary
 
-**MAIN Compartilhado = Memória Total, Zero Privacidade**
-- Use quando contexto cruzado é desejável
-- Economiza recursos
-- Ideal pra projetos pessoais relacionados
+**Shared MAIN = Total Memory, Zero Privacy**
+- Use when cross-context is desirable
+- Saves resources
+- Ideal for related personal projects
 
-**Agentes Isolados = Privacidade Total, Zero Memória Cruzada**
-- Use quando contexto cruzado é perigoso
-- Custa mais recursos
-- Ideal pra múltiplos clientes/contextos
+**Isolated Agents = Total Privacy, Zero Cross-Memory**
+- Use when cross-context is dangerous
+- Costs more resources
+- Ideal for multiple clients/contexts
 
-**Híbrido = Melhor dos Dois Mundos**
-- MAIN pra uso pessoal
-- Isolados pra contextos profissionais
-- Recomendado pra maioria dos casos
-
----
-
-**Proximos Passos:**
-1. Decidir qual arquitetura usar
-2. Criar os tópicos no Telegram
-3. Configurar o `config.yaml`
-4. Testar cada tópico
-5. Ajustar SOUL.md de cada agente
-6. Configurar crons (se necessário)
-
-**Dúvidas?**
-- Revise a seção de **Checklist de Decisão**
-- Teste com 1-2 tópicos primeiro
-- Migre gradualmente se precisar mudar de arquitetura
+**Hybrid = Best of Both Worlds**
+- MAIN for personal use
+- Isolated for professional contexts
+- Recommended for most cases
 
 ---
 
-**Última dica:** Não existe "arquitetura errada" — existe a que funciona **pra você**. Teste, aprenda, ajuste. É assim que se constrói um sistema sob medida.
+**Next Steps:**
+1. Decide which architecture to use
+2. Create the topics on Telegram
+3. Configure the `config.yaml`
+4. Test each topic
+5. Adjust each agent's SOUL.md
+6. Configure crons (if necessary)
+
+**Questions?**
+- Review the **Decision Checklist** section
+- Test with 1-2 topics first
+- Migrate gradually if you need to change architecture
+
+---
+
+**Last tip:** There's no "wrong architecture" — there's the one that works **for you**. Test, learn, adjust. That's how you build a custom system.

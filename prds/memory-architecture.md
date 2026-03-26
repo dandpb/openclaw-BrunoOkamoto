@@ -1,135 +1,135 @@
-# PRD: Arquitetura de Memória (Atualizado Março 2026)
+# PRD: Memory Architecture (Updated March 2026)
 
-> Jogue este arquivo no agente: "Implementa esta arquitetura de memória"
+> Drop this file into the agent: "Implement this memory architecture"
 
-## Contexto
+## Context
 
-Agentes AI esquecem tudo a cada sessão. Sem memória estruturada, você repete contexto todo dia. Esta arquitetura resolve isso com uma estrutura em subpastas que permite busca semântica precisa.
+AI agents forget everything between sessions. Without structured memory, you repeat context every day. This architecture solves that with a subfolder structure that enables precise semantic search.
 
-**Novidade Março 2026:** `memory_search` agora funciona nativamente — sem precisar de chave de API externa (OpenAI/Gemini). A busca por embedding é built-in.
+**March 2026 Update:** `memory_search` now works natively — without needing an external API key (OpenAI/Gemini). Embedding search is built-in.
 
-**⚠️ Breaking v2026.3.13 — MEMORY.md obrigatório em maiúsculas:** O agente carrega apenas um arquivo de memória raiz. `MEMORY.md` (maiúsculas) tem prioridade; `memory.md` (minúsculas) só é usado quando `MEMORY.md` não existe. Se você criou `memory.md` antes da v3.13, renomeie:
+**⚠️ Breaking v2026.3.13 — MEMORY.md required in uppercase:** The agent loads only one root memory file. `MEMORY.md` (uppercase) takes priority; `memory.md` (lowercase) is only used when `MEMORY.md` doesn't exist. If you created `memory.md` before v3.13, rename it:
 
 ```bash
 mv memory.md MEMORY.md
 ```
 
-**Comportamento pós-compaction (v2026.3.13):** Após compaction automática, o índice de memória é reindexado de forma assíncrona. Se o agente parecer "esquecer" algo logo após uma compaction — aguarde alguns segundos e tente `memory_search` novamente. Isso é normal e temporário.
+**Post-compaction behavior (v2026.3.13):** After automatic compaction, the memory index is reindexed asynchronously. If the agent seems to "forget" something right after a compaction — wait a few seconds and try `memory_search` again. This is normal and temporary.
 
-## O que o agente carrega vs. busca
+## What the agent loads vs. searches
 
-| Sempre carregado na sessão | Buscado sob demanda |
+| Always loaded in session | Searched on demand |
 |---------------------------|---------------------|
 | SOUL.md, USER.md, AGENTS.md | memory/context/decisions.md |
-| MEMORY.md (índice) | memory/context/lessons.md |
-| memory/sessions/ (hoje + ontem) | memory/projects/*.md |
-| | skills/ (qualquer skill) |
+| MEMORY.md (index) | memory/context/lessons.md |
+| memory/sessions/ (today + yesterday) | memory/projects/*.md |
+| | skills/ (any skill) |
 
-## Tarefas
+## Tasks
 
-### 1. Criar estrutura de subpastas
+### 1. Create subfolder structure
 
 ```bash
 mkdir -p memory/context memory/projects memory/sessions memory/integrations
 ```
 
-### 2. Criar os arquivos de contexto
+### 2. Create context files
 
-| Arquivo | Propósito |
+| File | Purpose |
 |---------|-----------|
-| `memory/context/decisions.md` | Decisões permanentes e irreversíveis |
-| `memory/context/lessons.md` | Lições aprendidas, erros, padrões |
-| `memory/context/people.md` | Equipe, parceiros, contatos — como interagir com cada um |
-| `memory/context/business-context.md` | Contexto do negócio, produtos, clientes |
+| `memory/context/decisions.md` | Permanent and irreversible decisions |
+| `memory/context/lessons.md` | Lessons learned, mistakes, patterns |
+| `memory/context/people.md` | Team, partners, contacts — how to interact with each |
+| `memory/context/business-context.md` | Business context, products, customers |
 
-**Retenção de lições:**
-- 🔒 Estratégicas = permanentes (filosofia, padrões de arquitetura)
-- ⏳ Táticas = expiram em 30 dias (bugs, workarounds temporários)
+**Lesson retention:**
+- 🔒 Strategic = permanent (philosophy, architecture patterns)
+- ⏳ Tactical = expire in 30 days (bugs, temporary workarounds)
 
-### 3. Criar projetos individuais
+### 3. Create individual projects
 
-Em vez de um `projects.md` gigante, um arquivo por projeto:
+Instead of one giant `projects.md`, one file per project:
 
 ```
 memory/projects/
-├── meu-saas.md          ← MRR atual, próximas features, pendências
-├── lançamento-maio.md   ← status, checklist, responsáveis
-└── produto-b.md
+├── my-saas.md          ← current MRR, upcoming features, pending items
+├── may-launch.md       ← status, checklist, responsible parties
+└── product-b.md
 ```
 
-**Por que separado?** A busca semântica acha o projeto certo sem trazer contexto de outros projetos junto.
+**Why separate?** Semantic search finds the right project without bringing in context from other projects.
 
-### 4. Criar MEMORY.md (índice)
+### 4. Create MEMORY.md (index)
 
-Na raiz do workspace. É o mapa — não duplica conteúdo, apenas referencia:
+In the workspace root. It's the map — doesn't duplicate content, only references:
 
 ```markdown
 # MEMORY.md
 
-## Contexto
-- Decisões: memory/context/decisions.md
-- Lições: memory/context/lessons.md
-- Pessoas: memory/context/people.md
+## Context
+- Decisions: memory/context/decisions.md
+- Lessons: memory/context/lessons.md
+- People: memory/context/people.md
 
-## Projetos ativos
-- [Nome do Projeto]: memory/projects/nome.md
+## Active projects
+- [Project Name]: memory/projects/name.md
 
-## Integrações
-- Mapa de ferramentas: memory/integrations/
+## Integrations
+- Tool map: memory/integrations/
 ```
 
-### 5. Configurar ciclo de memória no AGENTS.md
+### 5. Configure memory cycle in AGENTS.md
 
 ```
-Regras de memória:
-1. Notas diárias: criar memory/sessions/YYYY-MM-DD.md a cada sessão relevante
-2. Projetos: um arquivo separado por projeto em memory/projects/
-3. INVIOLÁVEL: antes de compactar → extrair lições, decisões e pendências
-4. Feedback: ao rejeitar sugestão → salvar motivo em memory/feedback/
+Memory rules:
+1. Daily notes: create memory/sessions/YYYY-MM-DD.md at each relevant session
+2. Projects: one separate file per project in memory/projects/
+3. INVIOLABLE: before compacting → extract lessons, decisions and pending items
+4. Feedback: when rejecting a suggestion → save reason in memory/feedback/
 ```
 
-### 6. Configurar busca semântica
+### 6. Configure semantic search
 
-O agente usa dois tools:
-- `memory_search("termo")` — busca semântica em todos os arquivos (~400 tokens/chunk)
-- `memory_get("arquivo.md", linha_início)` — lê só o trecho relevante
+The agent uses two tools:
+- `memory_search("term")` — semantic search across all files (~400 tokens/chunk)
+- `memory_get("file.md", start_line)` — reads only the relevant section
 
-**Funciona nativamente** desde Março 2026. Não precisa de chave externa.
+**Works natively** since March 2026. No external key needed.
 
-### 7. Configurar feedback loops (avançado)
+### 7. Configure feedback loops (advanced)
 
 ```
 memory/feedback/
-├── content.json    ← sugestões de conteúdo aprovadas/rejeitadas
-├── tasks.json      ← preferências de execução de tarefas
-└── tone.json       ← ajustes de tom e estilo
+├── content.json    ← approved/rejected content suggestions
+├── tasks.json      ← task execution preferences
+└── tone.json       ← tone and style adjustments
 ```
 
-Formato:
+Format:
 ```json
 {
   "entries": [
     {
       "date": "2026-03-14",
-      "context": "Sugeri post LinkedIn com linguagem formal",
+      "context": "Suggested LinkedIn post with formal language",
       "decision": "reject",
-      "reason": "Tom muito corporativo — prefere direto e conversacional",
-      "tags": ["linkedin", "tom"]
+      "reason": "Too corporate — prefers direct and conversational",
+      "tags": ["linkedin", "tone"]
     }
   ]
 }
 ```
 
-## Como pedir para salvar
+## How to ask to save
 
-| ❌ Não funciona | ✅ Funciona |
+| ❌ Doesn't work | ✅ Works |
 |----------------|------------|
-| "Lembra disso" | "Salva em memory/context/decisions.md" |
-| "Guarda essa info" | "Adiciona em memory/projects/nome.md" |
-| "Não esquece que..." | "Registra em memory/sessions/hoje como lição" |
+| "Remember this" | "Save in memory/context/decisions.md" |
+| "Store this info" | "Add to memory/projects/name.md" |
+| "Don't forget that..." | "Record in memory/sessions/today as a lesson" |
 
-## Resultado Esperado
+## Expected Result
 
-1. Estrutura criada com subpastas organizadas
-2. MEMORY.md como índice apontando para tudo
-3. Teste: fechar sessão → abrir nova → perguntar algo salvo → agente encontra via memory_search
+1. Structure created with organized subfolders
+2. MEMORY.md as index pointing to everything
+3. Test: close session → open new one → ask about something saved → agent finds it via memory_search

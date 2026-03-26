@@ -1,90 +1,90 @@
-# Prompt do Aluno — Aula N-2: Bot sem acesso ao shell
+# Student Prompt — Lesson N-2: Bot Without Shell Access
 
-**Como usar:** Cole o prompt abaixo diretamente no chat do seu agente OpenClaw.  
-O agente vai diagnosticar a própria configuração e guiar você até a solução.
+**How to use:** Paste the prompt below directly into the chat with your OpenClaw agent.
+The agent will diagnose its own configuration and guide you to the solution.
 
 ---
 
-## PROMPT PARA COLAR NO CHAT
+## PROMPT TO PASTE IN THE CHAT
 
 ```
-Vou fazer um diagnóstico do seu acesso ao shell. Por favor, execute cada etapa na ordem.
+I'm going to do a diagnosis of your shell access. Please execute each step in order.
 
-## ETAPA 0 — Verificar tools.profile (primeiro check SEMPRE)
+## STEP 0 — Check tools.profile (ALWAYS the first check)
 
-Antes de qualquer coisa, verifique se o perfil de ferramentas está correto:
+Before anything else, verify that the tools profile is correct:
 
-1. Execute: `openclaw config get tools.profile`
-2. Se o resultado NÃO for "full", execute: `openclaw config set tools.profile full`
-3. Reinicie o gateway: `openclaw gateway restart`
-4. Teste: `echo "TOOLS_PROFILE_CHECK_OK"`
+1. Run: `openclaw config get tools.profile`
+2. If the result is NOT "full", run: `openclaw config set tools.profile full`
+3. Restart the gateway: `openclaw gateway restart`
+4. Test: `echo "TOOLS_PROFILE_CHECK_OK"`
 
-> Este é o problema mais comum: o agente não executa nada porque o tools.profile está em "minimal" (padrão após instalação). Sem `tools.profile full`, o agente só responde mensagens.
+> This is the most common problem: the agent doesn't execute anything because tools.profile is set to "minimal" (default after installation). Without `tools.profile full`, the agent only responds to messages.
 
-Se o teste acima funcionou → problema resolvido! 🎉
-Se ainda falha → continue para a Etapa 1.
+If the test above worked → problem solved! 🎉
+If it still fails → continue to Step 1.
 
 ---
 
-## ETAPA 1 — Teste básico de acesso
+## STEP 1 — Basic access test
 
-Tente executar este comando e me diga exatamente o que aconteceu:
+Try running this command and tell me exactly what happened:
 execute: echo "SHELL_TEST_OK"
 
-Se funcionou → me confirme "OK" e vá para a Etapa 3.
-Se falhou ou você recebeu erro → descreva o erro e continue na Etapa 2.
+If it worked → confirm "OK" and go to Step 3.
+If it failed or you received an error → describe the error and continue to Step 2.
 
 ---
 
-## ETAPA 2 — Diagnóstico de configuração
+## STEP 2 — Configuration diagnosis
 
-Agora verifique sua configuração atual:
+Now check your current configuration:
 
-1. Leia o arquivo de configuração principal:
-   - Tente: `cat ~/.openclaw/config.json`
-   - Ou: `cat openclaw.json` (se estiver num workspace)
+1. Read the main configuration file:
+   - Try: `cat ~/.openclaw/config.json`
+   - Or: `cat openclaw.json` (if in a workspace)
 
-2. Me mostre o conteúdo completo do arquivo. Procuro especificamente por:
-   - Chave "tools" ou "allowlist" (para verificar se "exec" está na lista)
-   - Chave "sandbox" (valores possíveis: "off", "non-main", "all")
-   - Chave "security" (valores possíveis: "deny", "allowlist", "full")
-   - Chave "shell" (path do shell, ex: "/bin/bash")
+2. Show me the full contents of the file. I'm specifically looking for:
+   - The "tools" or "allowlist" key (to verify if "exec" is in the list)
+   - The "sandbox" key (possible values: "off", "non-main", "all")
+   - The "security" key (possible values: "deny", "allowlist", "full")
+   - The "shell" key (shell path, e.g.: "/bin/bash")
 
-3. Também verifique os logs do gateway:
+3. Also check the gateway logs:
    `openclaw gateway logs --tail 30`
 
 ---
 
-## ETAPA 3 — Identificar a causa
+## STEP 3 — Identify the cause
 
-Com base no que você encontrou, me diga qual dessas situações se aplica:
+Based on what you found, tell me which of these situations applies:
 
-**A) Causa 1 — exec não está no allowlist**
-Sintoma: config tem "allowlist" mas "exec" não está na lista
-→ Solução: adicionar "exec" ao allowlist de tools
+**A) Cause 1 — exec is not in the allowlist**
+Symptom: config has "allowlist" but "exec" is not in the list
+→ Solution: add "exec" to the tools allowlist
 
-**B) Causa 2 — Sandbox bloqueando**
-Sintoma: config tem "sandbox": "all" ou sandbox configurado de forma restritiva
-→ Solução: mudar para "sandbox": "off" (agente principal) ou "non-main"
+**B) Cause 2 — Sandbox blocking**
+Symptom: config has "sandbox": "all" or sandbox configured restrictively
+→ Solution: change to "sandbox": "off" (main agent) or "non-main"
 
-**C) Causa 3 — Security mode "deny"**
-Sintoma: config tem "security": "deny"
-→ Solução: mudar para "security": "allowlist"
+**C) Cause 3 — Security mode "deny"**
+Symptom: config has "security": "deny"
+→ Solution: change to "security": "allowlist"
 
-**D) Causa 4 — Shell não encontrado**
-Sintoma: erro de path ou shell não localizado nos logs
-→ Solução: configurar "shell": "/bin/bash" (ou o path correto)
+**D) Cause 4 — Shell not found**
+Symptom: path error or shell not found in logs
+→ Solution: configure "shell": "/bin/bash" (or the correct path)
 
-**E) Não encontrei nada suspeito na config**
-→ Me descreva o erro exato que você vê e os logs do gateway
+**E) Found nothing suspicious in config**
+→ Describe the exact error you see and the gateway logs
 
 ---
 
-## ETAPA 4 — Aplicar a correção
+## STEP 4 — Apply the fix
 
-Baseado na causa identificada, edite o arquivo de configuração com a correção correta.
+Based on the identified cause, edit the configuration file with the correct fix.
 
-**Para Causa 1 (exec não no allowlist):**
+**For Cause 1 (exec not in allowlist):**
 ```json
 {
   "agents": {
@@ -97,7 +97,7 @@ Baseado na causa identificada, edite o arquivo de configuração com a correçã
 }
 ```
 
-**Para Causa 2 (sandbox bloqueando):**
+**For Cause 2 (sandbox blocking):**
 ```json
 {
   "agents": {
@@ -108,7 +108,7 @@ Baseado na causa identificada, edite o arquivo de configuração com a correçã
 }
 ```
 
-**Para Causa 3 (security deny):**
+**For Cause 3 (security deny):**
 ```json
 {
   "agents": {
@@ -119,7 +119,7 @@ Baseado na causa identificada, edite o arquivo de configuração com a correçã
 }
 ```
 
-**Para Causa 4 (shell não encontrado):**
+**For Cause 4 (shell not found):**
 ```json
 {
   "agents": {
@@ -130,50 +130,50 @@ Baseado na causa identificada, edite o arquivo de configuração com a correçã
 }
 ```
 
-Após editar, execute:
+After editing, run:
 `openclaw gateway restart`
 
 ---
 
-## ETAPA 5 — Verificação final
+## STEP 5 — Final verification
 
-Após reiniciar, verifique se está funcionando:
+After restarting, verify everything is working:
 
-1. `echo "VERIFICACAO_FINAL_OK"` → deve retornar o texto
-2. `touch /tmp/teste-openclaw && echo "arquivo criado"` → deve funcionar
-3. `openclaw gateway status` → deve mostrar status "running"
+1. `echo "FINAL_VERIFICATION_OK"` → should return the text
+2. `touch /tmp/teste-openclaw && echo "file created"` → should work
+3. `openclaw gateway status` → should show status "running"
 
-Se tudo passou: **problema resolvido!** 🎉
-Se ainda falha: copie o erro exato e os logs do gateway para analisar.
+If everything passed: **problem solved!** 🎉
+If it still fails: copy the exact error and the gateway logs for analysis.
 ```
 
 ---
 
-## NOTAS PARA O ALUNO
+## NOTES FOR THE STUDENT
 
-### Quando usar este prompt
-- Seu agente responde perguntas mas não executa comandos
-- Você vê erros como "exec not available", "permission denied" ou "sandbox restriction"
-- O agente diz "não consigo executar tarefas no sistema"
+### When to use this prompt
+- Your agent responds to questions but doesn't execute commands
+- You see errors like "exec not available", "permission denied", or "sandbox restriction"
+- The agent says "I cannot execute tasks on the system"
 
-### O que o prompt faz
-0. **Verifica o tools.profile** — causa #1 mais frequente, resolve 70% dos casos
-1. Testa o acesso ao shell com um comando simples
-2. Lê sua configuração atual
-3. Identifica qual das 4 causas se aplica ao seu caso
-4. Guia você na correção específica
-5. Verifica que a correção funcionou
+### What the prompt does
+0. **Checks tools.profile** — most frequent cause #1, resolves 70% of cases
+1. Tests shell access with a simple command
+2. Reads your current configuration
+3. Identifies which of the 4 causes applies to your case
+4. Guides you through the specific fix
+5. Verifies the fix worked
 
-### Causa mais comum (verifique primeiro!)
-Na maioria dos casos, o problema é simplesmente o `tools.profile` não estar em `full`. Execute no terminal do servidor:
+### Most common cause (check this first!)
+In most cases, the problem is simply that `tools.profile` is not set to `full`. Run this in the server terminal:
 ```bash
 openclaw config set tools.profile full
 openclaw gateway restart
 ```
 
-### Dica importante
-Se o agente não conseguir nem ler o arquivo de configuração, você precisará fazer isso **manualmente no terminal** (não pelo agente). Nesse caso, abra um terminal no servidor onde o OpenClaw está rodando e edite o `config.json` diretamente.
+### Important tip
+If the agent can't even read the configuration file, you'll need to do it **manually in the terminal** (not through the agent). In that case, open a terminal on the server where OpenClaw is running and edit `config.json` directly.
 
 ---
 
-*Prompt para Aula N-2 · Curso OpenClaw · Pixel Educação*
+*Prompt for Lesson N-2 · OpenClaw Course · Pixel Educação*

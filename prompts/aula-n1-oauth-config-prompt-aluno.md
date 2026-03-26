@@ -1,169 +1,169 @@
-# Prompt do Aluno — Aula N-1: Configurar API Key
+# Student Prompt — Lesson N-1: Configure API Key
 
-> **Como usar:** Copie o prompt abaixo e cole no chat do seu agente OpenClaw após assistir a aula.
+> **How to use:** Copy the prompt below and paste it in the chat with your OpenClaw agent after watching the lesson.
 >
-> ⚠️ **Nota:** Esta aula usa **API Key** diretamente — não OAuth. Você vai precisar da sua chave de API do Anthropic (ou outro provider) em mãos.
+> ⚠️ **Note:** This lesson uses **API Key** directly — not OAuth. You will need your Anthropic (or other provider) API key on hand.
 
 ---
 
-## 📋 Prompt Principal
+## 📋 Main Prompt
 
 ```
-Olá! Acabei de assistir a aula N-1 do curso OpenClaw sobre configuração de API Keys. 
+Hello! I just watched lesson N-1 of the OpenClaw course on API Key configuration.
 
-Preciso da sua ajuda para:
-1. Verificar se minha configuração está correta
-2. Fazer os exercícios práticos da aula
-3. Resolver qualquer problema que encontrar
+I need your help to:
+1. Verify that my configuration is correct
+2. Complete the practical exercises from the lesson
+3. Fix any issues I encounter
 
-Vamos começar com um diagnóstico completo da minha configuração?
-```
-
----
-
-## 🧪 Exercício 1 — Diagnóstico da Configuração
-
-```
-Por favor, faça um diagnóstico completo da minha configuração atual do OpenClaw:
-
-1. Execute `openclaw status` e me mostre o resultado
-2. Identifique quais providers estão configurados (Anthropic, OpenAI, Google, etc.)
-3. Para cada provider, verifique se o status é "Connected"
-4. Me diga se há algum problema ou alerta
-
-Após o diagnóstico, me explique o que cada parte do output significa.
+Let's start with a complete diagnosis of my configuration?
 ```
 
 ---
 
-## 🔑 Exercício 2 — Configurar API Key (fluxo principal)
+## 🧪 Exercise 1 — Configuration Diagnosis
 
 ```
-Quero configurar minha API Key no OpenClaw usando o fluxo correto.
+Please do a complete diagnosis of my current OpenClaw configuration:
 
-Por favor, me guie pelo processo:
-1. Me explique a diferença entre API Key e setup-token — quando uso cada um?
-2. Me guie para obter minha API Key da Anthropic (console.anthropic.com)
-3. Configure a key no OpenClaw:
-   - Primeiro tente: `openclaw config set providers.anthropic.apiKey <minha-key>`
-   - Ou via arquivo: edite `~/.openclaw/config.json` e adicione a key no campo correto
-4. Confirme que está funcionando com `openclaw status`
+1. Run `openclaw status` and show me the result
+2. Identify which providers are configured (Anthropic, OpenAI, Google, etc.)
+3. For each provider, check if the status is "Connected"
+4. Tell me if there are any problems or warnings
 
-Importante: Não hardcode a key em nenhum arquivo de código ou .env — use o config do OpenClaw ou `openclaw secrets`.
+After the diagnosis, explain what each part of the output means.
 ```
 
 ---
 
-## 🔍 Exercício 3 — Verificação de Segurança das Credenciais
+## 🔑 Exercise 2 — Configure API Key (main flow)
 
 ```
-Quero verificar se minhas credenciais estão armazenadas de forma segura.
+I want to configure my API Key in OpenClaw using the correct flow.
 
-Por favor:
-1. Execute `openclaw secrets audit` para verificar se há credenciais expostas
-2. Verifique as permissões do arquivo ~/.openclaw/config.json (deve ser 600)
-3. Se estiver em um projeto git, verifique se config.json está no .gitignore
-4. Confirme que NÃO há API keys hardcodadas em arquivos de código ou .env
+Please guide me through the process:
+1. Explain the difference between API Key and setup-token — when do I use each?
+2. Guide me to obtain my Anthropic API Key (console.anthropic.com)
+3. Configure the key in OpenClaw:
+   - First try: `openclaw config set providers.anthropic.apiKey <my-key>`
+   - Or via file: edit `~/.openclaw/config.json` and add the key in the correct field
+4. Confirm it's working with `openclaw status`
 
-Se houver algum problema, use `openclaw secrets apply` para migrar as credenciais para o local correto.
-```
-
----
-
-## 🔗 Exercício 4 — Teste Real de Conectividade
-
-```
-Agora vamos testar se as credenciais funcionam de verdade, não só se estão configuradas.
-
-Por favor, faça um teste real:
-1. Tente uma chamada simples à API da Anthropic (se configurada)
-2. Confirme qual modelo está sendo usado
-3. Me mostre o resultado — seja sucesso ou erro específico
-
-Se o teste falhar, me ajude a diagnosticar o problema com detalhes.
+Important: Do not hardcode the key in any code file or .env — use the OpenClaw config or `openclaw secrets`.
 ```
 
 ---
 
-## 🚨 Exercício 5 — Troubleshooting Guiado (use se tiver problemas)
+## 🔍 Exercise 3 — Credentials Security Check
 
 ```
-Estou com um problema na minha configuração. 
+I want to verify that my credentials are stored securely.
 
-[DESCREVA SEU ERRO AQUI — por exemplo:]
-- "Aparece 'Invalid API Key' quando tento usar o Claude"
-- "openclaw status mostra 'Not configured'"
-- "Aparece 'Unauthorized' ou '401' ao testar"
-- "A key foi aceita mas o modelo não responde"
+Please:
+1. Run `openclaw secrets audit` to check for exposed credentials
+2. Check the permissions of the file ~/.openclaw/config.json (should be 600)
+3. If in a git project, check if config.json is in .gitignore
+4. Confirm there are NO hardcoded API keys in code files or .env
 
-Preciso de ajuda para resolver isso passo a passo. Por favor:
-1. Explique o que esse erro significa
-2. Me dê os passos exatos para resolver
-3. Me ajude a verificar se funcionou após cada passo
+If there is any problem, use `openclaw secrets apply` to migrate credentials to the correct location.
 ```
 
 ---
 
-## 📊 Exercício 6 — Entendendo Rate Limits vs Credencial Inválida
+## 🔗 Exercise 4 — Real Connectivity Test
 
 ```
-Quero entender a diferença entre rate limit e credencial inválida na prática.
+Now let's test whether the credentials actually work, not just whether they are configured.
 
-Por favor, me explique:
-1. Como identificar um erro de rate limit (qual mensagem, qual HTTP status)
-2. Como identificar um erro de credencial inválida (qual mensagem, qual HTTP status)
-3. O que fazer em cada caso
-4. Como verificar meu plano/cota atual nos providers que configurei
+Please do a real test:
+1. Try a simple call to the Anthropic API (if configured)
+2. Confirm which model is being used
+3. Show me the result — whether success or a specific error
 
-Também quero saber: existe algum comando do OpenClaw para ver meu uso atual de tokens/requisições?
-```
-
----
-
-## 🔄 Exercício 7 — Reconfiguração (se precisar trocar a chave)
-
-```
-Quero praticar o processo de reconfiguração, como se precisasse trocar minha API Key.
-
-Por favor, me guie pelo processo completo:
-1. Como rotacionar (substituir) uma API Key sem interromper o serviço
-2. Qual comando usar para atualizar as credenciais no OpenClaw
-3. Como verificar que a nova chave está funcionando
-4. Boas práticas: usar `openclaw secrets` para armazenar, nunca colocar em .env ou código
-
-Não precisa executar de verdade — só me explique o processo passo a passo.
+If the test fails, help me diagnose the problem in detail.
 ```
 
 ---
 
-## ✅ Verificação Final de Aprendizado
+## 🚨 Exercise 5 — Guided Troubleshooting (use if you have problems)
 
 ```
-Para encerrar os exercícios da aula N-1, me faça um quiz rápido com 5 perguntas sobre:
-- Diferença entre API Key e setup-token
-- Onde as credenciais devem ser armazenadas (spoiler: openclaw secrets ou config)
-- Como interpretar o openclaw status
-- Como distinguir rate limit de credencial inválida
-- Boas práticas de segurança com API Keys
+I'm having a problem with my configuration.
 
-Após eu responder, me dê um feedback detalhado sobre o que acertei e o que preciso revisar.
-```
+[DESCRIBE YOUR ERROR HERE — for example:]
+- "It shows 'Invalid API Key' when I try to use Claude"
+- "openclaw status shows 'Not configured'"
+- "It shows 'Unauthorized' or '401' when testing"
+- "The key was accepted but the model doesn't respond"
 
----
-
-## 💡 Dica de Uso
-
-> Se você ainda não configurou suas credenciais e está vendo erros, use este prompt mais direto:
-
-```
-Preciso configurar minha API Key do OpenClaw do zero. 
-Tenho minha API Key da Anthropic em mãos (obtida em console.anthropic.com).
-
-Por favor, me guie passo a passo pelo processo completo, desde o terminal até verificar que está funcionando. Estou usando [Linux/Mac/Windows — escolha um].
-
-Lembre: quero usar API Key diretamente, não OAuth.
+I need help resolving this step by step. Please:
+1. Explain what this error means
+2. Give me the exact steps to fix it
+3. Help me verify it worked after each step
 ```
 
 ---
 
-*Prompt para Aula N-1 · Curso OpenClaw · Pixel Educação*
+## 📊 Exercise 6 — Understanding Rate Limits vs Invalid Credentials
+
+```
+I want to understand the difference between rate limit and invalid credentials in practice.
+
+Please explain:
+1. How to identify a rate limit error (what message, what HTTP status)
+2. How to identify an invalid credentials error (what message, what HTTP status)
+3. What to do in each case
+4. How to check my current plan/quota at the providers I configured
+
+I also want to know: is there any OpenClaw command to see my current token/request usage?
+```
+
+---
+
+## 🔄 Exercise 7 — Reconfiguration (if you need to change the key)
+
+```
+I want to practice the reconfiguration process, as if I needed to swap my API Key.
+
+Please guide me through the complete process:
+1. How to rotate (replace) an API Key without interrupting the service
+2. Which command to use to update credentials in OpenClaw
+3. How to verify the new key is working
+4. Best practices: use `openclaw secrets` to store, never put in .env or code
+
+No need to actually execute — just explain the process step by step.
+```
+
+---
+
+## ✅ Final Learning Check
+
+```
+To close the exercises for lesson N-1, give me a quick quiz with 5 questions about:
+- Difference between API Key and setup-token
+- Where credentials should be stored (spoiler: openclaw secrets or config)
+- How to interpret openclaw status
+- How to distinguish rate limit from invalid credentials
+- Security best practices with API Keys
+
+After I answer, give me detailed feedback on what I got right and what I need to review.
+```
+
+---
+
+## 💡 Usage Tip
+
+> If you haven't configured your credentials yet and are seeing errors, use this more direct prompt:
+
+```
+I need to configure my OpenClaw API Key from scratch.
+I have my Anthropic API Key on hand (obtained from console.anthropic.com).
+
+Please guide me step by step through the complete process, from the terminal to verifying it works. I'm using [Linux/Mac/Windows — choose one].
+
+Remember: I want to use API Key directly, not OAuth.
+```
+
+---
+
+*Prompt for Lesson N-1 · OpenClaw Course · Pixel Educação*

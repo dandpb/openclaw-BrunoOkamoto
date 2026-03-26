@@ -1,16 +1,16 @@
-# Lições Aprendidas
+# Lessons Learned
 
-> Erros, padrões e aprendizados do dia a dia com o agente.
-> 🔒 Estratégicas = permanentes | ⏳ Táticas = expiram em 30 dias
+> Mistakes, patterns and learnings from day-to-day agent use.
+> 🔒 Strategic = permanent | ⏳ Tactical = expire in 30 days
 
-## 🔒 Estratégicas
+## 🔒 Strategic
 
-[As lições mais importantes ficam aqui — padrões que sempre valem]
+[The most important lessons go here — patterns that always apply]
 
-## ⏳ Táticas
+## ⏳ Tactical
 
-[Workarounds temporários, bugs específicos, configs que podem mudar]
+[Temporary workarounds, specific bugs, configs that may change]
 
 ---
 
-*Revisão mensal: deletar táticas vencidas.*
+*Monthly review: delete expired tactical lessons.*

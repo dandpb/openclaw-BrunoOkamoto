@@ -1,193 +1,193 @@
-# PRD — Aula Bônus: Report de Comunidade com IA
+# PRD — Bonus Lesson: Community Report with AI
 
-> **Nível:** Intermediário
-> **Duração estimada:** 15–18 minutos
-> **Pré-requisito:** OpenClaw instalado, pelo menos um grupo conectado ao MyGroupMetrics (ou qualquer fonte de dados de mensagens)
-
----
-
-## 🎯 Objetivo da Aula
-
-Ao final desta aula, o aluno vai entender que o OpenClaw pode:
-
-1. Conectar em qualquer banco de dados com mensagens (Supabase, API REST)
-2. Analisar automaticamente o humor, as dúvidas e os padrões da comunidade
-3. Gerar um relatório visual completo — HTML + PDF — sem escrever uma linha de código manualmente
-4. Entregar esse relatório todo na sua caixa de entrada, toda semana, sem interação
-
-**Ângulo da aula:** O resultado primeiro. O código é só a prova de que é simples.
+> **Level:** Intermediate
+> **Estimated Duration:** 15–18 minutes
+> **Prerequisites:** OpenClaw installed, at least one group connected to MyGroupMetrics (or any message data source)
 
 ---
 
-## 📋 Script de Gravação — Seção por Seção
+## 🎯 Lesson Objective
+
+By the end of this lesson, the student will understand that OpenClaw can:
+
+1. Connect to any database with messages (Supabase, REST API)
+2. Automatically analyze the community's mood, questions, and patterns
+3. Generate a complete visual report — HTML + PDF — without writing a single line of code manually
+4. Deliver that report right to your inbox, every week, without any interaction
+
+**Lesson angle:** The result first. The code is just proof that it's simple.
 
 ---
 
-### 🎬 ABERTURA (0:00 – 1:30)
-
-**[Bruno na tela com o PDF do report aberto ao lado]**
-
-> "Fala, pessoal. Olha esse PDF aqui."
-
-> "Esse relatório chegou pra mim ontem, de manhã, sem eu pedir nada. Ele me mostra: humor da comunidade essa semana, quais dúvidas mais repetiram, que horas o grupo mais ativa, quem são os alunos que mais ajudam os outros."
-
-> "14.725 mensagens analisadas. Quatro grupos de WhatsApp. Quatro semanas de dados. E eu não fiz absolutamente nada."
-
-> "Nessa aula eu vou te mostrar como eu fiz isso — e mais importante: como você vai fazer igual para a sua comunidade."
+## 📋 Recording Script — Section by Section
 
 ---
 
-### 📊 SEÇÃO 1: O problema que isso resolve (1:30 – 4:00)
+### 🎬 OPENING (0:00 – 1:30)
 
-**[Bruno na câmera, tom de conversa]**
+**[Bruno on screen with the report PDF open on the side]**
 
-> "Deixa eu te fazer uma pergunta rápida."
+> "Hey everyone. Look at this PDF right here."
 
-> "Você tem grupo de WhatsApp de alunos, clientes, comunidade? Quantas mensagens por semana? 200? 500? 2.000?"
+> "This report arrived for me yesterday morning, without me asking for anything. It shows me: community mood this week, which questions came up most often, what times the group is most active, who are the students helping others the most."
 
-> "Agora me diz: você consegue responder essas perguntas sem abrir o grupo agora?"
+> "14,725 messages analyzed. Four WhatsApp groups. Four weeks of data. And I did absolutely nothing."
 
-**[Mostrar na tela — slide com as 4 perguntas]**
-
-> "Qual foi o humor da comunidade essa semana — as pessoas estão animadas ou frustradas?"
-> "Qual dúvida apareceu mais de três vezes nos últimos 7 dias?"
-> "Que horas do dia o grupo mais engaja — quando eu devo fixar comunicados?"
-> "Quem são os membros que mais ajudam os outros — meus potenciais moderadores?"
-
-> "A maioria dos criadores não consegue responder nenhuma das quatro. Porque essas respostas estão enterradas em milhares de mensagens."
-
-> "O OpenClaw lê tudo isso, analisa e entrega as respostas toda segunda de manhã."
+> "In this lesson I'm going to show you how I did this — and more importantly: how you'll do the same for your community."
 
 ---
 
-### 🔁 SEÇÃO 2: Como funciona em 3 passos (4:00 – 7:00)
+### 📊 SECTION 1: The problem this solves (1:30 – 4:00)
 
-**[Tela: diagrama simples com 3 blocos]**
+**[Bruno on camera, conversational tone]**
 
-> "O processo inteiro tem três partes. E cada parte o agente faz sozinho."
+> "Let me ask you a quick question."
 
-**Passo 1 — Buscar os dados**
+> "Do you have a WhatsApp group for students, clients, community? How many messages per week? 200? 500? 2,000?"
 
-> "O agente se conecta na sua base de dados — no meu caso é o Supabase do MyGroupMetrics. Busca todas as mensagens dos últimos 30 dias. Com paginação, porque bancos de dados grandes devolvem os dados em pedaços."
+> "Now tell me: can you answer these questions without opening the group right now?"
 
-> "Resultado: 14.725 mensagens num arquivo JSON na memória do agente."
+**[Show on screen — slide with the 4 questions]**
 
-**Passo 2 — Analisar**
+> "What was the community's mood this week — are people excited or frustrated?"
+> "Which question came up more than three times in the last 7 days?"
+> "What time of day does the group engage most — when should I pin announcements?"
+> "Who are the members that help others the most — my potential moderators?"
 
-> "Com os dados em mãos, o agente aplica análises. Sentimento: quais mensagens são positivas, quais são negativas, com exemplos reais para você entender por quê. Tópicos: o que mais aparece — instalação, erros, cases de sucesso, custos. Padrões: horários, dias da semana, quem responde mais, quem some."
+> "Most creators can't answer any of the four. Because those answers are buried in thousands of messages."
 
-> "Tudo isso sem biblioteca de machine learning. Python puro, dicionário de palavras calibrado para o seu contexto."
-
-**Passo 3 — Entregar**
-
-> "O agente gera um HTML completo — dark theme, gráficos em CSS, 14 seções — converte em PDF pelo Chrome e manda direto no Telegram. Eu recebo o arquivo aqui, e posso mandar pros alunos se quiser."
-
----
-
-### 🧠 SEÇÃO 3: A Skill — a memória do processo (7:00 – 10:00)
-
-**[Tela: o arquivo SKILL.md aberto no editor]**
-
-> "Agora vou te mostrar a parte mais importante. Não é o código — é a Skill."
-
-> "Toda vez que o agente acorda pra gerar o relatório, ele lê esse arquivo aqui. A Skill é a memória do processo — está documentado onde buscar os dados, como analisar, qual formato gerar, onde salvar, como entregar."
-
-> "Se eu não tivesse isso, o agente esqueceria tudo entre uma sessão e outra. Com a Skill, ele sempre faz igual. Toda semana. Sem variação."
-
-**[Mostrar a estrutura do SKILL.md]**
-
-> "Olha a estrutura: o que a skill faz, quando usar, os grupos que ela analisa com os IDs, como buscar as credenciais no 1Password — nunca senha hardcoded —, o processo passo a passo, e no final: guardrail. Só leitura. Zero escrita no banco sem autorização."
-
-> "Isso aqui é o que transforma uma tarefa que eu fiz uma vez em um processo que roda para sempre."
+> "OpenClaw reads all of that, analyzes it, and delivers the answers every Monday morning."
 
 ---
 
-### ⏰ SEÇÃO 4: O Cron — set and forget (10:00 – 12:30)
+### 🔁 SECTION 2: How it works in 3 steps (4:00 – 7:00)
 
-**[Tela: cron list no terminal ou na interface]**
+**[Screen: simple diagram with 3 blocks]**
 
-> "Com a Skill pronta, criar o cron é a parte mais rápida."
+> "The entire process has three parts. And each part the agent does on its own."
 
-> "Pedi pro agente: 'Cria um cron pra rodar essa skill toda segunda às 9h.' Ele verificou se o horário estava livre, configurou e pronto."
+**Step 1 — Fetch the data**
 
-**[Mostrar a config do cron]**
+> "The agent connects to your database — in my case it's the MyGroupMetrics Supabase. It fetches all messages from the last 30 days. With pagination, because large databases return data in chunks."
 
-> "Repara no detalhe: sessionTarget isolated. A tarefa roda numa sessão separada — não polui o histórico do meu chat principal. E o delivery: announce para o topic do Telegram. O resultado chega aqui, no grupo certo."
+> "Result: 14,725 messages in a JSON file in the agent's memory."
 
-> "Desde que configurei, não precisei pensar mais nisso. Chega toda segunda. Leio em dois minutos. Tenho o panorama completo da semana."
+**Step 2 — Analyze**
 
----
+> "With the data in hand, the agent applies analyses. Sentiment: which messages are positive, which are negative, with real examples so you understand why. Topics: what comes up most — installation, errors, success stories, costs. Patterns: times, days of the week, who responds most, who goes quiet."
 
-### 🌍 SEÇÃO 5: Adapte para o seu contexto (12:30 – 15:30)
+> "All of this without a machine learning library. Pure Python, a word dictionary calibrated for your context."
 
-**[Bruno na câmera]**
+**Step 3 — Deliver**
 
-> "Agora a pergunta que você está fazendo: 'Bruno, mas eu não tenho MyGroupMetrics. Isso funciona pra mim?'"
-
-> "Sim. Você precisa de três coisas:"
-
-**[Mostrar na tela — lista simples]**
-
-> "Primeiro: uma fonte de dados com mensagens acessível por API — pode ser Supabase, Crisp, Zendesk, qualquer coisa que tenha endpoint REST."
-
-> "Segundo: saber quais campos tem nessa tabela — criado_em, mensagem, usuário. Três campos já são suficientes."
-
-> "Terceiro: pedir pro agente criar a Skill adaptada para o seu contexto."
-
-**[Mostrar o prompt do aluno na tela]**
-
-> "Tem um prompt no material da aula. Você copia, adapta com seus dados, manda pro agente. Ele vai criar a Skill, testar a conexão, gerar o primeiro relatório e montar o cron. Em menos de uma hora você tem o processo rodando."
-
-> "Comunidade de clientes, grupo de alunos, canal de suporte — qualquer coisa que gere mensagens vira inteligência acionável."
+> "The agent generates a complete HTML — dark theme, CSS charts, 14 sections — converts it to PDF via Chrome and sends it directly on Telegram. I receive the file here, and I can forward it to students if I want."
 
 ---
 
-### 🎯 FECHAMENTO (15:30 – 17:00)
+### 🧠 SECTION 3: The Skill — the process memory (7:00 – 10:00)
 
-**[Bruno na câmera, tom de encerramento]**
+**[Screen: the SKILL.md file open in the editor]**
 
-> "Deixa eu resumir o que aconteceu aqui."
+> "Now I'm going to show you the most important part. It's not the code — it's the Skill."
 
-> "Eu tinha 14.725 mensagens que eu nunca ia ler. Agora toda segunda de manhã eu sei exatamente o que está acontecendo na comunidade: o que trava os alunos, quem está evoluindo, quando o grupo pulsa, o que precisa de atenção."
+> "Every time the agent wakes up to generate the report, it reads this file here. The Skill is the process memory — it documents where to fetch the data, how to analyze it, what format to generate, where to save it, how to deliver it."
 
-> "Isso não é análise — é inteligência operacional. É a diferença entre gerir uma comunidade no escuro e gerir com dados."
+> "If I didn't have this, the agent would forget everything between one session and the next. With the Skill, it always does it the same way. Every week. Without variation."
 
-> "O processo inteiro — conexão, análise, relatório, entrega — está documentado numa Skill de uma página. Roda automaticamente. Não depende de mim."
+**[Show the SKILL.md structure]**
 
-> "Na próxima aula a gente vai ver como criar Skills do zero para qualquer processo recorrente que você queira automatizar. Até lá."
+> "Look at the structure: what the skill does, when to use it, the groups it analyzes with their IDs, how to fetch credentials from 1Password — never a hardcoded password —, the step-by-step process, and at the end: guardrail. Read-only. Zero writes to the database without authorization."
+
+> "This is what transforms a task I did once into a process that runs forever."
 
 ---
 
-## 🖥️ O que mostrar na tela (guia de screen)
+### ⏰ SECTION 4: The Cron — set and forget (10:00 – 12:30)
 
-| Momento | O que mostrar |
+**[Screen: cron list in the terminal or in the interface]**
+
+> "With the Skill ready, creating the cron is the fastest part."
+
+> "I asked the agent: 'Create a cron to run this skill every Monday at 9am.' It checked if the time slot was free, configured it, and that was it."
+
+**[Show the cron config]**
+
+> "Notice the detail: sessionTarget isolated. The task runs in a separate session — it doesn't pollute my main chat history. And the delivery: announce to the Telegram topic. The result arrives here, in the right group."
+
+> "Since I set it up, I haven't had to think about it anymore. It arrives every Monday. I read it in two minutes. I have a complete overview of the week."
+
+---
+
+### 🌍 SECTION 5: Adapt to your context (12:30 – 15:30)
+
+**[Bruno on camera]**
+
+> "Now the question you're asking: 'Bruno, but I don't have MyGroupMetrics. Does this work for me?'"
+
+> "Yes. You need three things:"
+
+**[Show on screen — simple list]**
+
+> "First: a data source with messages accessible via API — can be Supabase, Crisp, Zendesk, anything that has a REST endpoint."
+
+> "Second: know which fields that table has — created_at, message, user. Three fields are already enough."
+
+> "Third: ask the agent to create the Skill adapted to your context."
+
+**[Show the student prompt on screen]**
+
+> "There's a prompt in the lesson material. You copy it, adapt it with your data, send it to the agent. It will create the Skill, test the connection, generate the first report, and set up the cron. In less than an hour you have the process running."
+
+> "Customer community, student group, support channel — anything that generates messages becomes actionable intelligence."
+
+---
+
+### 🎯 CLOSING (15:30 – 17:00)
+
+**[Bruno on camera, closing tone]**
+
+> "Let me summarize what happened here."
+
+> "I had 14,725 messages I was never going to read. Now every Monday morning I know exactly what's happening in the community: what's blocking students, who's progressing, when the group pulses, what needs attention."
+
+> "This isn't analysis — it's operational intelligence. It's the difference between managing a community in the dark and managing with data."
+
+> "The entire process — connection, analysis, report, delivery — is documented in a one-page Skill. Runs automatically. Doesn't depend on me."
+
+> "In the next lesson we'll see how to create Skills from scratch for any recurring process you want to automate. See you then."
+
+---
+
+## 🖥️ What to show on screen (screen guide)
+
+| Moment | What to show |
 |---------|--------------|
-| Abertura | PDF do report aberto — a câmera vê Bruno e o PDF lado a lado |
-| Seção 1 | Slide com as 4 perguntas que a maioria não consegue responder |
-| Seção 2 | Diagrama: 3 blocos (Buscar → Analisar → Entregar) |
-| Seção 2 (detalhe) | Briefly: terminal mostrando "Total: 14.725 mensagens" |
-| Seção 3 | SKILL.md aberto no editor — scroll lento |
-| Seção 4 | `cron list` no terminal + config do cron |
-| Seção 5 | Prompt do aluno (material da aula) na tela |
-| Fechamento | Bruno na câmera, encerramento direto |
+| Opening | Report PDF open — camera sees Bruno and the PDF side by side |
+| Section 1 | Slide with the 4 questions most creators can't answer |
+| Section 2 | Diagram: 3 blocks (Fetch → Analyze → Deliver) |
+| Section 2 (detail) | Briefly: terminal showing "Total: 14,725 messages" |
+| Section 3 | SKILL.md open in the editor — slow scroll |
+| Section 4 | `cron list` in terminal + cron config |
+| Section 5 | Student prompt (lesson material) on screen |
+| Closing | Bruno on camera, direct wrap-up |
 
 ---
 
-## ⚠️ Pontos de atenção para a gravação
+## ⚠️ Recording notes
 
-- **Não entrar em detalhes de código Python** — mencionar que existe, mostrar brevemente se quiser, mas não explicar linha por linha
-- **Mostrar o PDF real** na abertura — o impacto visual é o gancho
-- **Pronunciar "MyGroupMetrics"** como contexto do caso, mas deixar claro que funciona com outras fontes
-- **Mencionar paginação** apenas como "o agente sabe como buscar os dados em pedaços" — sem detalhes técnicos
-- **Guardrail** — mencionar brevemente que a Skill tem regra de só leitura. Passa confiança para o aluno
+- **Don't go into Python code details** — mention it exists, briefly show it if you want, but don't explain line by line
+- **Show the real PDF** at the opening — the visual impact is the hook
+- **Pronounce "MyGroupMetrics"** as the case study context, but make it clear it works with other sources
+- **Mention pagination** only as "the agent knows how to fetch data in chunks" — no technical details
+- **Guardrail** — briefly mention that the Skill has a read-only rule. Builds student confidence
 
 ---
 
-## 📁 Arquivos da Aula
+## 📁 Lesson Files
 
-| Arquivo | Destino Drive |
+| File | Drive Destination |
 |---------|--------------|
-| HTML do material | Aulas extras / Materiais Aulas Extras / html/ |
-| PDF do material | Aulas extras / Materiais Aulas Extras / pdf/ |
-| Prompt do aluno | Aulas extras / Materiais Aulas Extras / |
-| Exemplo de report (PDF) | Aulas extras / use-cases/ |
+| HTML material | Extra Lessons / Extra Lesson Materials / html/ |
+| PDF material | Extra Lessons / Extra Lesson Materials / pdf/ |
+| Student prompt | Extra Lessons / Extra Lesson Materials / |
+| Sample report (PDF) | Extra Lessons / use-cases/ |

@@ -1,38 +1,38 @@
-# Prompt — Módulo 8: Sistema Imunológico
+# Prompt — Module 8: Immune System
 
-> Cole este prompt no chat do seu OpenClaw depois de assistir o Módulo 8.
-> Anexe junto o arquivo: `prds/immune-system.md`
+> Paste this prompt in your OpenClaw chat after watching Module 8.
+> Attach the file: `prds/immune-system.md`
 
 ---
 
-Acabei de assistir o Módulo 8 do curso sobre o sistema imunológico. "Agents are 30% of the work. The other 70% is the immune system." Leia o PRD e me guie.
+I just watched Module 8 of the course on the immune system. "Agents are 30% of the work. The other 70% is the immune system." Read the PRD and guide me.
 
-**O que preciso que você faça:**
+**What I need you to do:**
 
-1. **Watchdog de crons** — Configure um cron que monitora se os outros crons estão executando. Se algum falhar, retry automático até 3x. Se falhar 3x, me avisa.
+1. **Cron watchdog** — Set up a cron that monitors whether other crons are running. If any fail, automatic retry up to 3x. If it fails 3x, notify me.
 
-2. **Feedback Loops** — Me ajude a configurar um sistema de approve/reject:
-   - Quando você me sugerir algo e eu rejeitar, anote o motivo
-   - Consulte essas anotações antes de sugerir novamente
-   - Me mostre como isso funciona na prática
+2. **Feedback Loops** — Help me configure an approve/reject system:
+   - When you suggest something and I reject it, note the reason
+   - Consult those notes before suggesting again
+   - Show me how this works in practice
 
-3. **Monitoramento de custos:**
-   - Configure o split de modelos (Haiku pra heartbeats, Sonnet pra crons, Opus pra interação)
-   - Configure rate limits e budgets pra prevenir runaway
-   - Me mostre quanto estou gastando por dia/semana
-   - Meta: de ~$2-3/dia pra ~$0.10/dia com otimizações
+3. **Cost monitoring:**
+   - Configure the model split (Haiku for heartbeats, Sonnet for crons, Opus for interaction)
+   - Configure rate limits and budgets to prevent runaway costs
+   - Show me how much I'm spending per day/week
+   - Goal: from ~$2-3/day to ~$0.10/day with optimizations
 
-4. **Audit de segurança periódico:**
-   - Configure um cron semanal de security audit
-   - Rode um agora pra eu ver o resultado
+4. **Periodic security audit:**
+   - Set up a weekly security audit cron
+   - Run one now so I can see the result
 
-5. **Backup antes de mudanças:**
-   - Crie uma regra: antes de qualquer mudança estrutural, salvar backup + ROLLBACK.md
-   - Me mostre como reverter se algo der errado
+5. **Backup before changes:**
+   - Create a rule: before any structural change, save a backup + ROLLBACK.md
+   - Show me how to roll back if something goes wrong
 
-**Regras:**
-- Esse módulo é o que separa "tô brincando" de "tô em produção"
-- Me explique cada proteção e qual problema ela previne
-- No final, rode um health check completo e me dê o score
+**Rules:**
+- This module is what separates "I'm just playing" from "I'm in production"
+- Explain each protection and what problem it prevents
+- At the end, run a full health check and give me the score
 
-Vamos construir a imunidade?
+Shall we build the immunity?

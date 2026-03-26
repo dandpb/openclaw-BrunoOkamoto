@@ -1,57 +1,57 @@
 # ☀️ Use Case: Daily Briefing
 
-> Acorde todos os dias com um resumo do que precisa de atenção.
+> Wake up every day with a summary of what needs attention.
 
-## O que faz
+## What it does
 
-Cron automático que roda todo dia de manhã e consolida:
-- Agenda do dia (eventos nas próximas 24h)
-- Emails urgentes não lidos
-- Métricas do negócio (se configurado)
-- Redes sociais (performance dos últimos posts)
-- Projetos com prazo se aproximando
-- Lembretes pendentes
+Automatic cron that runs every morning and consolidates:
+- Today's schedule (events in the next 24h)
+- Urgent unread emails
+- Business metrics (if configured)
+- Social media (performance of recent posts)
+- Projects with approaching deadlines
+- Pending reminders
 
-## Prompt para configurar
+## Setup prompt
 
 ```
-Quero que você crie um Daily Briefing automático que rode todo dia às [HORÁRIO] da manhã.
+I want you to create an automatic Daily Briefing that runs every day at [TIME] in the morning.
 
-O briefing deve incluir:
-1. 📅 **Agenda** — eventos de hoje e amanhã (Google Calendar)
-2. 📧 **Emails** — urgentes não lidos (se Gmail integrado)
-3. 📊 **Métricas** — resumo rápido do negócio (se integrado)
-4. 📱 **Redes sociais** — performance dos últimos posts
-5. 📋 **Projetos** — status dos projetos ativos, alertar prazos próximos
-6. ⏰ **Lembretes** — pendências que eu pedi pra lembrar
+The briefing should include:
+1. 📅 **Schedule** — today's and tomorrow's events (Google Calendar)
+2. 📧 **Emails** — urgent unread messages (if Gmail integrated)
+3. 📊 **Metrics** — quick business summary (if integrated)
+4. 📱 **Social media** — performance of recent posts
+5. 📋 **Projects** — status of active projects, alert upcoming deadlines
+6. ⏰ **Reminders** — pending items I asked to be reminded of
 
-Formato:
-- Máximo 10 linhas — sou ocupado, quero ser rápido
-- Se não tem nada urgente, diga "Dia tranquilo 😎" e pronto
-- Se tem algo urgente, destaque com ⚠️
-- Entregue no [TELEGRAM/WHATSAPP]
+Format:
+- Maximum 10 lines — I'm busy, I want to be quick
+- If there's nothing urgent, say "Quiet day 😎" and that's it
+- If there's something urgent, highlight with ⚠️
+- Deliver on [TELEGRAM/WHATSAPP]
 
-Configure como cron com:
+Set up as a cron with:
 - sessionTarget: isolated
 - payload: agentTurn
 - delivery: announce
-- model: Sonnet (não precisa de Opus pra isso)
+- model: Sonnet (no need for Opus for this)
 ```
 
-## Exemplo de output
+## Output example
 
 ```
-☀️ Briefing — Terça 18/02
+☀️ Briefing — Tuesday 02/18
 
-📅 14h: Call com investidor (Zoom)
-📅 17h: Lembrete gravar vídeo YouTube
+📅 2pm: Call with investor (Zoom)
+📅 5pm: Reminder to record YouTube video
 
-📊 MRR: R$8.2k (+1.5% semana) ✅
-⚠️ 3 failed payments pendentes (R$347)
+📊 MRR: R$8.2k (+1.5% week) ✅
+⚠️ 3 pending failed payments (R$347)
 
-📱 Post LinkedIn de ontem: 2.3k views, 89 likes — acima da média
+📱 Yesterday's LinkedIn post: 2.3k views, 89 likes — above average
 
-📋 Projeto Content Waterfall: 3 peças pendentes de aprovação
+📋 Content Waterfall project: 3 pieces pending approval
 
-Dia produtivo pela frente! 🚀
+Productive day ahead! 🚀
 ```

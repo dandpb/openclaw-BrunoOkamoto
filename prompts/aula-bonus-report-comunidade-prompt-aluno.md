@@ -1,131 +1,131 @@
-# Prompt do Aluno — Aula Bônus: Report de Comunidade
+# Student Prompt — Bonus Lesson: Community Report
 
-> Copie, adapte as partes entre colchetes e mande para o seu agente OpenClaw.
-
----
-
-## Prompt Principal
-
-```
-Quero criar um relatório semanal automático das mensagens da minha comunidade.
-
-**Minha fonte de dados:**
-[Descreva onde ficam as mensagens. Exemplos:
-- "Tenho um Supabase com tabela 'messages'. Campos: created_at, content, user_name, chat_id"
-- "Uso o MyGroupMetrics — meu user_owner é [seu ID]"
-- "Tenho acesso à API do Crisp com workspace_id [seu ID]"
-- "Tenho um CSV exportado do grupo — posso fazer upload"]
-
-**Grupos/canais a analisar:**
-[Liste os grupos ou canais. Exemplos:
-- "Grupo WhatsApp Alunos — chat_id: 120363xxxxxxxx"
-- "Canal Telegram Clientes — @meucanal"
-- "Workspace Crisp — todos os tickets"]
-
-**Credenciais:**
-[As credenciais estão no 1Password? Se sim, informe o nome do item e o vault.
-Se não, me avise que eu te oriento a guardar antes de continuar.]
-
-**O que quero no relatório:**
-- Sentimento geral da semana (positivo / negativo / neutro)
-- Dúvidas e temas mais frequentes
-- Horários de pico de atividade
-- Quem mais ajuda os outros (possíveis embaixadores)
-- Comparação com as semanas anteriores
-
-**Formato de entrega:**
-- HTML dark theme com gráficos visuais
-- Convertido em PDF
-- Enviado aqui no Telegram toda segunda às 9h
-
-**O que preciso que você faça:**
-1. Criar uma Skill em skills/research/report-[nome-comunidade]/ com todo o processo documentado
-2. Testar a conexão com minha fonte de dados
-3. Gerar o primeiro relatório agora para eu ver como fica
-4. Criar o cron para rodar automaticamente toda segunda às 9h
-
-GUARDRAIL: apenas leitura nos dados. Nenhuma escrita, atualização ou deleção sem minha autorização explícita.
-```
+> Copy, adapt the parts in brackets, and send to your OpenClaw agent.
 
 ---
 
-## Variações por Fonte de Dados
-
-### Se você usa MyGroupMetrics (Supabase MGM)
+## Main Prompt
 
 ```
-Minha fonte de dados é o Supabase do MyGroupMetrics.
-As credenciais estão no 1Password com o nome "Supabase MGM", vault "Amora Vault".
-Campos relevantes da tabela interactions: created_at, message, user_name, chat_id, response_to.
+I want to create an automatic weekly report of my community's messages.
 
-Meus grupos:
-- [Nome do grupo 1] — chat_id: [ID do grupo no WhatsApp]
-- [Nome do grupo 2] — chat_id: [ID do grupo no WhatsApp]
+**My data source:**
+[Describe where the messages are stored. Examples:
+- "I have a Supabase with a 'messages' table. Fields: created_at, content, user_name, chat_id"
+- "I use MyGroupMetrics — my user_owner is [your ID]"
+- "I have access to the Crisp API with workspace_id [your ID]"
+- "I have a CSV exported from the group — I can upload it"]
 
-Meu group_owner no banco é: [seu ID de usuário no MGM]
-```
+**Groups/channels to analyze:**
+[List the groups or channels. Examples:
+- "WhatsApp Students Group — chat_id: 120363xxxxxxxx"
+- "Telegram Clients Channel — @mychannel"
+- "Crisp Workspace — all tickets"]
 
-### Se você usa Crisp
+**Credentials:**
+[Are the credentials in 1Password? If so, provide the item name and vault.
+If not, let me know and I'll guide you to store them before continuing.]
 
-```
-Minha fonte de dados é o Crisp.
-As credenciais (website_id e token) estão no 1Password como "Crisp API", vault "Amora Vault".
-Quero analisar todas as conversas dos últimos 30 dias do workspace.
-```
+**What I want in the report:**
+- Overall sentiment for the week (positive / negative / neutral)
+- Most frequent questions and topics
+- Peak activity times
+- Who helps others the most (potential ambassadors)
+- Comparison with previous weeks
 
-### Se você tem Supabase próprio
+**Delivery format:**
+- Dark theme HTML with visual charts
+- Converted to PDF
+- Sent here on Telegram every Monday at 9am
 
-```
-Tenho um Supabase próprio.
-URL e service_key estão no 1Password como "[Nome do Item]", vault "[Nome do Vault]".
-Tabela: [nome da tabela]
-Campos: [created_at ou equivalente], [campo de texto], [campo de usuário], [campo de grupo/canal se houver]
-```
+**What I need you to do:**
+1. Create a Skill in skills/research/report-[community-name]/ with the entire process documented
+2. Test the connection to my data source
+3. Generate the first report now so I can see how it looks
+4. Create the cron to run automatically every Monday at 9am
 
-### Se você tem só um CSV
-
-```
-Tenho um arquivo CSV com o histórico do grupo.
-Vou fazer upload agora. Depois de analisar, quero que você crie um processo para eu poder atualizar o CSV toda semana e gerar o novo relatório.
-Campos no CSV: [liste as colunas]
+GUARDRAIL: read-only access to data. No writing, updating, or deletion without my explicit authorization.
 ```
 
 ---
 
-## O que esperar depois de mandar o prompt
+## Variations by Data Source
 
-O agente vai:
+### If you use MyGroupMetrics (Supabase MGM)
 
-1. **Confirmar a conexão** — vai testar o acesso à sua fonte de dados e te dizer quantas mensagens encontrou
-2. **Criar a Skill** — vai documentar todo o processo em `skills/research/report-[nome]/SKILL.md`
-3. **Gerar o primeiro relatório** — HTML + PDF direto no chat para você ver e aprovar
-4. **Criar o cron** — vai verificar se segunda às 9h está livre e configurar o agendamento
+```
+My data source is the MyGroupMetrics Supabase.
+Credentials are in 1Password under the name "Supabase MGM", vault "Amora Vault".
+Relevant fields from the interactions table: created_at, message, user_name, chat_id, response_to.
 
-Se algo não funcionar (credencial errada, estrutura de tabela diferente), o agente vai te pedir as informações que faltam antes de continuar.
+My groups:
+- [Group name 1] — chat_id: [WhatsApp group ID]
+- [Group name 2] — chat_id: [WhatsApp group ID]
+
+My group_owner in the database is: [your user ID in MGM]
+```
+
+### If you use Crisp
+
+```
+My data source is Crisp.
+Credentials (website_id and token) are in 1Password as "Crisp API", vault "Amora Vault".
+I want to analyze all conversations from the last 30 days in the workspace.
+```
+
+### If you have your own Supabase
+
+```
+I have my own Supabase.
+URL and service_key are in 1Password as "[Item Name]", vault "[Vault Name]".
+Table: [table name]
+Fields: [created_at or equivalent], [text field], [user field], [group/channel field if available]
+```
+
+### If you only have a CSV
+
+```
+I have a CSV file with the group's history.
+I'll upload it now. After analyzing it, I want you to create a process so I can update the CSV every week and generate the new report.
+Fields in the CSV: [list the columns]
+```
 
 ---
 
-## Dicas
+## What to Expect After Sending the Prompt
 
-**Calibre o sentimento para o seu nicho**
+The agent will:
 
-Depois do primeiro relatório, se os percentuais não parecerem certos, peça:
+1. **Confirm the connection** — it will test access to your data source and tell you how many messages it found
+2. **Create the Skill** — it will document the entire process in `skills/research/report-[name]/SKILL.md`
+3. **Generate the first report** — HTML + PDF directly in the chat for you to view and approve
+4. **Create the cron** — it will check if Monday at 9am is free and configure the schedule
+
+If something doesn't work (wrong credential, different table structure), the agent will ask for the missing information before continuing.
+
+---
+
+## Tips
+
+**Calibrate sentiment for your niche**
+
+After the first report, if the percentages don't seem right, ask:
 ```
-O sentimento positivo está alto demais / baixo demais. 
-Me mostra quais mensagens foram classificadas como positivas e negativas.
-Quero ajustar o dicionário de palavras.
+The positive sentiment is too high / too low.
+Show me which messages were classified as positive and negative.
+I want to adjust the word dictionary.
 ```
 
-**Adicione tópicos específicos da sua área**
+**Add topics specific to your area**
 
 ```
-Quero que o relatório identifique também mensagens sobre [seu tópico específico].
-Palavras-chave: [lista de palavras]
+I want the report to also identify messages about [your specific topic].
+Keywords: [list of words]
 ```
 
-**Mude a frequência**
+**Change the frequency**
 
 ```
-Em vez de semanal, quero relatório mensal — todo dia 1 às 8h.
-Ajusta o cron para: 0 8 1 * *
+Instead of weekly, I want a monthly report — on the 1st of every month at 8am.
+Adjust the cron to: 0 8 1 * *
 ```

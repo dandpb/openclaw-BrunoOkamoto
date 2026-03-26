@@ -1,104 +1,104 @@
-# ❓ Q&A — Comparativo de LLMs (Claude, ChatGPT e outros)
+# ❓ Q&A — LLM Comparison (Claude, ChatGPT, and others)
 
-> Guia de referência: qual modelo usar, quanto custa, o que recomendamos.
+> Reference guide: which model to use, how much it costs, what we recommend.
 
 ---
 
-## Qual modelo devo usar no OpenClaw?
+## Which model should I use in OpenClaw?
 
-**Nossa recomendação geral:**
+**Our general recommendation:**
 
-| Situação | Modelo recomendado | Por quê |
+| Situation | Recommended model | Why |
 |---|---|---|
-| Conversa do dia a dia | Claude Sonnet ou GPT-4o | Ótimo equilíbrio qualidade/custo |
-| Tarefas automáticas (crons, lembretes) | Claude Haiku ou GPT-4o mini | Muito barato, rápido o suficiente |
-| Análises complexas, decisões importantes | Claude Opus | Máxima qualidade, use com moderação |
-| Quando Claude está bloqueado | GPT-4o | Excelente alternativa |
+| Everyday conversation | Claude Sonnet or GPT-4o | Great quality/cost balance |
+| Automated tasks (crons, reminders) | Claude Haiku or GPT-4o mini | Very cheap, fast enough |
+| Complex analysis, important decisions | Claude Opus | Maximum quality, use sparingly |
+| When Claude is blocked | GPT-4o | Excellent alternative |
 
 ---
 
-## Comparativo de Preços e Planos
+## Price and Plan Comparison
 
 ### Claude (Anthropic)
 
-| Plano | Preço aprox. | O que inclui |
+| Plan | Approx. price | What's included |
 |---|---|---|
-| Claude.ai Free | Grátis | Uso limitado no chat (não serve pro OpenClaw) |
-| Claude.ai Pro | ~R$ 100/mês | Uso no chat — **não conecta diretamente ao OpenClaw** |
-| Claude.ai Max | ~R$ 550/mês | Uso intenso no chat — **não conecta diretamente ao OpenClaw** |
-| **API Anthropic** | Pay-per-use | ✅ **O que funciona no OpenClaw** |
+| Claude.ai Free | Free | Limited chat usage (does not work with OpenClaw) |
+| Claude.ai Pro | ~$20/month | Chat usage — **does not connect directly to OpenClaw** |
+| Claude.ai Max | ~$110/month | Heavy chat usage — **does not connect directly to OpenClaw** |
+| **Anthropic API** | Pay-per-use | ✅ **What works with OpenClaw** |
 
-**Custo real da API (estimativa mensal com uso moderado):**
-- Haiku (automações): ~R$ 2–10/mês
-- Sonnet (uso diário): ~R$ 20–80/mês
-- Opus (uso intenso): ~R$ 100–300/mês
+**Real API cost (monthly estimate with moderate use):**
+- Haiku (automations): ~$0.40–2/month
+- Sonnet (daily use): ~$4–16/month
+- Opus (heavy use): ~$20–60/month
 
-> ⚠️ **Atenção sobre bloqueios:** A Anthropic está bloqueando algumas contas novas no momento. Não temos controle sobre isso. Se a sua conta foi bloqueada, use o ChatGPT como alternativa — o curso ensina os dois jeitos e ambos funcionam muito bem.
+> ⚠️ **Note on blocks:** Anthropic is currently blocking some new accounts. We have no control over this. If your account was blocked, use ChatGPT as an alternative — the course teaches both ways and both work very well.
 
 ---
 
 ### ChatGPT / OpenAI
 
-| Plano | Preço aprox. | O que inclui |
+| Plan | Approx. price | What's included |
 |---|---|---|
-| ChatGPT Free | Grátis | Uso limitado no chat (não serve pro OpenClaw) |
-| ChatGPT Plus | ~R$ 100/mês | GPT-4o no chat — **não conecta diretamente ao OpenClaw** |
-| ChatGPT Pro | ~R$ 1.000/mês | Uso intenso + o1 pro — **não conecta diretamente ao OpenClaw** |
-| **API OpenAI** | Pay-per-use | ✅ **O que funciona no OpenClaw** |
+| ChatGPT Free | Free | Limited chat usage (does not work with OpenClaw) |
+| ChatGPT Plus | ~$20/month | GPT-4o in chat — **does not connect directly to OpenClaw** |
+| ChatGPT Pro | ~$200/month | Heavy use + o1 pro — **does not connect directly to OpenClaw** |
+| **OpenAI API** | Pay-per-use | ✅ **What works with OpenClaw** |
 
-**Custo real da API (estimativa mensal com uso moderado):**
-- GPT-4o mini (automações): ~R$ 2–8/mês
-- GPT-4o (uso diário): ~R$ 15–60/mês
-- o1 (análises complexas): ~R$ 80–250/mês
-
----
-
-## Qual a diferença entre assinar o Claude.ai e usar a API?
-
-**Analogia simples:**
-
-- **Assinar o Claude.ai/ChatGPT** = Comer num restaurante. Você usa o cardápio deles, no ambiente deles.
-- **Usar a API** = Comprar os ingredientes e cozinhar em casa. Você integra onde quiser.
-
-O OpenClaw é como a sua cozinha — ele precisa dos **ingredientes** (API), não do restaurante pronto.
+**Real API cost (monthly estimate with moderate use):**
+- GPT-4o mini (automations): ~$0.40–1.60/month
+- GPT-4o (daily use): ~$3–12/month
+- o1 (complex analyses): ~$16–50/month
 
 ---
 
-## Posso usar outros modelos além de Claude e ChatGPT?
+## What's the difference between subscribing to Claude.ai and using the API?
 
-Sim! O OpenClaw suporta vários provedores:
+**Simple analogy:**
 
-| Modelo | Provedor | Destaque |
+- **Subscribing to Claude.ai/ChatGPT** = Eating at a restaurant. You use their menu, in their environment.
+- **Using the API** = Buying the ingredients and cooking at home. You integrate it wherever you want.
+
+OpenClaw is like your kitchen — it needs the **ingredients** (API), not the ready-made restaurant.
+
+---
+
+## Can I use models other than Claude and ChatGPT?
+
+Yes! OpenClaw supports several providers:
+
+| Model | Provider | Highlight |
 |---|---|---|
-| Gemini | Google | Bom pra contextos muito longos |
-| Mistral | Mistral AI | Opção europeia, boa privacidade |
-| Llama (local) | Ollama | **Grátis**, roda na sua máquina |
-| Deepseek | Deepseek | Muito barato, boa qualidade |
+| Gemini | Google | Great for very long contexts |
+| Mistral | Mistral AI | European option, good privacy |
+| Llama (local) | Ollama | **Free**, runs on your machine |
+| Deepseek | Deepseek | Very cheap, good quality |
 
-**Para descobrir o que está disponível:**
-Cole esse prompt no seu bot:
-
-```
-Quais modelos de IA o OpenClaw suporta atualmente?
-Me recomenda qual seria o melhor pro meu uso com base no que você sabe sobre mim.
-Considera tanto qualidade quanto custo.
-```
-
----
-
-## Como trocar o modelo que meu bot usa?
-
-Cole esse prompt no seu bot:
+**To find out what's available:**
+Paste this prompt into your bot:
 
 ```
-Quero trocar o modelo que você usa para [MODELO QUE QUER].
-Me guia:
-1. Como pego a API key do novo provedor?
-2. Como atualizo a configuração?
-3. Como testo se ficou funcionando?
-Explica passo a passo sem usar comandos de terminal difíceis.
+Which AI models does OpenClaw currently support?
+Recommend which would be best for my use based on what you know about me.
+Consider both quality and cost.
 ```
 
 ---
 
-*Última atualização: Fev/2026 — Preços aproximados, consulte sempre o site oficial dos provedores.*
+## How do I change the model my bot uses?
+
+Paste this prompt into your bot:
+
+```
+I want to change the model you use to [MODEL YOU WANT].
+Guide me:
+1. How do I get the API key for the new provider?
+2. How do I update the configuration?
+3. How do I test if it's working?
+Explain step by step without using difficult terminal commands.
+```
+
+---
+
+*Last updated: Feb/2026 — Approximate prices, always check the official provider websites.*

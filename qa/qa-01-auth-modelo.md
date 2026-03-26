@@ -1,95 +1,95 @@
-# ❓ Q&A — Auth & Modelo (API, Claude, Troca de Provedor)
+# ❓ Q&A — Auth & Model (API, Claude, Switching Providers)
 
-> Linguagem simples. Sem terminal. Cole o prompt no seu bot e ele resolve.
-
----
-
-## "Meu bot parou de responder / ficou lento de repente"
-
-**O que provavelmente aconteceu:** O serviço do Claude (Anthropic) colocou sua conta em cooldown temporário. É normal — acontece quando há muitas chamadas em pouco tempo.
-
-**O que fazer:**
-Cole esse prompt no seu bot:
-
-```
-Verifica o status do gateway pra mim. Quero saber: 
-1. Se o modelo configurado está respondendo
-2. Se tem algum erro de autenticação ou cooldown
-3. O que você recomenda fazer agora
-```
-
-**Se o bot também não responder:** Espere 5–10 minutos e tente de novo. O cooldown é automático e passa sozinho.
+> Plain language. No terminal. Paste the prompt into your bot and it handles the rest.
 
 ---
 
-## "Apareceu erro 401 — o que significa isso?"
+## "My bot stopped responding / suddenly got slow"
 
-**Em linguagem simples:** O bot tentou se identificar pro serviço de IA e a senha estava errada ou vencida. É como tentar entrar numa festa com um convite expirado.
+**What probably happened:** The Claude (Anthropic) service put your account in a temporary cooldown. This is normal — it happens when there are too many calls in a short period of time.
 
-**O que fazer:**
-Cole esse prompt no seu bot:
+**What to do:**
+Paste this prompt into your bot:
 
 ```
-Apareceu um erro 401 de autenticação. Me ajuda a diagnosticar:
-1. A chave de API está configurada corretamente?
-2. O .env está sendo lido pelo gateway?
-3. O serviço do systemd tem algum override antigo que pode estar sobrescrevendo a chave nova?
-Me diz o que encontrar e o que devo corrigir.
+Check the gateway status for me. I want to know:
+1. If the configured model is responding
+2. If there are any authentication errors or cooldowns
+3. What you recommend doing now
+```
+
+**If the bot doesn't respond either:** Wait 5–10 minutes and try again. The cooldown is automatic and clears on its own.
+
+---
+
+## "Error 401 appeared — what does that mean?"
+
+**In plain language:** The bot tried to authenticate with the AI service and the password was wrong or expired. It's like trying to get into a party with an expired invitation.
+
+**What to do:**
+Paste this prompt into your bot:
+
+```
+A 401 authentication error appeared. Help me diagnose it:
+1. Is the API key configured correctly?
+2. Is the .env being read by the gateway?
+3. Does the systemd service have an old override that might be overwriting the new key?
+Tell me what you find and what I should fix.
 ```
 
 ---
 
-## "Não sei se devo usar API key ou assinar o plano Claude.ai"
+## "I don't know if I should use an API key or subscribe to Claude.ai"
 
-**Diferença simples:**
+**Simple difference:**
 
-| | Assinatura Claude.ai | API Key (Anthropic) |
+| | Claude.ai Subscription | API Key (Anthropic) |
 |---|---|---|
-| **Pra quê serve** | Usar o chat no site/app | Conectar ao OpenClaw |
-| **Preço** | R$ 100–550/mês | Paga pelo uso (R$ 0,10–R$ 5 por 1M tokens) |
-| **Funciona no OpenClaw?** | ❌ Não diretamente | ✅ Sim |
+| **What it's for** | Using the chat on the website/app | Connecting to OpenClaw |
+| **Price** | $20–110/month | Pay per use ($0.02–$1 per 1M tokens) |
+| **Works in OpenClaw?** | ❌ Not directly | ✅ Yes |
 
-**Resumo:** Para usar no OpenClaw, você precisa da **API Key** (console.anthropic.com), não da assinatura do chat.
+**Summary:** To use with OpenClaw, you need the **API Key** (console.anthropic.com), not the chat subscription.
 
-**⚠️ Aviso importante sobre bloqueios:** Algumas contas da Anthropic estão sendo bloqueadas no momento. Não temos controle sobre isso — é uma decisão deles. Se sua conta foi bloqueada, o curso ensina como usar o **ChatGPT (OpenAI) como alternativa**. Muitos alunos estão usando assim sem problema.
-
----
-
-## "Quero trocar do Claude para o ChatGPT (ou vice-versa)"
-
-**O que fazer:**
-Cole esse prompt no seu bot:
-
-```
-Quero trocar o modelo que você usa. Me guia passo a passo:
-1. Como pego minha API key da OpenAI (ou Anthropic)
-2. Como atualizo o .env com a nova chave
-3. Como configuro o modelo no openclaw.json
-4. Como reinicio o gateway pra aplicar a mudança
-Explica como se eu nunca tivesse feito isso antes.
-```
+**⚠️ Important warning about blocks:** Some Anthropic accounts are currently being blocked. We have no control over this — it's their decision. If your account was blocked, the course teaches how to use **ChatGPT (OpenAI) as an alternative**. Many students are using it this way without any problems.
 
 ---
 
-## "Quanto custa usar o Claude / ChatGPT no OpenClaw?"
+## "I want to switch from Claude to ChatGPT (or vice versa)"
 
-**Referência de preços (Fev/2026 — consulte sempre o site oficial):**
+**What to do:**
+Paste this prompt into your bot:
 
-| Modelo | Plano | Preço aprox/mês |
+```
+I want to change the model you use. Guide me step by step:
+1. How do I get my API key from OpenAI (or Anthropic)
+2. How do I update the .env with the new key
+3. How do I configure the model in openclaw.json
+4. How do I restart the gateway to apply the change
+Explain as if I've never done this before.
+```
+
+---
+
+## "How much does it cost to use Claude / ChatGPT in OpenClaw?"
+
+**Price reference (Feb/2026 — always check the official website):**
+
+| Model | Plan | Approx price/month |
 |---|---|---|
-| Claude Haiku | API | Muito barato (~R$ 1–5) |
-| Claude Sonnet | API | Moderado (~R$ 15–50) |
-| Claude Opus | API | Caro (~R$ 80–200) |
-| GPT-4o mini | API | Muito barato (~R$ 1–5) |
-| GPT-4o | API | Moderado (~R$ 20–80) |
+| Claude Haiku | API | Very cheap (~$0.20–1) |
+| Claude Sonnet | API | Moderate (~$3–10) |
+| Claude Opus | API | Expensive (~$16–40) |
+| GPT-4o mini | API | Very cheap (~$0.20–1) |
+| GPT-4o | API | Moderate (~$4–16) |
 
-**Nossa recomendação:**
-- Use **Haiku ou GPT-4o mini** para tarefas automáticas (lembretes, crons)
-- Use **Sonnet ou GPT-4o** para conversas do dia a dia
-- Reserve o **Opus** para quando realmente precisar de profundidade
+**Our recommendation:**
+- Use **Haiku or GPT-4o mini** for automated tasks (reminders, crons)
+- Use **Sonnet or GPT-4o** for everyday conversations
+- Save **Opus** for when you really need depth
 
-**Dica:** Com otimização, a maioria dos alunos gasta entre R$ 20–80/mês.
+**Tip:** With optimization, most students spend between $4–16/month.
 
 ---
 
-*Última atualização: Fev/2026*
+*Last updated: Feb/2026*

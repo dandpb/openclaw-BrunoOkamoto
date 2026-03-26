@@ -1,34 +1,34 @@
-# Configurações Recomendadas do OpenClaw
+# Recommended OpenClaw Settings
 
-> Referência para configurar seu openclaw.json
+> Reference for configuring your openclaw.json
 
-## Modelo por Uso
+## Model by Use Case
 
-| Uso | Modelo Recomendado | Por quê |
-|-----|-------------------|---------|
-| Interação direta | Claude Opus | Melhor raciocínio, mais criativo |
-| Crons / automação | Claude Sonnet | 90% mais barato, suficiente pra tasks |
-| Heartbeats | Claude Haiku | Mínimo custo, só checa e reporta |
-| Imagens | Gemini Flash | Bom e barato |
-| Análise avançada / multimodal | Gemini 2.5 Pro | Contexto enorme (1M tokens), multimodal nativo |
-| Alternativa Google | Gemini 3.1 Pro (`google/gemini-3.1-pro-preview`) | Reasoning avançado, boa opção de fallback |
-| Volume alto / custo mínimo | MiniMax (`minimax/minimax-01`) | Contexto de 1M tokens a custo extremamente baixo |
+| Use Case | Recommended Model | Why |
+|----------|------------------|-----|
+| Direct interaction | Claude Opus | Best reasoning, more creative |
+| Crons / automation | Claude Sonnet | 90% cheaper, sufficient for tasks |
+| Heartbeats | Claude Haiku | Minimum cost, just checks and reports |
+| Images | Gemini Flash | Good and affordable |
+| Advanced analysis / multimodal | Gemini 2.5 Pro | Huge context (1M tokens), native multimodal |
+| Google alternative | Gemini 3.1 Pro (`google/gemini-3.1-pro-preview`) | Advanced reasoning, good fallback option |
+| High volume / minimum cost | MiniMax (`minimax/minimax-01`) | 1M token context at extremely low cost |
 
-### IDs dos Modelos (para openclaw.json)
+### Model IDs (for openclaw.json)
 
 ```json
-"anthropic/claude-opus-4-5"       // Claude Opus — interação principal
-"anthropic/claude-sonnet-4-5"     // Claude Sonnet — crons e automação
+"anthropic/claude-opus-4-5"       // Claude Opus — main interaction
+"anthropic/claude-sonnet-4-5"     // Claude Sonnet — crons and automation
 "anthropic/claude-haiku-4-5"      // Claude Haiku — heartbeats
-"google/gemini-2.5-pro-preview"   // Gemini 2.5 Pro — análise avançada
+"google/gemini-2.5-pro-preview"   // Gemini 2.5 Pro — advanced analysis
 "google/gemini-3.1-pro-preview"   // Gemini 3.1 Pro — reasoning / fallback
-"google/gemini-flash-2.0"         // Gemini Flash — imagens e volume
-"minimax/minimax-01"              // MiniMax — custo mínimo, contexto longo
+"google/gemini-flash-2.0"         // Gemini Flash — images and volume
+"minimax/minimax-01"              // MiniMax — minimum cost, long context
 ```
 
-## Config de Compaction (IMPORTANTE)
+## Compaction Config (IMPORTANT)
 
-Se não configurar, sua sessão vai estourar tokens e o agente trava.
+If not configured, your session will overflow tokens and the agent will freeze.
 
 ```json
 {
@@ -42,32 +42,32 @@ Se não configurar, sua sessão vai estourar tokens e o agente trava.
 
 ## Thinking Mode
 
-| Nível | Quando usar | Custo |
-|-------|------------|-------|
-| off | Tasks simples, respostas rápidas | $ |
-| low | Dia a dia, maioria das interações | $$ |
-| medium | Análise, planejamento, conteúdo | $$$ |
-| high | Coding, problemas complexos, estratégia | $$$$ |
+| Level | When to use | Cost |
+|-------|------------|------|
+| off | Simple tasks, quick responses | $ |
+| low | Day-to-day, most interactions | $$ |
+| medium | Analysis, planning, content | $$$ |
+| high | Coding, complex problems, strategy | $$$$ |
 
-## Crons: Regra de Ouro
+## Crons: Golden Rule
 
-**SEMPRE:**
+**ALWAYS:**
 ```json
 {
   "sessionTarget": "isolated",
   "payload": {
     "kind": "agentTurn",
-    "message": "Sua tarefa aqui"
+    "message": "Your task here"
   },
   "delivery": { "mode": "announce" }
 }
 ```
 
-**NUNCA** usar `sessionTarget: "main"` + `payload.kind: "systemEvent"` — dispara mas não executa.
+**NEVER** use `sessionTarget: "main"` + `payload.kind: "systemEvent"` — it fires but doesn't execute.
 
-## Dicas de Economia
+## Cost-Saving Tips
 
-1. Heartbeats com Haiku: ~$0.005 cada (vs ~$0.10 com Opus)
-2. Crons com Sonnet: economia de ~90% vs Opus
-3. Espaçar crons: não colocar múltiplos no mesmo minuto (rate limit)
-4. config.patch reinicia gateway — fazer em horários sem crons
+1. Heartbeats with Haiku: ~$0.005 each (vs ~$0.10 with Opus)
+2. Crons with Sonnet: ~90% savings vs Opus
+3. Space crons: don't put multiple at the same minute (rate limit)
+4. config.patch restarts gateway — do it at times with no crons running

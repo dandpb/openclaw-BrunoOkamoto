@@ -1,115 +1,115 @@
-# 🔒 10 Regras Invioláveis
+# 🔒 10 Inviolable Rules
 
-> Lições destiladas de 13 dias rodando agentes AI em produção. Quebre qualquer uma e vai sentir.
-
----
-
-## 1. SEMPRE usar `isolated` + `agentTurn` pra crons
-
-**Regra:** Todo cron deve usar `sessionTarget: "isolated"` + `payload.kind: "agentTurn"` + `delivery: { mode: "announce" }`.
-
-**Por quê:** `systemEvent` + `main` dispara com `status: "ok"` mas `durationMs` é ~0ms — ou seja, não executa nada. Esse bug sozinho travou nossos crons por 3 dias.
-
-**Se quebrar:** Crons parecem funcionar mas nada acontece. Você perde confiança no sistema inteiro.
+> Lessons distilled from 13 days running AI agents in production. Break any one and you'll feel it.
 
 ---
 
-## 2. NUNCA hardcodar credenciais
+## 1. ALWAYS use `isolated` + `agentTurn` for crons
 
-**Regra:** Todas as API keys, tokens e senhas vivem no `.env` (ou 1Password). Zero exceções.
+**Rule:** Every cron must use `sessionTarget: "isolated"` + `payload.kind: "agentTurn"` + `delivery: { mode: "announce" }`.
 
-**Por quê:** Se alguém acessa seu servidor (e vão tentar — 1.000+ brute force/dia), pega TODAS as suas chaves de uma vez. O `.env` com `chmod 600` é a última linha de defesa.
+**Why:** `systemEvent` + `main` fires with `status: "ok"` but `durationMs` is ~0ms — meaning nothing actually executes. This bug alone broke our crons for 3 days.
 
-**Se quebrar:** Um vazamento = todas as suas contas comprometidas.
-
----
-
-## 3. `dmPolicy: allowlist` desde o Dia 1
-
-**Regra:** Antes de fazer qualquer outra coisa, configurar allowlist com seu Telegram ID. Nunca deixar "open".
-
-**Por quê:** Com dmPolicy "open", qualquer pessoa que encontrar seu bot pode comandar seu agente — ler seus arquivos, enviar emails, acessar suas integrações.
-
-**Se quebrar:** Estranhos controlando seu agente com acesso a tudo que ele tem.
+**If broken:** Crons appear to work but nothing happens. You lose confidence in the entire system.
 
 ---
 
-## 4. Extrair lições ANTES de cada compactação
+## 2. NEVER hardcode credentials
 
-**Regra:** Antes de CADA compactação de sessão, o agente deve extrair: lições → `lessons.md`, decisões → `decisions.md`, pendências → `pending.md`.
+**Rule:** All API keys, tokens and passwords live in `.env` (or 1Password). Zero exceptions.
 
-**Por quê:** Compactação descarta 80% do contexto. Se não extrair antes, informações valiosas desaparecem pra sempre. É como formatar o HD sem fazer backup.
+**Why:** If someone accesses your server (and they will try — 1,000+ brute force/day), they get ALL your keys at once. The `.env` with `chmod 600` is the last line of defense.
 
-**Se quebrar:** Agente perde memória de decisões, erros e aprendizados. Volta a cometer os mesmos erros.
-
----
-
-## 5. Todo agente novo começa L1 (Observer)
-
-**Regra:** Nenhum agente ganha autonomia sem histórico. L1 = output sempre revisado. Promoção via performance review semanal.
-
-**Por quê:** Agentes sem supervisão "rusham" — entregam rápido mas com qualidade baixa. O Content Agent do Kevin Simback caiu de L3 → L2 quando começou a cortar caminho.
-
-**Se quebrar:** Agentes tomando decisões erradas sem supervisão. Danos silenciosos que você só descobre dias depois.
+**If broken:** One leak = all your accounts compromised.
 
 ---
 
-## 6. Split de modelos: Sonnet pra crons, Opus pra interação, Haiku pra heartbeats
+## 3. `dmPolicy: allowlist` from Day 1
 
-**Regra:** Nem toda tarefa precisa do modelo mais caro. Crons de execução em Sonnet. Heartbeats em Haiku (ou Ollama local). Só interação direta e análise estratégica em Opus.
+**Rule:** Before doing anything else, configure the allowlist with your Telegram ID. Never leave it "open".
 
-**Por quê:** A diferença é brutal: ~$0.005/heartbeat em Haiku vs ~$0.10 em Opus. Com 17 crons/dia, o split economiza ~75-80% do custo mensal.
+**Why:** With dmPolicy "open", anyone who finds your bot can command your agent — read your files, send emails, access your integrations.
 
-**Se quebrar:** Conta da API dispara pra $100-150/mês quando poderia ser $18-36.
-
----
-
-## 7. Backup antes de mudanças estruturais
-
-**Regra:** Antes de criar agentes, modificar gateway config, ou reorganizar workspace: salvar config + criar ROLLBACK.md com instruções de reversão.
-
-**Por quê:** `config.patch` reinicia o gateway e mata crons em execução. Um erro de config pode derrubar tudo. Com backup, você reverte em 30 segundos.
-
-**Se quebrar:** Servidor fora do ar sem saber como voltar ao estado anterior.
+**If broken:** Strangers controlling your agent with access to everything it has.
 
 ---
 
-## 8. Sub-agent travou → retry 2x → avisar humano (NUNCA limbo silencioso)
+## 4. Extract lessons BEFORE each compaction
 
-**Regra:** Todo sub-agent spawnado DEVE ter follow-up. Sucesso = resumo pro usuário. Falha = retry automático (2x). Falhou 2x = alerta imediato. Nunca "fire and forget".
+**Rule:** Before EACH session compaction, the agent must extract: lessons → `lessons.md`, decisions → `decisions.md`, pending items → `pending.md`.
 
-**Por quê:** Sub-agents podem travar silenciosamente. Sem follow-up, tarefas caem no limbo e ninguém fica sabendo. Você acha que foi feito, mas não foi.
+**Why:** Compaction discards 80% of context. If you don't extract first, valuable information is gone forever. It's like formatting a hard drive without backing up.
 
-**Se quebrar:** Tarefas perdidas no limbo. Descobertas dias depois quando já era tarde.
-
----
-
-## 9. SOUL.md genérico = agente genérico
-
-**Regra:** Investir tempo REAL na personalidade do agente. Anti-patterns com exemplos ❌/✅. "Never dos" explícitos. Inspirational anchors. Contexto profundo no USER.md (400+ linhas ideal).
-
-**Por quê:** A diferença entre um SOUL.md genérico e um personalizado é absurda — é o que separa "chatbot" de "COO". O agente só é tão bom quanto o contexto que você dá.
-
-**Se quebrar:** Respostas genéricas, sem opinião, sem personalidade. Basicamente um ChatGPT caro.
+**If broken:** Agent loses memory of decisions, mistakes and learnings. Goes back to making the same errors.
 
 ---
 
-## 10. Creators são skills, não agentes
+## 5. Every new agent starts at L1 (Observer)
 
-**Regra:** LinkedIn Creator, Newsletter Writer, Instagram Caption — são prompts/skills DENTRO de um agente. 1 agente com 8 skills > 8 agentes especializados.
+**Rule:** No agent gains autonomy without a track record. L1 = output always reviewed. Promotion via weekly performance review.
 
-**Por quê:** Cada agente extra = mais custo, mais coordenação, mais pontos de falha. Skills dentro de um agente compartilham contexto, memória e aprendizados. Agentes separados começam do zero.
+**Why:** Agents without supervision "rush" — deliver fast but with low quality. Kevin Simback's Content Agent dropped from L3 → L2 when it started cutting corners.
 
-**Se quebrar:** Custo multiplicado, coordenação caótica, cold starts constantes, aprendizado fragmentado.
-
----
-
-## Bônus: As 3 regras operacionais
-
-- **Espaçar crons por 15-30 min** — colisão = rate limit
-- **`config.patch` em horário sem crons** — reinicia gateway e mata crons rodando
-- **`systemEvent` não notifica no Telegram** — usar `agentTurn` + `message send` pra lembretes
+**If broken:** Agents making wrong decisions without supervision. Silent damage you only discover days later.
 
 ---
 
-*Destilado de 13 dias de produção real. Cada regra foi aprendida na dor. 🍇*
+## 6. Model split: Sonnet for crons, Opus for interaction, Haiku for heartbeats
+
+**Rule:** Not every task needs the most expensive model. Execution crons on Sonnet. Heartbeats on Haiku (or local Ollama). Only direct interaction and strategic analysis on Opus.
+
+**Why:** The difference is dramatic: ~$0.005/heartbeat on Haiku vs ~$0.10 on Opus. With 17 crons/day, the split saves ~75-80% of monthly cost.
+
+**If broken:** API bill shoots up to $100-150/month when it could be $18-36.
+
+---
+
+## 7. Backup before structural changes
+
+**Rule:** Before creating agents, modifying gateway config, or reorganizing workspace: save config + create ROLLBACK.md with rollback instructions.
+
+**Why:** `config.patch` restarts the gateway and kills running crons. A config error can bring everything down. With a backup, you revert in 30 seconds.
+
+**If broken:** Server down with no idea how to get back to the previous state.
+
+---
+
+## 8. Sub-agent stalled → retry 2x → notify human (NEVER silent limbo)
+
+**Rule:** Every spawned sub-agent MUST have follow-up. Success = summary to user. Failure = automatic retry (2x). Failed 2x = immediate alert. Never "fire and forget".
+
+**Why:** Sub-agents can stall silently. Without follow-up, tasks fall into limbo and no one knows. You think it was done, but it wasn't.
+
+**If broken:** Tasks lost in limbo. Discovered days later when it's too late.
+
+---
+
+## 9. Generic SOUL.md = generic agent
+
+**Rule:** Invest REAL time in the agent's personality. Anti-patterns with ❌/✅ examples. Explicit "Never dos". Inspirational anchors. Deep context in USER.md (400+ lines ideal).
+
+**Why:** The difference between a generic and a customized SOUL.md is absurd — it's what separates "chatbot" from "COO". The agent is only as good as the context you give it.
+
+**If broken:** Generic responses, no opinion, no personality. Basically an expensive ChatGPT.
+
+---
+
+## 10. Creators are skills, not agents
+
+**Rule:** LinkedIn Creator, Newsletter Writer, Instagram Caption — these are prompts/skills INSIDE an agent. 1 agent with 8 skills > 8 specialized agents.
+
+**Why:** Each extra agent = more cost, more coordination, more failure points. Skills inside an agent share context, memory and learnings. Separate agents start from scratch.
+
+**If broken:** Multiplied cost, chaotic coordination, constant cold starts, fragmented learning.
+
+---
+
+## Bonus: The 3 operational rules
+
+- **Space crons by 15-30 min** — collision = rate limit
+- **`config.patch` at times with no crons** — restarts gateway and kills running crons
+- **`systemEvent` does not notify on Telegram** — use `agentTurn` + `message send` for reminders
+
+---
+
+*Distilled from 13 days of real production. Every rule was learned the hard way. 🍇*

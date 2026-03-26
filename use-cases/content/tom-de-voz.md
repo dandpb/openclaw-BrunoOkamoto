@@ -1,41 +1,41 @@
-# 🎤 Use Case: Análise de Tom de Voz
+# 🎤 Use Case: Tone of Voice Analysis
 
-> Ensine seu agente a escrever COMO VOCÊ.
+> Teach your agent to write LIKE YOU.
 
-## O que faz
+## What it does
 
-Analisa seu conteúdo existente e cria um guia de tom de voz:
-- Vocabulário técnico que você usa
-- Expressões e bordões
-- Estilo por plataforma (LinkedIn vs Twitter vs YouTube)
-- O que você NUNCA diria
-- Nível de formalidade, humor, opinião
+Analyzes your existing content and creates a tone of voice guide:
+- Technical vocabulary you use
+- Expressions and catchphrases
+- Style by platform (LinkedIn vs Twitter vs YouTube)
+- What you would NEVER say
+- Level of formality, humor, opinion
 
 ## Prompt
 
 ```
-Quero que você aprenda meu tom de voz analisando meu conteúdo existente.
+I want you to learn my tone of voice by analyzing my existing content.
 
-Analise:
-- [QUANTIDADE] posts do meu LinkedIn: [LINK OU COLE OS POSTS]
-- [QUANTIDADE] vídeos do meu YouTube: [LINKS OU TRANSCRIÇÕES]
-- [QUANTIDADE] reels/posts do Instagram: [LINKS OU TEXTOS]
+Analyze:
+- [NUMBER] posts from my LinkedIn: [LINK OR PASTE THE POSTS]
+- [NUMBER] videos from my YouTube: [LINKS OR TRANSCRIPTS]
+- [NUMBER] reels/posts from Instagram: [LINKS OR TEXTS]
 
-Pra cada plataforma, me entregue:
+For each platform, deliver:
 
-1. **Vocabulário frequente** — palavras e expressões que uso repetidamente
-2. **Estrutura típica** — como começo, desenvolvo e fecho posts
-3. **Tom** — formal/informal, humorístico/sério, opinativo/neutro
-4. **Ganchos que funcionam** — as primeiras linhas dos meus posts com mais engajamento
-5. **Anti-patterns** — coisas que eu NUNCA faço (ex: hashtags demais, emojis, etc.)
-6. **Guia de estilo** — documento resumido pra eu colar no SOUL.md
+1. **Frequent vocabulary** — words and expressions I use repeatedly
+2. **Typical structure** — how I open, develop, and close posts
+3. **Tone** — formal/informal, humorous/serious, opinionated/neutral
+4. **Hooks that work** — the first lines of my posts with the most engagement
+5. **Anti-patterns** — things I NEVER do (e.g.: too many hashtags, emojis, etc.)
+6. **Style guide** — summarized document for me to paste into SOUL.md
 
-Depois de analisar, escreva 3 posts de teste no meu estilo e me pergunte:
-"Isso soa como você?"
+After analyzing, write 3 test posts in my style and ask me:
+"Does this sound like you?"
 
-Se não soar, me diga o que ajustar.
+If it doesn't, tell me what to adjust.
 ```
 
-## Exemplo real
+## Real example
 
-A Amora analisou 129 posts LinkedIn + 106 vídeos YouTube + 97 reels do Bruno e criou um guia de tom de voz completo que ficou no USER.md (400+ linhas).
+Amora analyzed 129 LinkedIn posts + 106 YouTube videos + 97 Instagram reels from Bruno and created a complete tone of voice guide that went into USER.md (400+ lines).

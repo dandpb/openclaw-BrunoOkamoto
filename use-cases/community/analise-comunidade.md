@@ -1,43 +1,43 @@
-# 👥 Use Case: Análise de Comunidade
+# 👥 Use Case: Community Analysis
 
-> Entenda o que sua comunidade está falando, pedindo e sentindo.
+> Understand what your community is talking about, asking for, and feeling.
 
-## O que faz
+## What it does
 
-Conecta na API da sua comunidade (Circle, Discord, Slack) e analisa:
-- Hot topics (o que está gerando mais discussão)
-- Perguntas frequentes (FAQ natural da comunidade)
-- Membros mais ativos e influentes
-- Spam e posts duplicados
-- Trends emergentes
-- Sentimento geral
+Connects to your community API (Circle, Discord, Slack) and analyzes:
+- Hot topics (what is generating the most discussion)
+- Frequently asked questions (natural community FAQ)
+- Most active and influential members
+- Spam and duplicate posts
+- Emerging trends
+- Overall sentiment
 
 ## Prompt
 
 ```
-Quero uma análise completa da minha comunidade nos últimos [30/60] dias.
+I want a complete analysis of my community over the last [30/60] days.
 
-Minha comunidade é [CIRCLE/DISCORD/SLACK] com [NÚMERO] membros.
+My community is [CIRCLE/DISCORD/SLACK] with [NUMBER] members.
 
-Me entregue:
+Deliver:
 
-1. **Hot Topics** — os 10 assuntos mais discutidos, com volume de posts
-2. **Perguntas Frequentes** — as 10 perguntas que mais aparecem (base pra FAQ/conteúdo)
-3. **Membros destaque** — top 10 mais ativos e top 10 que mais ajudam outros
-4. **Spam check** — posts duplicados, cross-posting excessivo, padrões suspeitos
-5. **Trends** — assuntos que estão CRESCENDO (não os maiores, os que estão acelerando)
-6. **Sentimento** — como está o clima? Positivo? Frustrado? Qual a vibe?
-7. **Oportunidades** — ideias de conteúdo, features, ou ações baseadas nos dados
+1. **Hot Topics** — the 10 most discussed subjects, with post volume
+2. **Frequently Asked Questions** — the 10 questions that appear most often (base for FAQ/content)
+3. **Featured members** — top 10 most active and top 10 who help others most
+4. **Spam check** — duplicate posts, excessive cross-posting, suspicious patterns
+5. **Trends** — topics that are GROWING (not the biggest ones, the ones that are accelerating)
+6. **Sentiment** — what is the vibe? Positive? Frustrated? What's the general feeling?
+7. **Opportunities** — content ideas, features, or actions based on the data
 
-Formato: report com insights acionáveis, não só números.
+Format: report with actionable insights, not just numbers.
 
-Dica: cruze os dados da comunidade com os tickets de suporte pra ver padrões completos.
+Tip: cross-reference community data with support tickets to see complete patterns.
 ```
 
-## Exemplo real
+## Real example
 
-A Amora analisou 345 posts da comunidade Micro-SaaS (20k membros):
-- Spam puro: não encontrado
-- Padrões de atenção: cross-posting e repetição
-- "150 MVPs em 60 dias" — dado que virou post LinkedIn viral
-- Cruzamento com Crisp revelou: vibe coding domina em ambos
+Amora analyzed 345 posts from the Micro-SaaS community (20k members):
+- Pure spam: not found
+- Attention patterns: cross-posting and repetition
+- "150 MVPs in 60 days" — data point that became a viral LinkedIn post
+- Cross-referencing with Crisp revealed: vibe coding dominates in both

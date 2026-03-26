@@ -1,45 +1,45 @@
-# Roteiro de Gravação — "Skills: O Sistema de Superpoderes do Seu Agente"
-**Aula dedicada | ~25 min | Módulo 6 reformulado**
+# Recording Script — "Skills: The Superpower System for Your Agent"
+**Dedicated lesson | ~25 min | Reformulated Module 6**
 
 ---
 
-## Setup antes de gravar
+## Setup before recording
 
-- Terminal aberto com workspace da Amora visível
-- VS Code mostrando `skills/` com subpastas reais (content/, analytics/, operations/)
-- ClawHub aberto no browser: clawhub.com
-- GitHub aberto com um exemplo de skill de terceiro
-- Notificações desativadas
-
----
-
-## BLOCO 1 — Abertura: Por que 1 agente > múltiplos agentes (2 min)
-
-**[CÂMERA FRONTAL]**
-
-> "Quando a galera começa a usar OpenClaw de verdade, invariavelmente cai na mesma armadilha: começa a criar agente pra tudo.
->
-> Agente de conteúdo. Agente de métricas. Agente de email. Agente de calendário.
->
-> Parece que faz sentido. Na prática, é um pesadelo.
->
-> Por quê? Porque cada agente tem seu próprio contexto. Você pede pra um criar um post, e outro não sabe que o post foi criado. Você toma uma decisão com um, o outro não sabe. Você vira o gerente de 8 agentes burros ao invés de ter 1 assistente inteligente.
->
-> A forma certa é outra: **1 agente com múltiplos superpoderes.** Cada superpoder é uma skill.
->
-> É exatamente isso que essa aula cobre."
+- Terminal open with Amora's workspace visible
+- VS Code showing `skills/` with real subfolders (content/, analytics/, operations/)
+- ClawHub open in the browser: clawhub.com
+- GitHub open with a third-party skill example
+- Notifications disabled
 
 ---
 
-## BLOCO 2 — O que é uma skill (3 min)
+## BLOCK 1 — Opening: Why 1 agent > multiple agents (2 min)
 
-**[COMPARTILHA TELA: VS Code, abre skills/ no workspace]**
+**[FRONT CAMERA]**
 
-> "Uma skill é basicamente um manual de instruções + ferramentas que você dá pro seu agente.
+> "When people start really using OpenClaw, they inevitably fall into the same trap: they start creating an agent for everything.
 >
-> Estrutura mínima:"
+> A content agent. A metrics agent. An email agent. A calendar agent.
+>
+> It seems to make sense. In practice, it's a nightmare.
+>
+> Why? Because each agent has its own context. You ask one to create a post, and another doesn't know the post was created. You make a decision with one, the other doesn't know. You become the manager of 8 dumb agents instead of having 1 smart assistant.
+>
+> The right way is different: **1 agent with multiple superpowers.** Each superpower is a skill.
+>
+> That's exactly what this lesson covers."
 
-**[MOSTRAR: tree de uma skill real, ex: skills/content/carrossel-linkedin/]**
+---
+
+## BLOCK 2 — What is a skill (3 min)
+
+**[SHARE SCREEN: VS Code, open skills/ in workspace]**
+
+> "A skill is basically an instruction manual + tools you give your agent.
+>
+> Minimum structure:"
+
+**[SHOW: tree of a real skill, e.g.: skills/content/carrossel-linkedin/]**
 
 ```
 skills/
@@ -48,281 +48,281 @@ skills/
         └── SKILL.md
 ```
 
-> "É só um arquivo SKILL.md. O agente lê esse arquivo quando vai executar a skill, entende o que pode fazer, e executa.
+> "It's just a SKILL.md file. The agent reads this file when it's about to execute the skill, understands what it can do, and executes.
 >
-> Quando eu digo 'cria um carrossel de LinkedIn', o agente vai lá, lê a skill, e segue o processo definido. Não improvisa. Não alucina formato. Segue o que tá escrito.
+> When I say 'create a LinkedIn carousel', the agent goes there, reads the skill, and follows the defined process. It doesn't improvise. It doesn't hallucinate the format. It follows what's written.
 >
-> Isso é o ponto central: **skill = processo documentado que o agente executa de forma consistente.**"
+> This is the core point: **skill = documented process that the agent executes consistently.**"
 
-**[MOSTRAR: abrir um SKILL.md real — conteúdo resumido]**
+**[SHOW: open a real SKILL.md — summarized content]**
 
-> "O arquivo tem: descrição do que a skill faz, quando usar, quais inputs ela precisa, e o passo a passo de execução. Pode ter exemplos, regras de qualidade, o que for necessário."
+> "The file has: a description of what the skill does, when to use it, what inputs it needs, and the step-by-step execution. It can have examples, quality rules, whatever is necessary."
 
 ---
 
-## BLOCO 3 — Como organizar skills em pastas (3 min)
+## BLOCK 3 — How to organize skills in folders (3 min)
 
-**[COMPARTILHA TELA: VS Code, árvore completa de skills/]**
+**[SHARE SCREEN: VS Code, full skills/ tree]**
 
-> "Organização importa. Minha estrutura:"
+> "Organization matters. My structure:"
 
-**[MOSTRAR: tree das skills/ reais]**
+**[SHOW: tree of real skills/]**
 
 ```
 skills/
-├── content/          ← tudo que produz conteúdo
+├── content/          ← everything that produces content
 │   ├── carrossel-instagram/
 │   ├── carrossel-linkedin/
 │   └── yt-hype/
-├── analytics/        ← métricas e dados
+├── analytics/        ← metrics and data
 │   ├── chartmogul/
 │   └── ga4/
-├── operations/       ← operações recorrentes
+├── operations/       ← recurring operations
 │   ├── notion-api/
 │   ├── crisp-wrapup/
 │   └── planner-adhd/
-└── research/         ← pesquisa e inteligência
+└── research/         ← research and intelligence
     ├── deep-research-protocol/
     └── blogwatcher/
 ```
 
-> "Categorias claras. Quando vou criar uma skill nova, primeiro me pergunto: qual categoria? Se não existe categoria pra ela, pode ser que seja uma categoria nova — ou que eu precisaria criar antes.
+> "Clear categories. When I'm going to create a new skill, I first ask myself: which category? If there's no category for it, it might be a new category — or I'd need to create that first.
 >
-> Por que isso importa? Porque quando você tem 20, 30 skills, sem organização você perde tempo achando o que tem disponível. E mais importante: o agente também fica confuso.
+> Why does this matter? Because when you have 20, 30 skills, without organization you waste time finding what's available. And more importantly: the agent also gets confused.
 >
-> A regra que uso: **cada skill resolve uma coisa bem feita.** Skill de carrossel de Instagram ≠ skill de carrossel de LinkedIn — porque o formato, tom e estrutura são completamente diferentes."
+> The rule I use: **each skill solves one thing well.** Instagram carousel skill ≠ LinkedIn carousel skill — because the format, tone, and structure are completely different."
 
 ---
 
-## BLOCO 4 — Como pedir pro agente executar uma skill (2 min)
+## BLOCK 4 — How to ask the agent to execute a skill (2 min)
 
-**[CÂMERA FRONTAL → COMPARTILHA TELA: terminal com agente]**
+**[FRONT CAMERA → SHARE SCREEN: terminal with agent]**
 
-> "Duas formas:"
+> "Two ways:"
 
-**[DEMO AO VIVO: digitar os dois exemplos]**
+**[LIVE DEMO: type both examples]**
 
-> "Forma simples — você só pede:"
+> "Simple way — you just ask:"
 
 ```
-"Cria um carrossel de LinkedIn sobre o crescimento do Metricaas"
+"Create a LinkedIn carousel about Metricaas' growth"
 ```
 
-> "O agente identifica que existe a skill de carrossel LinkedIn, lê o SKILL.md automaticamente, e executa.
+> "The agent identifies that the LinkedIn carousel skill exists, reads the SKILL.md automatically, and executes.
 >
-> Forma explícita — quando quer garantir qual skill usar:"
+> Explicit way — when you want to ensure which skill to use:"
 
 ```
-"Usa a skill carrossel-linkedin pra criar um carrossel sobre..."
+"Use the carrossel-linkedin skill to create a carousel about..."
 ```
 
-> "O agente vai direto pra aquela skill específica.
+> "The agent goes directly to that specific skill.
 >
-> **Importante:** o agente só usa a skill se ela estiver na pasta skills/ do workspace. Ele não inventa. Se a skill não existe, ele ou improvisa — o que é menos consistente — ou te diz que não tem aquela skill."
+> **Important:** the agent only uses the skill if it's in the skills/ folder of the workspace. It doesn't make things up. If the skill doesn't exist, it either improvises — which is less consistent — or tells you it doesn't have that skill."
 
 ---
 
-## BLOCO 5 — Todo processo repetitivo vira skill (3 min)
+## BLOCK 5 — Every repetitive process becomes a skill (3 min)
 
-**[CÂMERA FRONTAL]**
+**[FRONT CAMERA]**
 
-> "Essa é a mentalidade que muda o jogo.
+> "This is the mindset that changes the game.
 >
-> Toda vez que você faz a mesma coisa mais de duas vezes com seu agente, você tem um candidato a skill.
+> Every time you do the same thing more than twice with your agent, you have a skill candidate.
 >
-> Exemplos concretos:"
+> Concrete examples:"
 
-**[MOSTRAR NA TELA — lista simples]**
+**[SHOW ON SCREEN — simple list]**
 
-> "- Você toda semana pede um relatório de métricas → skill de weekly-metrics
-> - Você toda vez que grava um vídeo pede título, descrição e tags → skill yt-hype
-> - Você toda vez que tem uma reunião pede um brief de prep → skill meeting-prep
-> - Você todo mês analisa o churn → skill churn-analysis
+> "- Every week you ask for a metrics report → weekly-metrics skill
+> - Every time you record a video you ask for title, description, and tags → yt-hype skill
+> - Every time you have a meeting you ask for a prep brief → meeting-prep skill
+> - Every month you analyze churn → churn-analysis skill
 >
-> Por que transformar em skill e não só repetir o prompt?
+> Why turn it into a skill instead of just repeating the prompt?
 >
-> Porque quando está na skill, o processo está documentado, testado, tem critérios de qualidade definidos. Você não precisa lembrar de detalhe. O agente não improvisa. E quando você quiser melhorar o processo, muda a skill — e muda pra sempre.
+> Because when it's in the skill, the process is documented, tested, has defined quality criteria. You don't need to remember every detail. The agent doesn't improvise. And when you want to improve the process, you change the skill — and it changes forever.
 >
-> Pensa assim: **um prompt é um pedido. Uma skill é um processo.**"
+> Think of it this way: **a prompt is a request. A skill is a process.**"
 
 ---
 
-## BLOCO 6 — Sub-agentes executam skills específicas (2 min)
+## BLOCK 6 — Sub-agents execute specific skills (2 min)
 
-**[CÂMERA FRONTAL]**
+**[FRONT CAMERA]**
 
-> "Quando você usa sub-agentes — que é quando o agente principal delega uma tarefa pra um agente isolado rodar em background — a melhor prática é: o sub-agente tem um escopo claro e executa uma skill específica.
+> "When you use sub-agents — which is when the main agent delegates a task to an isolated agent running in the background — the best practice is: the sub-agent has a clear scope and executes a specific skill.
 >
-> Errado:"
+> Wrong:"
 
-**[MOSTRAR NA TELA]**
+**[SHOW ON SCREEN]**
 
-> ❌ "Spawna um agente pra 'cuidar do conteúdo'"
+> ❌ "Spawn an agent to 'take care of content'"
 
-> "Certo:"
+> "Right:"
 
-> ✅ "Spawna um agente pra executar a skill carrossel-linkedin com esse input"
+> ✅ "Spawn an agent to execute the carrossel-linkedin skill with this input"
 
-> "A diferença: o agente solto vai tomar decisões aleatórias. O agente com skill tem um processo definido, inputs claros, e output previsível.
+> "The difference: the loose agent will make random decisions. The agent with a skill has a defined process, clear inputs, and predictable output.
 >
-> Sub-agentes são ótimos pra tarefas paralelas e longas. Mas sempre com escopo fechado. Um sub-agente sem skill é um freelancer sem briefing."
+> Sub-agents are great for parallel and long-running tasks. But always with a closed scope. A sub-agent without a skill is a freelancer without a brief."
 
 ---
 
-## BLOCO 7 — Backup das suas skills (2 min)
+## BLOCK 7 — Backing up your skills (2 min)
 
-**[COMPARTILHA TELA: terminal]**
+**[SHARE SCREEN: terminal]**
 
-> "Suas skills são ativos. Se você perder o workspace, perde todo o processo que documentou.
+> "Your skills are assets. If you lose your workspace, you lose all the processes you documented.
 >
-> Duas formas de backup:"
+> Two backup options:"
 
-**[MOSTRAR: comando git]**
+**[SHOW: git command]**
 
-> "A mais simples: Git. Seu workspace já é um repositório. Commita e faz push:"
+> "The simplest: Git. Your workspace is already a repository. Commit and push:"
 
 ```bash
-cd ~/seu-workspace
+cd ~/your-workspace
 git add skills/
 git commit -m "backup skills $(date +%Y-%m-%d)"
 git push
 ```
 
-> "Repositório privado no GitHub, acesso só seu.
+> "Private repository on GitHub, access for you only.
 >
-> Segunda opção: script de backup automático. Você configura uma cron pra rodar de madrugada e fazer push automaticamente. Tem um script de exemplo no workspace de referência do curso.
+> Second option: automatic backup script. You set up a cron to run overnight and push automatically. There's an example script in the course reference workspace.
 >
-> A regra de ouro: **skill que não está no Git não existe.** Um crash de disco, um workspace corrompido — e você perde meses de processo documentado. Não deixa isso acontecer."
+> The golden rule: **a skill that isn't in Git doesn't exist.** A disk crash, a corrupted workspace — and you lose months of documented processes. Don't let that happen."
 
 ---
 
-## BLOCO 7b — Demo real: skill de Meta Ads (2 min)
+## BLOCK 7b — Real demo: Meta Ads skill (2 min)
 
-**[COMPARTILHA TELA: VS Code → skills/analytics/meta-ads/SKILL.md]**
+**[SHARE SCREEN: VS Code → skills/analytics/meta-ads/SKILL.md]**
 
-> "Antes de falar de segurança, quero mostrar como uma skill de analytics real funciona na prática.
+> "Before talking about security, I want to show how a real analytics skill works in practice.
 >
-> Essa é a skill de Meta Ads que rodo todo dia pra acompanhar as vendas da Pixel Educação — a empresa do curso. Vou abrir o SKILL.md:"
+> This is the Meta Ads skill I run every day to track sales for Pixel Educação — the company behind the course. I'll open the SKILL.md:"
 
-**[MOSTRAR: SKILL.md aberto — credenciais com XXXX]**
+**[SHOW: SKILL.md open — credentials as XXXX]**
 
-> "Olha aqui: o token do Meta e o ID da conta estão como `XXXX`. Nunca no código — sempre via 1Password. O agente busca em runtime.
+> "Look here: the Meta token and account ID are shown as `XXXX`. Never in the code — always via 1Password. The agent fetches them at runtime.
 >
-> O que ela gera? Um dashboard como esse:"
+> What does it generate? A dashboard like this:"
 
-**[MOSTRAR: arquivo exemplo-output-meta-ads.html no browser]**
+**[SHOW: example-output-meta-ads.html file in the browser]**
 
-> "Receita total, split por produto — OpenClaw Minicurso separado do Micro-SaaS PRO — taxa de reembolso, ROAS das campanhas. Gerado automaticamente, enviado pro Telegram todo dia às 8h.
+> "Total revenue, split by product — OpenClaw Minicourse separate from Micro-SaaS PRO — refund rate, campaign ROAS. Generated automatically, sent to Telegram every day at 8am.
 >
-> Isso é o que uma skill bem feita entrega. Você descreve o processo uma vez — e o agente executa toda vez que você pedir, ou no horário que você configurar."
+> That's what a well-built skill delivers. You describe the process once — and the agent executes it every time you ask, or at the time you configure."
 
 ---
 
-## BLOCO 8 — Skills de terceiros: como usar com segurança (4 min)
+## BLOCK 8 — Third-party skills: how to use them safely (4 min)
 
-**[COMPARTILHA TELA: clawhub.com aberto no browser]**
+**[SHARE SCREEN: clawhub.com open in the browser]**
 
-> "O ClawHub é o marketplace de skills da comunidade OpenClaw. Você encontra skills prontas pra instalar.
+> "ClawHub is the OpenClaw community's skill marketplace. You'll find ready-made skills to install.
 >
-> Mas antes de instalar qualquer coisa, uma regra inviolável:"
+> But before installing anything, one inviolable rule:"
 
-**[CÂMERA FRONTAL — tom sério]**
+**[FRONT CAMERA — serious tone]**
 
-> "Leia o código. Sempre.
+> "Read the code. Always.
 >
-> Uma skill tem acesso ao seu workspace, pode rodar comandos, pode ler arquivos. Skill maliciosa pode exfiltrar credenciais, deletar dados, executar qualquer coisa.
+> A skill has access to your workspace, can run commands, can read files. A malicious skill can exfiltrate credentials, delete data, execute anything.
 >
-> O protocolo manual básico:"
+> The basic manual protocol:"
 
-**[COMPARTILHA TELA: terminal]**
+**[SHARE SCREEN: terminal]**
 
 ```bash
-git clone https://github.com/usuario/skill-nome /tmp/review-skill
+git clone https://github.com/user/skill-name /tmp/review-skill
 cat /tmp/review-skill/SKILL.md
 grep -r "curl" /tmp/review-skill/
 grep -r "rm -rf" /tmp/review-skill/
 grep -r "eval" /tmp/review-skill/
 ```
 
-> "Funciona. Mas tem uma forma melhor.
+> "It works. But there's a better way.
 >
-> O Adrylan — um dos alunos mais avançados do curso — criou uma skill que audita outras skills. Ela é baseada no OWASP ASI Top 10 de 2026, no scanner Snyk e no Aguara. Nove categorias de verificação: prompt injection, exfiltração de dados, código malicioso, credenciais hardcoded, engenharia social...
+> Adrylan — one of the most advanced students in the course — created a skill that audits other skills. It's based on the OWASP ASI Top 10 of 2026, the Snyk scanner, and Aguara. Nine verification categories: prompt injection, data exfiltration, malicious code, hardcoded credentials, social engineering...
 >
-> Você instala ela uma vez — e a partir daí, toda vez que encontrar uma skill nova, você cola o conteúdo e pede: 'audita essa skill'. O agente roda o checklist completo e te dá um relatório: limpo, atenção ou crítico.
+> You install it once — and from then on, every time you find a new skill, you paste the content and ask: 'audit this skill'. The agent runs the full checklist and gives you a report: clean, attention, or critical.
 >
-> O SKILL.md completo tá no material bônus no Drive. **É a primeira skill que você deve instalar — antes de qualquer outra.**"
+> The complete SKILL.md is in the bonus material on Drive. **It's the first skill you should install — before any other.**"
 
 ---
 
-## BLOCO 9 — Skills do Claude Code funcionam no OpenClaw? (2 min)
+## BLOCK 9 — Do Claude Code skills work in OpenClaw? (2 min)
 
-**[CÂMERA FRONTAL]**
+**[FRONT CAMERA]**
 
-> "Pergunta frequente: tenho skills do Claude Code, funcionam no OpenClaw?
+> "Frequent question: I have Claude Code skills, do they work in OpenClaw?
 >
-> Resposta curta: depende.
+> Short answer: it depends.
 >
-> Skills do Claude Code — os arquivos CLAUDE.md — têm um formato diferente. São instruções pro agente de como se comportar num projeto de código específico. Não são o mesmo conceito de skill do OpenClaw.
+> Claude Code skills — the CLAUDE.md files — have a different format. They are instructions for the agent on how to behave in a specific code project. They are not the same concept as OpenClaw skills.
 >
-> Para adaptar:
-> 1. O conteúdo de instrução geralmente é aproveitável — você pega o contexto e regras e coloca num SKILL.md do OpenClaw
-> 2. Scripts bash que o Claude Code usa geralmente rodam no OpenClaw sem modificação — o ambiente de execução é compatível
-> 3. O que não funciona direto são integrações específicas do Claude Code (MCP servers, por exemplo) — aí precisa adaptar pro equivalente OpenClaw
+> To adapt:
+> 1. The instruction content is generally usable — you take the context and rules and put them in an OpenClaw SKILL.md
+> 2. Bash scripts that Claude Code uses generally run in OpenClaw without modification — the execution environment is compatible
+> 3. What doesn't work directly are Claude Code-specific integrations (MCP servers, for example) — those need to be adapted to the OpenClaw equivalent
 >
-> Na prática: se você tem um prompt elaborado que usa no Claude Code, vira um SKILL.md no OpenClaw. O comportamento vai ser equivalente."
+> In practice: if you have an elaborate prompt you use in Claude Code, turn it into a SKILL.md in OpenClaw. The behavior will be equivalent."
 
 ---
 
-## BLOCO 10 — Encerramento (1 min)
+## BLOCK 10 — Closing (1 min)
 
-**[CÂMERA FRONTAL]**
+**[FRONT CAMERA]**
 
-> "Resumindo:
+> "To summarize:
 >
-> Um agente com skills > múltiplos agentes. Contexto unificado, processo consistente.
+> One agent with skills > multiple agents. Unified context, consistent process.
 >
-> Cada processo repetitivo vira skill. Prompt é pedido, skill é processo.
+> Every repetitive process becomes a skill. A prompt is a request, a skill is a process.
 >
-> Sub-agente sem skill = freelancer sem briefing. Sempre dê escopo claro.
+> Sub-agent without a skill = freelancer without a brief. Always give a clear scope.
 >
-> Backup no Git. Skills são ativos, trate como código.
+> Back up to Git. Skills are assets, treat them like code.
 >
-> Skill de terceiro: leia o código antes. Sempre.
+> Third-party skill: read the code first. Always.
 >
-> O material completo — lista de skills por perfil, checklist de segurança e o prompt de instalação — tá no Drive, link na descrição."
+> The full material — skills list by profile, security checklist, and the installation prompt — is on Drive, link in the description."
 
 ---
 
-## Checklist pré-gravação
+## Pre-recording checklist
 
-- [ ] VS Code com `skills/` aberto mostrando categorias reais
-- [ ] `skills/analytics/meta-ads/SKILL.md` aberto (credenciais como XXXX)
-- [ ] `reports/misc/exemplo-output-meta-ads.html` aberto no browser (dashboard de vendas)
-- [ ] Terminal pronto pra demo do clone + grep de segurança
-- [ ] clawhub.com aberto no browser
-- [ ] SKILL.md da skill-audit pronto pra mostrar (material bônus)
-- [ ] Script de backup git pronto no terminal
-- [ ] Notificações desativadas
+- [ ] VS Code with `skills/` open showing real categories
+- [ ] `skills/analytics/meta-ads/SKILL.md` open (credentials as XXXX)
+- [ ] `reports/misc/exemplo-output-meta-ads.html` open in browser (sales dashboard)
+- [ ] Terminal ready for clone + security grep demo
+- [ ] clawhub.com open in the browser
+- [ ] skill-audit SKILL.md ready to show (bonus material)
+- [ ] Git backup script ready in the terminal
+- [ ] Notifications disabled
 
-## Timings aproximados
+## Approximate timings
 
-| Bloco | Conteúdo | Tempo |
-|-------|----------|-------|
-| 1 | Abertura: 1 agente > múltiplos | 2:00 |
-| 2 | O que é uma skill | 3:00 |
-| 3 | Organização em pastas | 3:00 |
-| 4 | Como pedir pra executar | 2:00 |
-| 5 | Todo processo vira skill | 3:00 |
-| 6 | Sub-agentes + skills | 2:00 |
-| 7 | Backup no Git | 2:00 |
-| 7b | Demo real: skill Meta Ads | 2:00 |
-| 8 | Skills de terceiros + skill-audit bônus | 4:00 |
+| Block | Content | Time |
+|-------|---------|------|
+| 1 | Opening: 1 agent > multiple | 2:00 |
+| 2 | What is a skill | 3:00 |
+| 3 | Organization in folders | 3:00 |
+| 4 | How to ask to execute | 2:00 |
+| 5 | Every process becomes a skill | 3:00 |
+| 6 | Sub-agents + skills | 2:00 |
+| 7 | Git backup | 2:00 |
+| 7b | Real demo: Meta Ads skill | 2:00 |
+| 8 | Third-party skills + bonus skill-audit | 4:00 |
 | 9 | Claude Code → OpenClaw | 2:00 |
-| 10 | Encerramento | 1:00 |
+| 10 | Closing | 1:00 |
 | **Total** | | **~26 min** |
 
-## Links para colocar na descrição
+## Links to put in the description
 
 - ClawHub: https://clawhub.com
-- Skills por perfil (PDF): Drive → Curso OpenClaw → aula-06-skills → skills-by-profile.pdf
-- Prompt de instalação: Drive → aula-06-skills → prompts → modulo-06-skills.md
+- Skills by profile (PDF): Drive → OpenClaw Course → aula-06-skills → skills-by-profile.pdf
+- Installation prompt: Drive → aula-06-skills → prompts → modulo-06-skills.md

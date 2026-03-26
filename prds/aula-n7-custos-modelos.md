@@ -1,129 +1,129 @@
-# PRD — Aula N-7: Quanto Custa e Qual Modelo Usar
+# PRD — Lesson N-7: How Much Does It Cost and Which Model to Use
 
-> **Nível:** Intermediário  
-> **Duração estimada:** 15 minutos  
-> **Pré-requisito:** OpenClaw instalado e funcionando, pelo menos um provider configurado
-
----
-
-## 🎯 Objetivo da Aula
-
-Ao final desta aula, o aluno será capaz de:
-
-1. Entender a diferença entre **assinatura** e **API Key** e quando usar cada uma
-2. Comparar os principais modelos de IA por **preço e capacidade**
-3. Escolher o modelo certo para cada tipo de tarefa (economizando até 95%)
-4. Configurar **modelos diferentes por função** (heartbeat, chat, análise)
-5. Estimar o **gasto mensal real** do seu setup
-6. Colocar **limites de gasto** para nunca ser surpreendido
+> **Level:** Intermediate
+> **Estimated duration:** 15 minutes
+> **Prerequisite:** OpenClaw installed and running, at least one provider configured
 
 ---
 
-## 📋 Script de Gravação — Seção por Seção
+## 🎯 Lesson Objective
 
-### 🎬 ABERTURA (0:00 – 1:00)
+By the end of this lesson, the student will be able to:
 
-**[Bruno na tela, tom direto]**
-
-> "Fala, pessoal! Aula N-7 — custos e modelos. Essa é a aula que vai te salvar de um susto na fatura."
-
-> "Já vi aluno gastar $200 num único dia de teste. Já vi outro rodando o mesmo setup por $8/mês. A diferença? Escolha de modelo. Em 15 minutos você vai entender tudo."
+1. Understand the difference between **subscription** and **API Key** and when to use each
+2. Compare the main AI models by **price and capability**
+3. Choose the right model for each type of task (saving up to 95%)
+4. Configure **different models per function** (heartbeat, chat, analysis)
+5. Estimate the **real monthly cost** of their setup
+6. Set **spending limits** to never be surprised
 
 ---
 
-### 💳 SEÇÃO 1: Assinatura vs API Key — Qual Usar? (1:00 – 4:30)
+## 📋 Recording Script — Section by Section
 
-**[Tela: slide comparativo]**
+### 🎬 OPENING (0:00 – 1:00)
 
-> "Primeira decisão: você vai usar assinatura mensal ou API Key com pay-per-use?"
+**[Bruno on screen, direct tone]**
 
-**[Mostrar na tela:]**
+> "Hey, everyone! Lesson N-7 — costs and models. This is the lesson that will save you from a shocking bill."
 
-| | Assinatura (Claude Pro) | API Key (Pay-per-use) |
+> "I've seen a student spend $200 in a single day of testing. I've seen another running the same setup for $8/month. The difference? Model choice. In 15 minutes you'll understand everything."
+
+---
+
+### 💳 SECTION 1: Subscription vs API Key — Which to Use? (1:00 – 4:30)
+
+**[Screen: comparison slide]**
+
+> "First decision: are you going to use a monthly subscription or an API Key with pay-per-use?"
+
+**[Show on screen:]**
+
+| | Subscription (Claude Pro) | API Key (Pay-per-use) |
 |---|---|---|
-| **Custo fixo** | $20/mês sempre | $0 se não usar |
-| **Controle de gasto** | ❌ Nenhum | ✅ Total |
-| **Funciona com OpenClaw** | ❌ Não mais (OAuth bloqueado) | ✅ Sim |
-| **Ideal para** | Uso pessoal no chat | Agentes, automação |
-| **Risco de surpresa** | Baixo (fixo) | Médio sem limites |
+| **Fixed cost** | $20/month always | $0 if unused |
+| **Spending control** | ❌ None | ✅ Total |
+| **Works with OpenClaw** | ❌ Not anymore (OAuth blocked) | ✅ Yes |
+| **Ideal for** | Personal use in chat | Agents, automation |
+| **Surprise risk** | Low (fixed) | Medium without limits |
 
-> "A resposta é quase sempre: **API Key**. A assinatura Pro foi pensada para uso humano — você abrindo o chat e conversando. O OpenClaw faz chamadas programáticas, que precisam de API Key."
+> "The answer is almost always: **API Key**. The Pro subscription was designed for human use — you opening the chat and talking. OpenClaw makes programmatic calls, which require an API Key."
 
-> "Com API Key, você paga exatamente pelo que usa. Num mês que você viaja e quase não usa o agente, paga menos. Num mês de projeto intenso, paga mais — mas você tem controle."
+> "With an API Key, you pay exactly for what you use. In a month when you travel and barely use the agent, you pay less. In a month with an intensive project, you pay more — but you're in control."
 
 ---
 
-### 📊 SEÇÃO 2: Tabela de Modelos e Preços (4:30 – 8:00)
+### 📊 SECTION 2: Model and Pricing Table (4:30 – 8:00)
 
-**[Tela: tabela comparativa]**
+**[Screen: comparison table]**
 
-> "Agora vamos falar de dinheiro concreto. Os modelos são cobrados por tokens — pedaços de texto de ~4 caracteres. O preço é por 1 milhão de tokens."
+> "Now let's talk real money. Models are charged per tokens — pieces of text of ~4 characters. The price is per 1 million tokens."
 
-| Modelo | Preço Input (M tokens) | Preço Output (M tokens) | Velocidade | Qualidade |
+| Model | Input Price (M tokens) | Output Price (M tokens) | Speed | Quality |
 |--------|----------------------|------------------------|------------|-----------|
-| **Claude Opus 4** | $15 | $75 | Lento | ⭐⭐⭐⭐⭐ |
-| **Claude Sonnet 4.5** | $3 | $15 | Médio | ⭐⭐⭐⭐ |
-| **Claude Haiku 4.5** | $0.80 | $4 | Rápido | ⭐⭐⭐ |
-| **GPT-4o** | $2.50 | $10 | Médio | ⭐⭐⭐⭐ |
-| **Gemini 3.1 Pro** | $1.25 | $5 | Médio | ⭐⭐⭐⭐ |
-| **Mistral Small** | $0.10 | $0.30 | Muito rápido | ⭐⭐ |
+| **Claude Opus 4** | $15 | $75 | Slow | ⭐⭐⭐⭐⭐ |
+| **Claude Sonnet 4.5** | $3 | $15 | Medium | ⭐⭐⭐⭐ |
+| **Claude Haiku 4.5** | $0.80 | $4 | Fast | ⭐⭐⭐ |
+| **GPT-4o** | $2.50 | $10 | Medium | ⭐⭐⭐⭐ |
+| **Gemini 3.1 Pro** | $1.25 | $5 | Medium | ⭐⭐⭐⭐ |
+| **Mistral Small** | $0.10 | $0.30 | Very fast | ⭐⭐ |
 
-> "Uma mensagem típica usa ~500 tokens de input + ~200 tokens de output. Vamos fazer a conta:"
+> "A typical message uses ~500 input tokens + ~200 output tokens. Let's do the math:"
 
-> "Com Opus 4: $15/M × 0.0005M + $75/M × 0.0002M = $0.0075 + $0.015 = **$0.022 por mensagem**"
-> "Com Haiku 4.5: $0.80/M × 0.0005M + $4/M × 0.0002M = $0.0004 + $0.0008 = **$0.0012 por mensagem**"
+> "With Opus 4: $15/M × 0.0005M + $75/M × 0.0002M = $0.0075 + $0.015 = **$0.022 per message**"
+> "With Haiku 4.5: $0.80/M × 0.0005M + $4/M × 0.0002M = $0.0004 + $0.0008 = **$0.0012 per message**"
 
-> "Diferença: **18x mais barato** com Haiku para a mesma tarefa simples."
-
----
-
-### 🎯 SEÇÃO 3: Qual Modelo Para Cada Situação? (8:00 – 11:00)
-
-**[Tela: cards de recomendação]**
-
-> "A estratégia é: use o modelo MÍNIMO que resolve o problema."
-
-**Heartbeats e Crons:**
-
-> "Heartbeat é quando o agente acorda sozinho pra checar emails, calendário, notificações. Essas tarefas são simples — verificar, categorizar, decidir se precisa te avisar."
-> "**Use Haiku** — $0.005 por execução vs $0.10 com Opus. Com 20 heartbeats por dia, são $0.10/dia com Haiku vs $2/dia com Opus. Em um mês: $3 vs $60. A mesma tarefa."
-
-**Interação Diária (mensagens no Telegram):**
-
-> "Quando você manda uma mensagem pro agente e quer uma resposta útil — pesquisa, organização, análise leve."
-> "**Use Sonnet** — o melhor custo-benefício. Rápido o suficiente, inteligente o suficiente, preço razoável."
-
-**Análise Complexa:**
-
-> "Quando você precisa analisar um documento longo, tomar uma decisão difícil, ou escrever algo importante."
-> "**Use Opus** — mas só quando precisa. Não use Opus pra checar o clima."
-
-**Alternativas econômicas:**
-
-> "Gemini 3.1 Pro a $1.25/M é uma excelente alternativa ao Sonnet pra quem quer economizar. Mistral Small é absurdamente barato e bom pra tarefas muito simples de classificação."
+> "Difference: **18x cheaper** with Haiku for the same simple task."
 
 ---
 
-### ⚙️ SEÇÃO 4: Como Configurar Modelo por Função (11:00 – 13:00)
+### 🎯 SECTION 3: Which Model for Each Situation? (8:00 – 11:00)
 
-**[Tela: Terminal]**
+**[Screen: recommendation cards]**
 
-> "O OpenClaw permite configurar modelos diferentes por função. Isso é poderoso."
+> "The strategy is: use the MINIMUM model that solves the problem."
+
+**Heartbeats and Crons:**
+
+> "A heartbeat is when the agent wakes up on its own to check emails, calendar, notifications. These tasks are simple — check, categorize, decide if it needs to alert you."
+> "**Use Haiku** — $0.005 per execution vs $0.10 with Opus. With 20 heartbeats a day, that's $0.10/day with Haiku vs $2/day with Opus. In a month: $3 vs $60. The same task."
+
+**Daily Interaction (Telegram messages):**
+
+> "When you send a message to the agent and want a useful response — research, organization, light analysis."
+> "**Use Sonnet** — the best cost-benefit. Fast enough, smart enough, reasonable price."
+
+**Complex Analysis:**
+
+> "When you need to analyze a long document, make a difficult decision, or write something important."
+> "**Use Opus** — but only when you need it. Don't use Opus to check the weather."
+
+**Economical alternatives:**
+
+> "Gemini 3.1 Pro at $1.25/M is an excellent alternative to Sonnet for those wanting to save money. Mistral Small is absurdly cheap and good for very simple classification tasks."
+
+---
+
+### ⚙️ SECTION 4: How to Configure Model per Function (11:00 – 13:00)
+
+**[Screen: Terminal]**
+
+> "OpenClaw allows configuring different models per function. This is powerful."
 
 ```bash
-# Modelo padrão para interações do dia a dia
+# Default model for day-to-day interactions
 openclaw config set model anthropic/claude-sonnet-4-5
 
-# Modelo específico para heartbeats (econômico)
+# Specific model for heartbeats (economical)
 openclaw config set heartbeat.model anthropic/claude-haiku-4-5
 
-# Modelo para análises pesadas (opcional, usar com moderação)
+# Model for heavy analysis (optional, use sparingly)
 openclaw config set analysis.model anthropic/claude-opus-4
 ```
 
-> "Dessa forma, o agente usa Haiku automaticamente nas 20 execuções de heartbeat do dia, Sonnet quando você manda mensagem, e Opus só quando você pedir uma análise profunda."
+> "This way, the agent automatically uses Haiku for the 20 daily heartbeat executions, Sonnet when you send a message, and Opus only when you request a deep analysis."
 
-> "Para verificar a configuração atual:"
+> "To check the current configuration:"
 
 ```bash
 openclaw config get model
@@ -132,112 +132,112 @@ openclaw config get heartbeat.model
 
 ---
 
-### 💰 SEÇÃO 5: Exemplo Real de Gasto Mensal (13:00 – 14:30)
+### 💰 SECTION 5: Real Monthly Cost Example (13:00 – 14:30)
 
-**[Tela: breakdown de custos]**
+**[Screen: cost breakdown]**
 
-> "Vamos montar um setup real e calcular:"
+> "Let's build a real setup and calculate:"
 
-| Uso | Quantidade/mês | Modelo | Custo estimado |
+| Usage | Quantity/month | Model | Estimated cost |
 |-----|---------------|--------|----------------|
-| Heartbeats (2x/hora, 16h/dia) | ~960 execuções | Haiku | ~$5 |
-| Mensagens diárias (10/dia) | ~300 mensagens | Sonnet | ~$4 |
-| Análises semanais | ~4 análises longas | Opus | ~$3 |
-| Crons e automações | ~200 execuções | Haiku | ~$2 |
-| **Total estimado** | | | **~$14/mês** |
+| Heartbeats (2x/hour, 16h/day) | ~960 executions | Haiku | ~$5 |
+| Daily messages (10/day) | ~300 messages | Sonnet | ~$4 |
+| Weekly analyses | ~4 long analyses | Opus | ~$3 |
+| Crons and automations | ~200 executions | Haiku | ~$2 |
+| **Estimated total** | | | **~$14/month** |
 
-> "Setup moderado, agente funcionando 24/7 com heartbeats ativos: **$14 a $25/mês**. Se você usar intensamente, pode chegar a $40. Mas com controle de modelos, é muito difícil passar disso sem querer."
+> "Moderate setup, agent running 24/7 with active heartbeats: **$14 to $25/month**. If you use it intensively, it could reach $40. But with model control, it's very hard to exceed that unintentionally."
 
-> "Compare com: Claude Pro ($20/mês) sem funcionar no OpenClaw. Ou um assistente humano part-time ($500+/mês). Por $15-40/mês você tem um agente AI funcionando 24h."
+> "Compare with: Claude Pro ($20/month) without working in OpenClaw. Or a part-time human assistant ($500+/month). For $15-40/month you have an AI agent running 24/7."
 
 ---
 
-### 🚨 SEÇÃO 6: Troubleshooting — "Minha Conta Zerou" (14:30 – 15:00)
+### 🚨 SECTION 6: Troubleshooting — "My Account Ran Out" (14:30 – 15:00)
 
-**[Tela: como colocar limites]**
+**[Screen: how to set limits]**
 
-> "Isso acontece quando um loop de código ou skill mal configurada faz milhares de chamadas sem querer. Como se proteger:"
+> "This happens when a code loop or misconfigured skill makes thousands of calls unintentionally. How to protect yourself:"
 
-**Na Anthropic:**
+**At Anthropic:**
 ```
 console.anthropic.com → Settings → Billing → Usage Limits
-→ "Monthly spend limit" → Defina um valor (ex: $50)
-→ "Notification threshold" → Defina um alerta (ex: $25)
+→ "Monthly spend limit" → Set a value (e.g.: $50)
+→ "Notification threshold" → Set an alert (e.g.: $25)
 ```
 
-**No OpenClaw:**
+**In OpenClaw:**
 ```bash
-# Limitar requests por hora (proteção contra loops)
+# Limit requests per hour (protection against loops)
 openclaw config set rateLimit.requestsPerHour 100
 
-# Ver gasto estimado acumulado do mês
+# View estimated accumulated spend for the month
 openclaw usage report
 ```
 
-> "Configure esses limites **antes** de começar a usar intensamente. É o cinto de segurança — você espera não precisar, mas vai ficar feliz que existe."
+> "Configure these limits **before** you start using it intensively. It's the seatbelt — you hope you won't need it, but you'll be glad it exists."
 
 ---
 
-## 🛠️ Configuração Recomendada Para Iniciantes
+## 🛠️ Recommended Configuration for Beginners
 
 ```bash
-# Setup básico e econômico para começar
+# Basic and economical setup to get started
 openclaw config set model anthropic/claude-sonnet-4-5
 openclaw config set heartbeat.model anthropic/claude-haiku-4-5
 
-# Verificar configuração
+# Verify configuration
 openclaw config get model
 openclaw config get heartbeat.model
 ```
 
-E no console.anthropic.com:
+And at console.anthropic.com:
 - Monthly spend limit: $50
 - Notification at: $25
 
 ---
 
-## 📊 Tabela Completa de Modelos (Referência Rápida)
+## 📊 Complete Model Table (Quick Reference)
 
-| Modelo | Input/Output ($/M) | Uso Ideal | Evitar Para |
+| Model | Input/Output ($/M) | Ideal Use | Avoid For |
 |--------|-------------------|-----------|-------------|
-| Claude Opus 4 | $15/$75 | Análise profunda, decisões críticas | Heartbeats, respostas simples |
-| Claude Sonnet 4.5 | $3/$15 | Interação diária, escrita, research | Tarefas repetitivas em volume |
-| Claude Haiku 4.5 | $0.80/$4 | Heartbeats, crons, classificação | Análises complexas |
-| GPT-4o | $2.50/$10 | Alternativa ao Sonnet, código | — |
-| Gemini 3.1 Pro | $1.25/$5 | Alternativa econômica ao Sonnet | — |
-| Mistral Small | $0.10/$0.30 | Classificação simples, routing | Qualquer tarefa que exige raciocínio |
+| Claude Opus 4 | $15/$75 | Deep analysis, critical decisions | Heartbeats, simple responses |
+| Claude Sonnet 4.5 | $3/$15 | Daily interaction, writing, research | High-volume repetitive tasks |
+| Claude Haiku 4.5 | $0.80/$4 | Heartbeats, crons, classification | Complex analyses |
+| GPT-4o | $2.50/$10 | Alternative to Sonnet, code | — |
+| Gemini 3.1 Pro | $1.25/$5 | Economical alternative to Sonnet | — |
+| Mistral Small | $0.10/$0.30 | Simple classification, routing | Any task requiring reasoning |
 
 ---
 
-## ✅ Checklist Final do Aluno
+## ✅ Student Final Checklist
 
-- [ ] Entende a diferença entre assinatura e API Key
-- [ ] Modelo padrão configurado: `openclaw config set model anthropic/claude-sonnet-4-5`
-- [ ] Modelo de heartbeat configurado: `openclaw config set heartbeat.model anthropic/claude-haiku-4-5`
-- [ ] Limite de gasto configurado no console.anthropic.com
-- [ ] Notificação de gasto configurada (threshold)
-- [ ] `openclaw usage report` testado e funcionando
+- [ ] Understands the difference between subscription and API Key
+- [ ] Default model configured: `openclaw config set model anthropic/claude-sonnet-4-5`
+- [ ] Heartbeat model configured: `openclaw config set heartbeat.model anthropic/claude-haiku-4-5`
+- [ ] Spending limit configured at console.anthropic.com
+- [ ] Spending notification configured (threshold)
+- [ ] `openclaw usage report` tested and working
 
 ---
 
-## ❓ Dúvidas Frequentes
+## ❓ Frequently Asked Questions
 
-**1. Posso trocar de modelo a qualquer hora?**
+**1. Can I switch models at any time?**
 
-> Sim. `openclaw config set model NOVO-MODELO` e pronto. Válido a partir da próxima mensagem.
+> Yes. `openclaw config set model NEW-MODEL` and done. Valid from the next message onward.
 
-**2. O Mistral é muito mais barato — por que não usar sempre?**
+**2. Mistral is much cheaper — why not always use it?**
 
-> Qualidade inferior para raciocínio complexo. Para heartbeats simples funciona; para conversas e análise, perda de qualidade é perceptível. Use Haiku como mínimo para interações.
+> Lower quality for complex reasoning. For simple heartbeats it works; for conversations and analysis, the quality loss is noticeable. Use Haiku as the minimum for interactions.
 
-**3. Gemini é confiável para uso com OpenClaw?**
+**3. Is Gemini reliable for use with OpenClaw?**
 
-> Sim, desde a v2026.3.2. Boa alternativa econômica. Não tem as mesmas capacidades de ferramentas do Claude para casos complexos, mas para uso geral é excelente.
+> Yes, since v2026.3.2. A good economical alternative. It doesn't have the same tool capabilities as Claude for complex cases, but for general use it's excellent.
 
-**4. Como saber exatamente quanto gastei?**
+**4. How do I know exactly how much I've spent?**
 
-> `openclaw usage report` mostra breakdown por modelo. Console da Anthropic mostra em tempo real com gráficos.
+> `openclaw usage report` shows a breakdown by model. The Anthropic console shows it in real time with graphs.
 
-**5. Haiku é "burro"?**
+**5. Is Haiku "dumb"?**
 
-> Não! Para tarefas estruturadas (checar emails, classificar mensagens, responder perguntas simples), Haiku é excelente. Ele fica atrás em raciocínio multi-step e criatividade. Para 80% das tarefas de automação, é mais que suficiente.
+> No! For structured tasks (checking emails, classifying messages, answering simple questions), Haiku is excellent. It falls behind in multi-step reasoning and creativity. For 80% of automation tasks, it's more than sufficient.

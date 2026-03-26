@@ -1,101 +1,101 @@
-# Prompt — Módulo 10: Mission Control
+# Prompt — Module 10: Mission Control
 
-> Cole este prompt no chat do seu OpenClaw depois de assistir o Módulo 10.
+> Paste this prompt in your OpenClaw chat after watching Module 10.
 
 ---
 
-Acabei de assistir o Módulo 10 sobre Mission Control — criar uma interface visual para gerenciar o agente. Mesmo usando Telegram pra interação, preciso de um painel pra ver o estado do sistema num relance.
+I just watched Module 10 on Mission Control — creating a visual interface to manage the agent. Even using Telegram for interaction, I need a panel to see the system state at a glance.
 
-**O que preciso que você faça:**
+**What I need you to do:**
 
-## 1. Me explique por que isso importa
+## 1. Explain why this matters
 
-Antes de começarmos, me explique:
-- Por que um painel visual ajuda (mesmo tendo Telegram)?
-- Que tipo de informação deveria estar sempre visível?
-- Como isso se encaixa na filosofia de "proatividade"?
-- Exemplos: o que um founder vê vs um dev vê no painel?
+Before we start, explain:
+- Why a visual panel helps (even when you have Telegram)?
+- What kind of information should always be visible?
+- How does this fit into the "proactivity" philosophy?
+- Examples: what does a founder see vs. what a dev sees on the panel?
 
-## 2. Me ajude a escolher a ferramenta certa
+## 2. Help me choose the right tool
 
-Apresente as opções e me ajude a decidir baseado no **meu nível técnico e necessidades**:
+Present the options and help me decide based on **my technical level and needs**:
 
-### Opção A: NocoDB (recomendado iniciantes/intermediários)
-- **O que é:** Notion-like, self-hosted, gratuito, interface pronta
-- **Prós:** Setup rápido, GUI amigável, API REST, relações entre tabelas
-- **Contras:** Menos customizável que código próprio
-- **Melhor pra:** Quem quer resultado rápido sem codar muito
+### Option A: NocoDB (recommended for beginners/intermediate)
+- **What it is:** Notion-like, self-hosted, free, ready-made interface
+- **Pros:** Quick setup, friendly GUI, REST API, table relationships
+- **Cons:** Less customizable than custom code
+- **Best for:** Those who want quick results without much coding
 - **Setup:** Docker Compose + SQLite/Postgres
 
-### Opção B: Notion
-- **O que é:** Ferramenta SaaS, databases relacionais
-- **Prós:** Já uso no dia a dia, mobile nativo, compartilhamento fácil
-- **Contras:** API com rate limits, dados na nuvem (não self-hosted)
-- **Melhor pra:** Quem já é power user do Notion
+### Option B: Notion
+- **What it is:** SaaS tool, relational databases
+- **Pros:** Already use it daily, native mobile, easy sharing
+- **Cons:** API with rate limits, data in the cloud (not self-hosted)
+- **Best for:** Those who are already Notion power users
 - **Setup:** Notion API + integration
 
-### Opção C: Google Sheets
-- **O que é:** Planilhas com API
-- **Prós:** Simplicidade máxima, todo mundo sabe usar, gráficos nativos
-- **Contras:** Não é um banco de dados de verdade, limites de linhas
-- **Melhor pra:** Prototipagem rápida, dashboards simples
+### Option C: Google Sheets
+- **What it is:** Spreadsheets with an API
+- **Pros:** Maximum simplicity, everyone knows how to use it, native charts
+- **Cons:** Not a real database, row limits
+- **Best for:** Quick prototyping, simple dashboards
 - **Setup:** Google Sheets API (via gog skill)
 
-### Opção D: Custom (Express + React + Supabase)
-- **O que é:** App web totalmente customizado
-- **Prós:** Controle total, UI sob medida, real-time, hospedagem grátis (Vercel/Supabase)
-- **Contras:** Requer conhecimento de dev full-stack
-- **Melhor pra:** Devs que querem algo profissional e escalável
+### Option D: Custom (Express + React + Supabase)
+- **What it is:** Fully custom web app
+- **Pros:** Full control, tailored UI, real-time, free hosting (Vercel/Supabase)
+- **Cons:** Requires full-stack dev knowledge
+- **Best for:** Devs who want something professional and scalable
 - **Setup:** Next.js app + Supabase backend + API routes
 
-**Me pergunte:**
-- Qual meu nível técnico? (iniciante/intermediário/avançado)
-- Já uso alguma dessas ferramentas?
-- Prefiro algo rápido ou algo perfeito?
-- Vou gerenciar só meu agente ou uma equipe de agentes?
+**Ask me:**
+- What is my technical level? (beginner/intermediate/advanced)
+- Do I already use any of these tools?
+- Do I prefer something fast or something perfect?
+- Will I manage just my agent or a team of agents?
 
-## 3. Setup da opção escolhida
+## 3. Setup for the chosen option
 
-Depois que eu escolher, **me guie passo a passo**:
+Once I choose, **guide me step by step**:
 
-### Se escolhi NocoDB:
-1. Criar `docker-compose.yml` pro NocoDB
-2. Subir o serviço (`docker-compose up -d`)
-3. Acessar interface web (localhost:8080)
-4. Criar as tabelas necessárias (veja estrutura abaixo)
-5. Gerar API token
-6. Criar skill `nocodb-api` pra conectar o agente
-7. Configurar crons pra atualizar dados automaticamente
+### If I chose NocoDB:
+1. Create `docker-compose.yml` for NocoDB
+2. Start the service (`docker-compose up -d`)
+3. Access the web interface (localhost:8080)
+4. Create the necessary tables (see structure below)
+5. Generate API token
+6. Create `nocodb-api` skill to connect the agent
+7. Configure crons to update data automatically
 
-### Se escolhi Notion:
-1. Criar workspace no Notion
-2. Criar databases (Tasks, Memory, Crons, Health)
-3. Criar integration (https://notion.so/my-integrations)
-4. Dar permissões às databases
-5. Instalar/configurar skill `notion-db` (clawhub)
-6. Testar conexão e escrita
+### If I chose Notion:
+1. Create a workspace in Notion
+2. Create databases (Tasks, Memory, Crons, Health)
+3. Create an integration (https://notion.so/my-integrations)
+4. Grant permissions to the databases
+5. Install/configure the `notion-db` skill (clawhub)
+6. Test the connection and writing
 
-### Se escolhi Google Sheets:
-1. Criar spreadsheet "Mission Control"
-2. Criar abas (Tasks, Memory, Crons, Health)
-3. Configurar `gog` skill (se ainda não configurado)
-4. Criar funções helper no agente pra escrever nas sheets
-5. Configurar dashboard com gráficos
+### If I chose Google Sheets:
+1. Create a "Mission Control" spreadsheet
+2. Create tabs (Tasks, Memory, Crons, Health)
+3. Configure the `gog` skill (if not already configured)
+4. Create helper functions in the agent to write to sheets
+5. Configure dashboard with charts
 
-### Se escolhi Custom:
-1. Scaffold projeto Next.js (`npx create-next-app@latest mission-control`)
-2. Setup Supabase (projeto grátis)
-3. Criar tabelas no Supabase
-4. Criar API routes no Next.js
-5. Conectar agente às API routes
-6. Deploy no Vercel (grátis)
+### If I chose Custom:
+1. Scaffold Next.js project (`npx create-next-app@latest mission-control`)
+2. Set up Supabase (free project)
+3. Create tables in Supabase
+4. Create API routes in Next.js
+5. Connect the agent to the API routes
+6. Deploy to Vercel (free)
 
-## 4. Estrutura de dados (base comum)
+## 4. Data structure (common base)
 
-Independente da ferramenta, essas são as "tabelas" essenciais:
+Regardless of the tool, these are the essential "tables":
 
 ### Tasks
-- `id`, `title`, `status` (pending/done/blocked), `priority`, `created_at`, `due_date`, `assigned_to` (qual agente/humano)
+- `id`, `title`, `status` (pending/done/blocked), `priority`, `created_at`, `due_date`, `assigned_to` (which agent/human)
 
 ### Memory Events
 - `id`, `date`, `category` (decision/lesson/insight), `content`, `source` (main/heartbeat/cron)
@@ -106,82 +106,82 @@ Independente da ferramenta, essas são as "tabelas" essenciais:
 ### Health Checks
 - `id`, `service` (gateway/telegram/skills), `status` (healthy/degraded/down), `last_check`, `uptime_%`
 
-### Agent Stats (métricas)
+### Agent Stats (metrics)
 - `id`, `date`, `messages_sent`, `skills_used`, `errors`, `model_tokens_used`, `uptime_hours`
 
-Me ajude a criar essas estruturas na ferramenta escolhida.
+Help me create these structures in the chosen tool.
 
-## 5. Conectar o agente ao painel
+## 5. Connect the agent to the panel
 
-Depois do setup, **crie as funções necessárias**:
+After setup, **create the necessary functions**:
 
-### Funções que o agente precisa:
-- `dashboard_log_task(title, priority)` — cria tarefa no painel
-- `dashboard_update_task(id, status)` — marca como done/blocked
-- `dashboard_log_memory(content, category)` — salva insight importante
-- `dashboard_update_health(service, status)` — atualiza status de serviço
-- `dashboard_get_stats()` — retorna resumo do dia
+### Functions the agent needs:
+- `dashboard_log_task(title, priority)` — creates a task in the panel
+- `dashboard_update_task(id, status)` — marks as done/blocked
+- `dashboard_log_memory(content, category)` — saves important insight
+- `dashboard_update_health(service, status)` — updates service status
+- `dashboard_get_stats()` — returns daily summary
 
-### Crons necessários (isolated + agentTurn):
-- **stats-collector** (a cada 1h): Coleta métricas (uptime, erros, skills usadas) e escreve no painel
-- **health-monitor** (a cada 15min): Testa se gateway/telegram/skills estão respondendo
-- **task-reminder** (a cada 4h): Verifica tarefas com due_date próximo e avisa
+### Required crons (isolated + agentTurn):
+- **stats-collector** (every 1h): Collects metrics (uptime, errors, skills used) and writes to the panel
+- **health-monitor** (every 15min): Tests whether gateway/telegram/skills are responding
+- **task-reminder** (every 4h): Checks tasks with upcoming due_date and notifies
 
-Me ajude a criar esses crons e funções.
+Help me create these crons and functions.
 
-## 6. Personalizar o painel pro meu perfil
+## 6. Customize the panel for my profile
 
-Com base no meu USER.md e no meu trabalho (founder/dev/criador/produtividade), **customize o que é mostrado**:
+Based on my USER.md and my work (founder/dev/creator/productivity), **customize what is shown**:
 
-**Se sou Founder:**
-- Métricas de negócio (MRR, usuários ativos, churn)
-- Pipeline de vendas
-- OKRs da semana
+**If I'm a Founder:**
+- Business metrics (MRR, active users, churn)
+- Sales pipeline
+- Weekly OKRs
 
-**Se sou Dev:**
-- Deploys recentes
-- Erros críticos (via Sentry)
-- PRs pendentes de review
-- Uptime dos serviços
+**If I'm a Dev:**
+- Recent deploys
+- Critical errors (via Sentry)
+- Pending PRs for review
+- Service uptime
 
-**Se sou Criador:**
-- Conteúdos publicados essa semana
-- Performance (views, engajamento)
-- Pipeline de produção (ideias → roteiro → gravação → edição → publicado)
+**If I'm a Creator:**
+- Content published this week
+- Performance (views, engagement)
+- Production pipeline (ideas → script → recording → editing → published)
 
-**Se sou Produtividade:**
-- Reuniões de hoje
-- Tasks completadas vs pendentes
-- Hábitos rastreados
-- Tempo em deep work
+**If I'm Productivity:**
+- Today's meetings
+- Completed vs. pending tasks
+- Tracked habits
+- Deep work time
 
-Me pergunte qual o meu perfil e sugira widgets específicos.
+Ask me what my profile is and suggest specific widgets.
 
-## 7. Fazer o primeiro teste
+## 7. Run the first test
 
-Depois de tudo configurado:
-1. Peça pro agente logar uma tarefa de teste
-2. Abra o painel e confirme que apareceu
-3. Marque como "done" via agente
-4. Atualize o painel e veja a mudança
-5. Verifique se os crons estão rodando (confira logs)
+After everything is configured:
+1. Ask the agent to log a test task
+2. Open the panel and confirm it appeared
+3. Mark it as "done" via the agent
+4. Refresh the panel and see the change
+5. Verify that crons are running (check logs)
 
-## 8. Documentar o setup
+## 8. Document the setup
 
-Crie um arquivo `docs/mission-control-setup.md` com:
-- Ferramenta escolhida e por quê
-- Credenciais necessárias (onde estão armazenadas)
-- Estrutura de dados
-- Como acessar o painel (URL, login)
-- Comandos úteis (resetar dados, backup, etc.)
-- Screenshots (se relevante)
+Create a file `docs/mission-control-setup.md` with:
+- Chosen tool and why
+- Required credentials (where they are stored)
+- Data structure
+- How to access the panel (URL, login)
+- Useful commands (reset data, backup, etc.)
+- Screenshots (if relevant)
 
-**Regras importantes:**
-- ❌ Não hardcode credenciais — tudo no `.env` ou 1Password
-- ✅ Use crons `isolated` + `agentTurn` pra atualizar dados (nunca systemEvent no main)
-- ✅ Teste em produção devagar — comece com read-only, depois adicione write
-- ✅ Faça backup antes de conectar sistema crítico ao painel
+**Important rules:**
+- ❌ Don't hardcode credentials — everything in `.env` or 1Password
+- ✅ Use `isolated` + `agentTurn` crons to update data (never systemEvent in main)
+- ✅ Test in production slowly — start with read-only, then add write
+- ✅ Make a backup before connecting a critical system to the panel
 
 ---
 
-**Vamos construir seu Mission Control?** Me conte seu nível técnico e preferências, e eu te guio!
+**Shall we build your Mission Control?** Tell me your technical level and preferences, and I'll guide you!

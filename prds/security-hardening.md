@@ -1,59 +1,59 @@
-# PRD: Security Hardening do OpenClaw
+# PRD: OpenClaw Security Hardening
 
-> Jogue este arquivo no chat do seu agente e diga: "Executa este PRD de segurança"
-> Ele vai blindar seu servidor seguindo cada passo.
-> **Atualizado para OpenClaw v2026.3.13**
-
----
-
-## ⚠️ Por Que Isso É Urgente
-
-Em fevereiro de 2026, uma vulnerabilidade crítica (**CVE com CVSS 8.8**) foi descoberta em instâncias OpenClaw expostas na internet. Mais de **30.000 instâncias** foram identificadas como vulneráveis antes do patch da versão 2026.2.12. Servidores sem proteção básica foram comprometidos — dados exfiltrados, API keys roubadas, agentes usados para spam.
-
-Além disso: servidores OpenClaw expostos na internet recebem 1.000+ tentativas de brute force por dia. Sem proteção, qualquer pessoa pode acessar seu agente e seus dados.
-
-Este guia te protege contra todos os vetores de ataque conhecidos.
-
-## Contexto da v2026.3.2+
-
-**WebSocket agora é loopback-only por padrão.** O painel web do OpenClaw (`http://IP:18789`) só aceita conexões de `127.0.0.1` — ou seja, só de dentro do próprio servidor. Para acessar remotamente, você precisa do Cloudflare Tunnel (coberto abaixo).
-
-### Novidades de segurança na v2026.3.13
-
-A versão 2026.3.13 trouxe um pacote expressivo de correções de segurança:
-
-- **Device pairing single-use:** Códigos de setup agora são de uso único — não podem ser reaproveitados para ganhar acesso. Cada `openclaw qr` ou `/pair` gera um código que expira no primeiro scan (ou em poucos minutos sem uso). Se tentar usar o mesmo QR duas vezes → erro "código expirado". Gere um novo para cada pareamento. ⚠️ Nunca compartilhe QR por screenshot — quem escanear primeiro ganha acesso.
-- **Exec approvals hardened:** Várias formas de contornar a análise de comandos foram corrigidas (Unicode zero-width, backslash-newline, pnpm wrappers, Perl/Ruby -r/-I flags)
-- **WebSocket preauth:** Janela de handshake não-autenticado reduzida; frames oversized rejeitados antes do parsing
-- **Proxy attachments:** Limite de 5MB restaurado para arquivos persistidos pelo browser proxy
-- **GIT_EXEC_PATH blocked:** Variável de ambiente herdada não pode mais redirecionar Git helpers
-- **Webhook secrets:** Feishu, LINE e Zalo com validação de assinatura mais rigorosa
-
-> ✅ Não há ações específicas necessárias para o aluno além de manter o OpenClaw atualizado. As correções são automáticas após o `npm update -g openclaw`.
+> Drop this file into your agent's chat and say: "Execute this security PRD"
+> It will harden your server following each step.
+> **Updated for OpenClaw v2026.3.13**
 
 ---
 
-## Tarefas (executar na ordem)
+## ⚠️ Why This Is Urgent
 
-### 1. Telegram Allowlist (CRÍTICO — fazer PRIMEIRO)
+In February 2026, a critical vulnerability (**CVE with CVSS 8.8**) was discovered in OpenClaw instances exposed on the internet. Over **30,000 instances** were identified as vulnerable before the patch in version 2026.2.12. Servers without basic protection were compromised — data exfiltrated, API keys stolen, agents used for spam.
 
-> 🔴 **Ordem importa:** Configure o dmPolicy ANTES de qualquer outra coisa. O UFW e outras proteções vêm depois.
+Additionally: OpenClaw servers exposed on the internet receive 1,000+ brute force attempts per day. Without protection, anyone can access your agent and your data.
 
-Verificar se o OpenClaw está configurado com `dmPolicy: "allowlist"` e que APENAS os IDs autorizados estão na lista.
+This guide protects you against all known attack vectors.
+
+## Context for v2026.3.2+
+
+**WebSocket is now loopback-only by default.** The OpenClaw web panel (`http://IP:18789`) only accepts connections from `127.0.0.1` — meaning only from within the server itself. For remote access, you need Cloudflare Tunnel (covered below).
+
+### Security improvements in v2026.3.13
+
+Version 2026.3.13 brought a significant package of security fixes:
+
+- **Device pairing single-use:** Setup codes are now single-use — they cannot be reused to gain access. Each `openclaw qr` or `/pair` generates a code that expires on first scan (or in a few minutes if unused). Trying to use the same QR twice → "code expired" error. Generate a new one for each pairing. ⚠️ Never share QR via screenshot — whoever scans first gets access.
+- **Exec approvals hardened:** Several ways to bypass command analysis were fixed (Unicode zero-width, backslash-newline, pnpm wrappers, Perl/Ruby -r/-I flags)
+- **WebSocket preauth:** Unauthenticated handshake window reduced; oversized frames rejected before parsing
+- **Proxy attachments:** 5MB limit restored for files persisted by the browser proxy
+- **GIT_EXEC_PATH blocked:** Inherited environment variable can no longer redirect Git helpers
+- **Webhook secrets:** Feishu, LINE and Zalo with stricter signature validation
+
+> ✅ No specific actions needed for students beyond keeping OpenClaw updated. Fixes are automatic after `npm update -g openclaw`.
+
+---
+
+## Tasks (execute in order)
+
+### 1. Telegram Allowlist (CRITICAL — do FIRST)
+
+> 🔴 **Order matters:** Configure dmPolicy BEFORE anything else. UFW and other protections come after.
+
+Verify that OpenClaw is configured with `dmPolicy: "allowlist"` and that ONLY authorized IDs are in the list.
 
 ```bash
-# Verificar config atual
+# Check current config
 cat /root/.openclaw/openclaw.json | grep -A5 dmPolicy
 ```
 
-Se estiver "open", mudar IMEDIATAMENTE para "allowlist" com os IDs corretos.
+If it's "open", change IMMEDIATELY to "allowlist" with the correct IDs.
 
-> **Por que primeiro?** O UFW protege a porta do servidor, mas o Telegram é uma conexão de SAÍDA — não tem porta pra bloquear. Se o dmPolicy estiver "open", qualquer pessoa que descobrir o username do seu bot consegue commandar seu agente, mesmo com UFW ativo. São duas camadas diferentes de proteção.
+> **Why first?** UFW protects the server port, but Telegram is an OUTBOUND connection — there's no port to block. If dmPolicy is "open", anyone who discovers your bot's username can command your agent, even with UFW active. These are two different layers of protection.
 
 ### 2. Firewall (UFW)
 
 ```bash
-# Instalar e configurar
+# Install and configure
 sudo apt install -y ufw
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
@@ -62,13 +62,13 @@ sudo ufw --force enable
 sudo ufw status
 ```
 
-### 3. Fail2ban (proteção SSH)
+### 3. Fail2ban (SSH protection)
 
 ```bash
-# Instalar
+# Install
 sudo apt install -y fail2ban
 
-# Configurar
+# Configure
 sudo cat > /etc/fail2ban/jail.local << 'EOF'
 [sshd]
 enabled = true
@@ -80,151 +80,151 @@ bantime = 3600
 findtime = 600
 EOF
 
-# Ativar
+# Enable
 sudo systemctl enable fail2ban
 sudo systemctl restart fail2ban
 
-# Verificar
+# Verify
 sudo fail2ban-client status sshd
 ```
 
-### 4. Cloudflare Tunnel (acesso remoto seguro)
+### 4. Cloudflare Tunnel (secure remote access)
 
-> 🔒 **Novo na v2026.3.2:** O WebSocket do painel OpenClaw agora só aceita conexões de `127.0.0.1` (loopback). Para acessar o painel remotamente (Mission Control, dashboards), você **precisa** do Cloudflare Tunnel. Não tem atalho.
+> 🔒 **New in v2026.3.2:** The OpenClaw panel WebSocket now only accepts connections from `127.0.0.1` (loopback). To access the panel remotely (Mission Control, dashboards), you **need** Cloudflare Tunnel. There's no shortcut.
 
-Usar Cloudflare Tunnel pra expor serviços web (Mission Control, dashboards) sem abrir portas:
+Use Cloudflare Tunnel to expose web services (Mission Control, dashboards) without opening ports:
 
 ```bash
-# Instalar cloudflared
+# Install cloudflared
 curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb -o cloudflared.deb
 sudo dpkg -i cloudflared.deb
 
-# Autenticar
+# Authenticate
 cloudflared tunnel login
 
-# Criar tunnel
-cloudflared tunnel create meu-tunnel
+# Create tunnel
+cloudflared tunnel create my-tunnel
 
-# Configurar (exemplo pra app na porta 18789 — painel OpenClaw)
+# Configure (example for app on port 18789 — OpenClaw panel)
 cat > ~/.cloudflared/config.yml << 'EOF'
-tunnel: meu-tunnel
+tunnel: my-tunnel
 credentials-file: /root/.cloudflared/<TUNNEL_ID>.json
 
 ingress:
-  - hostname: painel.meudominio.com
+  - hostname: panel.mydomain.com
     service: http://127.0.0.1:18789
   - service: http_status:404
 EOF
 
-# Rodar como serviço
+# Run as service
 cloudflared service install
 systemctl enable cloudflared
 systemctl start cloudflared
 ```
 
-**Por que:**
-- Zero portas expostas na internet — tunnel faz conexão de SAÍDA
-- Servidor fica "invisível" (sem IP público exposto)
-- SSL/TLS automático pelo Cloudflare
-- Proteção DDoS gratuita inclusa
-- NUNCA usar `0.0.0.0` — sempre `127.0.0.1` + tunnel
+**Why:**
+- Zero ports exposed on the internet — tunnel makes an OUTBOUND connection
+- Server stays "invisible" (no public IP exposed)
+- Automatic SSL/TLS via Cloudflare
+- Free DDoS protection included
+- NEVER use `0.0.0.0` — always `127.0.0.1` + tunnel
 
-### 5. Portas de aplicação
+### 5. Application Ports
 
-Se tiver aplicações web rodando (Mission Control, dashboards, etc.):
-- Mudar binding de `0.0.0.0` para `127.0.0.1`
-- Usar Cloudflare Tunnel (acima) para acesso externo
-- NUNCA expor portas direto na internet
+If you have web applications running (Mission Control, dashboards, etc.):
+- Change binding from `0.0.0.0` to `127.0.0.1`
+- Use Cloudflare Tunnel (above) for external access
+- NEVER expose ports directly on the internet
 
 ### 6. SSH Hardening
 
 ```bash
-# Verificar se root login com senha está ativo
+# Check if root login with password is active
 grep "PermitRootLogin" /etc/ssh/sshd_config
 ```
 
-Ideal: `PermitRootLogin prohibit-password` (só SSH key, sem senha)
+Ideal: `PermitRootLogin prohibit-password` (SSH key only, no password)
 
-### 7. Credenciais: Auditar com `openclaw secrets`
+### 7. Credentials: Audit with `openclaw secrets`
 
-**O problema:** A CVE de 2026.2.12 explorou justamente API keys hardcodadas em arquivos de configuração. Se alguém acessa seu servidor, pega TODAS as suas chaves de uma vez.
+**The problem:** The 2026.2.12 CVE exploited hardcoded API keys in configuration files. If someone accesses your server, they get ALL your keys at once.
 
-**A partir da v2026.3.2**, o OpenClaw tem o comando `openclaw secrets` para gerenciar credenciais de forma segura. **Use esse comando em vez de editar .env manualmente.**
+**Starting from v2026.3.2**, OpenClaw has the `openclaw secrets` command to manage credentials securely. **Use this command instead of manually editing .env.**
 
-**Passo 1 — Auditar (descobrir se tem chaves expostas):**
+**Step 1 — Audit (discover if there are exposed keys):**
 
 ```bash
-# Ver tudo que está exposto nos seus arquivos
+# See everything exposed in your files
 openclaw secrets audit
 ```
 
-Este comando escaneia todos os arquivos do workspace e configuração, procurando padrões de API keys hardcodadas. Se encontrar algo, vai listar com o caminho e linha exata.
+This command scans all workspace and configuration files, looking for hardcoded API key patterns. If it finds anything, it lists the exact path and line.
 
-**Passo 2 — Migrar pro sistema seguro:**
+**Step 2 — Migrate to the secure system:**
 
 ```bash
-# Migrar automaticamente para o gerenciador de secrets seguro
+# Automatically migrate to the secure secrets manager
 openclaw secrets apply
 ```
 
-Este comando move as credenciais encontradas para o cofre seguro do OpenClaw, onde ficam criptografadas. Os arquivos originais têm as chaves removidas automaticamente.
+This command moves found credentials to OpenClaw's secure vault, where they are encrypted. Original files have the keys removed automatically.
 
-**Passo 3 — Verificar que tudo foi migrado:**
+**Step 3 — Verify everything was migrated:**
 
 ```bash
-# Rodar audit de novo — deve retornar limpo
+# Run audit again — should return clean
 openclaw secrets audit
-# Output esperado: "✅ No exposed credentials found"
+# Expected output: "✅ No exposed credentials found"
 ```
 
-> ℹ️ **Compatibilidade retroativa:** Se você já tem um `.env` manual com chaves, o `openclaw secrets apply` lê de lá também e migra pro sistema seguro. Após migração, o `.env` manual pode ser removido.
+> ℹ️ **Backward compatibility:** If you already have a manual `.env` with keys, `openclaw secrets apply` reads from there too and migrates to the secure system. After migration, the manual `.env` can be removed.
 
-**Rotação trimestral:** A cada 3 meses, gerar novas chaves nos painéis (Anthropic, OpenAI, Telegram). O `openclaw secrets` faz a atualização:
+**Quarterly rotation:** Every 3 months, generate new keys in the provider consoles (Anthropic, OpenAI, Telegram). `openclaw secrets` handles the update:
 
 ```bash
-openclaw secrets set ANTHROPIC_API_KEY=sk-ant-nova-chave-aqui
+openclaw secrets set ANTHROPIC_API_KEY=sk-ant-new-key-here
 ```
 
-### 8. Sync systemd + secrets (armadilha comum!)
+### 8. Sync systemd + secrets (common trap!)
 
-Quando trocar qualquer credencial, o systemd precisa saber:
+When changing any credential, systemd needs to know:
 
 ```bash
-# 1. Atualizar o secret
-openclaw secrets set NOME_DA_CHAVE=novo-valor
+# 1. Update the secret
+openclaw secrets set KEY_NAME=new-value
 
-# 2. Atualizar o override do systemd se tiver variável hard-coded lá
+# 2. Update the systemd override if it has a hard-coded variable
 sudo systemctl edit openclaw
 
-# 3. Recarregar e reiniciar
+# 3. Reload and restart
 sudo systemctl daemon-reload
 sudo systemctl restart openclaw
 ```
 
-**Por que:** O systemd override tem prioridade sobre o sistema de secrets. Se trocar só o secret e o override tiver o valor antigo, vai continuar usando o antigo. Muita gente perde horas debugando isso.
+**Why:** The systemd override takes priority over the secrets system. If you only change the secret and the override has the old value, it will keep using the old one. Many people lose hours debugging this.
 
 ---
 
-## Checklist Final
+## Final Checklist
 
-- [ ] **dmPolicy = allowlist** (PRIMEIRO — antes do UFW)
-- [ ] UFW ativo
-- [ ] Fail2ban ativo
-- [ ] Cloudflare Tunnel configurado (painel loopback-only na v2026.3.2)
-- [ ] Portas em 127.0.0.1 (não 0.0.0.0)
+- [ ] **dmPolicy = allowlist** (FIRST — before UFW)
+- [ ] UFW active
+- [ ] Fail2ban active
+- [ ] Cloudflare Tunnel configured (panel is loopback-only in v2026.3.2)
+- [ ] Ports on 127.0.0.1 (not 0.0.0.0)
 - [ ] SSH hardened (key-only)
-- [ ] `openclaw secrets audit` — zero resultados
-- [ ] `openclaw secrets apply` — credenciais migradas pro cofre seguro
-- [ ] Rotação trimestral agendada
-- [ ] systemd + secrets sincronizados
+- [ ] `openclaw secrets audit` — zero results
+- [ ] `openclaw secrets apply` — credentials migrated to secure vault
+- [ ] Quarterly rotation scheduled
+- [ ] systemd + secrets synced
 
-## Resultado Esperado
+## Expected Result
 
-Servidor blindado contra os ataques mais comuns, incluindo o vetor da CVE 2026.2.12. **9 camadas de proteção** ativas. Reportar status de cada item.
+Server hardened against the most common attacks, including the CVE 2026.2.12 vector. **9 layers of protection** active. Report status of each item.
 
-## Manter Atualizado
+## Stay Updated
 
-Execute periodicamente para garantir que está na versão mais recente (com todos os patches de segurança):
+Run periodically to ensure you're on the latest version (with all security patches):
 
 ```bash
 npm update -g openclaw
@@ -232,4 +232,4 @@ openclaw gateway restart
 openclaw gateway status
 ```
 
-> ✅ A versão 2026.3.13 é o pacote de segurança mais robusto até hoje — inclui correções em exec approvals, device pairing, WebSocket e webhooks.
+> ✅ Version 2026.3.13 is the most robust security package to date — includes fixes for exec approvals, device pairing, WebSocket and webhooks.

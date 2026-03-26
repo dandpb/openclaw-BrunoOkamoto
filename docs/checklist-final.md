@@ -1,258 +1,258 @@
-# Checklist Final — Validação Completa do Curso
+# Final Checklist — Complete Course Validation
 
-> Módulo 11: Wrap-up  
-> Use este checklist para confirmar que tudo foi configurado corretamente.
-
----
-
-## 🎯 Como Usar Este Checklist
-
-1. Vá módulo por módulo, verificando cada item
-2. Marque `[x]` conforme confirmar que funciona
-3. Se algo falhar, volte ao módulo correspondente e corrija
-4. **Não pule itens!** Cada um valida algo crítico
-5. Ao final, você terá um agente OpenClaw de produção, 100% funcional
+> Module 11: Wrap-up
+> Use this checklist to confirm everything has been configured correctly.
 
 ---
 
-## ✅ Módulo 1: Setup & Infraestrutura
+## 🎯 How to Use This Checklist
 
-**Objetivo:** Gateway rodando, Telegram conectado, VPS seguro.
+1. Go module by module, checking each item
+2. Mark `[x]` as you confirm it works
+3. If something fails, go back to the corresponding module and fix it
+4. **Don't skip items!** Each one validates something critical
+5. At the end, you'll have a fully functional production OpenClaw agent
 
-- [ ] `openclaw gateway status` retorna "running"
-- [ ] Gateway está acessível via URL pública (se configurado)
-- [ ] Telegram bot responde no chat 1:1
-- [ ] VPS tem IP fixo e está acessível via SSH
-- [ ] Node.js versão ≥ 18 instalado (`node --version`)
-- [ ] Git configurado (`git config user.name` e `user.email`)
-- [ ] Workspace em `/root/.openclaw/workspace-<nome>` existe
-- [ ] `.env` existe e contém `TELEGRAM_TOKEN`
+---
 
-**Teste rápido:**
+## ✅ Module 1: Setup & Infrastructure
+
+**Goal:** Gateway running, Telegram connected, VPS secured.
+
+- [ ] `openclaw gateway status` returns "running"
+- [ ] Gateway is accessible via public URL (if configured)
+- [ ] Telegram bot responds in 1:1 chat
+- [ ] VPS has a fixed IP and is accessible via SSH
+- [ ] Node.js version ≥ 18 installed (`node --version`)
+- [ ] Git configured (`git config user.name` and `user.email`)
+- [ ] Workspace at `/root/.openclaw/workspace-<name>` exists
+- [ ] `.env` exists and contains `TELEGRAM_TOKEN`
+
+**Quick test:**
 ```bash
-curl -I http://localhost:3339/health  # deve retornar 200 OK
+curl -I http://localhost:3339/health  # should return 200 OK
 ```
 
 ---
 
-## 🔒 Módulo 2: Segurança
+## 🔒 Module 2: Security
 
-**Objetivo:** Servidor hardened, credenciais seguras, allowlist ativo.
+**Goal:** Hardened server, secure credentials, allowlist active.
 
-- [ ] UFW instalado e ativo (`ufw status`)
-- [ ] Apenas portas necessárias abertas (22, 80, 443, 3339 se gateway público)
-- [ ] Fail2ban instalado e rodando (`systemctl status fail2ban`)
-- [ ] `dmPolicy: "allowlist"` configurado no `config.yaml`
-- [ ] `.env` contém credenciais (não hardcodadas no código)
-- [ ] `.env` está no `.gitignore`
-- [ ] Root login via SSH desabilitado (ou usa chave SSH)
-- [ ] Backups automáticos configurados (cron ou script)
+- [ ] UFW installed and active (`ufw status`)
+- [ ] Only necessary ports open (22, 80, 443, 3339 if gateway is public)
+- [ ] Fail2ban installed and running (`systemctl status fail2ban`)
+- [ ] `dmPolicy: "allowlist"` configured in `config.yaml`
+- [ ] `.env` contains credentials (not hardcoded in code)
+- [ ] `.env` is in `.gitignore`
+- [ ] Root login via SSH disabled (or uses SSH key)
+- [ ] Automatic backups configured (cron or script)
 
-**Teste rápido:**
+**Quick test:**
 ```bash
-cat ~/.openclaw/agents/<agente>/config.yaml | grep dmPolicy  # deve ser "allowlist"
-grep ".env" .gitignore  # deve existir
+cat ~/.openclaw/agents/<agent>/config.yaml | grep dmPolicy  # should be "allowlist"
+grep ".env" .gitignore  # should exist
 ```
 
 ---
 
-## 🧬 Módulo 3: Identidade
+## 🧬 Module 3: Identity
 
-**Objetivo:** Agente tem personalidade, conhece você, tem nome próprio.
+**Goal:** Agent has personality, knows you, has its own name.
 
-- [ ] `SOUL.md` existe e tem ≥100 linhas
-- [ ] `SOUL.md` contém personalidade forte (não genérico)
-- [ ] `SOUL.md` tem anti-patterns com exemplos ❌/✅
-- [ ] `USER.md` existe e tem ≥200 linhas (idealmente 400+)
-- [ ] `USER.md` contém rotina, estilo de comunicação, negócios
-- [ ] `USER.md` define horários de "não perturbe"
-- [ ] `AGENTS.md` configurado com regras operacionais
-- [ ] `IDENTITY.md` existe (nome, emoji, email próprio)
-- [ ] `BOOT.md` existe com checklist de startup
+- [ ] `SOUL.md` exists and has ≥100 lines
+- [ ] `SOUL.md` contains strong personality (not generic)
+- [ ] `SOUL.md` has anti-patterns with ❌/✅ examples
+- [ ] `USER.md` exists and has ≥200 lines (ideally 400+)
+- [ ] `USER.md` contains routine, communication style, business info
+- [ ] `USER.md` defines "do not disturb" hours
+- [ ] `AGENTS.md` configured with operational rules
+- [ ] `IDENTITY.md` exists (name, emoji, own email)
+- [ ] `BOOT.md` exists with startup checklist
 
-**Teste rápido:**
-Pergunte ao agente: "Quem é você?" e "Quem sou eu?" — as respostas devem ser detalhadas e personalizadas.
+**Quick test:**
+Ask the agent: "Who are you?" and "Who am I?" — the answers should be detailed and personalized.
 
 ---
 
-## 🧠 Módulo 4: Memória
+## 🧠 Module 4: Memory
 
-**Objetivo:** Memória persistente, daily notes, compactação automática.
+**Goal:** Persistent memory, daily notes, automatic compaction.
 
-- [ ] Pasta `memory/` existe no workspace
-- [ ] `memory/YYYY-MM-DD.md` sendo criado automaticamente todo dia
-- [ ] `MEMORY.md` existe e contém insights curados (não raw logs)
-- [ ] `memory/decisions.md` ou similar existe (opcional mas recomendado)
-- [ ] Compactação configurada (cron semanal ou mensal)
-- [ ] Agente extrai lições ANTES de compactar (não perde contexto)
-- [ ] Workflow de compactação documentado em `AGENTS.md`
+- [ ] `memory/` folder exists in the workspace
+- [ ] `memory/YYYY-MM-DD.md` being created automatically every day
+- [ ] `MEMORY.md` exists and contains curated insights (not raw logs)
+- [ ] `memory/decisions.md` or similar exists (optional but recommended)
+- [ ] Compaction configured (weekly or monthly cron)
+- [ ] Agent extracts lessons BEFORE compacting (doesn't lose context)
+- [ ] Compaction workflow documented in `AGENTS.md`
 
-**Teste rápido:**
+**Quick test:**
 ```bash
-ls -la memory/  # deve ter arquivo da data de hoje
-wc -l MEMORY.md  # deve ter pelo menos 50 linhas se já usou por alguns dias
+ls -la memory/  # should have a file with today's date
+wc -l MEMORY.md  # should have at least 50 lines if used for a few days
 ```
 
 ---
 
-## 🔌 Módulo 5: Integrações
+## 🔌 Module 5: Integrations
 
-**Objetivo:** Pelo menos 1 integração externa funcionando + 1 cron isolado.
+**Goal:** At least 1 external integration working + 1 isolated cron.
 
-- [ ] Pelo menos 1 integração configurada (Gmail, Calendar, GitHub, etc.)
-- [ ] Credenciais da integração no `.env` ou 1Password
-- [ ] Testei a integração manualmente (ex: "liste meus emails")
-- [ ] Pelo menos 1 cron job configurado
-- [ ] Cron usa `sessionMode: "isolated"` + `notifyMode: "agentTurn"`
-- [ ] **Nunca** `systemEvent` + `main` (isso quebra contexto)
-- [ ] Cron rodou pelo menos 1x e funcionou (confira logs)
-- [ ] Notificações do cron chegam no canal correto
+- [ ] At least 1 integration configured (Gmail, Calendar, GitHub, etc.)
+- [ ] Integration credentials in `.env` or 1Password
+- [ ] Tested the integration manually (e.g.: "list my emails")
+- [ ] At least 1 cron job configured
+- [ ] Cron uses `sessionMode: "isolated"` + `notifyMode: "agentTurn"`
+- [ ] **Never** `systemEvent` + `main` (this breaks context)
+- [ ] Cron ran at least 1x and worked (check logs)
+- [ ] Cron notifications arrive in the correct channel
 
-**Teste rápido:**
+**Quick test:**
 ```bash
-openclaw cron list  # deve listar pelo menos 1 cron
-openclaw cron logs <id>  # deve mostrar execuções recentes
+openclaw cron list  # should list at least 1 cron
+openclaw cron logs <id>  # should show recent executions
 ```
 
 ---
 
-## 🛠️ Módulo 6: Skills
+## 🛠️ Module 6: Skills
 
-**Objetivo:** 2-3 skills instaladas e funcionando.
+**Goal:** 2-3 skills installed and working.
 
-- [ ] Pelo menos 2 skills instaladas (`openclaw skill list`)
-- [ ] Skills foram **revisadas** antes de instalar (segurança)
-- [ ] Skills testadas manualmente e funcionam
-- [ ] Configurações de skills documentadas em `TOOLS.md`
-- [ ] Não tenho skills redundantes (ex: 3 geradores de imagem)
-- [ ] Entendo quando usar skill vs quando criar cron vs quando pedir ao main agent
+- [ ] At least 2 skills installed (`openclaw skill list`)
+- [ ] Skills were **reviewed** before installing (security)
+- [ ] Skills manually tested and working
+- [ ] Skill configurations documented in `TOOLS.md`
+- [ ] No redundant skills (e.g.: 3 image generators)
+- [ ] I understand when to use a skill vs when to create a cron vs when to ask the main agent
 
-**Teste rápido:**
+**Quick test:**
 ```bash
-openclaw skill list --enabled  # deve listar as skills ativas
+openclaw skill list --enabled  # should list active skills
 ```
-Peça ao agente para usar uma skill e confirme que funciona.
+Ask the agent to use a skill and confirm it works.
 
 ---
 
-## 💓 Módulo 7: Proatividade
+## 💓 Module 7: Proactivity
 
-**Objetivo:** Heartbeats configurados, agente checa coisas periodicamente.
+**Goal:** Heartbeats configured, agent checks things periodically.
 
-- [ ] `HEARTBEAT.md` existe e contém checklist curto
-- [ ] Heartbeat configurado no `config.yaml` (interval ~30min)
-- [ ] Heartbeat usa modelo barato (Haiku ou Sonnet, não Opus)
-- [ ] `heartbeat-state.json` existe em `memory/` (tracking de checks)
-- [ ] Agente checa email/calendar/notificações algumas vezes ao dia
-- [ ] Agente sabe quando ficar quieto (HEARTBEAT_OK) vs quando avisar
-- [ ] Não perturba de madrugada (23:00-08:00) a menos que urgente
+- [ ] `HEARTBEAT.md` exists and contains a short checklist
+- [ ] Heartbeat configured in `config.yaml` (interval ~30min)
+- [ ] Heartbeat uses a cheap model (Haiku or Sonnet, not Opus)
+- [ ] `heartbeat-state.json` exists in `memory/` (tracking checks)
+- [ ] Agent checks email/calendar/notifications several times a day
+- [ ] Agent knows when to stay quiet (HEARTBEAT_OK) vs when to notify
+- [ ] Does not disturb late at night (11pm-8am) unless urgent
 
-**Teste rápido:**
-Aguarde um heartbeat (ou force um manualmente) e veja se o agente faz alguma ação proativa ou retorna `HEARTBEAT_OK`.
-
----
-
-## 🤝 Módulo 8: Multi-Agentes (Opcional)
-
-**Objetivo:** Time de agentes configurado, com leveling e hierarquia.
-
-Se você configurou multi-agentes:
-
-- [ ] `TEAM.md` existe com descrição da equipe
-- [ ] Cada agente tem seu próprio `SOUL.md`
-- [ ] Sistema de níveis (L1-L5) documentado
-- [ ] Agentes novos começam em L1 (Observer)
-- [ ] Promoções baseadas em performance (não automáticas)
-- [ ] Main agent sabe quando delegar vs fazer sozinho
-- [ ] Subagents não tentam ser o main agent
-
-**Teste rápido:**
-Peça ao main agent para spawnar um subagent e execute uma tarefa delegada. Confirme que o subagent reporta de volta ao main.
+**Quick test:**
+Wait for a heartbeat (or force one manually) and see if the agent takes any proactive action or returns `HEARTBEAT_OK`.
 
 ---
 
-## 🛡️ Módulo 9: Sistema Imunológico
+## 🤝 Module 8: Multi-Agents (Optional)
 
-**Objetivo:** Watchdog, feedback loops, model split, backups automáticos.
+**Goal:** Agent team configured, with leveling and hierarchy.
 
-- [ ] Watchdog configurado (detecta agente travado/loop infinito)
-- [ ] Retry policy: 2x retry → avisar humano (nunca limbo silencioso)
-- [ ] Model split: Sonnet pra crons, Opus pra interação, Haiku pra heartbeats
-- [ ] Feedback loops: agente aprende com erros e atualiza docs
-- [ ] Backup automático antes de mudanças estruturais
-- [ ] Logs de erro monitorados (manualmente ou via cron)
-- [ ] Rollback plan documentado (se algo der errado)
+If you configured multi-agents:
 
-**Teste rápido:**
-Simule um erro (ex: cron que falha) e confirme que:
-1. Retry acontece
-2. Você é notificado após 2 falhas
-3. Erro é logado em `memory/`
+- [ ] `TEAM.md` exists with team description
+- [ ] Each agent has its own `SOUL.md`
+- [ ] Levels system (L1-L5) documented
+- [ ] New agents start at L1 (Observer)
+- [ ] Promotions based on performance (not automatic)
+- [ ] Main agent knows when to delegate vs do it alone
+- [ ] Subagents don't try to be the main agent
 
----
-
-## 📊 Módulo 10: Mission Control (Opcional)
-
-**Objetivo:** Painel visual para ver estado do sistema.
-
-Se você configurou Mission Control:
-
-- [ ] Ferramenta escolhida (NocoDB/Notion/Sheets/Custom) rodando
-- [ ] Tabelas criadas (Tasks, Memory, Crons, Health)
-- [ ] Agente consegue escrever no painel
-- [ ] Crons atualizam painel automaticamente
-- [ ] Dashboard acessível via browser
-- [ ] Credenciais no `.env` (não hardcodadas)
-- [ ] Setup documentado em `docs/mission-control-setup.md`
-
-**Teste rápido:**
-Peça ao agente para logar uma tarefa no painel. Abra o painel e confirme que apareceu.
+**Quick test:**
+Ask the main agent to spawn a subagent and execute a delegated task. Confirm that the subagent reports back to main.
 
 ---
 
-## 🎓 Validação Final
+## 🛡️ Module 9: Immune System
 
-**Meta-checklist — confirme que você domina:**
+**Goal:** Watchdog, feedback loops, model split, automatic backups.
 
-- [ ] Sei reiniciar o gateway (`openclaw gateway restart`)
-- [ ] Sei onde ficam os logs (`~/.openclaw/logs/`)
-- [ ] Sei criar um cron isolado com agentTurn
-- [ ] Sei quando usar Sonnet vs Opus vs Haiku
-- [ ] Sei fazer backup manual do workspace
-- [ ] Sei revisar código de uma skill antes de instalar
-- [ ] Sei editar `config.yaml` sem quebrar o agente
-- [ ] Sei usar `.env` pra credenciais
-- [ ] Sei quando o agente deve me perguntar vs fazer sozinho
-- [ ] Li as 10 Regras Invioláveis e entendo por quê cada uma importa
+- [ ] Watchdog configured (detects stuck agent/infinite loop)
+- [ ] Retry policy: 2x retry → notify human (never silent limbo)
+- [ ] Model split: Sonnet for crons, Opus for interaction, Haiku for heartbeats
+- [ ] Feedback loops: agent learns from errors and updates docs
+- [ ] Automatic backup before structural changes
+- [ ] Error logs monitored (manually or via cron)
+- [ ] Rollback plan documented (if something goes wrong)
 
----
-
-## 🚀 Próximos Passos
-
-Se marcou tudo acima, **parabéns!** Você tem um agente OpenClaw de produção rodando.
-
-**Agora:**
-1. **Use por 7 dias** — deixe ele trabalhar, veja o que funciona e o que não funciona
-2. **Itere** — ajuste SOUL.md, HEARTBEAT.md, crons baseado no uso real
-3. **Expanda** — adicione mais skills, integrações, automações conforme surgir necessidade
-4. **Documente** — seu `AGENTS.md` e `TOOLS.md` devem crescer com o tempo
-5. **Compartilhe** — ensine alguém, contribua na comunidade, crie skills
-
-**Lembre-se das 10 Regras Invioláveis** (veja `docs/10-regras-inviolaveis.md`).
+**Quick test:**
+Simulate an error (e.g.: a failing cron) and confirm that:
+1. Retry happens
+2. You are notified after 2 failures
+3. Error is logged in `memory/`
 
 ---
 
-## 📝 Log de Validação
+## 📊 Module 10: Mission Control (Optional)
 
-Registre quando completou este checklist:
+**Goal:** Visual panel to see system state.
+
+If you configured Mission Control:
+
+- [ ] Tool chosen (NocoDB/Notion/Sheets/Custom) running
+- [ ] Tables created (Tasks, Memory, Crons, Health)
+- [ ] Agent can write to the panel
+- [ ] Crons update panel automatically
+- [ ] Dashboard accessible via browser
+- [ ] Credentials in `.env` (not hardcoded)
+- [ ] Setup documented in `docs/mission-control-setup.md`
+
+**Quick test:**
+Ask the agent to log a task in the panel. Open the panel and confirm it appeared.
+
+---
+
+## 🎓 Final Validation
+
+**Meta-checklist — confirm you master:**
+
+- [ ] I know how to restart the gateway (`openclaw gateway restart`)
+- [ ] I know where the logs are (`~/.openclaw/logs/`)
+- [ ] I know how to create an isolated cron with agentTurn
+- [ ] I know when to use Sonnet vs Opus vs Haiku
+- [ ] I know how to manually back up the workspace
+- [ ] I know how to review a skill's code before installing
+- [ ] I know how to edit `config.yaml` without breaking the agent
+- [ ] I know how to use `.env` for credentials
+- [ ] I know when the agent should ask me vs do it alone
+- [ ] I've read the 10 Inviolable Rules and understand why each one matters
+
+---
+
+## 🚀 Next Steps
+
+If you checked everything above, **congratulations!** You have a production OpenClaw agent running.
+
+**Now:**
+1. **Use it for 7 days** — let it work, see what works and what doesn't
+2. **Iterate** — adjust SOUL.md, HEARTBEAT.md, crons based on real usage
+3. **Expand** — add more skills, integrations, automations as needs arise
+4. **Document** — your `AGENTS.md` and `TOOLS.md` should grow over time
+5. **Share** — teach someone, contribute to the community, create skills
+
+**Remember the 10 Inviolable Rules** (see `docs/10-regras-inviolaveis.md`).
+
+---
+
+## 📝 Validation Log
+
+Record when you completed this checklist:
 
 ```
-Data: _______________
-Itens completos: ___ / 70+
-Tempo desde início do curso: ___ dias
-Próxima revisão: _______________ (recomendado: 30 dias)
+Date: _______________
+Completed items: ___ / 70+
+Time since course start: ___ days
+Next review: _______________ (recommended: 30 days)
 ```
 
 ---
 
-**Você não completou um curso. Você construiu um sistema.** 🎉
+**You didn't complete a course. You built a system.** 🎉

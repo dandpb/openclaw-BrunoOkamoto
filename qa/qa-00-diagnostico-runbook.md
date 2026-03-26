@@ -1,85 +1,85 @@
-# 🚨 Runbook de Diagnóstico — "Meu bot não está funcionando"
+# 🚨 Diagnostic Runbook — "My bot is not working"
 
-> Use este guia ANTES de qualquer outra coisa. Resolve 90% dos problemas.
-> Sem terminal. Só prompts.
-
----
-
-## Passo 1 — Meu bot está respondendo?
-
-**Se SIM:** Vá para o Passo 2.
-
-**Se NÃO:**
-- Espere 2 minutos e tente de novo (pode ser instabilidade temporária)
-- Tente enviar uma mensagem simples: `oi`
-- Se ainda não responder: acesse o painel Mission Control ou reinicie o gateway pelo link que você configurou no setup
+> Use this guide BEFORE anything else. It resolves 90% of problems.
+> No terminal. Just prompts.
 
 ---
 
-## Passo 2 — Peça um diagnóstico ao bot
+## Step 1 — Is my bot responding?
 
-Cole esse prompt:
+**If YES:** Go to Step 2.
+
+**If NO:**
+- Wait 2 minutes and try again (could be temporary instability)
+- Try sending a simple message: `hi`
+- If it still doesn't respond: access the Mission Control panel or restart the gateway via the link you configured during setup
+
+---
+
+## Step 2 — Ask the bot for a diagnosis
+
+Paste this prompt:
 
 ```
-Faz um diagnóstico rápido pra mim agora:
-1. O gateway está funcionando? (/status)
-2. Tem algum erro recente nos logs?
-3. O modelo de IA está respondendo?
-4. Alguma automação ou cron com problema?
-Me diz o que encontrar em linguagem simples.
+Run a quick diagnosis for me right now:
+1. Is the gateway working? (/status)
+2. Are there any recent errors in the logs?
+3. Is the AI model responding?
+4. Are there any automations or crons with issues?
+Tell me what you find in plain language.
 ```
 
 ---
 
-## Passo 3 — Identifique o sintoma e vá para o Q&A certo
+## Step 3 — Identify the symptom and go to the right Q&A
 
-| O que está acontecendo | Arquivo de ajuda |
+| What is happening | Help file |
 |---|---|
-| Bot não responde / lento / respostas pioraram | → qa-03-contexto-memoria.md |
-| Erro 401, token inválido, problema de API key | → qa-01-auth-modelo.md |
-| Qualquer pessoa usa meu bot / bot não responde no grupo | → qa-02-telegram.md |
-| "Port in use", "command not found", não conecta | → qa-04-infra-basica.md |
-| Dúvida sobre modelos / custo / Claude bloqueado | → qa-06-llms-comparativo.md |
-| Dúvida sobre como o sistema funciona | → qa-05-arquitetura.md |
+| Bot not responding / slow / responses got worse | → qa-03-contexto-memoria.md |
+| Error 401, invalid token, API key problem | → qa-01-auth-modelo.md |
+| Anyone can use my bot / bot doesn't respond in the group | → qa-02-telegram.md |
+| "Port in use", "command not found", won't connect | → qa-04-infra-basica.md |
+| Questions about models / cost / Claude blocked | → qa-06-llms-comparativo.md |
+| Questions about how the system works | → qa-05-arquitetura.md |
 
 ---
 
-## Prompt Universal de Emergência
+## Universal Emergency Prompt
 
-Se não souber o que está errado, cole isso:
+If you don't know what's wrong, paste this:
 
 ```
-Estou com um problema no OpenClaw e não sei exatamente o que é.
-Sintoma: [DESCREVA O QUE ESTÁ ACONTECENDO]
+I have a problem with OpenClaw and I don't know exactly what it is.
+Symptom: [DESCRIBE WHAT IS HAPPENING]
 
-Por favor:
-1. Me ajuda a identificar a causa
-2. Me diz o que fazer em linguagem simples
-3. Me guia passo a passo pra resolver
-4. Confirma quando estiver resolvido
+Please:
+1. Help me identify the cause
+2. Tell me what to do in plain language
+3. Guide me step by step to resolve it
+4. Confirm when it's resolved
 ```
 
 ---
 
-## ⚠️ Regra de Ouro
+## ⚠️ Golden Rule
 
-**Não tente resolver no chute.**
+**Don't try to fix things by guessing.**
 
-A sequência correta sempre é:
-1. Diagnosticar primeiro (o que está errado?)
-2. Entender a causa (por quê aconteceu?)
-3. Aplicar solução (como corrigir?)
-4. Confirmar que resolveu (funcionou?)
+The correct sequence is always:
+1. Diagnose first (what is wrong?)
+2. Understand the cause (why did it happen?)
+3. Apply the solution (how to fix it?)
+4. Confirm it's resolved (did it work?)
 
-Pular etapas cria problemas novos em cima do antigo.
-
----
-
-*Se nada resolver: descreva seu problema detalhadamente no grupo de suporte com:*
-- *O que você tentou fazer*
-- *O que aconteceu (print do erro se tiver)*
-- *O que você já tentou*
+Skipping steps creates new problems on top of the old ones.
 
 ---
 
-*Última atualização: Fev/2026*
+*If nothing works: describe your problem in detail in the support group with:*
+- *What you were trying to do*
+- *What happened (screenshot of the error if available)*
+- *What you've already tried*
+
+---
+
+*Last updated: Feb/2026*

@@ -1,26 +1,26 @@
-# 🎯 Use Cases — O que fazer com seu agente
+# 🎯 Use Cases — What to do with your agent
 
-> Casos de uso reais da Amora em produção. Cada um tem um prompt pronto pra copiar e colar.
+> Real use cases from Amora in production. Each one has a ready-to-copy-and-paste prompt.
 
-## Categorias
+## Categories
 
-| Pasta | Use Cases | Nível |
-|-------|-----------|-------|
-| `content/` | Produção de conteúdo, waterfall, reciclagem | Intermediário |
-| `business/` | Métricas SaaS, reports, análise financeira | Intermediário |
-| `support/` | Análise de suporte, padrões, wrap-up | Intermediário |
-| `community/` | Moderação, trends, engagement | Intermediário |
-| `research/` | Deep research, concorrentes, tendências | Básico |
-| `productivity/` | Agenda, lembretes, daily briefing, viagens | Básico |
-| `dev/` | Code review, deploy, QA, debugging | Avançado |
+| Folder | Use Cases | Level |
+|--------|-----------|-------|
+| `content/` | Content production, waterfall, recycling | Intermediate |
+| `business/` | SaaS metrics, reports, financial analysis | Intermediate |
+| `support/` | Support analysis, patterns, wrap-up | Intermediate |
+| `community/` | Moderation, trends, engagement | Intermediate |
+| `research/` | Deep research, competitors, trends | Basic |
+| `productivity/` | Schedule, reminders, daily briefing, travel | Basic |
+| `dev/` | Code review, deploy, QA, debugging | Advanced |
 
-## Como usar
+## How to use
 
-1. Escolha o use case que faz sentido pro seu negócio
-2. Copie o prompt no chat do seu agente
-3. Adapte os [campos entre colchetes] pro seu contexto
-4. O agente faz o resto
+1. Choose the use case that makes sense for your business
+2. Copy the prompt into your agent's chat
+3. Adapt the [fields in brackets] to your context
+4. The agent does the rest
 
-## Dica
+## Tip
 
-Não tente implementar todos de uma vez. Comece com 2-3 que resolvem seu maior problema hoje. Adicione mais conforme o agente evolui.
+Don't try to implement all of them at once. Start with 2-3 that solve your biggest problem today. Add more as the agent evolves.

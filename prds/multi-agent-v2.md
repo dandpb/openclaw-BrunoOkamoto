@@ -1,55 +1,55 @@
-# PRD: Multi-Agent OS v2.0 — Arquitetura Avançada
+# PRD: Multi-Agent OS v2.0 — Advanced Architecture
 
-> ⚠️ **Nota (19/02/2026):** Este PRD descreve a v2 como foi projetada. A estrutura `shared/` real foi reorganizada na Shared Memory v2 (ver `shared/projects/PRD-SHARED-V2.md`). Paths como `shared/context/`, `shared/governance/`, `shared/costs/`, `shared/audit/`, `shared/lessons/` e `TOOLS-SHARED.md` foram consolidados em `shared/tools/`, `shared/assets/`, `shared/projects/`, `shared/decisions.md` e `shared/lessons.md`.
+> ⚠️ **Note (02/19/2026):** This PRD describes v2 as it was designed. The actual `shared/` structure was reorganized in Shared Memory v2 (see `shared/projects/PRD-SHARED-V2.md`). Paths like `shared/context/`, `shared/governance/`, `shared/costs/`, `shared/audit/`, `shared/lessons/`, and `TOOLS-SHARED.md` were consolidated into `shared/tools/`, `shared/assets/`, `shared/projects/`, `shared/decisions.md`, and `shared/lessons.md`.
 
-> Para quando seu agente único virou gargalo. Jogue no agente principal.
+> For when your single agent has become a bottleneck. Drop this into your main agent.
 
-## 1. Contexto: Por Que Evoluir?
+## 1. Context: Why Evolve?
 
-### Problemas do modelo v1 (1 agente hub + workers)
+### Problems with the v1 model (1 hub agent + workers)
 
-| Problema | Sintoma |
-|----------|---------|
-| **Gargalo central** | Agente principal coordena E executa — fica lento |
-| **Context rot** | Threads longas = respostas piores (degradação antes do limite) |
-| **Zero governance** | Sem tracking de custo, sem audit, sem digest |
-| **Sem especialização** | Um agente tentando ser bom em tudo = medíocre em tudo |
-| **Escala quebrada** | Adicionar mais workers não resolve se o hub é o bottleneck |
+| Problem | Symptom |
+|---------|---------|
+| **Central bottleneck** | Main agent coordinates AND executes — gets slow |
+| **Context rot** | Long threads = worse responses (degradation before the limit) |
+| **Zero governance** | No cost tracking, no audit, no digest |
+| **No specialization** | One agent trying to be good at everything = mediocre at everything |
+| **Broken scaling** | Adding more workers doesn't help if the hub is the bottleneck |
 
-### A solução: Hierarquia com Bosses
+### The solution: Hierarchy with Bosses
 
-Em vez de 1 agente fazendo tudo, você cria uma **organização**:
+Instead of 1 agent doing everything, you create an **organization**:
 
 ```
-Você (CEO)
+You (CEO)
     ↓
-Agente Principal (Chief of Staff) — coordena, não executa
+Main Agent (Chief of Staff) — coordinates, doesn't execute
     ↓
-Bosses (por domínio) — gerenciam seus workers
+Bosses (by domain) — manage their workers
     ↓
-Workers (especializados) — executam tarefas
+Workers (specialized) — execute tasks
 ```
 
 ---
 
-## 2. Arquitetura v2
+## 2. v2 Architecture
 
-### Hierarquia
+### Hierarchy
 
 ```
-Você (CEO)
-    ↓ fala com
-Agente Principal (Chief of Staff, L4)
-    — Não executa tasks
-    — Coordena bosses
+You (CEO)
+    ↓ talk to
+Main Agent (Chief of Staff, L4)
+    — Does NOT execute tasks
+    — Coordinates bosses
     — Governance + daily digest
-    — Traduz suas prioridades
+    — Translates your priorities
     ↓
 ┌──────────────┬──────────────┬──────────────┐
 │  Boss A      │  Boss B      │  Boss C      │
-│  (domínio 1) │  (domínio 2) │  (domínio 3) │
+│  (domain 1)  │  (domain 2)  │  (domain 3)  │
 │  Sonnet, L2  │  Sonnet, L2  │  Sonnet, L2  │
-│  Topic próprio│  Topic próprio│  Topic próprio│
+│  Own topic   │  Own topic   │  Own topic   │
 └──────┬───────┴──────┬───────┴──────┬───────┘
        ↓              ↓              ↓
     Workers         Workers        Workers
@@ -57,88 +57,88 @@ Agente Principal (Chief of Staff, L4)
      Sonnet)        Sonnet)        Sonnet)
 ```
 
-### O que muda do v1 para v2
+### What changes from v1 to v2
 
-| Aspecto | v1 | v2 |
-|---------|----|----|
-| **Papel do agente principal** | COO — faz tudo | CoS — coordena, não executa |
-| **Delegação** | Hub → Workers direto | CoS → Bosses → Workers |
-| **Governance** | Nenhuma | Dia 1: cost tracking, audit, digest |
-| **Comunicação** | Tudo passa pelo hub | Você fala direto com bosses via topics |
-| **Escala** | Limitada (hub = gargalo) | Cada boss é autônomo no seu domínio |
-| **Custo** | Descontrolado | Kill switch + tracking por agente |
+| Aspect | v1 | v2 |
+|--------|----|----|
+| **Main agent's role** | COO — does everything | CoS — coordinates, doesn't execute |
+| **Delegation** | Hub → Workers directly | CoS → Bosses → Workers |
+| **Governance** | None | Day 1: cost tracking, audit, digest |
+| **Communication** | Everything goes through hub | You talk directly to bosses via topics |
+| **Scaling** | Limited (hub = bottleneck) | Each boss is autonomous in their domain |
+| **Cost** | Uncontrolled | Kill switch + per-agent tracking |
 
 ---
 
-## 3. Definindo Seus Bosses
+## 3. Defining Your Bosses
 
-### Como decidir quais bosses criar
+### How to decide which bosses to create
 
-Responda: **"Quais são os 3-5 grandes domínios do meu trabalho?"**
+Answer: **"What are the 3-5 major domains of my work?"**
 
-**Exemplos por perfil:**
+**Examples by profile:**
 
-| Perfil | Boss A | Boss B | Boss C | Boss D |
-|--------|--------|--------|--------|--------|
-| **SaaS Founder** | Conteúdo | Produto/Ops | Dev | Analytics |
-| **Freelancer** | Projetos | Prospecção | Admin/Financeiro | — |
-| **Creator** | Conteúdo | Comunidade | Monetização | Analytics |
+| Profile | Boss A | Boss B | Boss C | Boss D |
+|---------|--------|--------|--------|--------|
+| **SaaS Founder** | Content | Product/Ops | Dev | Analytics |
+| **Freelancer** | Projects | Prospecting | Admin/Finance | — |
+| **Creator** | Content | Community | Monetization | Analytics |
 | **Startup** | Growth | Engineering | Customer Success | Data |
-| **Agência** | Clientes | Produção | Comercial | Ops |
+| **Agency** | Clients | Production | Sales | Ops |
 
-### Regras para criar bosses
+### Rules for creating bosses
 
-1. **Máximo 5 bosses** para começar (complexidade cresce exponencialmente)
-2. **Cada boss = 1 domínio claro** — se você não consegue descrever em 1 frase, é grande demais
-3. **Boss ≠ Worker** — boss COORDENA workers, não executa tudo sozinho
-4. **Comece com 2-3** — adicione conforme necessidade real, não especulativa
+1. **Maximum 5 bosses** to start (complexity grows exponentially)
+2. **Each boss = 1 clear domain** — if you can't describe it in 1 sentence, it's too big
+3. **Boss ≠ Worker** — boss COORDINATES workers, doesn't execute everything alone
+4. **Start with 2-3** — add based on real need, not speculative
 
 ---
 
 ## 4. Workers: Watcher vs Maker
 
-Nem todo worker precisa ficar "ligado". Dois tipos:
+Not every worker needs to be "always on." Two types:
 
-### Watcher (Fica de plantão)
-- Tem heartbeat ativo (30-60 min)
-- Reage a eventos sem o boss pedir
-- Custo: ~$1-2/mês cada
-- **Exemplo:** Monitor de comunidade, scraper de dados, coletor de métricas
+### Watcher (Always on duty)
+- Has active heartbeat (30-60 min)
+- Reacts to events without the boss asking
+- Cost: ~$1-2/month each
+- **Example:** Community monitor, data scraper, metrics collector
 
 ```markdown
 # HEARTBEAT.md (Watcher)
-1. Ler WORKING.md — tem task? Sim → executar. Não → HEARTBEAT_OK
-2. Checar [fonte de dados] por novidades
-3. Se encontrou algo relevante → registrar em shared/outputs/
+1. Read WORKING.md — has a task? Yes → execute. No → HEARTBEAT_OK
+2. Check [data source] for news
+3. If found something relevant → record in shared/outputs/
 ```
 
-### Maker (Só existe quando tem trabalho)
-- Sem heartbeat — boss usa `sessions_spawn` quando precisa
-- Custo quando idle: **$0**
-- **Exemplo:** Writer, editor, dev, analista de dados
+### Maker (Only exists when there's work)
+- No heartbeat — boss uses `sessions_spawn` when needed
+- Cost when idle: **$0**
+- **Example:** Writer, editor, dev, data analyst
 
 ```
-Boss recebe pedido → spawna Maker com briefing → Maker entrega → Boss revisa
+Boss receives request → spawns Maker with briefing → Maker delivers → Boss reviews
 ```
 
-### Regra de decisão
+### Decision rule
 
-> "Esse worker precisa reagir a algo sem que o boss peça?"
-> → **Sim** = Watcher | **Não** = Maker
+> "Does this worker need to react to something without the boss asking?"
+> → **Yes** = Watcher | **No** = Maker
 
 ---
 
-## 5. Governance (DESDE O DIA 1)
+## 5. Governance (FROM DAY 1)
 
-> A governance não é "depois que tiver funcionando". É a **fundação**.
-> Sem ela, o sistema cresce sem visibilidade e o custo explode.
+> Governance is not "after it's working." It's the **foundation**.
+> Without it, the system grows without visibility and costs explode.
 
 ### 5.1 Cost Tracking
 
 ```
 shared/costs/
-├── YYYY-MM-DD.csv       ← log diário (agent_id, model, tokens_in, tokens_out, cost_usd)
-└── monthly-summary.md   ← consolidado mensal
+├── YYYY-MM-DD.csv       ← daily log (agent_id, model, tokens_in, tokens_out, cost_usd)
+└── monthly-summary.md   ← monthly consolidation
 ```
 
 ### 5.2 Audit Log
@@ -148,53 +148,53 @@ shared/audit/
 └── YYYY-MM-DD.jsonl     ← {timestamp, agent, api, endpoint, operation: read|write}
 ```
 
-### 5.3 Daily Digest (cron automático)
+### 5.3 Daily Digest (automatic cron)
 
-O CoS envia todo dia de manhã:
+The CoS sends every morning:
 
 ```
 🍇 Daily Digest — DD/MM/YYYY
 
-✅ Ontem: [X tasks por boss]
-⚠️ Bloqueios: [lista]
-💰 Custo: $X.XX dia | $X.XX mês
-🔔 Alertas: [anomalias]
+✅ Yesterday: [X tasks per boss]
+⚠️ Blockers: [list]
+💰 Cost: $X.XX day | $X.XX month
+🔔 Alerts: [anomalies]
 
-Boss A: [1 linha status]
-Boss B: [1 linha status]
-Boss C: [1 linha status]
+Boss A: [1 line status]
+Boss B: [1 line status]
+Boss C: [1 line status]
 ```
 
 ### 5.4 Kill Switch
 
-| Threshold | Ação |
-|-----------|------|
-| 2x custo esperado | ⚠️ Alerta no Telegram |
-| 3x custo esperado | 🚨 Avisa você e PERGUNTA antes de pausar |
+| Threshold | Action |
+|-----------|--------|
+| 2x expected cost | ⚠️ Alert on Telegram |
+| 3x expected cost | 🚨 Notify you and ASK before pausing |
 
-**NUNCA auto-kill** — sempre pedir confirmação humana.
+**NEVER auto-kill** — always ask for human confirmation.
 
 ### 5.5 Escalation Rules
 
-| Situação | Quem decide |
-|----------|-------------|
-| Task dentro do domínio do boss | Boss decide sozinho |
-| Envolve dinheiro real (pagamentos, refunds) | **Sempre pede aprovação** |
-| Cross-boss (precisa de outro domínio) | CoS coordena |
-| Urgente fora do horário | Notifica você |
-| Erro/rollback necessário | Boss registra + avisa CoS |
+| Situation | Who decides |
+|-----------|-------------|
+| Task within boss's domain | Boss decides alone |
+| Involves real money (payments, refunds) | **Always asks for approval** |
+| Cross-boss (needs another domain) | CoS coordinates |
+| Urgent outside business hours | Notifies you |
+| Error/rollback needed | Boss records + notifies CoS |
 
 ---
 
-## 6. Estrutura Compartilhada
+## 6. Shared Structure
 
 ```
 shared/
-├── TEAM.md                     ← Registry: quem faz o quê, nível, status
+├── TEAM.md                     ← Registry: who does what, level, status
 ├── context/
-│   ├── USER.md                 ← Canonical — todos herdam daqui
-│   ├── TOOLS-SHARED.md         ← Integrações compartilhadas
-│   └── business-context.md     ← Contexto do negócio
+│   ├── USER.md                 ← Canonical — all inherit from here
+│   ├── TOOLS-SHARED.md         ← Shared integrations
+│   └── business-context.md     ← Business context
 ├── governance/
 │   ├── DAILY-DIGEST-TEMPLATE.md
 │   ├── CROSS-BOSS-PROTOCOL.md
@@ -206,140 +206,140 @@ shared/
 ├── audit/
 │   └── YYYY-MM-DD.jsonl
 ├── templates/
-│   ├── BOSS-WORKSPACE/         ← Template para novo boss (8 arquivos)
-│   └── WORKER-WORKSPACE/       ← Template mínimo para worker
-├── outputs/                    ← Entregas dos agentes
-└── lessons/                    ← Lições cross-agent
+│   ├── BOSS-WORKSPACE/         ← Template for new boss (8 files)
+│   └── WORKER-WORKSPACE/       ← Minimum template for worker
+├── outputs/                    ← Agent deliveries
+└── lessons/                    ← Cross-agent lessons
 ```
 
-### TEAM.md (Fonte de Verdade)
+### TEAM.md (Source of Truth)
 
 ```markdown
 # 🏢 Team Registry
 
-| Agente | Papel | Nível | Modelo | Tipo | Status |
-|--------|-------|-------|--------|------|--------|
-| [nome] | CoS / Hub | L4 | Sonnet | Principal | Ativo |
-| [boss-a] | Boss [domínio] | L2 | Sonnet | Boss | Ativo |
-| [boss-b] | Boss [domínio] | L2 | Sonnet | Boss | Ativo |
-| [worker-1] | [função] | L1 | Haiku | Watcher | Ativo |
-| [worker-2] | [função] | L1 | Sonnet | Maker | Idle |
+| Agent | Role | Level | Model | Type | Status |
+|-------|------|-------|-------|------|--------|
+| [name] | CoS / Hub | L4 | Sonnet | Main | Active |
+| [boss-a] | Boss [domain] | L2 | Sonnet | Boss | Active |
+| [boss-b] | Boss [domain] | L2 | Sonnet | Boss | Active |
+| [worker-1] | [function] | L1 | Haiku | Watcher | Active |
+| [worker-2] | [function] | L1 | Sonnet | Maker | Idle |
 ```
 
 ---
 
-## 7. Comunicação
+## 7. Communication
 
-### Você → Bosses (Acesso Direto)
+### You → Bosses (Direct Access)
 
-Cada boss tem topic próprio no Telegram. Você fala **direto** com qualquer boss:
-- Topic do Boss A → Boss A responde
-- Topic do Boss B → Boss B responde
+Each boss has its own topic on Telegram. You talk **directly** with any boss:
+- Boss A's topic → Boss A responds
+- Boss B's topic → Boss B responds
 
-O CoS **não intercepta** mensagens dos topics dos bosses.
+The CoS **does NOT intercept** messages from the bosses' topics.
 
 ### Boss → Boss (Cross-Domain)
 
-Quando um boss precisa de outro:
-1. Cria card/registro com @[outro-boss]
-2. Reporta no daily digest
-3. CoS coordena na próxima janela
-4. Se urgente → boss menciona CoS diretamente
+When a boss needs another:
+1. Creates a card/record mentioning @[other-boss]
+2. Reports in the daily digest
+3. CoS coordinates in the next window
+4. If urgent → boss mentions CoS directly
 
 ### Boss → Workers
 
-- **Watcher:** Boss atualiza `WORKING.md` do worker → worker pega no próximo heartbeat
-- **Maker:** Boss usa `sessions_spawn` com briefing completo
+- **Watcher:** Boss updates the worker's `WORKING.md` → worker picks it up on next heartbeat
+- **Maker:** Boss uses `sessions_spawn` with complete briefing
 
 ---
 
-## 8. Economia de Modelos
+## 8. Model Economics
 
-| Tier | Modelo sugerido | Custo/mês estimado |
-|------|----------------|-------------------|
+| Tier | Suggested model | Estimated cost/month |
+|------|----------------|---------------------|
 | CoS (1x) | Sonnet | ~$30-50 |
-| Bosses (3-5x) | Sonnet, heartbeat ativo | ~$5-8 cada |
-| Watchers (3-5x) | Haiku, heartbeat 30-60min | ~$1-2 cada |
-| Makers (5-10x) | Sonnet/Haiku, sob demanda | ~$0 quando idle |
-| **Total estimado (3 bosses)** | | **~$60-80/mês** |
-| **Total estimado (5 bosses)** | | **~$80-120/mês** |
+| Bosses (3-5x) | Sonnet, active heartbeat | ~$5-8 each |
+| Watchers (3-5x) | Haiku, heartbeat 30-60min | ~$1-2 each |
+| Makers (5-10x) | Sonnet/Haiku, on demand | ~$0 when idle |
+| **Estimated total (3 bosses)** | | **~$60-80/month** |
+| **Estimated total (5 bosses)** | | **~$80-120/month** |
 
-### Regras de economia
-- Worker que não precisa de Sonnet → **Haiku** (90% mais barato)
-- Heartbeat de worker → **Haiku** (mesmo que o worker use Sonnet pra tasks)
-- CoS NÃO precisa de Opus — Sonnet coordena bem
-- Maker idle = **$0** — não existe custo se não é spawnado
+### Economics rules
+- Worker that doesn't need Sonnet → **Haiku** (90% cheaper)
+- Worker heartbeat → **Haiku** (even if the worker uses Sonnet for tasks)
+- CoS does NOT need Opus — Sonnet coordinates well
+- Maker idle = **$0** — no cost if not spawned
 
 ---
 
 ## 9. Leveling System
 
-| Nível | Nome | Autonomia | Review |
-|-------|------|-----------|--------|
-| L1 | Observer | Zero — output sempre revisado | Cada entrega |
-| L2 | Contributor | Baixa — executa dentro de guidelines | Semanal |
-| L3 | Operator | Média — autonomia com guardrails | Semanal |
-| L4 | Trusted | Alta — quase total | Quinzenal |
+| Level | Name | Autonomy | Review |
+|-------|------|----------|--------|
+| L1 | Observer | Zero — output always reviewed | Every delivery |
+| L2 | Contributor | Low — executes within guidelines | Weekly |
+| L3 | Operator | Medium — autonomy with guardrails | Weekly |
+| L4 | Trusted | High — almost total | Biweekly |
 
-**Regras:**
-- Todo agente novo começa **L1**
-- Promoção via performance review semanal
-- Rebaixamento é possível (se qualidade cair)
-- **NUNCA** rushar um agente pra L3+ sem histórico
+**Rules:**
+- Every new agent starts at **L1**
+- Promotion via weekly performance review
+- Demotion is possible (if quality drops)
+- **NEVER** rush an agent to L3+ without history
 
-### Performance Review (semanal, automática)
+### Performance Review (weekly, automatic)
 
-CoS roda review todo domingo com critérios:
-1. **Responsividade** — respondeu dentro do SLA?
-2. **Qualidade** — outputs precisaram de correção?
-3. **Custo** — dentro do budget?
-4. **Autonomia** — tomou boas decisões sozinho?
-
----
-
-## 10. Migração: v1 → v2 (Passo a Passo)
-
-### Etapa 0: Backup (1 hora)
-- [ ] Backup completo do workspace atual
-- [ ] Verificar que backup é restaurável
-- [ ] Documentar estado atual (quais agentes, quais crons)
-
-### Etapa 1: Foundation (1 dia)
-- [ ] Promover agente principal: COO → Chief of Staff
-- [ ] Atualizar SOUL.md com novo papel
-- [ ] Criar `shared/` com toda a estrutura
-- [ ] Criar templates de Boss e Worker
-- [ ] Ativar governance: daily digest + kill switch
-
-### Etapa 2: Primeiro Boss (2-3 dias)
-- [ ] Criar workspace do Boss A (usar template)
-- [ ] Configurar binding Telegram (topic próprio)
-- [ ] Adicionar ao agents.list
-- [ ] Criar 1-2 workers iniciais
-- [ ] Testar spawn chain: CoS → Boss → Worker
-- [ ] Validar que funciona antes de avançar
-
-### Etapa 3: Segundo Boss (2-3 dias)
-- [ ] Repetir processo do Boss A
-- [ ] Testar comunicação cross-boss
-- [ ] Validar daily digest com 2 bosses
-
-### Etapa 4: Demais Bosses (1 dia cada)
-- [ ] Seguir o mesmo padrão
-- [ ] Máximo 1 boss novo por dia
-- [ ] Sempre testar antes de avançar
-
-### Etapa 5: Hardening (ongoing)
-- [ ] Context sync automático (cron semanal)
-- [ ] Memory lifecycle (cleanup de notas velhas)
-- [ ] Performance reviews semanais
-- [ ] Ajustar workers conforme uso real
+CoS runs review every Sunday with criteria:
+1. **Responsiveness** — responded within SLA?
+2. **Quality** — outputs needed correction?
+3. **Cost** — within budget?
+4. **Autonomy** — made good decisions independently?
 
 ---
 
-## 11. Restauração de Emergência
+## 10. Migration: v1 → v2 (Step by Step)
 
-Se algo der errado durante a migração:
+### Step 0: Backup (1 hour)
+- [ ] Full backup of current workspace
+- [ ] Verify backup is restorable
+- [ ] Document current state (which agents, which crons)
+
+### Step 1: Foundation (1 day)
+- [ ] Promote main agent: COO → Chief of Staff
+- [ ] Update SOUL.md with new role
+- [ ] Create `shared/` with full structure
+- [ ] Create Boss and Worker templates
+- [ ] Activate governance: daily digest + kill switch
+
+### Step 2: First Boss (2-3 days)
+- [ ] Create Boss A workspace (use template)
+- [ ] Configure Telegram binding (own topic)
+- [ ] Add to agents.list
+- [ ] Create 1-2 initial workers
+- [ ] Test spawn chain: CoS → Boss → Worker
+- [ ] Validate it works before advancing
+
+### Step 3: Second Boss (2-3 days)
+- [ ] Repeat Boss A process
+- [ ] Test cross-boss communication
+- [ ] Validate daily digest with 2 bosses
+
+### Step 4: Remaining Bosses (1 day each)
+- [ ] Follow the same pattern
+- [ ] Maximum 1 new boss per day
+- [ ] Always test before advancing
+
+### Step 5: Hardening (ongoing)
+- [ ] Automatic context sync (weekly cron)
+- [ ] Memory lifecycle (cleanup of old notes)
+- [ ] Weekly performance reviews
+- [ ] Adjust workers based on actual usage
+
+---
+
+## 11. Emergency Restoration
+
+If something goes wrong during migration:
 
 ```bash
 openclaw gateway stop
@@ -349,23 +349,23 @@ tar -xzf workspace-pre-v2-backup.tar.gz
 openclaw gateway start
 ```
 
-**Regra:** SEMPRE backup antes de cada etapa. Paranoia é feature, não bug.
+**Rule:** ALWAYS backup before each step. Paranoia is a feature, not a bug.
 
 ---
 
-## 12. Resultado Esperado
+## 12. Expected Result
 
-Ao final da implementação v2, você terá:
+After v2 implementation, you will have:
 
-- ✅ CoS coordenando (não executando)
-- ✅ 3-5 Bosses autônomos por domínio
-- ✅ Workers especializados (Watchers + Makers)
-- ✅ Governance completa desde o Dia 1
-- ✅ Cost tracking com kill switch
-- ✅ Daily digest automático
-- ✅ Performance reviews semanais
-- ✅ Acesso direto a qualquer boss via topic
-- ✅ Custo controlado (~$60-120/mês)
+- ✅ CoS coordinating (not executing)
+- ✅ 3-5 autonomous Bosses by domain
+- ✅ Specialized Workers (Watchers + Makers)
+- ✅ Complete governance from Day 1
+- ✅ Cost tracking with kill switch
+- ✅ Automatic daily digest
+- ✅ Weekly performance reviews
+- ✅ Direct access to any boss via topic
+- ✅ Controlled cost (~$60-120/month)
 
 ---
 

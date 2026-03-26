@@ -1,327 +1,327 @@
-# PRD: Como Integrar Suas Ferramentas — Skills & APIs
+# PRD: How to Integrate Your Tools — Skills & APIs
 
-> Roteiro para gravação da Aula Extra A
-> Público: leigo total — nunca mexeu com API ou skill antes
-
----
-
-## Objetivo da Aula
-
-Ensinar como conectar o agente às ferramentas que o aluno já usa (Notion, Google Calendar, Stripe, etc.) através de:
-1. **Skills prontas** do ClawHub
-2. **APIs diretas** (quando não tem skill)
-3. **Transformar conhecimento em skill customizada**
-
-**Premissa:** O aluno não sabe programar. Tudo tem que ser explicado como se fosse a primeira vez.
+> Script for recording Extra Lesson A
+> Audience: complete beginners — never dealt with an API or skill before
 
 ---
 
-## Tempo estimado: 20-25 minutos
+## Lesson Objective
+
+Teach how to connect the agent to tools the student already uses (Notion, Google Calendar, Stripe, etc.) through:
+1. **Ready-made skills** from ClawHub
+2. **Direct APIs** (when there's no skill available)
+3. **Turning knowledge into a custom skill**
+
+**Premise:** The student doesn't know how to program. Everything must be explained as if it's the first time.
 
 ---
 
-## Estrutura da Aula
-
-### Bloco 1: Por que integrar? (3 min)
-
-**O que mostrar:**
-- Agente isolado vs agente conectado
-- Exemplo visual: "Sem integração, o agente é cego. Com integração, ele vê tudo."
-- Case real: MGM Boss (Stripe + ChartMogul + Notion) e FLG Boss (YouTube + Instagram + Notion)
-
-**Frase-chave:**
-> "O agente só é útil se ele tiver acesso aos seus dados. Sem isso, ele é só um chatbot glorificado."
+## Estimated time: 20-25 minutes
 
 ---
 
-### Bloco 2: Skills do ClawHub — O jeito fácil (7 min)
+## Lesson Structure
 
-**O que é uma skill:**
-"Uma skill é como um app que você instala no seu agente. Alguém já fez o trabalho pesado — você só instala e usa."
+### Block 1: Why integrate? (3 min)
 
-**Demonstração ao vivo:**
+**What to show:**
+- Isolated agent vs connected agent
+- Visual example: "Without integration, the agent is blind. With integration, it sees everything."
+- Real case: MGM Boss (Stripe + ChartMogul + Notion) and FLG Boss (YouTube + Instagram + Notion)
 
-1. **Buscar skills disponíveis**
+**Key phrase:**
+> "The agent is only useful if it has access to your data. Without that, it's just a glorified chatbot."
+
+---
+
+### Block 2: ClawHub Skills — The easy way (7 min)
+
+**What a skill is:**
+"A skill is like an app you install on your agent. Someone already did the heavy lifting — you just install and use it."
+
+**Live demonstration:**
+
+1. **Search available skills**
    ```bash
    clawhub search notion
    ```
-   Explicar: "O ClawHub é tipo uma App Store de skills pra agentes."
+   Explain: "ClawHub is like an App Store of skills for agents."
 
-2. **Instalar uma skill**
+2. **Install a skill**
    ```bash
    clawhub install notion
    ```
-   Explicar o que acontece:
-   - Baixa o código da skill
-   - Registra no OpenClaw
-   - Agora o agente sabe usar Notion
+   Explain what happens:
+   - Downloads the skill code
+   - Registers it in OpenClaw
+   - Now the agent knows how to use Notion
 
-3. **Ver skills instaladas**
+3. **View installed skills**
    ```bash
    clawhub list
    ```
 
-4. **Testar a skill** — mandar mensagem pro agente:
-   > "Liste as tasks da database [ID da database] que estão com status 'In Progress'"
+4. **Test the skill** — send a message to the agent:
+   > "List the tasks from database [database ID] that have status 'In Progress'"
 
-**Skills recomendadas pra mostrar:**
-- `notion` — gestão de projetos
-- `1password` — credenciais seguras
-- `weather` — exemplo simples pra testar
-- `github` — pra quem tem repo
+**Recommended skills to show:**
+- `notion` — project management
+- `1password` — secure credentials
+- `weather` — simple example to test with
+- `github` — for those with a repo
 
 ---
 
-### Bloco 2.5: gog CLI — Google Workspace de forma simples (2 min)
+### Block 2.5: gog CLI — Google Workspace made simple (2 min)
 
-**Novo na 3.2 — alternativa recomendada ao fluxo OAuth manual:**
+**New in 3.2 — recommended alternative to manual OAuth flow:**
 
 ```bash
-# Instalar gog CLI
+# Install gog CLI
 npm install -g gog
 
-# Autenticar (um comando pra tudo: Calendar, Drive, Gmail, Docs)
+# Authenticate (one command for everything: Calendar, Drive, Gmail, Docs)
 gog auth login
 
-# Usar
-gog calendar list --account=SEU_EMAIL
+# Use
+gog calendar list --account=YOUR_EMAIL
 gog drive ls
 gog gmail inbox --limit 10
 ```
 
-**Por que usar o gog em vez do fluxo OAuth manual?**
-- Sem precisar criar projeto no Google Cloud Console
-- Sem configurar OAuth credentials manualmente
-- Um único `gog auth login` autentica todos os serviços Google
-- Skills de Calendar, Drive e Gmail já usam gog por padrão
+**Why use gog instead of the manual OAuth flow?**
+- No need to create a project in Google Cloud Console
+- No need to manually configure OAuth credentials
+- A single `gog auth login` authenticates all Google services
+- Calendar, Drive, and Gmail skills already use gog by default
 
-> 💡 Se você usa Google Calendar, Drive, Gmail ou Docs — instale o gog primeiro. É o caminho mais rápido.
+> 💡 If you use Google Calendar, Drive, Gmail or Docs — install gog first. It's the fastest path.
 
 ---
 
-### Bloco 3: APIs diretas — Quando não tem skill (8 min)
+### Block 3: Direct APIs — When there's no skill (8 min)
 
-**Cenário:** "E se não existir uma skill pronta pro Stripe? Ou pro seu CRM interno?"
+**Scenario:** "What if there's no ready-made skill for Stripe? Or for your internal CRM?"
 
-**Case real: Integrar Stripe no MGM Boss**
+**Real case: Integrating Stripe in MGM Boss**
 
-**Passo a passo (mostrar o processo, não só o resultado):**
+**Step by step (show the process, not just the result):**
 
-1. **Conseguir a API key**
-   - Ir em dashboard.stripe.com → Developers → API Keys
-   - Copiar a "Secret key" (começa com `sk_live_` ou `sk_test_`)
-   - **NUNCA** colocar direto no código ou config
+1. **Get the API key**
+   - Go to dashboard.stripe.com → Developers → API Keys
+   - Copy the "Secret key" (starts with `sk_live_` or `sk_test_`)
+   - **NEVER** put it directly in code or config
 
-2. **Guardar no 1Password** (segurança!)
+2. **Store in 1Password** (security!)
    ```bash
-   # Se tiver a CLI do 1Password instalada
+   # If you have the 1Password CLI installed
    op item create --category=api-credential \
      --title="Stripe MGM" \
      --vault="Amora Vault" \
      secret_key="sk_live_..."
    ```
-   Ou manualmente pelo app/web.
+   Or manually through the app/web.
 
-3. **Recuperar quando o agente precisar** — mostrar como o agente faz isso:
-   > "Agente, pegue a Stripe key do 1Password e me mostre meu MRR atual."
+3. **Retrieve when the agent needs it** — show how the agent does this:
+   > "Agent, get the Stripe key from 1Password and show me my current MRR."
 
-   Por trás dos panos, o agente vai:
+   Behind the scenes, the agent will:
    ```bash
    STRIPE_KEY=$(op item get "Stripe MGM" --vault "Amora Vault" --field secret_key --reveal)
    curl https://api.stripe.com/v1/balance \
      -u "$STRIPE_KEY:"
    ```
 
-4. **Registrar no TOOLS.md** — documentar a integração:
+4. **Register in TOOLS.md** — document the integration:
    ```markdown
-   ### Stripe (Pagamentos MGM)
-   - **Item 1PW:** `Stripe MGM`
+   ### Stripe (MGM Payments)
+   - **1PW Item:** `Stripe MGM`
    - **Vault:** Amora Vault
-   - **Acesso:** Read livre, Write = aprovação do Bruno
+   - **Access:** Read freely, Write = Bruno's approval
    ```
 
-**Explicar o fluxo:**
-> "1Password → Agente pega credencial → Usa API → Retorna resultado. Sua senha nunca fica exposta."
+**Explain the flow:**
+> "1Password → Agent retrieves credential → Uses API → Returns result. Your password is never exposed."
 
 ---
 
-### Bloco 3.5: PDF Tool Nativo — já disponível no seu agente (1 min)
+### Block 3.5: Native PDF Tool — already available in your agent (1 min)
 
-**Sem instalar nada — já funciona:**
+**No installation needed — it already works:**
 
-> "Desde a versão 3.2, seu agente consegue analisar PDFs diretamente. Nenhuma skill, nenhuma configuração."
+> "Since version 3.2, your agent can analyze PDFs directly. No skill, no configuration."
 
-**Demonstrar ao vivo:**
-- Arrastar um PDF para o chat (ou mencionar o path)
-- Pedir: "Analise este contrato e me diga os pontos críticos"
-- Mostrar o agente extraindo informações do PDF em tempo real
+**Demonstrate live:**
+- Drag a PDF into the chat (or mention the path)
+- Ask: "Analyze this contract and tell me the critical points"
+- Show the agent extracting information from the PDF in real time
 
-**Casos de uso práticos:**
-- Analisar boletos e notas fiscais
-- Resumir relatórios longos
-- Extrair dados de planilhas em PDF
-- Revisar contratos (com alerta: agente não é advogado!)
+**Practical use cases:**
+- Analyzing bills and invoices
+- Summarizing long reports
+- Extracting data from PDF spreadsheets
+- Reviewing contracts (with a warning: the agent is not a lawyer!)
 
-**Detalhes técnicos (breve):**
-- Suporte nativo: Claude (Anthropic) e Gemini (Google)
-- Outros modelos: extração automática de texto/imagens como fallback
-- Limite: até 10 PDFs por mensagem
+**Technical details (brief):**
+- Native support: Claude (Anthropic) and Gemini (Google)
+- Other models: automatic text/image extraction as fallback
+- Limit: up to 10 PDFs per message
 
 ---
 
-### Bloco 4: Transformar conhecimento em skill (5 min)
+### Block 4: Turning knowledge into a skill (5 min)
 
-**Cenário:** "E se você usar uma ferramenta nichada que ninguém mais usa? Tipo um CRM interno da sua empresa?"
+**Scenario:** "What if you use a niche tool that nobody else uses? Like an internal CRM from your company?"
 
-**Mostrar o conceito (não precisa implementar ao vivo):**
+**Show the concept (no need to implement live):**
 
-Uma skill é só uma pasta com:
-- `SKILL.md` — instruções pro agente
-- Scripts auxiliares (se necessário)
+A skill is just a folder with:
+- `SKILL.md` — instructions for the agent
+- Helper scripts (if needed)
 
-**Exemplo simples — Skill "CRM da Empresa X":**
+**Simple example — "Company X CRM" Skill:**
 
-Criar pasta:
+Create folder:
 ```bash
-mkdir -p ~/.openclaw/skills/crm-empresa-x
+mkdir -p ~/.openclaw/skills/company-x-crm
 ```
 
-Criar `SKILL.md`:
+Create `SKILL.md`:
 ```markdown
-# Skill: CRM da Empresa X
+# Skill: Company X CRM
 
-Acesso à API interna do CRM.
+Access to the internal CRM API.
 
-## Credenciais
-- API Key: 1Password → "CRM Empresa X API Key"
-- Base URL: https://crm.empresax.com.br/api/v1
+## Credentials
+- API Key: 1Password → "Company X CRM API Key"
+- Base URL: https://crm.companyx.com/api/v1
 
-## Endpoints principais
+## Main endpoints
 
-### Listar leads
+### List leads
 GET /leads?status=active
 Header: Authorization: Bearer {API_KEY}
 
-### Criar lead
+### Create lead
 POST /leads
 Body: {"name": "...", "email": "...", "phone": "..."}
 
-## Como usar
-O agente deve:
-1. Pegar a API key do 1Password
-2. Fazer chamadas via curl ou fetch
-3. Parsear a resposta JSON
+## How to use
+The agent should:
+1. Get the API key from 1Password
+2. Make calls via curl or fetch
+3. Parse the JSON response
 ```
 
-**Registrar a skill:**
+**Register the skill:**
 ```bash
-openclaw skills register ~/.openclaw/skills/crm-empresa-x
+openclaw skills register ~/.openclaw/skills/company-x-crm
 ```
 
-**Testar:**
-> "Agente, me liste os leads ativos no CRM."
+**Test:**
+> "Agent, list the active leads in the CRM."
 
-**Explicar:**
-> "Você não precisa saber programar. Só precisa saber onde está a documentação da API e copiar pra dentro do SKILL.md. O agente faz o resto."
+**Explain:**
+> "You don't need to know how to program. You just need to know where the API documentation is and copy it into SKILL.md. The agent does the rest."
 
 ---
 
-### Bloco 5: Cases reais — FLG e MGM (3 min)
+### Block 5: Real cases — FLG and MGM (3 min)
 
-**Mostrar os dois workspaces lado a lado:**
+**Show both workspaces side by side:**
 
 **MGM Boss (`workspace-mgm-boss`):**
-- **TOOLS.md aberto** — mostrar as integrações documentadas:
-  - Supabase (banco de dados)
-  - Stripe (pagamentos)
-  - ChartMogul (métricas SaaS)
+- **TOOLS.md open** — show the documented integrations:
+  - Supabase (database)
+  - Stripe (payments)
+  - ChartMogul (SaaS metrics)
   - PostHog (analytics)
   - Notion (sprint board)
   - Google Analytics + Search Console (SEO)
 
 **FLG Boss (`workspace-flg-boss`):**
-- **TOOLS.md aberto** — mostrar:
+- **TOOLS.md open** — show:
   - YouTube Data API + Analytics API
   - Instagram via RapidAPI
   - LinkedIn via RapidAPI
   - Twitter/X Bearer Token
-  - Tella.tv (gravações)
+  - Tella.tv (recordings)
   - Figma (design)
-  - Notion (calendário editorial)
+  - Notion (editorial calendar)
 
-**Frase-chave:**
-> "Esses dois agentes veem TUDO que acontece nos meus negócios. E eu não preciso abrir 15 abas todo dia."
-
----
-
-### Bloco 6: Checklist prático pra integrar qualquer ferramenta (2 min)
-
-**Roteiro que o aluno pode seguir:**
-
-1. ✅ A ferramenta tem API? (procurar "API documentation" no Google)
-2. ✅ Existe skill pronta no ClawHub? (`clawhub search nome-da-ferramenta`)
-3. ✅ Se sim → instalar e testar
-4. ✅ Se não → seguir o fluxo:
-   - Pegar API key na ferramenta
-   - Guardar no 1Password
-   - Documentar no TOOLS.md
-   - Testar com o agente
-5. ✅ Se for recorrente → criar uma skill customizada
+**Key phrase:**
+> "These two agents see EVERYTHING that happens in my businesses. And I don't need to open 15 tabs every day."
 
 ---
 
-## Alertas de Segurança (enfatizar)
+### Block 6: Practical checklist for integrating any tool (2 min)
 
-🔴 **NUNCA** colocar API keys direto no código ou config
-🔴 **NUNCA** commitar credenciais no Git
-🔴 **SEMPRE** usar 1Password (ou similar)
-🔴 **SEMPRE** definir permissões (read-only quando possível)
+**Roadmap the student can follow:**
 
-**Exemplo real do MGM:**
-> "No MGM Boss, o agente pode LER dados do Stripe à vontade. Mas pra fazer um refund ou cancelar uma subscription, ele PRECISA pedir aprovação minha. Isso está documentado no TOOLS.md e ele respeita."
-
----
-
-## Checkpoint da Aula
-
-Ao final, o aluno deve saber:
-- [ ] O que é uma skill e onde encontrar
-- [ ] Como instalar uma skill do ClawHub
-- [ ] Como integrar uma API direto (sem skill pronta)
-- [ ] Onde guardar credenciais (1Password)
-- [ ] Como documentar integrações no TOOLS.md
-- [ ] Como criar uma skill customizada (conceito)
+1. ✅ Does the tool have an API? (search "API documentation" on Google)
+2. ✅ Is there a ready-made skill on ClawHub? (`clawhub search tool-name`)
+3. ✅ If yes → install and test
+4. ✅ If not → follow the flow:
+   - Get API key from the tool
+   - Store in 1Password
+   - Document in TOOLS.md
+   - Test with the agent
+5. ✅ If it's recurring → create a custom skill
 
 ---
 
-## Prompt que vai no PDF
+## Security Alerts (emphasize)
 
-Vai estar no arquivo `prompts/modulo-extra-a-integracoes.md`.
+🔴 **NEVER** put API keys directly in code or config
+🔴 **NEVER** commit credentials to Git
+🔴 **ALWAYS** use 1Password (or similar)
+🔴 **ALWAYS** define permissions (read-only when possible)
+
+**Real MGM example:**
+> "In MGM Boss, the agent can READ Stripe data freely. But to issue a refund or cancel a subscription, it MUST ask for my approval. This is documented in TOOLS.md and it respects that."
 
 ---
 
-## Troubleshooting Comum
+## Lesson Checkpoint
+
+By the end, the student should know:
+- [ ] What a skill is and where to find one
+- [ ] How to install a skill from ClawHub
+- [ ] How to integrate an API directly (without a ready-made skill)
+- [ ] Where to store credentials (1Password)
+- [ ] How to document integrations in TOOLS.md
+- [ ] How to create a custom skill (concept)
+
+---
+
+## Prompt that goes in the PDF
+
+Will be in the file `prompts/modulo-extra-a-integracoes.md`.
+
+---
+
+## Common Troubleshooting
 
 ### "clawhub: command not found"
 ```bash
 npm install -g clawhub
 ```
 
-### "Skill instalou mas agente não sabe usar"
+### "Skill installed but agent doesn't know how to use it"
 ```bash
-# Verificar se registrou
+# Check if it was registered
 openclaw skills list
-# Se não aparece, registrar manualmente
-openclaw skills register ~/.openclaw/skills/nome-da-skill
-# Reiniciar gateway
+# If it doesn't appear, register manually
+openclaw skills register ~/.openclaw/skills/skill-name
+# Restart gateway
 openclaw gateway restart
 ```
 
-### "API retorna 401 Unauthorized"
-- Verificar se a API key está certa
-- Verificar se expirou
-- Verificar se tem permissões suficientes
+### "API returns 401 Unauthorized"
+- Check if the API key is correct
+- Check if it has expired
+- Check if it has sufficient permissions
 
 ---
 
-*Esta aula é o divisor de águas: antes dela, o aluno tem um agente isolado. Depois, tem um agente que vê tudo.*
+*This lesson is the turning point: before it, the student has an isolated agent. Afterwards, they have an agent that sees everything.*

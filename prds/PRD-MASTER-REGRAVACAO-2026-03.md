@@ -1,347 +1,347 @@
-# 📋 PRD MASTER — Regravação & Atualização do Curso OpenClaw
-> Versão: 1.0 · Data: 06/03/2026 · Autor: Amora (curso-openclaw)
-> Status: **AGUARDANDO APROVAÇÃO DO BRUNO**
+# 📋 MASTER PRD — Re-recording & Updating the OpenClaw Course
+> Version: 1.0 · Date: 06/03/2026 · Author: Amora (curso-openclaw)
+> Status: **AWAITING BRUNO'S APPROVAL**
 
 ---
 
-## 1. CONTEXTO E OBJETIVO
+## 1. CONTEXT AND OBJECTIVE
 
-O curso OpenClaw foi estruturado em **12 módulos (M0-M11)** + **5 aulas extras (A-E)** + **6 aulas de troubleshooting (N1-N6)** entre 15/02 e 06/03/2026.
+The OpenClaw course was structured in **12 modules (M0-M11)** + **5 extra lessons (A-E)** + **6 troubleshooting lessons (N1-N6)** between 15/02 and 06/03/2026.
 
-Desde a gravação das primeiras aulas, o OpenClaw lançou **3 releases significativas** (2026.2.12, 2026.2.21, 2026.3.2) com **breaking changes críticos** que invalidam partes do conteúdo existente.
+Since the first lessons were recorded, OpenClaw has released **3 significant updates** (2026.2.12, 2026.2.21, 2026.3.2) with **critical breaking changes** that invalidate parts of the existing content.
 
-Além disso, foram coletadas **~2000 mensagens dos grupos** de alunos (24/02 a 06/03), gerando um ranking das **Top 10 dúvidas** que precisam ser endereçadas nas aulas.
+Additionally, **~2000 messages from student groups** were collected (24/02 to 06/03), generating a ranking of the **Top 10 questions** that need to be addressed in the lessons.
 
-**Objetivo:** Produzir um plano completo de regravação, atualização e criação de novas aulas, garantindo que o curso reflita a versão 2026.3.2+ e cubra as dores reais dos alunos.
+**Objective:** Produce a complete plan for re-recording, updating, and creating new lessons, ensuring the course reflects version 2026.3.2+ and covers real student pain points.
 
 ---
 
-## 2. INVENTÁRIO COMPLETO DE AULAS
+## 2. COMPLETE LESSON INVENTORY
 
-### 2.1 Módulos Principais (12)
-| # | Módulo | Duração | Status Material | Status Gravação |
+### 2.1 Main Modules (12)
+| # | Module | Duration | Material Status | Recording Status |
 |---|--------|---------|-----------------|-----------------|
-| M0 | Abertura | 10min | ✅ PRD pronto | ❓ Verificar |
-| M1 | Setup (VPS + Instalação) | 25min | ✅ PRD pronto | ✅ **GRAVADA** (Aula 1 — 04/03) |
-| M2 | Segurança | 15min | ✅ PRD pronto | ❌ NÃO GRAVADA |
-| M3 | Identidade | 25min | ✅ PRD pronto | ❌ NÃO GRAVADA |
-| M4 | Memória | 25min | ✅ PRD pronto | ❌ NÃO GRAVADA |
-| M5 | Integrações | 25min | ✅ PRD pronto | ❌ NÃO GRAVADA |
-| M6 | Skills | 15min | ✅ PRD pronto | ❌ NÃO GRAVADA |
-| M7 | Proatividade | 15min | ✅ PRD pronto | ❌ NÃO GRAVADA |
-| M8 | Multi-Agentes | 20min | ✅ PRD pronto | ❌ NÃO GRAVADA |
-| M9 | Immune System | 20min | ✅ PRD pronto | ❌ NÃO GRAVADA |
-| M10 | Mission Control | 10min | ✅ PRD pronto | ❌ NÃO GRAVADA |
-| M11 | Wrap-up | 10min | ✅ PRD pronto | ❌ NÃO GRAVADA |
+| M0 | Opening | 10min | ✅ PRD ready | ❓ Check |
+| M1 | Setup (VPS + Installation) | 25min | ✅ PRD ready | ✅ **RECORDED** (Lesson 1 — 04/03) |
+| M2 | Security | 15min | ✅ PRD ready | ❌ NOT RECORDED |
+| M3 | Identity | 25min | ✅ PRD ready | ❌ NOT RECORDED |
+| M4 | Memory | 25min | ✅ PRD ready | ❌ NOT RECORDED |
+| M5 | Integrations | 25min | ✅ PRD ready | ❌ NOT RECORDED |
+| M6 | Skills | 15min | ✅ PRD ready | ❌ NOT RECORDED |
+| M7 | Proactivity | 15min | ✅ PRD ready | ❌ NOT RECORDED |
+| M8 | Multi-Agents | 20min | ✅ PRD ready | ❌ NOT RECORDED |
+| M9 | Immune System | 20min | ✅ PRD ready | ❌ NOT RECORDED |
+| M10 | Mission Control | 10min | ✅ PRD ready | ❌ NOT RECORDED |
+| M11 | Wrap-up | 10min | ✅ PRD ready | ❌ NOT RECORDED |
 
-### 2.2 Aulas Gravadas (04/03/2026)
-| # | Tema Real Gravado | Corresponde a | Precisa Regravar? |
+### 2.2 Recorded Lessons (04/03/2026)
+| # | Actual Recorded Topic | Corresponds to | Needs Re-recording? |
 |---|-------------------|---------------|-------------------|
-| Aula 1 | Como instalar pela VPS e remover o Docker | M1 Setup | ⚠️ **SIM** — falta `tools.profile full` |
-| Aula 2 | Como usar assinatura Claude/OpenAI no OpenClaw | N-1 OAuth | ⚠️ **PARCIAL** — OAuth Anthropic bloqueado |
-| Aula 3 | Como configurar agentes pra executar tarefas | N-3 Config Set | ✅ OK (cobre o `config set`) |
-| Aula 4 | O que acontece quando agente para de responder | N-4/N-5 Debug | ⚠️ **PARCIAL** — faltam cenários |
+| Lesson 1 | How to install via VPS and remove Docker | M1 Setup | ⚠️ **YES** — missing `tools.profile full` |
+| Lesson 2 | How to use Claude/OpenAI subscription in OpenClaw | N-1 OAuth | ⚠️ **PARTIAL** — Anthropic OAuth blocked |
+| Lesson 3 | How to configure agents to execute tasks | N-3 Config Set | ✅ OK (covers `config set`) |
+| Lesson 4 | What happens when the agent stops responding | N-4/N-5 Debug | ⚠️ **PARTIAL** — missing scenarios |
 
-### 2.3 Aulas Extras (Material pronto, não gravadas)
-| # | Tema | Material | Status Gravação |
+### 2.3 Extra Lessons (Material ready, not recorded)
+| # | Topic | Material | Recording Status |
 |---|------|----------|-----------------|
-| Extra A | Integração de Ferramentas | ✅ PRD + Prompt + HTML + PDF | ❌ NÃO GRAVADA |
-| Extra B | Debug na VPS com Claude Code | ✅ PRD + Prompt + HTML + PDF | ❌ NÃO GRAVADA |
-| Extra C | Tópicos no Telegram | ✅ PRD + Prompt + HTML + PDF | ❌ NÃO GRAVADA |
-| Extra D | Automações Evolutivas | ✅ PRD + Prompt + HTML + PDF | ❌ NÃO GRAVADA |
-| Extra E | Contexto & Memória | ✅ PRD + Prompt + HTML + PDF | ❌ NÃO GRAVADA |
+| Extra A | Tool Integration | ✅ PRD + Prompt + HTML + PDF | ❌ NOT RECORDED |
+| Extra B | Debug on VPS with Claude Code | ✅ PRD + Prompt + HTML + PDF | ❌ NOT RECORDED |
+| Extra C | Telegram Topics | ✅ PRD + Prompt + HTML + PDF | ❌ NOT RECORDED |
+| Extra D | Evolutionary Automations | ✅ PRD + Prompt + HTML + PDF | ❌ NOT RECORDED |
+| Extra E | Context & Memory | ✅ PRD + Prompt + HTML + PDF | ❌ NOT RECORDED |
 
-### 2.4 Aulas Troubleshooting (Material pronto, parcialmente gravadas)
-| # | Tema | Material | Status |
+### 2.4 Troubleshooting Lessons (Material ready, partially recorded)
+| # | Topic | Material | Status |
 |---|------|----------|--------|
-| N-1 | OAuth & Configuração de API | ✅ PRD + HTML + PDF | ⚠️ GRAVADA (Aula 2) — precisa update |
-| N-2 | Bot sem Shell (Sandboxing) | ✅ PRD + HTML + PDF | ❌ NÃO GRAVADA |
-| N-3 | Config Set (tools.profile) | ✅ PRD + HTML + PDF | ✅ GRAVADA (Aula 3) |
-| N-4 | Lentidão no Telegram | ✅ PRD + HTML + PDF | ⚠️ PARCIAL (Aula 4) |
-| N-5 | Debug Runbook | ✅ PRD + HTML + PDF | ⚠️ PARCIAL (Aula 4) |
-| N-6 | VPS vs Mac Mini | ✅ PRD + HTML + PDF | ❌ NÃO GRAVADA |
+| N-1 | OAuth & API Configuration | ✅ PRD + HTML + PDF | ⚠️ RECORDED (Lesson 2) — needs update |
+| N-2 | Bot without Shell (Sandboxing) | ✅ PRD + HTML + PDF | ❌ NOT RECORDED |
+| N-3 | Config Set (tools.profile) | ✅ PRD + HTML + PDF | ✅ RECORDED (Lesson 3) |
+| N-4 | Telegram Slowness | ✅ PRD + HTML + PDF | ⚠️ PARTIAL (Lesson 4) |
+| N-5 | Debug Runbook | ✅ PRD + HTML + PDF | ⚠️ PARTIAL (Lesson 4) |
+| N-6 | VPS vs Mac Mini | ✅ PRD + HTML + PDF | ❌ NOT RECORDED |
 
 ---
 
-## 3. TOP 10 DÚVIDAS DOS ALUNOS (24/02 a 06/03/2026)
+## 3. TOP 10 STUDENT QUESTIONS (24/02 to 06/03/2026)
 
-> Fonte: ~2000 mensagens dos grupos "Tira Dúvidas OpenClaw" + "OpenClaw Geral 1"
+> Source: ~2000 messages from the "Tira Dúvidas OpenClaw" + "OpenClaw Geral 1" groups
 
-| # | Dúvida | Freq. | Aula que Cobre | Status |
+| # | Question | Freq. | Lesson That Covers It | Status |
 |---|--------|-------|----------------|--------|
-| 1 | 🔑 **OAuth/Token Anthropic — "Não consigo autenticar"** | ~20x | N-1 (OAuth) | ⚠️ Precisa atualizar (Anthropic bloqueou OAuth Pro) |
-| 2 | 💥 **Contexto estourando — "Agente promete e some"** | ~15x | Extra E (Contexto) | ✅ Coberto no material |
-| 3 | 💰 **Assinatura vs API — "Quanto vou gastar?"** | ~15x | ❌ NOVA AULA NECESSÁRIA | 🆕 Criar aula de Custos |
-| 4 | 📹 **"Onde estão as aulas?" — Onboarding confuso** | ~12x | Não é aula — é UX da plataforma | 📋 Fix operacional |
-| 5 | 📱 **Telegram: bot não responde no grupo** | ~12x | N-2 (Bot sem Shell) + Extra C (Tópicos) | ⚠️ Precisa seção específica |
-| 6 | 🏗️ **Sub-agentes vs Sessões — "Quando usar?"** | ~10x | M8 (Multi-Agentes) | ✅ Coberto no material |
-| 7 | 🖥️ **VPS vs Local — "Precisa de VPS?"** | ~10x | N-6 (VPS vs Mac Mini) | ✅ Coberto no material |
-| 8 | ⚙️ **Modelo por tarefa — "Qual modelo usar?"** | ~10x | ❌ NOVA SEÇÃO NECESSÁRIA | 🆕 Adicionar em M1 ou nova aula |
-| 9 | 📱 **Integração Google (Drive/Gmail/Calendar)** | ~10x | Extra A (Integrações) + M5 | ⚠️ Precisa atualizar com gog |
-| 10 | 🔧 **"Meu agente não executa nada"** (tools.profile) | ~8x | N-3 (Config Set) | ✅ **COBERTO — Aula 3 gravada** |
+| 1 | 🔑 **OAuth/Anthropic Token — "I can't authenticate"** | ~20x | N-1 (OAuth) | ⚠️ Needs update (Anthropic blocked OAuth for Pro) |
+| 2 | 💥 **Context overflow — "Agent promises and disappears"** | ~15x | Extra E (Context) | ✅ Covered in material |
+| 3 | 💰 **Subscription vs API — "How much will I spend?"** | ~15x | ❌ NEW LESSON NEEDED | 🆕 Create Costs lesson |
+| 4 | 📹 **"Where are the lessons?" — Confusing onboarding** | ~12x | Not a lesson — it's a platform UX issue | 📋 Operational fix |
+| 5 | 📱 **Telegram: bot doesn't respond in group** | ~12x | N-2 (Bot without Shell) + Extra C (Topics) | ⚠️ Needs specific section |
+| 6 | 🏗️ **Sub-agents vs Sessions — "When to use?"** | ~10x | M8 (Multi-Agents) | ✅ Covered in material |
+| 7 | 🖥️ **VPS vs Local — "Do I need a VPS?"** | ~10x | N-6 (VPS vs Mac Mini) | ✅ Covered in material |
+| 8 | ⚙️ **Model per task — "Which model to use?"** | ~10x | ❌ NEW SECTION NEEDED | 🆕 Add to M1 or new lesson |
+| 9 | 📱 **Google Integration (Drive/Gmail/Calendar)** | ~10x | Extra A (Integrations) + M5 | ⚠️ Needs update with gog |
+| 10 | 🔧 **"My agent doesn't execute anything"** (tools.profile) | ~8x | N-3 (Config Set) | ✅ **COVERED — Lesson 3 recorded** |
 
-### 3.1 Novas Aulas/Seções Derivadas das Dúvidas
+### 3.1 New Lessons/Sections Derived from Student Questions
 
-| Dúvida | Ação | Prioridade |
+| Question | Action | Priority |
 |--------|------|-----------|
-| **Custos & Modelos** (#3 + #8) | Criar aula nova: "Quanto custa e qual modelo usar" | 🔴 ALTA |
-| **Onboarding** (#4) | Não é aula — é link direto na landing page + mensagem de boas-vindas | 🟡 OPERACIONAL |
-| **Telegram grupo** (#5) | Expandir N-2 com seção "Bot não responde no grupo" (BotFather privacy) | 🔴 ALTA |
-| **Google Integration** (#9) | Atualizar Extra A com passo a passo gog CLI | 🟡 MÉDIA |
+| **Costs & Models** (#3 + #8) | Create new lesson: "How much it costs and which model to use" | 🔴 HIGH |
+| **Onboarding** (#4) | Not a lesson — it's a direct link on the landing page + welcome message | 🟡 OPERATIONAL |
+| **Telegram group** (#5) | Expand N-2 with section "Bot doesn't respond in group" (BotFather privacy) | 🔴 HIGH |
+| **Google Integration** (#9) | Update Extra A with gog CLI step by step | 🟡 MEDIUM |
 
 ---
 
-## 4. ANÁLISE DE MUDANÇAS — OpenClaw Fev/Mar 2026
+## 4. CHANGE ANALYSIS — OpenClaw Feb/Mar 2026
 
-### 4.1 Releases Analisadas
+### 4.1 Releases Analyzed
 - **2026.2.12** (12/02)
-- **2026.2.21** (21/02) — Gemini 3.1, Streaming Telegram, Discord Voice, Apple Watch
-- **2026.3.2** (03/03) — **BREAKING CHANGES CRÍTICOS**
+- **2026.2.21** (21/02) — Gemini 3.1, Telegram Streaming, Discord Voice, Apple Watch
+- **2026.3.2** (03/03) — **CRITICAL BREAKING CHANGES**
 
-### 4.2 Mudanças que Afetam o Curso
+### 4.2 Changes That Affect the Course
 
-| Mudança | Release | Impacto | Aulas Afetadas |
+| Change | Release | Impact | Affected Lessons |
 |---------|---------|---------|----------------|
-| 🚨 **`tools.profile` default = messaging** | 3.2 | **CRÍTICO** — novas instalações não executam nada | M1, N-2, N-3 |
-| 🔑 **`openclaw secrets` (64 targets)** | 3.2 | **ALTO** — substitui gestão manual de .env | M2, M9 |
-| ✅ **`openclaw config validate`** | 3.2 | **MÉDIO** — novo comando útil pra ensinar | M1, M3 |
-| 📺 **Telegram streaming = partial (default)** | 3.2 | **MÉDIO** — alunos veem "digitando" ao vivo | M1 (mencionar) |
-| 🔒 **WebSocket loopback-only** | 3.2 | **MÉDIO** — painel remoto sem tunnel quebra | M2, Extra B |
-| 🔒 **CVE CVSS 8.8 — 30k instâncias expostas** | 2.12 | **ALTO** — gateway em 0.0.0.0 sem firewall | M2 (motivação) |
-| 📄 **PDF tool nativo** | 3.2 | **BAIXO** — feature nova, não quebra nada | M5 (mencionar) |
-| 🧠 **Ollama embeddings pra memória** | 3.2 | **BAIXO** — alternativa local | M4 (mencionar) |
-| 🤖 **ACP dispatch enabled por default** | 3.2 | **BAIXO** — sub-agents routing | M8 (mencionar) |
-| 📱 **Gemini 3.1 support** | 2.21 | **BAIXO** — mais opção de modelo | M1 (tabela de modelos) |
-| ⌚ **Apple Watch companion** | 2.21 | **INFO** — feature nova | M10 (mencionar) |
-| 🎙️ **Audio echo transcript** | 3.2 | **INFO** — nova config | Extra C (mencionar) |
+| 🚨 **`tools.profile` default = messaging** | 3.2 | **CRITICAL** — new installs don't execute anything | M1, N-2, N-3 |
+| 🔑 **`openclaw secrets` (64 targets)** | 3.2 | **HIGH** — replaces manual .env management | M2, M9 |
+| ✅ **`openclaw config validate`** | 3.2 | **MEDIUM** — useful new command to teach | M1, M3 |
+| 📺 **Telegram streaming = partial (default)** | 3.2 | **MEDIUM** — students see "typing" live | M1 (mention) |
+| 🔒 **WebSocket loopback-only** | 3.2 | **MEDIUM** — remote panel without tunnel breaks | M2, Extra B |
+| 🔒 **CVE CVSS 8.8 — 30k exposed instances** | 2.12 | **HIGH** — gateway on 0.0.0.0 without firewall | M2 (motivation) |
+| 📄 **Native PDF tool** | 3.2 | **LOW** — new feature, nothing breaks | M5 (mention) |
+| 🧠 **Ollama embeddings for memory** | 3.2 | **LOW** — local alternative | M4 (mention) |
+| 🤖 **ACP dispatch enabled by default** | 3.2 | **LOW** — sub-agents routing | M8 (mention) |
+| 📱 **Gemini 3.1 support** | 2.21 | **LOW** — more model option | M1 (model table) |
+| ⌚ **Apple Watch companion** | 2.21 | **INFO** — new feature | M10 (mention) |
+| 🎙️ **Audio echo transcript** | 3.2 | **INFO** — new config | Extra C (mention) |
 
-### 4.3 Impacto por Aula — O Que Mudou
+### 4.3 Impact per Lesson — What Changed
 
-| Aula | Status Atual | O que precisa mudar |
+| Lesson | Current Status | What needs to change |
 |------|-------------|---------------------|
-| **M1 Setup** | ⚠️ REGRAVAR | + `openclaw config set tools.profile full` (OBRIGATÓRIO) · + `config validate` · + mencionar streaming visual · + tabela de modelos atualizada (Gemini 3.1) |
-| **M2 Segurança** | ⚠️ REGRAVAR | + `openclaw secrets audit/apply` substitui .env manual · + CVE 30k instâncias como motivação · + WebSocket loopback · + ordem correta: dmPolicy ANTES do UFW |
-| **M3 Identidade** | ✅ MANTER | + Apenas adicionar `config validate` como dica |
-| **M4 Memória** | ✅ MANTER | + Mencionar Ollama embeddings como opção local |
-| **M5 Integrações** | ⚠️ ATUALIZAR | + PDF tool nativo · + gog CLI passo a passo |
-| **M6 Skills** | ✅ MANTER | Sem mudanças relevantes |
-| **M7 Proatividade** | ✅ MANTER | Sem mudanças relevantes |
-| **M8 Multi-Agentes** | ⚠️ ATUALIZAR | + ACP dispatch default · + sessions_spawn attachments |
-| **M9 Immune System** | ⚠️ ATUALIZAR | + `openclaw secrets audit` no checklist · + `openclaw doctor` melhorado |
-| **M10 Mission Control** | ✅ MANTER | + Mencionar Apple Watch |
-| **M11 Wrap-up** | ✅ MANTER | Sem mudanças |
-| **N-1 OAuth** | ⚠️ ATUALIZAR | + Anthropic bloqueou OAuth Pro · + novo fluxo via API Key |
-| **N-2 Bot sem Shell** | ⚠️ ATUALIZAR | + `tools.profile full` como causa #1 · + BotFather privacy mode |
-| **N-3 Config Set** | ✅ MANTER | ✅ Já cobre o necessário |
-| **N-4 Lentidão** | ✅ MANTER | Sem mudanças |
-| **N-5 Debug Runbook** | ✅ MANTER | Sem mudanças |
-| **N-6 VPS vs Mac Mini** | ✅ MANTER | Sem mudanças |
-| **Extra A Integrações** | ⚠️ ATUALIZAR | + gog CLI · + PDF tool nativo |
-| **Extra B Debug VPS** | ✅ MANTER | Sem mudanças |
-| **Extra C Tópicos** | ✅ MANTER | + Mencionar audio echo transcript |
-| **Extra D Automações** | ✅ MANTER | Sem mudanças |
-| **Extra E Contexto** | ✅ MANTER | Sem mudanças |
+| **M1 Setup** | ⚠️ RE-RECORD | + `openclaw config set tools.profile full` (MANDATORY) · + `config validate` · + mention visual streaming · + updated model table (Gemini 3.1) |
+| **M2 Security** | ⚠️ RE-RECORD | + `openclaw secrets audit/apply` replaces manual .env · + CVE 30k instances as motivation · + WebSocket loopback · + correct order: dmPolicy BEFORE UFW |
+| **M3 Identity** | ✅ KEEP | + Just add `config validate` as a tip |
+| **M4 Memory** | ✅ KEEP | + Mention Ollama embeddings as local option |
+| **M5 Integrations** | ⚠️ UPDATE | + Native PDF tool · + gog CLI step by step |
+| **M6 Skills** | ✅ KEEP | No relevant changes |
+| **M7 Proactivity** | ✅ KEEP | No relevant changes |
+| **M8 Multi-Agents** | ⚠️ UPDATE | + ACP dispatch default · + sessions_spawn attachments |
+| **M9 Immune System** | ⚠️ UPDATE | + `openclaw secrets audit` in checklist · + improved `openclaw doctor` |
+| **M10 Mission Control** | ✅ KEEP | + Mention Apple Watch |
+| **M11 Wrap-up** | ✅ KEEP | No changes |
+| **N-1 OAuth** | ⚠️ UPDATE | + Anthropic blocked OAuth for Pro · + new flow via API Key |
+| **N-2 Bot without Shell** | ⚠️ UPDATE | + `tools.profile full` as cause #1 · + BotFather privacy mode |
+| **N-3 Config Set** | ✅ KEEP | ✅ Already covers what's needed |
+| **N-4 Slowness** | ✅ KEEP | No changes |
+| **N-5 Debug Runbook** | ✅ KEEP | No changes |
+| **N-6 VPS vs Mac Mini** | ✅ KEEP | No changes |
+| **Extra A Integrations** | ⚠️ UPDATE | + gog CLI · + native PDF tool |
+| **Extra B Debug VPS** | ✅ KEEP | No changes |
+| **Extra C Topics** | ✅ KEEP | + Mention audio echo transcript |
+| **Extra D Automations** | ✅ KEEP | No changes |
+| **Extra E Context** | ✅ KEEP | No changes |
 
 ---
 
-## 5. DECISÃO DE REGRAVAÇÃO
+## 5. RE-RECORDING DECISION
 
-### 🔴 REGRAVAR (conteúdo desatualizado ou incompleto)
-| Aula | Motivo | Prioridade |
+### 🔴 RE-RECORD (content outdated or incomplete)
+| Lesson | Reason | Priority |
 |------|--------|-----------|
-| **M1 Setup** (Aula 1) | Falta `tools.profile full` — alunos travam | 🔴 P0 |
-| **M2 Segurança** | `openclaw secrets` muda todo o fluxo + CVE | 🔴 P0 |
-| **N-1 OAuth** (Aula 2) | OAuth Anthropic bloqueado, precisa novo fluxo | 🔴 P1 |
+| **M1 Setup** (Lesson 1) | Missing `tools.profile full` — students get stuck | 🔴 P0 |
+| **M2 Security** | `openclaw secrets` changes the entire flow + CVE | 🔴 P0 |
+| **N-1 OAuth** (Lesson 2) | Anthropic OAuth blocked, needs new flow | 🔴 P1 |
 
-### 🟡 ATUALIZAR MATERIAL (regravação opcional, mas docs precisam update)
-| Aula | O que mudar no material | Regravar? |
+### 🟡 UPDATE MATERIAL (optional re-recording, but docs need updating)
+| Lesson | What to change in the material | Re-record? |
 |------|------------------------|-----------|
-| **M5 Integrações** | PDF tool + gog CLI | Opcional |
-| **M8 Multi-Agentes** | ACP dispatch + attachments | Opcional |
-| **M9 Immune System** | `openclaw secrets audit` | Opcional |
-| **N-2 Bot sem Shell** | tools.profile + BotFather | Recomendado |
-| **Extra A Integrações** | gog CLI | Opcional |
+| **M5 Integrations** | PDF tool + gog CLI | Optional |
+| **M8 Multi-Agents** | ACP dispatch + attachments | Optional |
+| **M9 Immune System** | `openclaw secrets audit` | Optional |
+| **N-2 Bot without Shell** | tools.profile + BotFather | Recommended |
+| **Extra A Integrations** | gog CLI | Optional |
 
-### ✅ MANTER (sem mudanças necessárias)
+### ✅ KEEP (no changes needed)
 M0, M3, M4, M6, M7, M10, M11, N-3, N-4, N-5, N-6, Extra B, Extra C, Extra D, Extra E
 
-### 🆕 CRIAR NOVA AULA
-| Aula | Tema | Justificativa | Prioridade |
+### 🆕 CREATE NEW LESSON
+| Lesson | Topic | Justification | Priority |
 |------|------|--------------|-----------|
-| **N-7** | **Custos & Modelos — "Quanto vou gastar?"** | Top 3 dúvida dos alunos (~15x). Tabela clara: Assinatura vs API, custo por modelo, recomendação por uso, config de modelos baratos pra heartbeat/crons | 🔴 P1 |
-| **N-8** | **Telegram: Bot não responde no grupo** | Top 5 dúvida (~12x). BotFather privacy, allowlist, dmPolicy vs groupPolicy, diagnóstico passo a passo | 🔴 P1 |
+| **N-7** | **Costs & Models — "How much will I spend?"** | Top 3 student question (~15x). Clear table: Subscription vs API, cost per model, recommendation by use case, cheap model config for heartbeat/crons | 🔴 P1 |
+| **N-8** | **Telegram: Bot doesn't respond in group** | Top 5 question (~12x). BotFather privacy, allowlist, dmPolicy vs groupPolicy, step-by-step diagnosis | 🔴 P1 |
 
 ---
 
-## 6. PLANO DE EXECUÇÃO — TASKS
+## 6. EXECUTION PLAN — TASKS
 
-### FASE 1: Atualizar Material Existente (Amora faz)
-> ⏱️ Estimativa: 2-3 horas
+### PHASE 1: Update Existing Material (Amora does)
+> ⏱️ Estimate: 2-3 hours
 
-| Task | Descrição | Depende de | Output |
+| Task | Description | Depends on | Output |
 |------|-----------|-----------|--------|
-| T1.1 | Atualizar PRD M1 Setup com `tools.profile full` + `config validate` + streaming | — | PRD atualizado |
-| T1.2 | Atualizar PRD M2 Segurança com `openclaw secrets` + CVE + WebSocket | — | PRD atualizado |
-| T1.3 | Atualizar PRD N-1 OAuth com novo fluxo pós-bloqueio Anthropic | — | PRD atualizado |
-| T1.4 | Atualizar PRD N-2 com tools.profile como causa #1 + BotFather privacy | — | PRD atualizado |
-| T1.5 | Criar PRD N-7 (Custos & Modelos) do zero | — | PRD novo |
-| T1.6 | Criar PRD N-8 (Telegram Bot em Grupo) do zero | — | PRD novo |
-| T1.7 | Atualizar PRDs M5, M8, M9, Extra A com mudanças menores | — | PRDs atualizados |
+| T1.1 | Update M1 Setup PRD with `tools.profile full` + `config validate` + streaming | — | Updated PRD |
+| T1.2 | Update M2 Security PRD with `openclaw secrets` + CVE + WebSocket | — | Updated PRD |
+| T1.3 | Update N-1 OAuth PRD with new flow post-Anthropic block | — | Updated PRD |
+| T1.4 | Update N-2 PRD with tools.profile as cause #1 + BotFather privacy | — | Updated PRD |
+| T1.5 | Create N-7 PRD (Costs & Models) from scratch | — | New PRD |
+| T1.6 | Create N-8 PRD (Telegram Bot in Group) from scratch | — | New PRD |
+| T1.7 | Update M5, M8, M9, Extra A PRDs with minor changes | — | Updated PRDs |
 
-### FASE 2: Aprovação do Bruno
-> ⏱️ Estimativa: 30 min de revisão
+### PHASE 2: Bruno's Approval
+> ⏱️ Estimate: 30 min review
 
-| Task | Descrição | Depende de |
+| Task | Description | Depends on |
 |------|-----------|-----------|
-| T2.1 | Bruno revisa lista de mudanças (seção 4.3 acima) | T1.* |
-| T2.2 | Bruno aprova/rejeita cada item | T2.1 |
-| T2.3 | Bruno decide ordem de gravação | T2.2 |
+| T2.1 | Bruno reviews change list (section 4.3 above) | T1.* |
+| T2.2 | Bruno approves/rejects each item | T2.1 |
+| T2.3 | Bruno defines recording order | T2.2 |
 
-### FASE 3: Gerar Deliverables (Amora faz)
-> ⏱️ Estimativa: 3-4 horas
+### PHASE 3: Generate Deliverables (Amora does)
+> ⏱️ Estimate: 3-4 hours
 
-| Task | Descrição | Depende de | Output |
+| Task | Description | Depends on | Output |
 |------|-----------|-----------|--------|
-| T3.1 | Gerar HTML atualizado de cada aula modificada | T2.2 | HTMLs |
-| T3.2 | Gerar PDF de cada aula modificada | T3.1 | PDFs |
-| T3.3 | Gerar/atualizar Prompts do aluno de cada aula modificada | T3.1 | Prompts .md |
-| T3.4 | Gerar documento HTML+PDF consolidado (v2) com todas as aulas | T3.2 | curso-openclaw-completo-v2.html/pdf |
-| T3.5 | Atualizar Base de Conhecimento no Notion com novos Q&A | T3.1 | Notion atualizado |
+| T3.1 | Generate updated HTML for each modified lesson | T2.2 | HTMLs |
+| T3.2 | Generate PDF for each modified lesson | T3.1 | PDFs |
+| T3.3 | Generate/update student prompts for each modified lesson | T3.1 | Prompts .md |
+| T3.4 | Generate consolidated HTML+PDF document (v2) with all lessons | T3.2 | curso-openclaw-completo-v2.html/pdf |
+| T3.5 | Update Notion Knowledge Base with new Q&A | T3.1 | Updated Notion |
 
-### FASE 4: Gravação (Bruno faz)
-> ⏱️ Estimativa: depende do Bruno
+### PHASE 4: Recording (Bruno does)
+> ⏱️ Estimate: depends on Bruno
 
-| Task | O que gravar | PRD de referência | Prioridade |
+| Task | What to record | Reference PRD | Priority |
 |------|-------------|-------------------|-----------|
-| T4.1 | **M1 Setup** (regravar) — incluir `tools.profile full` | PRD M1 atualizado | 🔴 P0 |
-| T4.2 | **M2 Segurança** (gravar do zero) — `openclaw secrets` + CVE | PRD M2 atualizado | 🔴 P0 |
-| T4.3 | **N-1 OAuth** (regravar) — novo fluxo pós-bloqueio | PRD N-1 atualizado | 🔴 P1 |
-| T4.4 | **N-7 Custos & Modelos** (nova) — tabela de custos, config modelos | PRD N-7 novo | 🔴 P1 |
-| T4.5 | **N-8 Telegram Bot em Grupo** (nova) — BotFather + allowlist | PRD N-8 novo | 🔴 P1 |
-| T4.6 | **N-2 Bot sem Shell** (gravar) — tools.profile + diagnóstico | PRD N-2 atualizado | 🟡 P2 |
-| T4.7 | **M3-M11 restantes** (gravar do zero) | PRDs existentes | 🟡 P2 |
-| T4.8 | **Extras A-E** (gravar) | PRDs existentes | 🟢 P3 |
+| T4.1 | **M1 Setup** (re-record) — include `tools.profile full` | Updated M1 PRD | 🔴 P0 |
+| T4.2 | **M2 Security** (record from scratch) — `openclaw secrets` + CVE | Updated M2 PRD | 🔴 P0 |
+| T4.3 | **N-1 OAuth** (re-record) — new post-block flow | Updated N-1 PRD | 🔴 P1 |
+| T4.4 | **N-7 Costs & Models** (new) — cost table, model config | New N-7 PRD | 🔴 P1 |
+| T4.5 | **N-8 Telegram Bot in Group** (new) — BotFather + allowlist | New N-8 PRD | 🔴 P1 |
+| T4.6 | **N-2 Bot without Shell** (record) — tools.profile + diagnosis | Updated N-2 PRD | 🟡 P2 |
+| T4.7 | **Remaining M3-M11** (record from scratch) | Existing PRDs | 🟡 P2 |
+| T4.8 | **Extras A-E** (record) | Existing PRDs | 🟢 P3 |
 
-### FASE 5: Pós-Produção
-| Task | Descrição | Depende de |
+### PHASE 5: Post-Production
+| Task | Description | Depends on |
 |------|-----------|-----------|
-| T5.1 | Upload dos vídeos na plataforma | T4.* |
-| T5.2 | Vincular material (PDF/HTML/Prompt) a cada vídeo | T5.1 |
-| T5.3 | Criar mensagem de boas-vindas com link direto pros vídeos | T5.1 |
-| T5.4 | Atualizar landing page / Google Drive | T5.1 |
+| T5.1 | Upload videos to the platform | T4.* |
+| T5.2 | Link material (PDF/HTML/Prompt) to each video | T5.1 |
+| T5.3 | Create welcome message with direct links to videos | T5.1 |
+| T5.4 | Update landing page / Google Drive | T5.1 |
 
 ---
 
-## 7. RESUMO EXECUTIVO
+## 7. EXECUTIVE SUMMARY
 
-| Métrica | Valor |
+| Metric | Value |
 |---------|-------|
-| **Total de aulas no curso** | 23 (12 módulos + 5 extras + 6 troubleshooting) |
-| **Aulas já gravadas** | 4 (Aulas 1-4 de 04/03) |
-| **Aulas que precisam REGRAVAR** | 2 (M1 Setup, N-1 OAuth) |
-| **Aulas que precisam GRAVAR do zero** | 19 |
-| **Novas aulas a CRIAR** | 2 (N-7 Custos, N-8 Telegram Grupo) |
-| **Total final** | **25 aulas** |
-| **Material que precisa ATUALIZAR** | 7 PRDs + HTMLs + PDFs |
-| **Material OK (sem mudança)** | 16 aulas |
-| **Top dúvidas cobertas pelo curso** | 9/10 (após criar N-7 e N-8) |
-| **Dúvida #4 (onboarding)** | Fix operacional, não aula |
+| **Total lessons in course** | 23 (12 modules + 5 extras + 6 troubleshooting) |
+| **Already recorded lessons** | 4 (Lessons 1-4 on 04/03) |
+| **Lessons that need RE-RECORDING** | 2 (M1 Setup, N-1 OAuth) |
+| **Lessons that need to be recorded from scratch** | 19 |
+| **New lessons to CREATE** | 2 (N-7 Costs, N-8 Telegram Group) |
+| **Final total** | **25 lessons** |
+| **Material that needs UPDATING** | 7 PRDs + HTMLs + PDFs |
+| **Material OK (no changes)** | 16 lessons |
+| **Top questions covered by course** | 9/10 (after creating N-7 and N-8) |
+| **Question #4 (onboarding)** | Operational fix, not a lesson |
 
 ---
 
-## 8. PRÓXIMO PASSO IMEDIATO
+## 8. IMMEDIATE NEXT STEP
 
-**Bruno precisa:**
-1. ✅ ou ❌ em cada item da seção 4.3 (O que mudou por aula)
-2. Confirmar criação das 2 novas aulas (N-7 e N-8)
-3. Definir ordem de gravação
+**Bruno needs to:**
+1. ✅ or ❌ each item in section 4.3 (What changed per lesson)
+2. Confirm creation of the 2 new lessons (N-7 and N-8)
+3. Define recording order
 
-**Assim que aprovar, eu:**
-1. Atualizo todos os PRDs (Fase 1)
-2. Gero HTML + PDF + Prompt de cada um (Fase 3)
-3. Entrego pacote completo pronto pra gravar
+**Once approved, I will:**
+1. Update all PRDs (Phase 1)
+2. Generate HTML + PDF + Prompt for each (Phase 3)
+3. Deliver complete package ready to record
 
 ---
 
-## 9. ITENS FALTANTES IDENTIFICADOS NO DOUBLE CHECK
+## 9. MISSING ITEMS IDENTIFIED IN DOUBLE CHECK
 
-### 9.1 Material Existente Não Mencionado no PRD Original
+### 9.1 Existing Material Not Mentioned in the Original PRD
 
-| Item | Status | Ação |
+| Item | Status | Action |
 |------|--------|------|
-| **Módulo Bônus: Multi-Agent v2** | ✅ PRD + Prompt + HTML prontos (`prds/multi-agent-v2.md`, `prompts/modulo-bonus-multi-agent-v2.md`, `pdfs/modulo-bonus-multi-agent-v2.html`) | Faltava no inventário — adicionar como **Bônus 1** |
-| **Ebook 20 Use Cases** | ✅ v7 pronta (`pdfs/ebook-20-use-cases-v7.html/pdf`) | Material de apoio — não é aula, é bônus de marketing/vendas |
-| **PDFs por módulo (M0-M11)** | ✅ Todos gerados (`pdfs/modulo-00-abertura.pdf` até `modulo-11-wrapup.pdf`) | Prontos — verificar se precisam update com mudanças da 3.2 |
-| **Templates (6 arquivos)** | ✅ SOUL, USER, AGENTS, IDENTITY, MEMORY, HEARTBEAT templates | Material de apoio dos módulos M3-M7 |
-| **Use Cases (6 categorias)** | ✅ business, community, content, productivity, research, support | Material de apoio — complementa ebook |
-| **Configs de exemplo** | ✅ `configs/cron-examples.md` + `configs/modelo-config.md` | Material de apoio dos módulos M5 e M1 |
-| **10 Regras Invioláveis** | ✅ `docs/10-regras-inviolaveis.md` | Material de apoio do M11 (Wrap-up) — **verificar se regra #2 precisa update** (agora é `openclaw secrets`, não `.env`) |
-| **Troubleshooting doc** | ✅ `docs/troubleshooting.md` (35+ problemas) | Material de apoio — **verificar se precisa update** |
-| **Custos doc** | ✅ `docs/custos.md` | Material de apoio do M11 — **verificar se valores ainda batem** |
-| **Guia Setup Automático** | ✅ `docs/guia-setup-automatico.md` | Speed run alternativo — **verificar se precisa `tools.profile`** |
-| **Guia Sobrevivência** | ✅ `docs/guia-sobrevivencia-openclaw.html/pdf` | Novo — verificar conteúdo |
-| **Pauta YouTube (podcast Rony)** | ✅ Pauta completa gerada (23/02) | Não é aula do curso — é conteúdo de marketing |
-| **N-3 Config Set** | ⚠️ **NÃO TEM PRD PRÓPRIO** — só existe em `memory/2026-03-04-config-set.md` | Criar PRD dedicado se for virar aula separada, ou manter como parte da Aula 3 já gravada |
-| **Base de Conhecimento Notion** | ✅ 14 seções publicadas | **Precisa atualizar** com mudanças da 3.2 |
+| **Bonus Module: Multi-Agent v2** | ✅ PRD + Prompt + HTML ready (`prds/multi-agent-v2.md`, `prompts/modulo-bonus-multi-agent-v2.md`, `pdfs/modulo-bonus-multi-agent-v2.html`) | Missing from inventory — add as **Bonus 1** |
+| **Ebook 20 Use Cases** | ✅ v7 ready (`pdfs/ebook-20-use-cases-v7.html/pdf`) | Support material — not a lesson, it's a marketing/sales bonus |
+| **PDFs per module (M0-M11)** | ✅ All generated (`pdfs/modulo-00-abertura.pdf` through `modulo-11-wrapup.pdf`) | Ready — check if they need updating with 3.2 changes |
+| **Templates (6 files)** | ✅ SOUL, USER, AGENTS, IDENTITY, MEMORY, HEARTBEAT templates | Support material for modules M3-M7 |
+| **Use Cases (6 categories)** | ✅ business, community, content, productivity, research, support | Support material — complements ebook |
+| **Example configs** | ✅ `configs/cron-examples.md` + `configs/modelo-config.md` | Support material for modules M5 and M1 |
+| **10 Inviolable Rules** | ✅ `docs/10-regras-inviolaveis.md` | Support material for M11 (Wrap-up) — **check if rule #2 needs updating** (now it's `openclaw secrets`, not `.env`) |
+| **Troubleshooting doc** | ✅ `docs/troubleshooting.md` (35+ problems) | Support material — **check if it needs updating** |
+| **Costs doc** | ✅ `docs/custos.md` | Support material for M11 — **check if values are still accurate** |
+| **Automatic Setup Guide** | ✅ `docs/guia-setup-automatico.md` | Alternative speed run — **check if it needs `tools.profile`** |
+| **Survival Guide** | ✅ `docs/guia-sobrevivencia-openclaw.html/pdf` | New — check content |
+| **YouTube Agenda (Rony podcast)** | ✅ Complete agenda generated (23/02) | Not a course lesson — it's marketing content |
+| **N-3 Config Set** | ⚠️ **HAS NO OWN PRD** — only exists in `memory/2026-03-04-config-set.md` | Create a dedicated PRD if it becomes a separate lesson, or keep as part of the already recorded Lesson 3 |
+| **Notion Knowledge Base** | ✅ 14 published sections | **Needs updating** with 3.2 changes |
 
-### 9.2 Gaps Identificados
+### 9.2 Identified Gaps
 
-| Gap | Impacto | Ação Recomendada |
+| Gap | Impact | Recommended Action |
 |-----|---------|-----------------|
-| **N-3 não tem PRD formal** | Baixo (Aula 3 já gravada e funciona) | Documentar o fluxo `config set` no PRD do M1 atualizado |
-| **PDFs dos módulos M0-M11 podem estar desatualizados** | Médio (alunos podem baixar PDF com info velha) | Regenerar após atualizar PRDs na Fase 1 |
-| **10 Regras Invioláveis — regra #2 desatualizada** | Médio (menciona .env, agora é `openclaw secrets`) | Atualizar doc na Fase 1 |
-| **`docs/custos.md` pode ter valores desatualizados** | Médio (preços de modelos mudam) | Verificar e atualizar com preços atuais |
-| **`docs/guia-setup-automatico.md` falta `tools.profile full`** | Alto (aluno segue o speed run e trava) | Atualizar na Fase 1 |
-| **`configs/modelo-config.md` pode faltar Gemini 3.1 e MiniMax** | Baixo | Atualizar com modelos novos |
-| **Base Notion desatualizada com mudanças 3.2** | Alto (alunos consultam e recebem info velha) | Adicionar task T1.8 na Fase 1 |
-| **Falta aula sobre WhatsApp** | Médio (dúvida #5 inclui WhatsApp) | Considerar seção em N-8 ou aula separada |
+| **N-3 has no formal PRD** | Low (Lesson 3 already recorded and working) | Document the `config set` flow in the updated M1 PRD |
+| **M0-M11 module PDFs may be outdated** | Medium (students may download PDFs with old info) | Regenerate after updating PRDs in Phase 1 |
+| **10 Inviolable Rules — rule #2 outdated** | Medium (mentions .env, now it's `openclaw secrets`) | Update doc in Phase 1 |
+| **`docs/custos.md` may have outdated values** | Medium (model prices change) | Check and update with current prices |
+| **`docs/guia-setup-automatico.md` missing `tools.profile full`** | High (student follows speed run and gets stuck) | Update in Phase 1 |
+| **`configs/modelo-config.md` may be missing Gemini 3.1 and MiniMax** | Low | Update with new models |
+| **Notion Base outdated with 3.2 changes** | High (students consult and receive old info) | Add task T1.8 in Phase 1 |
+| **No lesson about WhatsApp** | Medium (question #5 includes WhatsApp) | Consider section in N-8 or separate lesson |
 
-### 9.3 Tasks Adicionais (complementam a Fase 1)
+### 9.3 Additional Tasks (complement Phase 1)
 
-| Task | Descrição | Prioridade |
+| Task | Description | Priority |
 |------|-----------|-----------|
-| T1.8 | Atualizar Base de Conhecimento Notion (14 seções) com mudanças 3.2 | 🔴 ALTA |
-| T1.9 | Atualizar `docs/10-regras-inviolaveis.md` (regra #2: .env → openclaw secrets) | 🟡 MÉDIA |
-| T1.10 | Atualizar `docs/guia-setup-automatico.md` com `tools.profile full` | 🔴 ALTA |
-| T1.11 | Verificar e atualizar `docs/custos.md` com preços atuais | 🟡 MÉDIA |
-| T1.12 | Atualizar `configs/modelo-config.md` com Gemini 3.1 + MiniMax | 🟢 BAIXA |
-| T1.13 | Regenerar PDFs M0-M11 após updates dos PRDs | 🟡 MÉDIA (Fase 3) |
-| T1.14 | Adicionar Módulo Bônus (Multi-Agent v2) ao inventário oficial | 🟢 BAIXA |
-| T1.15 | Atualizar `docs/troubleshooting.md` com problemas novos da 3.2 | 🟡 MÉDIA |
+| T1.8 | Update Notion Knowledge Base (14 sections) with 3.2 changes | 🔴 HIGH |
+| T1.9 | Update `docs/10-regras-inviolaveis.md` (rule #2: .env → openclaw secrets) | 🟡 MEDIUM |
+| T1.10 | Update `docs/guia-setup-automatico.md` with `tools.profile full` | 🔴 HIGH |
+| T1.11 | Check and update `docs/custos.md` with current prices | 🟡 MEDIUM |
+| T1.12 | Update `configs/modelo-config.md` with Gemini 3.1 + MiniMax | 🟢 LOW |
+| T1.13 | Regenerate M0-M11 PDFs after PRD updates | 🟡 MEDIUM (Phase 3) |
+| T1.14 | Add Bonus Module (Multi-Agent v2) to official inventory | 🟢 LOW |
+| T1.15 | Update `docs/troubleshooting.md` with new 3.2 problems | 🟡 MEDIUM |
 
-### 9.4 Contagem Atualizada
+### 9.4 Updated Count
 
-| Métrica | Antes | Depois do Double Check |
+| Metric | Before | After Double Check |
 |---------|-------|----------------------|
-| Total de aulas | 25 | **26** (+1 Bônus Multi-Agent v2) |
-| Docs de apoio a atualizar | 0 | **6** (10 regras, custos, guia setup, modelo config, troubleshooting, Base Notion) |
-| Tasks Fase 1 | 7 | **15** (+8 tasks de atualização de material de apoio) |
-| Material de marketing/bônus | não listado | Ebook 20 Use Cases + Pauta YouTube |
+| Total lessons | 25 | **26** (+1 Bonus Multi-Agent v2) |
+| Support docs to update | 0 | **6** (10 rules, costs, setup guide, model config, troubleshooting, Notion Base) |
+| Phase 1 tasks | 7 | **15** (+8 support material update tasks) |
+| Marketing/bonus material | not listed | Ebook 20 Use Cases + YouTube Agenda |
 
 ---
 
-## 10. RESUMO EXECUTIVO FINAL (PÓS DOUBLE CHECK)
+## 10. FINAL EXECUTIVE SUMMARY (POST DOUBLE CHECK)
 
-**Tudo que precisa acontecer, em ordem:**
+**Everything that needs to happen, in order:**
 
-### 🔴 URGENTE (antes de gravar qualquer coisa)
-1. Atualizar `guia-setup-automatico.md` com `tools.profile full`
-2. Atualizar Base Notion com mudanças 3.2
-3. Atualizar PRDs M1 + M2 + N-1 + N-2
+### 🔴 URGENT (before recording anything)
+1. Update `guia-setup-automatico.md` with `tools.profile full`
+2. Update Notion Base with 3.2 changes
+3. Update PRDs M1 + M2 + N-1 + N-2
 
-### 🟡 IMPORTANTE (antes de publicar material)
-4. Criar PRDs N-7 (Custos) + N-8 (Telegram Grupo)
-5. Atualizar 10 Regras Invioláveis
-6. Atualizar custos.md + troubleshooting.md
-7. Regenerar todos PDFs
+### 🟡 IMPORTANT (before publishing material)
+4. Create PRDs N-7 (Costs) + N-8 (Telegram Group)
+5. Update 10 Inviolable Rules
+6. Update custos.md + troubleshooting.md
+7. Regenerate all PDFs
 
 ### 🟢 NICE TO HAVE
-8. Adicionar Módulo Bônus ao inventário
-9. Atualizar modelo-config.md
-10. Verificar ebook use cases
+8. Add Bonus Module to inventory
+9. Update modelo-config.md
+10. Check ebook use cases
 
 ---
 
-*PRD gerado por Amora · curso-openclaw · 06/03/2026*
-*Double check realizado: +8 tasks, +1 aula, +6 docs de apoio identificados*
+*PRD generated by Amora · curso-openclaw · 06/03/2026*
+*Double check performed: +8 tasks, +1 lesson, +6 support docs identified*

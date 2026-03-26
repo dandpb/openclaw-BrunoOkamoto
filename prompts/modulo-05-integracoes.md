@@ -1,48 +1,48 @@
-# Prompt — Módulo 5: Integrações, Ferramentas e Crons
+# Prompt — Module 5: Integrations, Tools and Crons
 
-> Cole este prompt no chat do seu OpenClaw depois de assistir o Módulo 5.
-> Anexe junto os arquivos: `prds/integrations-setup.md`, `configs/cron-examples.md`
+> Paste this prompt in your OpenClaw chat after watching Module 5.
+> Also attach the files: `prds/integrations-setup.md`, `configs/cron-examples.md`
 
 ---
 
-Acabei de assistir o Módulo 5 do curso sobre integrações e crons. Leia o PRD de integrações e me guie.
+I just finished watching Module 5 of the course on integrations and crons. Read the integrations PRD and guide me.
 
-**O que preciso que você faça:**
+**What I need you to do:**
 
-1. **Analise meu perfil** — baseado no que você já sabe sobre mim (USER.md), me recomende as 3-5 integrações mais úteis pra começar
+1. **Analyze my profile** — based on what you already know about me (USER.md), recommend the 3-5 most useful integrations to start with
 
-2. **Me guie na instalação** de cada integração, uma por vez:
-   - Me explique o que ela faz e por que é útil
-   - Me ajude a configurar a API key de forma segura
-   - Teste se funcionou
+2. **Guide me through the installation** of each integration, one at a time:
+   - Explain what it does and why it's useful
+   - Help me configure the API key securely
+   - Test whether it worked
 
-3. **Configure pelo menos 2 crons:**
-   - Um lembrete/agenda (pra eu ver funcionando)
-   - Um report automático (daily briefing ou métricas)
-   - Use SEMPRE: `sessionTarget: isolated` + `agentTurn` + `announce` (isso é crítico pra funcionar!)
+3. **Configure at least 2 crons:**
+   - A reminder/calendar alert (so I can see it working)
+   - An automatic report (daily briefing or metrics)
+   - ALWAYS use: `sessionTarget: isolated` + `agentTurn` + `announce` (this is critical for it to work!)
 
-4. **Me explique os erros comuns:**
-   - Por que `systemEvent` na main session não funciona como esperado
-   - Por que crons no mesmo horário causam problemas
-   - Como config.patch afeta crons rodando
+4. **Explain common errors:**
+   - Why `systemEvent` in the main session doesn't work as expected
+   - Why crons at the same time cause problems
+   - How config.patch affects running crons
 
-**Regras:**
-- Comece com integrações simples (calendário, clima) antes das complexas
-- Se der erro de cloud IP bloqueado, me explique a solução (RapidAPI como proxy)
-- TODAS as credenciais vão no 1Password — zero hardcode nos arquivos
-- Cuidado: systemd override sobrescreve .env — atualizar AMBOS ao trocar credenciais
-- No final, me mostre os crons ativos e quando vão rodar
+**Rules:**
+- Start with simple integrations (calendar, weather) before the complex ones
+- If a cloud IP blocked error occurs, explain the solution (RapidAPI as proxy)
+- ALL credentials go in 1Password — zero hardcoding in files
+- Warning: systemd override overwrites .env — update BOTH when changing credentials
+- At the end, show me the active crons and when they will run
 
-**Dica de produção:**
-- Use Telegram com grupo + tópicos como hub central
-- Cada cron entrega no tópico certo — zero ruído
-- Modelo Split: Sonnet pra crons de execução (sync, watchdog, lembretes), Opus pra análise e estratégia (~90% economia)
+**Production tip:**
+- Use Telegram with a group + topics as the central hub
+- Each cron delivers to the right topic — zero noise
+- Split model: Sonnet for execution crons (sync, watchdog, reminders), Opus for analysis and strategy (~90% savings)
 
-**Comandos úteis:**
+**Useful commands:**
 ```
 openclaw channels status --probe
 openclaw models fallbacks add <model>
 openclaw models aliases add <alias> <model>
 ```
 
-Vamos conectar ao mundo real?
+Shall we connect to the real world?

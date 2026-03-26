@@ -1,31 +1,31 @@
-# PRD: Sistema Imunológico
+# PRD: Immune System
 
 > "Agents are 30% of the work. The other 70% is the immune system." — Eric Siu
-> Jogue no agente: "Implementa este sistema imunológico"
+> Drop into the agent: "Implement this immune system"
 
-## Contexto
+## Context
 
-Agentes quebram silenciosamente. Crons falham sem avisar. Sub-agents travam no limbo. Sem monitoramento, você descobre problemas dias depois.
+Agents break silently. Crons fail without warning. Sub-agents get stuck in limbo. Without monitoring, you discover problems days later.
 
-## 1. Watchdog de Crons
+## 1. Cron Watchdog
 
-Criar um cron que monitora os outros crons:
+Create a cron that monitors other crons:
 
-**Lógica:**
-1. Listar todos os crons ativos
-2. Checar último run de cada um
-3. Se algum falhou → retry automático (até 3x)
-4. Se falhou 3x → alertar o usuário no Telegram
+**Logic:**
+1. List all active crons
+2. Check the last run of each one
+3. If any failed → automatic retry (up to 3x)
+4. If it failed 3x → alert the user in Telegram
 
-**Configuração:**
+**Configuration:**
 ```json
 {
-  "name": "Watchdog - Monitor de Crons",
+  "name": "Watchdog - Cron Monitor",
   "schedule": { "kind": "cron", "expr": "0 8 * * *", "tz": "America/Sao_Paulo" },
   "sessionTarget": "isolated",
   "payload": {
     "kind": "agentTurn",
-    "message": "Checar saúde de todos os crons. Listar os que falharam nas últimas 24h. Fazer retry dos que falharam. Se algum falhar 3x, alertar no Telegram."
+    "message": "Check the health of all crons. List those that failed in the last 24h. Retry the ones that failed. If any fails 3 times, alert via Telegram."
   },
   "delivery": { "mode": "announce" }
 }
@@ -33,141 +33,141 @@ Criar um cron que monitora os outros crons:
 
 ## 2. Feedback Loops
 
-Sistema de aprendizado contínuo: o agente aprende com suas decisões (approve/reject).
+Continuous learning system: the agent learns from your decisions (approve/reject).
 
 ### Setup
 
-Criar `memory/feedback/` com arquivos JSON por domínio:
+Create `memory/feedback/` with JSON files by domain:
 
-- `content.json` — feedback sobre conteúdo, drafts, sugestões
-- `tasks.json` — feedback sobre entregas de tasks
-- `recommendations.json` — feedback sobre sugestões de tools/processos
+- `content.json` — feedback about content, drafts, suggestions
+- `tasks.json` — feedback about task deliveries
+- `recommendations.json` — feedback about tool/process suggestions
 
-### Formato
+### Format
 
 ```json
 {
   "entries": [
     {
       "date": "2026-02-13",
-      "context": "Sugeri thread sobre X para LinkedIn",
+      "context": "Suggested thread about X for LinkedIn",
       "decision": "approve",
-      "reason": "Tom certeiro, dados específicos",
-      "tags": ["linkedin", "thread", "tom"]
+      "reason": "Spot-on tone, specific data",
+      "tags": ["linkedin", "thread", "tone"]
     }
   ]
 }
 ```
 
-### Regras
-- Max 30 entradas por arquivo (FIFO — remove as mais antigas)
-- Agente DEVE consultar feedback antes de sugerir → evita repetir erros
-- Consolidar padrões em `lessons/` mensalmente
-- Ciclo: Feedback (granular, JSON) → Lessons (curado, prose) → Decisions (permanente)
+### Rules
+- Max 30 entries per file (FIFO — removes the oldest ones)
+- Agent MUST consult feedback before suggesting → avoids repeating mistakes
+- Consolidate patterns in `lessons/` monthly
+- Cycle: Feedback (granular, JSON) → Lessons (curated, prose) → Decisions (permanent)
 
-## 3. Monitoramento de Custos
+## 3. Cost Monitoring
 
-### Split de modelos
-| Uso | Modelo | Custo relativo |
+### Model split
+| Usage | Model | Relative cost |
 |-----|--------|---------------|
-| Interação direta | Opus | $$$ |
-| Crons e automação | Sonnet | $ |
+| Direct interaction | Opus | $$$ |
+| Crons and automation | Sonnet | $ |
 | Heartbeats | Haiku | ¢ |
 
-### Regra
-- TODOS os crons devem rodar em Sonnet (nunca Opus)
-- Heartbeats em Haiku
-- Só a interação direta usa Opus
+### Rule
+- ALL crons must run on Sonnet (never Opus)
+- Heartbeats on Haiku
+- Only direct interaction uses Opus
 
-## 4. Sub-agents: Nunca "Fire and Forget"
+## 4. Sub-agents: Never "Fire and Forget"
 
-Todo sub-agent spawnado DEVE ter follow-up:
+Every spawned sub-agent MUST have a follow-up:
 
-1. **Ao spawnar:** informar o que vai fazer
-2. **Follow-up:** checar status em 15-30 min
-3. **Sucesso:** resumir resultado em linguagem humana
-4. **Falha:** retry imediato → se falhar 2x → avisar o usuário
-5. **Nunca** deixar cair no limbo silencioso
+1. **When spawning:** inform what it will do
+2. **Follow-up:** check status in 15-30 min
+3. **Success:** summarize result in human language
+4. **Failure:** immediate retry → if it fails 2x → notify the user
+5. **Never** let it fall into silent limbo
 
-## 5. Backup antes de mudanças
+## 5. Backup Before Changes
 
-Antes de criar agentes, modificar config, ou reorganizar workspace:
+Before creating agents, modifying config, or reorganizing workspace:
 
 ```bash
 mkdir -p backups/$(date +%Y-%m-%d)
 cp /root/.openclaw/openclaw.json backups/$(date +%Y-%m-%d)/
 ```
 
-## 6. Auditoria de Secrets
+## 6. Secrets Audit
 
-### openclaw secrets audit (novo na 3.2)
+### openclaw secrets audit (new in 3.2)
 
-A versão 3.2 traz um comando dedicado para auditar secrets expostos:
+Version 3.2 brings a dedicated command to audit exposed secrets:
 
 ```bash
-# Auditar todos os arquivos do workspace por secrets vazados
+# Audit all workspace files for leaked secrets
 openclaw secrets audit
 
-# Auditar diretório específico
-openclaw secrets audit --path /root/.openclaw/workspace-meu-agente
+# Audit specific directory
+openclaw secrets audit --path /root/.openclaw/workspace-my-agent
 
-# Saída com relatório detalhado
+# Output with detailed report
 openclaw secrets audit --report
 ```
 
-O comando detecta:
-- API keys hardcodadas em arquivos `.json`, `.md`, `.env`
-- Tokens no histórico de git
-- Credenciais em SOUL.md, AGENTS.md ou TOOLS.md
-- Patterns conhecidos (OpenAI, Stripe, Telegram, AWS, etc.)
+The command detects:
+- API keys hardcoded in `.json`, `.md`, `.env` files
+- Tokens in git history
+- Credentials in SOUL.md, AGENTS.md or TOOLS.md
+- Known patterns (OpenAI, Stripe, Telegram, AWS, etc.)
 
-> ⚠️ Execute `openclaw secrets audit` antes de compartilhar qualquer arquivo do workspace ou fazer backup em cloud.
+> ⚠️ Run `openclaw secrets audit` before sharing any workspace files or backing up to the cloud.
 
-### openclaw doctor — Melhorado na 3.2
+### openclaw doctor — Improved in 3.2
 
-O comando `openclaw doctor` foi expandido na 3.2 e agora verifica:
+The `openclaw doctor` command was expanded in 3.2 and now checks:
 
 ```bash
 openclaw doctor
 ```
 
-Checks adicionados na 3.2:
-- ✅ `tools.profile` compatibility (detecta profile incompatível com tarefas)
+Checks added in 3.2:
+- ✅ `tools.profile` compatibility (detects profile incompatible with tasks)
 - ✅ ACP dispatch status
-- ✅ Secrets audit rápido (arquivos mais críticos)
-- ✅ Versão do Node.js e dependências
-- ✅ Conectividade com canais configurados (Telegram, WhatsApp, Slack)
-- ✅ Crons com configuração inválida (`systemEvent` + `main` = problema)
+- ✅ Quick secrets audit (most critical files)
+- ✅ Node.js version and dependencies
+- ✅ Connectivity with configured channels (Telegram, WhatsApp, Slack)
+- ✅ Crons with invalid configuration (`systemEvent` + `main` = problem)
 
-> 💡 Dica: rode `openclaw doctor` após qualquer atualização de versão ou quando algo estiver "estranho". É o ponto de partida do diagnóstico.
+> 💡 Tip: run `openclaw doctor` after any version update or when something feels "off". It's the starting point for diagnosis.
 
-## 7. Exec Approvals — Nunca Desabilite
+## 7. Exec Approvals — Never Disable
 
-O OpenClaw pode executar comandos no seu servidor. O sistema de approvals é a sua última linha de defesa: quando o agente quer executar algo fora do padrão, ele pausa e pede sua confirmação antes de prosseguir.
+OpenClaw can execute commands on your server. The approvals system is your last line of defense: when the agent wants to execute something outside the standard, it pauses and asks for your confirmation before proceeding.
 
-**Por que isso existe:** Em março/2026, 7 formas de burlar esse sistema foram encontradas e corrigidas — atacantes tentavam esconder comandos perigosos usando caracteres invisíveis Unicode, quebras de linha com backslash, e wrappers de ferramentas comuns (pnpm, npm, Perl). O sistema existe exatamente para bloquear isso.
+**Why this exists:** In March/2026, 7 ways to bypass this system were found and fixed — attackers tried to hide dangerous commands using invisible Unicode characters, backslash-newline breaks, and wrappers for common tools (pnpm, npm, Perl). The system exists precisely to block this.
 
-**Verificar configuração:**
+**Verify configuration:**
 ```bash
 openclaw config get exec.approvals
-# Deve retornar: ask
+# Should return: ask
 ```
 
-**Nunca use `allow`** (executa tudo sem confirmação). Mantenha sempre `ask`.
+**Never use `allow`** (executes everything without confirmation). Always keep it as `ask`.
 
-> 📺 **Dica pro curso:** Mostrar ao vivo o sistema pausando e pedindo aprovação. O aluno tende a achar que é burocracia — mostrar o contexto de segurança muda a percepção.
+> 📺 **Course tip:** Show the system pausing and requesting approval live. Students tend to think it's bureaucracy — showing the security context changes their perception.
 
 ## Checklist
 
-- [ ] Watchdog de crons ativo
-- [ ] Feedback loops configurados (pelo menos 1 domínio)
-- [ ] Split de modelos aplicado
-- [ ] Regra de sub-agents documentada no AGENTS.md
-- [ ] Backup automático antes de mudanças
-- [ ] `openclaw secrets audit` executado — zero leaks confirmados
-- [ ] `openclaw doctor` rodado e sem erros críticos
-- [ ] `exec.approvals = ask` (nunca `allow`!) ← v2026.3.13
+- [ ] Cron watchdog active
+- [ ] Feedback loops configured (at least 1 domain)
+- [ ] Model split applied
+- [ ] Sub-agent rule documented in AGENTS.md
+- [ ] Automatic backup before changes
+- [ ] `openclaw secrets audit` run — zero leaks confirmed
+- [ ] `openclaw doctor` run with no critical errors
+- [ ] `exec.approvals = ask` (never `allow`!) ← v2026.3.13
 
-## Resultado Esperado
+## Expected Result
 
-Sistema resiliente que se auto-monitora, aprende com decisões e não deixa nada cair no limbo.
+A resilient system that self-monitors, learns from decisions, and doesn't let anything fall into limbo.

@@ -1,105 +1,105 @@
-# ❓ Q&A — Arquitetura OpenClaw (Cérebro, Braços, Subagentes)
+# ❓ Q&A — OpenClaw Architecture (Brain, Arms, Subagents)
 
-> Linguagem simples. Sem terminal. Cole o prompt no seu bot e ele resolve.
-
----
-
-## "Qual a diferença entre o cérebro e os braços do agente?"
-
-**Em linguagem simples:**
-
-Pensa assim: você é o **chefe**. O OpenClaw é sua **empresa**.
-
-- **Cérebro (Gateway)** = O escritório central. Recebe seus pedidos, toma decisões, coordena tudo.
-- **Braços (Tools/Skills)** = Os funcionários especializados. Um faz busca na web, outro acessa o calendário, outro manda mensagem.
-- **Subagentes** = Freelancers contratados pra tarefas específicas. Trabalham em paralelo e entregam resultado.
-
-**Analogia completa:**
-> Você manda: "Pesquisa os melhores restaurantes perto de mim pra hoje à noite e coloca no meu calendário."
-> - O **cérebro** entende o pedido
-> - O **braço de busca** procura os restaurantes
-> - O **braço de calendário** cria o evento
-> - Tudo acontece de forma coordenada
+> Plain language. No terminal. Paste the prompt into your bot and it handles the rest.
 
 ---
 
-## "O que é um subagente e quando usar?"
+## "What's the difference between the agent's brain and its arms?"
 
-**Em linguagem simples:** Um subagente é como contratar um assistente temporário pra fazer uma tarefa específica enquanto você continua fazendo outra coisa.
+**In plain language:**
 
-**Quando usar:**
-- Tarefas que demoram muito (pesquisa longa, análise de muitos dados)
-- Tarefas paralelas (enquanto um pesquisa, outro escreve)
-- Tarefas de risco (melhor deixar um "assistente" testar antes do "chefe" executar)
+Think of it this way: you are the **boss**. OpenClaw is your **company**.
 
-**O que fazer:**
-Cole esse prompt no seu bot:
+- **Brain (Gateway)** = The central office. It receives your requests, makes decisions, coordinates everything.
+- **Arms (Tools/Skills)** = The specialized employees. One does web searches, another accesses the calendar, another sends messages.
+- **Subagents** = Freelancers hired for specific tasks. They work in parallel and deliver results.
+
+**Full analogy:**
+> You say: "Research the best restaurants near me for tonight and put them in my calendar."
+> - The **brain** understands the request
+> - The **search arm** looks up the restaurants
+> - The **calendar arm** creates the event
+> - Everything happens in a coordinated way
+
+---
+
+## "What is a subagent and when should I use one?"
+
+**In plain language:** A subagent is like hiring a temporary assistant to do a specific task while you continue doing something else.
+
+**When to use:**
+- Tasks that take a long time (long research, analysis of a lot of data)
+- Parallel tasks (while one researches, another writes)
+- Risky tasks (better to let an "assistant" test before the "boss" executes)
+
+**What to do:**
+Paste this prompt into your bot:
 
 ```
-Quero entender quando vale usar subagentes no meu caso.
-Me explica:
-1. O que diferencia um subagente de uma tarefa normal?
-2. Para o que eu uso o bot hoje, faz sentido usar subagentes?
-3. Se sim, me dá um exemplo prático de como ficaria?
+I want to understand when it's worth using subagents in my case.
+Explain:
+1. What makes a subagent different from a normal task?
+2. For what I use the bot for today, does it make sense to use subagents?
+3. If so, give me a practical example of how it would work?
 ```
 
 ---
 
-## "Devo usar o OpenClaw ou o n8n para automatizar?"
+## "Should I use OpenClaw or n8n for automation?"
 
-**Diferença simples:**
+**Simple difference:**
 
 | | OpenClaw | n8n |
 |---|---|---|
-| **Melhor pra** | Tarefas que precisam de raciocínio e linguagem natural | Fluxos fixos e previsíveis (se X então Y) |
-| **Exemplo** | "Resumir emails importantes e me avisar os urgentes" | "Quando receber email com assunto X, salvar no sheet" |
-| **Precisa de** | VPS + API de IA | Servidor ou conta cloud |
-| **Curva de aprendizado** | Média (tem IA te ajudando) | Média (interface visual) |
+| **Best for** | Tasks that require reasoning and natural language | Fixed, predictable flows (if X then Y) |
+| **Example** | "Summarize important emails and alert me about urgent ones" | "When an email with subject X is received, save it to the sheet" |
+| **Requires** | VPS + AI API | Server or cloud account |
+| **Learning curve** | Medium (you have AI helping you) | Medium (visual interface) |
 
-**Resposta curta:** Use OpenClaw quando precisar de julgamento humano. Use n8n quando o fluxo for sempre igual.
+**Short answer:** Use OpenClaw when you need human judgment. Use n8n when the flow is always the same.
 
-**Eles podem trabalhar juntos:** n8n dispara um webhook → OpenClaw recebe e decide o que fazer.
-
----
-
-## "Como sei se meu agente está funcionando corretamente?"
-
-**O que fazer:**
-Cole esse prompt no seu bot:
-
-```
-Faz um diagnóstico completo de saúde do meu agente:
-1. O gateway está rodando corretamente?
-2. Todas as ferramentas (tools) estão funcionando?
-3. A memória está sendo salva corretamente?
-4. Tem algum cron ou automação com problema?
-5. O que você recomenda verificar regularmente?
-Me dá um resumo do status geral.
-```
+**They can work together:** n8n triggers a webhook → OpenClaw receives it and decides what to do.
 
 ---
 
-## "Posso ter mais de um agente? Como funciona?"
+## "How do I know if my agent is working correctly?"
 
-**Em linguagem simples:** Sim! É como ter uma equipe de assistentes especializados.
-
-**Exemplos:**
-- **Agente Principal:** Faz tudo, é o seu assistente pessoal
-- **Agente de Trabalho:** Só cuida de emails e tarefas profissionais
-- **Agente de Conteúdo:** Especializado em criar posts e textos
-
-**O que fazer:**
-Cole esse prompt no seu bot:
+**What to do:**
+Paste this prompt into your bot:
 
 ```
-Quero entender como ter múltiplos agentes funciona.
-Me explica:
-1. Como cada agente é configurado?
-2. Eles compartilham memória ou são separados?
-3. Quanto isso aumenta o custo?
-4. Faz sentido pro meu uso atual ter mais de um?
+Run a full health check on my agent:
+1. Is the gateway running correctly?
+2. Are all tools working?
+3. Is memory being saved correctly?
+4. Are there any crons or automations with issues?
+5. What do you recommend checking regularly?
+Give me a summary of the overall status.
 ```
 
 ---
 
-*Última atualização: Fev/2026*
+## "Can I have more than one agent? How does that work?"
+
+**In plain language:** Yes! It's like having a team of specialized assistants.
+
+**Examples:**
+- **Main Agent:** Does everything, it's your personal assistant
+- **Work Agent:** Only handles emails and professional tasks
+- **Content Agent:** Specialized in creating posts and text
+
+**What to do:**
+Paste this prompt into your bot:
+
+```
+I want to understand how having multiple agents works.
+Explain:
+1. How is each agent configured?
+2. Do they share memory or are they separate?
+3. How much does this increase the cost?
+4. Does it make sense for my current use case to have more than one?
+```
+
+---
+
+*Last updated: Feb/2026*

@@ -1,123 +1,123 @@
-# PRD: Setup de Integrações
+# PRD: Integrations Setup
 
-> Jogue este arquivo no agente: "Configura estas integrações seguindo o PRD"
+> Drop this file into the agent: "Configure these integrations following the PRD"
 
-## Contexto
+## Context
 
-Um agente sem integrações é só um chatbot. Estas são as integrações mais úteis por categoria.
+An agent without integrations is just a chatbot. These are the most useful integrations by category.
 
-## Nível 1 — Essenciais (fazer primeiro)
+## Level 1 — Essential (do these first)
 
 ### Google Calendar
 ```bash
-# Instalar GOG CLI (recomendado — alternativa ao OAuth manual)
+# Install GOG CLI (recommended — alternative to manual OAuth flow)
 npm install -g gog
 
-# Autenticar
-gog auth login --client=calendar-client --account=SEU_EMAIL
+# Authenticate
+gog auth login --client=calendar-client --account=YOUR_EMAIL
 ```
-- Permite: ver compromissos, criar eventos, lembretes
-- Cron sugerido: checar agenda a cada heartbeat
-- **Novidade 3.2:** Use o `gog` CLI como alternativa recomendada ao fluxo OAuth manual. Mais simples, menos configuração, mesmo acesso ao Google Workspace (Calendar, Drive, Gmail).
+- Allows: viewing appointments, creating events, reminders
+- Suggested cron: check agenda at every heartbeat
+- **New in 3.2:** Use the `gog` CLI as the recommended alternative to the manual OAuth flow. Simpler, less configuration, same access to Google Workspace (Calendar, Drive, Gmail).
 
-> 💡 **gog CLI** é o caminho recomendado para Google Workspace: um único comando configura autenticação OAuth para Calendar, Drive, Gmail e Docs. Sem precisar criar projeto no Google Cloud Console manualmente.
+> 💡 **gog CLI** is the recommended path for Google Workspace: a single command configures OAuth authentication for Calendar, Drive, Gmail, and Docs. No need to manually create a project in Google Cloud Console.
 
-### Telegram (já configurado no setup)
-- Criar grupo com tópicos para organizar conversas
-- Tópicos sugeridos: Geral, Conteúdo, Métricas, Operacional
-- dmPolicy: SEMPRE allowlist
+### Telegram (already configured in setup)
+- Create a group with topics to organize conversations
+- Suggested topics: General, Content, Metrics, Operational
+- dmPolicy: ALWAYS allowlist
 
-## Nível 2 — Produtividade
+## Level 2 — Productivity
 
 ### Google Drive
 ```bash
-gog drive ls --client=drive-client --account=SEU_EMAIL
+gog drive ls --client=drive-client --account=YOUR_EMAIL
 ```
-- Upload/download de arquivos
-- Útil para compartilhar reports, docs, planilhas
+- Upload/download files
+- Useful for sharing reports, docs, spreadsheets
 
 ### Notion API
-- Criar integração em https://www.notion.so/my-integrations
-- Guardar API key no 1Password
-- Útil para: kanban, base de conteúdo, CRM
+- Create integration at https://www.notion.so/my-integrations
+- Store API key in 1Password
+- Useful for: kanban, content base, CRM
 
 ### 1Password CLI
 ```bash
-# Instalar
-# Ver: https://developer.1password.com/docs/cli/get-started/
+# Install
+# See: https://developer.1password.com/docs/cli/get-started/
 
-# Uso
-op item get "Nome do Item" --field credential --reveal
+# Usage
+op item get "Item Name" --field credential --reveal
 ```
-- TODA credencial deve viver no 1Password
-- Nunca hardcodar API keys em arquivos
+- EVERY credential must live in 1Password
+- Never hardcode API keys in files
 
-## Nível 3 — Conteúdo & Métricas
+## Level 3 — Content & Metrics
 
 ### YouTube (Data API + OAuth)
-- Criar projeto no Google Cloud Console
-- Habilitar YouTube Data API v3
-- Gerar OAuth credentials
-- Permite: listar vídeos, ver analytics, agendar uploads
+- Create a project in Google Cloud Console
+- Enable YouTube Data API v3
+- Generate OAuth credentials
+- Allows: listing videos, viewing analytics, scheduling uploads
 
 ### Social Media via RapidAPI
-- Cloud IPs são bloqueados por Instagram, X, LinkedIn
-- RapidAPI funciona como proxy:
-  - Instagram Statistics API (50 req/mês free)
-  - X/Twitter API45 (1000 req/mês free)
+- Cloud IPs are blocked by Instagram, X, LinkedIn
+- RapidAPI works as a proxy:
+  - Instagram Statistics API (50 req/month free)
+  - X/Twitter API45 (1000 req/month free)
   - Fresh LinkedIn Scraper
-- Cadastro: https://rapidapi.com
+- Sign up: https://rapidapi.com
 
 ### Brave Search
-- API para pesquisa web
-- Já vem configurado no OpenClaw (verificar)
+- API for web search
+- Already comes configured in OpenClaw (verify)
 
-## Nível 3.5 — PDF Nativo (Novo na 3.2)
+## Level 3.5 — Native PDF (New in 3.2)
 
-### PDF Tool Nativo
-A partir da versão 3.2, agentes podem analisar documentos PDF **nativamente** — sem precisar instalar nada.
+### Native PDF Tool
+Starting from version 3.2, agents can analyze PDF documents **natively** — without installing anything.
 
 ```
-# O agente simplesmente faz:
-Analise este PDF: /caminho/para/documento.pdf
+# The agent simply does:
+Analyze this PDF: /path/to/document.pdf
 ```
 
-- **Suportado por:** Anthropic Claude e Google Gemini (análise nativa)
-- **Outros modelos:** fallback automático via extração de texto/imagens
-- **Uso prático:** contratos, relatórios, notas fiscais, planilhas PDF
-- **Limite:** até 10 PDFs por chamada
-- Nenhuma configuração extra — já disponível no agente
+- **Supported by:** Anthropic Claude and Google Gemini (native analysis)
+- **Other models:** automatic fallback via text/image extraction
+- **Practical use:** contracts, reports, invoices, PDF spreadsheets
+- **Limit:** up to 10 PDFs per call
+- No extra configuration — already available in the agent
 
-> 💡 Casos de uso reais: o agente analisa boletos, extrai dados de NFs para o Notion, resume relatórios longos automaticamente.
+> 💡 Real use cases: the agent analyzes invoices, extracts data from receipts into Notion, automatically summarizes long reports.
 
-## Nível 4 — Avançado
+## Level 4 — Advanced
 
-### ChartMogul (se tiver SaaS)
-- Métricas de MRR, churn, LTV
-- Cron semanal para report
+### ChartMogul (if you have a SaaS)
+- MRR, churn, LTV metrics
+- Weekly cron for reporting
 
-### Crisp / Intercom (se tiver suporte)
-- Análise de conversas
-- Insights de conteúdo a partir de dúvidas reais
+### Crisp / Intercom (if you have support)
+- Conversation analysis
+- Content insights from real user questions
 
-## Crons Essenciais
+## Essential Crons
 
-Após configurar integrações, criar crons:
+After configuring integrations, create crons:
 
-| Cron | Frequência | O que faz |
+| Cron | Frequency | What it does |
 |------|-----------|-----------|
-| Check agenda | A cada heartbeat | Compromissos próximos |
-| Métricas sociais | Semanal | Puxar dados das redes |
-| Revisão semanal | Sexta | Revisar projetos e pendências |
+| Check agenda | Every heartbeat | Upcoming appointments |
+| Social metrics | Weekly | Pull data from social networks |
+| Weekly review | Friday | Review projects and pending items |
 
-**REGRA CRÍTICA para crons:**
+**CRITICAL RULE for crons:**
 ```
 sessionTarget: "isolated"
 payload.kind: "agentTurn"
 delivery: { mode: "announce" }
 ```
-NUNCA usar `systemEvent` + `main` — dispara mas não executa.
+NEVER use `systemEvent` + `main` — triggers but doesn't execute.
 
-## Resultado Esperado
+## Expected Result
 
-Agente conectado às suas ferramentas principais, com pelo menos 2 crons rodando.
+Agent connected to your main tools, with at least 2 crons running.

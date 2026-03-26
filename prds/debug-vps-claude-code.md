@@ -1,198 +1,198 @@
-# PRD: Debug na VPS com Claude Code
+# PRD: Debugging on VPS with Claude Code
 
-> Roteiro para gravação da Aula Extra B
-> Público: leigo total — pode nunca ter acessado um servidor antes
-
----
-
-## Objetivo da Aula
-
-Ensinar como acessar a VPS e usar o Claude Code (CLI do OpenClaw) direto no terminal pra:
-1. **Debugar problemas** quando o agente travar ou dar erro
-2. **Arrumar pastas e arquivos** do workspace
-3. **Usar `openclaw doctor`** pra diagnóstico automático
-4. **Usar `openclaw doctor fix`** pra correção automática
-
-**Premissa:** O aluno pode não saber usar terminal. Vai aprender fazendo.
+> Script for recording Extra Lesson B
+> Audience: complete beginners — may have never accessed a server before
 
 ---
 
-## Tempo estimado: 18-22 minutos
+## Lesson Objective
+
+Teach how to access the VPS and use Claude Code (OpenClaw CLI) directly in the terminal to:
+1. **Debug problems** when the agent freezes or throws errors
+2. **Fix folders and files** in the workspace
+3. **Use `openclaw doctor`** for automatic diagnosis
+4. **Use `openclaw doctor fix`** for automatic correction
+
+**Premise:** The student may not know how to use a terminal. They will learn by doing.
 
 ---
 
-## Estrutura da Aula
-
-### Bloco 1: Por que aprender a debugar? (2 min)
-
-**O que mostrar:**
-- Agente travou e não responde? É normal — você vai saber resolver.
-- Erro estranho apareceu? Você vai saber onde procurar.
-- Autonomia: não depender de suporte pra problema simples.
-
-**Frase-chave:**
-> "Você não precisa ser técnico. Mas precisa saber abrir o capô do carro quando a luz vermelha acende."
-
-**Cenários reais que o aluno vai enfrentar:**
-- Agente parou de responder no Telegram
-- Erro "token limit exceeded"
-- **Agente ficou MUITO lento (respostas demoram 30s+)**
-- Workspace bagunçado (arquivos demais)
-- Gateway não inicia depois de um restart
-- Cron não roda no horário
+## Estimated time: 18-22 minutes
 
 ---
 
-### Bloco 2: Como acessar a VPS (4 min)
+## Lesson Structure
 
-**Opção 1: Terminal local (Mac/Linux/Windows Terminal)**
+### Block 1: Why learn to debug? (2 min)
 
-1. **Pegar o IP e senha da VPS** (no painel da Hostinger)
+**What to show:**
+- Agent froze and not responding? That's normal — you'll know how to fix it.
+- Strange error appeared? You'll know where to look.
+- Autonomy: not depending on support for simple problems.
 
-2. **Conectar via SSH:**
+**Key phrase:**
+> "You don't need to be technical. But you need to know how to open the hood when the red light comes on."
+
+**Real scenarios the student will face:**
+- Agent stopped responding in Telegram
+- Error "token limit exceeded"
+- **Agent became VERY slow (responses take 30s+)**
+- Messy workspace (too many files)
+- Gateway doesn't start after a restart
+- Cron doesn't run on schedule
+
+---
+
+### Block 2: How to access the VPS (4 min)
+
+**Option 1: Local terminal (Mac/Linux/Windows Terminal)**
+
+1. **Get the VPS IP and password** (from the Hostinger panel)
+
+2. **Connect via SSH:**
    ```bash
-   ssh root@SEU_IP_AQUI
+   ssh root@YOUR_IP_HERE
    ```
-   Digite a senha quando pedir.
+   Type the password when prompted.
 
-3. **Você está dentro!** O prompt muda:
+3. **You're in!** The prompt changes:
    ```
    root@vps-12345:~#
    ```
 
-**Opção 2: Terminal do painel da Hostinger (mais fácil pra iniciante)**
+**Option 2: Hostinger panel terminal (easier for beginners)**
 
-1. Ir em hPanel → VPS → clicar no botão "Terminal" (topo direito)
-2. Terminal abre no navegador — sem configurar nada
-3. Já está conectado como root
+1. Go to hPanel → VPS → click the "Terminal" button (top right)
+2. Terminal opens in the browser — no setup required
+3. Already connected as root
 
-**Mostrar os dois jeitos e deixar o aluno escolher.**
+**Show both methods and let the student choose.**
 
 ---
 
-### Bloco 3: Comandos básicos de sobrevivência (3 min)
+### Block 3: Basic survival commands (3 min)
 
-**Antes de debugar, ensinar o mínimo:**
+**Before debugging, teach the minimum:**
 
-1. **Ver onde você está:**
+1. **See where you are:**
    ```bash
    pwd
    ```
-   Mostra o caminho atual (tipo `/root`)
+   Shows the current path (like `/root`)
 
-2. **Listar arquivos:**
+2. **List files:**
    ```bash
    ls -la
    ```
-   Mostra tudo, incluindo pastas ocultas (começam com `.`)
+   Shows everything, including hidden folders (start with `.`)
 
-3. **Ir pro workspace do agente:**
+3. **Go to the agent workspace:**
    ```bash
-   cd ~/.openclaw/workspace-NOME-DO-SEU-AGENTE
+   cd ~/.openclaw/workspace-YOUR-AGENT-NAME
    ```
-   Exemplo:
+   Example:
    ```bash
    cd ~/.openclaw/workspace-amora-cos
    ```
 
-4. **Ver conteúdo de um arquivo:**
+4. **View file contents:**
    ```bash
    cat AGENTS.md
    ```
-   Ou pra arquivos grandes:
+   Or for large files:
    ```bash
    less AGENTS.md
    ```
-   (aperta `q` pra sair)
+   (press `q` to exit)
 
-5. **Ver logs do gateway em tempo real:**
+5. **View gateway logs in real time:**
    ```bash
    openclaw gateway logs --follow
    ```
-   (aperta Ctrl+C pra sair)
+   (press Ctrl+C to exit)
 
-**Explicar o conceito de "caminho":**
-> "Pensa no servidor como uma árvore de pastas. Você começa na raiz (`/`) e vai descendo. `~` é atalho pra pasta do usuário atual (`/root`)."
+**Explain the concept of "path":**
+> "Think of the server as a folder tree. You start at the root (`/`) and go down. `~` is a shortcut for the current user's folder (`/root`)."
 
 ---
 
-### Bloco 4: Usar Claude Code no terminal (5 min)
+### Block 4: Using Claude Code in the terminal (5 min)
 
-**O que é o Claude Code:**
-> "É o Claude rodando DENTRO do terminal da VPS. Você pergunta, ele responde e pode executar comandos pra você."
+**What Claude Code is:**
+> "It's Claude running INSIDE the VPS terminal. You ask, it answers and can execute commands for you."
 
-**Como invocar:**
+**How to invoke:**
 ```bash
 claude
 ```
 
-Abre uma sessão interativa. Agora você pode conversar:
+Opens an interactive session. Now you can chat:
 
-**Exemplo 1 — Diagnosticar problema:**
+**Example 1 — Diagnose a problem:**
 ```
-Você: Meu agente parou de responder no Telegram. O que pode ser?
+You: My agent stopped responding in Telegram. What could it be?
 
-Claude: Vou checar. Primeiro, status do gateway...
-[executa: openclaw gateway status]
+Claude: I'll check. First, gateway status...
+[executes: openclaw gateway status]
 
-Claude: Gateway está parado. Vou ver os últimos logs...
-[executa: openclaw gateway logs --tail 50]
+Claude: Gateway is stopped. Let me check the latest logs...
+[executes: openclaw gateway logs --tail 50]
 
-Claude: Erro de token limit. O problema é excesso de contexto.
-Quer que eu limpe os logs antigos e reinicie?
-```
-
-**Exemplo 2 — Arrumar workspace:**
-```
-Você: Meu workspace tá cheio de arquivos de teste. Como limpo?
-
-Claude: Vou listar o que tem aqui...
-[executa: ls -lah]
-
-Claude: Tem vários .txt e .json de teste. Posso mover pra uma pasta
-/archive. Confirma?
-
-Você: Confirma.
-
-Claude: [cria pasta, move arquivos, mostra resultado]
-Pronto. Workspace limpo.
+Claude: Token limit error. The problem is too much context.
+Want me to clear the old logs and restart?
 ```
 
-**Exemplo 3 — Ver uso de disco:**
+**Example 2 — Clean up workspace:**
 ```
-Você: Quanto espaço tenho na VPS?
+You: My workspace is full of test files. How do I clean it?
 
-Claude: [executa: df -h]
-Você tem 50GB total, 12GB usados, 38GB livres.
+Claude: Let me list what's here...
+[executes: ls -lah]
+
+Claude: There are several .txt and .json test files. I can move them to an
+/archive folder. Confirm?
+
+You: Confirm.
+
+Claude: [creates folder, moves files, shows result]
+Done. Workspace cleaned.
 ```
 
-**Sair do Claude Code:**
-- Digite `exit` ou aperta Ctrl+D
+**Example 3 — Check disk usage:**
+```
+You: How much space do I have on the VPS?
+
+Claude: [executes: df -h]
+You have 50GB total, 12GB used, 38GB free.
+```
+
+**Exit Claude Code:**
+- Type `exit` or press Ctrl+D
 
 ---
 
-### Bloco 5: openclaw doctor — Diagnóstico automático (3 min)
+### Block 5: openclaw doctor — Automatic diagnosis (3 min)
 
-**O que faz:**
-Roda uma bateria de checks e mostra o que tá errado.
+**What it does:**
+Runs a battery of checks and shows what's wrong.
 
-**Executar:**
+**Run:**
 ```bash
 openclaw doctor
 ```
 
-**O que ele verifica:**
-- ✅ Gateway rodando?
-- ✅ Node.js na versão certa?
-- ✅ Disco tem espaço?
-- ✅ Memória RAM disponível?
-- ✅ Config válida? (`openclaw.json`)
-- ✅ Provider API key funciona?
-- ✅ Canais conectados? (Telegram, etc.)
-- ⚠️ Logs muito grandes?
-- ⚠️ Workspaces com arquivos demais?
+**What it checks:**
+- ✅ Gateway running?
+- ✅ Node.js at the right version?
+- ✅ Disk has space?
+- ✅ RAM available?
+- ✅ Config valid? (`openclaw.json`)
+- ✅ Provider API key works?
+- ✅ Channels connected? (Telegram, etc.)
+- ⚠️ Logs too large?
+- ⚠️ Workspaces with too many files?
 
-**Saída exemplo:**
+**Example output:**
 ```
 ✅ Gateway: running
 ✅ Node.js: v22.22.0
@@ -201,43 +201,43 @@ openclaw doctor
 ✅ Config: valid
 ✅ Provider: Anthropic API OK
 ✅ Telegram: connected
-⚠️ Logs: 450MB (considere limpar)
-⚠️ Workspace "amora-cos": 2.3GB (revisar arquivos grandes)
+⚠️ Logs: 450MB (consider clearing)
+⚠️ Workspace "amora-cos": 2.3GB (review large files)
 ```
 
-**Explicar cada linha:**
-> "Verde = tudo certo. Amarelo = atenção, pode virar problema. Vermelho = precisa corrigir agora."
+**Explain each line:**
+> "Green = everything OK. Yellow = pay attention, could become a problem. Red = needs fixing now."
 
 ---
 
-### Bloco 6: openclaw doctor fix — Correção automática (2 min)
+### Block 6: openclaw doctor fix — Automatic correction (2 min)
 
-**O que faz:**
-Tenta corrigir problemas comuns automaticamente.
+**What it does:**
+Tries to fix common problems automatically.
 
-**Executar:**
+**Run:**
 ```bash
 openclaw doctor fix
 ```
 
-**O que ele pode consertar sozinho:**
-- Reiniciar gateway travado
-- Limpar logs antigos (mantém últimos 7 dias)
-- Corrigir permissões de arquivos
-- Recriar pastas ausentes
-- Atualizar dependências quebradas
+**What it can fix on its own:**
+- Restart a frozen gateway
+- Clear old logs (keeps last 7 days)
+- Fix file permissions
+- Recreate missing folders
+- Update broken dependencies
 
-**O que ele NÃO faz (precisa de confirmação):**
-- Deletar arquivos do workspace
-- Alterar config crítica
-- Fazer upgrade de versão major
+**What it does NOT do (requires confirmation):**
+- Delete workspace files
+- Change critical config
+- Perform a major version upgrade
 
-**Fluxo:**
+**Flow:**
 ```bash
 openclaw doctor fix
 ```
 
-Saída:
+Output:
 ```
 🔍 Scanning for issues...
 ⚠️ Found 3 fixable issues:
@@ -249,7 +249,7 @@ Saída:
 Apply fixes? [y/N]
 ```
 
-Digitar `y` e Enter.
+Type `y` and Enter.
 
 ```
 ✅ Gateway restarted
@@ -261,143 +261,143 @@ All checks passed. System healthy.
 
 ---
 
-### Bloco 7: Cenários reais + soluções (5 min)
+### Block 7: Real scenarios + solutions (5 min)
 
-**Mostrar 4 problemas comuns e como resolver:**
+**Show 4 common problems and how to resolve them:**
 
-#### Cenário 1: "Agente não responde no Telegram"
+#### Scenario 1: "Agent not responding in Telegram"
 
-**Passo a passo:**
-1. SSH na VPS
-2. `openclaw gateway status` → se "stopped", rodar `openclaw gateway start`
-3. Se continua parado, ver logs: `openclaw gateway logs --tail 50`
-4. Se erro de API key, reconfigurar: `openclaw provider update anthropic`
-5. Se erro de token, rodar `openclaw doctor fix`
+**Step by step:**
+1. SSH into the VPS
+2. `openclaw gateway status` → if "stopped", run `openclaw gateway start`
+3. If it remains stopped, check logs: `openclaw gateway logs --tail 50`
+4. If API key error, reconfigure: `openclaw provider update anthropic`
+5. If token error, run `openclaw doctor fix`
 
-#### Cenário 2: "Erro de contexto muito grande"
+#### Scenario 2: "Context too large error"
 
-**Sintoma:** Mensagem de erro "context window exceeded"
+**Symptom:** Error message "context window exceeded"
 
-**Solução:**
-1. SSH na VPS
-2. Ir pro workspace: `cd ~/.openclaw/workspace-SEU-AGENTE`
-3. Abrir Claude Code: `claude`
-4. Perguntar: "Meu contexto tá muito grande. Pode compactar memory/YYYY-MM-DD.md antigos?"
-5. Claude vai mover pra arquivo compactado e limpar
+**Solution:**
+1. SSH into the VPS
+2. Go to workspace: `cd ~/.openclaw/workspace-YOUR-AGENT`
+3. Open Claude Code: `claude`
+4. Ask: "My context is too large. Can you compact old memory/YYYY-MM-DD.md files?"
+5. Claude will move them to a compacted file and clean up
 
-#### Cenário 3: "Agente ficou MUITO lento (respostas demoram 30s+)"
+#### Scenario 3: "Agent became VERY slow (responses take 30s+)"
 
-**Sintoma:** Agente demora pra responder, às vezes timeout
+**Symptom:** Agent takes long to respond, sometimes times out
 
-**Causas comuns:**
+**Common causes:**
 
-1. **Contexto de sessão passou de 100k tokens**
-   - Usuário nunca deu `/new` ou `/compact`
-   - Sessão acumula meses de histórico
-   
-   **Solução:**
+1. **Session context exceeded 100k tokens**
+   - User never ran `/new` or `/compact`
+   - Session accumulates months of history
+
+   **Solution:**
    ```bash
-   # Ver tamanho das sessões
+   # Check session sizes
    cd ~/.openclaw
    du -sh sessions/*.json | sort -h | tail -10
    ```
-   Se tiver session.json com mais de 5MB:
-   - Pedir pro usuário rodar `/compact` ou `/new`
-   - Ou mover pra backup: `mv sessions/SESSAO.json sessions/backup/`
+   If there's a session.json over 5MB:
+   - Ask the user to run `/compact` or `/new`
+   - Or move to backup: `mv sessions/SESSION.json sessions/backup/`
 
-2. **session.json corrompido ou gigante**
-   - Arquivo pode chegar a 50MB+ se nunca compactou
-   
-   **Solução:**
+2. **Corrupted or giant session.json**
+   - File can reach 50MB+ if never compacted
+
+   **Solution:**
    ```bash
-   # Ver o maior session.json
+   # Find the largest session.json
    ls -lh ~/.openclaw/sessions/ | sort -k5 -h | tail -5
    ```
-   Se achar arquivo > 10MB, pode arquivar:
+   If you find a file > 10MB, you can archive it:
    ```bash
    mkdir -p ~/.openclaw/sessions/backup
-   mv ~/.openclaw/sessions/ARQUIVO-GIGANTE.json ~/.openclaw/sessions/backup/
+   mv ~/.openclaw/sessions/GIANT-FILE.json ~/.openclaw/sessions/backup/
    ```
 
-3. **Muitos agentes rodando em paralelo**
-   - Cada agente consome memória e CPU
-   - VPS pequena não aguenta 5+ agentes simultâneos
-   
-   **Solução:**
+3. **Many agents running in parallel**
+   - Each agent consumes memory and CPU
+   - A small VPS can't handle 5+ simultaneous agents
+
+   **Solution:**
    ```bash
-   # Ver quantos processos do OpenClaw estão rodando
+   # Check how many OpenClaw processes are running
    ps aux | grep openclaw | wc -l
    ```
-   Se tiver mais de 3-4 em VPS pequena (4GB RAM), considerar:
-   - Parar agentes não-usados
-   - Upgrade de VPS
-   - Usar `sessionTarget: isolated` com `cleanup: delete` nos crons
+   If there are more than 3-4 on a small VPS (4GB RAM), consider:
+   - Stopping unused agents
+   - Upgrading the VPS
+   - Using `sessionTarget: isolated` with `cleanup: delete` in crons
 
-**Explicar no vídeo:**
-> "O contexto é como a memória de curto prazo do agente. Se você nunca limpar, é como tentar lembrar de TUDO que aconteceu nos últimos 6 meses — o cérebro trava. Use `/compact` toda semana ou `/new` quando precisar recomeçar."
+**Explain in the video:**
+> "Context is like the agent's short-term memory. If you never clear it, it's like trying to remember EVERYTHING that happened in the last 6 months — the brain freezes. Use `/compact` every week or `/new` when you need to start fresh."
 
-#### Cenário 4: "VPS sem espaço"
+#### Scenario 4: "VPS out of space"
 
-**Sintoma:** "No space left on device"
+**Symptom:** "No space left on device"
 
-**Solução:**
-1. Rodar `openclaw doctor` → vai mostrar o problema
-2. Rodar `openclaw doctor fix` → limpa logs e /tmp
-3. Se continua cheio, usar Claude Code:
+**Solution:**
+1. Run `openclaw doctor` → will show the problem
+2. Run `openclaw doctor fix` → clears logs and /tmp
+3. If still full, use Claude Code:
    ```
-   Você: Preciso liberar espaço. O que tá ocupando mais?
-   Claude: [executa: du -sh ~/.openclaw/* | sort -h]
-   Mostra os workspaces maiores...
+   You: I need to free up space. What's taking up the most?
+   Claude: [executes: du -sh ~/.openclaw/* | sort -h]
+   Shows the largest workspaces...
    ```
-4. Decidir o que arquivar ou deletar
+4. Decide what to archive or delete
 
 ---
 
-## Checkpoint da Aula
+## Lesson Checkpoint
 
-Ao final, o aluno deve saber:
-- [ ] Como conectar na VPS via SSH (terminal local ou painel Hostinger)
-- [ ] Comandos básicos de navegação (pwd, ls, cd, cat)
-- [ ] Como invocar Claude Code no terminal (`claude`)
-- [ ] Como usar `openclaw doctor` pra diagnóstico
-- [ ] Como usar `openclaw doctor fix` pra correção automática
-- [ ] Resolver 4 problemas comuns sozinho (não responde, contexto, lentidão, sem espaço)
-
----
-
-## Alertas de Segurança
-
-🔴 **NUNCA** deletar arquivos sem saber o que são
-🔴 **SEMPRE** fazer backup antes de mudanças grandes
-🔴 **CUIDADO** com `rm -rf` — pode apagar tudo
-
-**Regra de ouro:**
-> "Se não sabe o que o comando faz, pergunte pro Claude Code antes de rodar."
+By the end, the student should know:
+- [ ] How to connect to the VPS via SSH (local terminal or Hostinger panel)
+- [ ] Basic navigation commands (pwd, ls, cd, cat)
+- [ ] How to invoke Claude Code in the terminal (`claude`)
+- [ ] How to use `openclaw doctor` for diagnosis
+- [ ] How to use `openclaw doctor fix` for automatic correction
+- [ ] How to solve 4 common problems on their own (not responding, context, slowness, no space)
 
 ---
 
-## Prompt que vai no PDF
+## Security Alerts
 
-Vai estar no arquivo `prompts/modulo-extra-b-debug.md`.
+🔴 **NEVER** delete files without knowing what they are
+🔴 **ALWAYS** back up before major changes
+🔴 **BE CAREFUL** with `rm -rf` — it can delete everything
+
+**Golden rule:**
+> "If you don't know what a command does, ask Claude Code before running it."
 
 ---
 
-## Troubleshooting Comum
+## Prompt that goes in the PDF
 
-### "Permission denied" ao tentar algo
-Provavelmente precisa de `sudo`. Mas como root, não deveria acontecer.
+Will be in the file `prompts/modulo-extra-b-debug.md`.
+
+---
+
+## Common Troubleshooting
+
+### "Permission denied" when trying something
+You probably need `sudo`. But as root, this shouldn't happen.
 
 ### "Command not found: claude"
 ```bash
-# Reinstalar OpenClaw CLI
+# Reinstall OpenClaw CLI
 npm install -g @anthropic-ai/claude-code
 ```
 
 ### "SSH connection refused"
-- Verificar se o IP tá certo
-- Verificar se a VPS tá ligada (painel Hostinger)
-- Verificar se a porta 22 tá aberta (firewall)
+- Check if the IP is correct
+- Check if the VPS is on (Hostinger panel)
+- Check if port 22 is open (firewall)
 
 ---
 
-*Esta aula dá autonomia. Antes dela, o aluno depende de suporte. Depois, resolve 80% dos problemas sozinho.*
+*This lesson grants autonomy. Before it, the student depends on support. Afterwards, they can solve 80% of problems on their own.*

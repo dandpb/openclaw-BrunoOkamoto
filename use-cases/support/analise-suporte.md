@@ -1,41 +1,41 @@
-# 🎧 Use Case: Análise Inteligente de Suporte
+# 🎧 Use Case: Intelligent Support Analysis
 
-> Identifique padrões, bugs recorrentes e oportunidades nos tickets.
+> Identify patterns, recurring bugs, and opportunities in tickets.
 
-## O que faz
+## What it does
 
-Conecta na sua ferramenta de suporte (Crisp, Intercom, Zendesk) e analisa:
-- Padrões nos tickets (quais problemas mais aparecem)
-- Sentimento dos clientes (satisfação, frustração)
-- Tempo de resposta e resolução
-- Sugestões de features baseadas em reclamações
-- Oportunidades de conteúdo (FAQ que vira post)
+Connects to your support tool (Crisp, Intercom, Zendesk) and analyzes:
+- Ticket patterns (which problems appear most often)
+- Customer sentiment (satisfaction, frustration)
+- Response and resolution time
+- Feature suggestions based on complaints
+- Content opportunities (FAQ that becomes a post)
 
 ## Prompt
 
 ```
-Quero que você analise meus tickets de suporte dos últimos [30/60/90] dias.
+I want you to analyze my support tickets from the last [30/60/90] days.
 
-Minha ferramenta de suporte é [CRISP/INTERCOM/ZENDESK].
+My support tool is [CRISP/INTERCOM/ZENDESK].
 
-Me entregue:
-1. **Top 10 problemas mais reportados** — agrupados por categoria
-2. **Análise de sentimento** — % de tickets positivos/neutros/negativos
-3. **Bugs recorrentes** — issues que aparecem mais de 3x
-4. **Sugestões de features** — o que os clientes estão pedindo
-5. **Oportunidades de conteúdo** — perguntas frequentes que viram tutorial/post
-6. **Padrões de horário** — quando os tickets chegam (picos)
-7. **Tempo médio de resolução** — e onde está lento
+Deliver:
+1. **Top 10 most reported problems** — grouped by category
+2. **Sentiment analysis** — % of positive/neutral/negative tickets
+3. **Recurring bugs** — issues that appear more than 3 times
+4. **Feature suggestions** — what customers are asking for
+5. **Content opportunities** — frequently asked questions that can become tutorials/posts
+6. **Time patterns** — when tickets come in (peak times)
+7. **Average resolution time** — and where it is slow
 
-Formato: report estruturado com ações concretas pra cada insight.
+Format: structured report with concrete actions for each insight.
 
-Insight da Amora: "Crisp é canal de vendas, não só suporte. Analise as perguntas pré-venda também."
+Amora's insight: "Crisp is a sales channel, not just support. Analyze pre-sale questions too."
 ```
 
-## Exemplo real
+## Real example
 
-A Amora analisou 187 conversas do Crisp:
+Amora analyzed 187 Crisp conversations:
 - 95% via WhatsApp
-- "Vibe coding" dominava (172 menções)
-- Pessoas travam na "última milha" (deploy, config, go-live)
-- Gerou 6 ideias de conteúdo direto dos tickets
+- "Vibe coding" dominated (172 mentions)
+- People get stuck at the "last mile" (deploy, config, go-live)
+- Generated 6 content ideas directly from tickets

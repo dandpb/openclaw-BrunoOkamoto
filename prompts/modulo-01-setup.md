@@ -1,46 +1,46 @@
-# Prompt — Módulo 1: Setup do OpenClaw
+# Prompt — Module 1: OpenClaw Setup
 
-> Cole este prompt no chat do seu OpenClaw depois de assistir o Módulo 1.
+> Paste this prompt in your OpenClaw chat after watching Module 1.
 
 ---
 
-Acabei de assistir o Módulo 1 do curso "Construa Seu AI COO". Preciso que você me guie no setup inicial do OpenClaw.
+I just finished watching Module 1 of the "Build Your AI COO" course. I need you to guide me through the initial OpenClaw setup.
 
-**O que preciso fazer:**
+**What I need to do:**
 
-1. **Verificar meu ambiente** — Confira se Node.js, npm e as dependências estão instalados corretamente. Se algo faltar, me explique o que é e me ajude a instalar.
+1. **Check my environment** — Verify that Node.js, npm and dependencies are installed correctly. If anything is missing, explain what it is and help me install it.
 
-2. **Configurar o provider** — Me ajude a configurar a API key do Anthropic (Claude). Me explique onde pegar a key e como configurar.
+2. **Configure the provider** — Help me configure the Anthropic (Claude) API key. Explain where to get the key and how to configure it.
 
-3. **Ativar o perfil de ferramentas** — Execute `openclaw config set tools.profile full` e me explique por quê isso é obrigatório. Sem isso, você não executa comandos — só responde mensagens. Depois rode `openclaw config validate` pra confirmar que a configuração está válida.
+3. **Activate the tools profile** — Run `openclaw config set tools.profile full` and explain why this is mandatory. Without it, you don't execute commands — you only respond to messages. Then run `openclaw config validate` to confirm the configuration is valid.
 
-4. **Escolher o modelo** — Me explique a diferença entre Sonnet, Opus e Haiku. Me recomende qual usar pra começar (considerando custo x qualidade). Configure a failover chain (Opus → Sonnet → Cooldown).
+4. **Choose the model** — Explain the difference between Sonnet, Opus and Haiku. Recommend which one to start with (considering cost vs quality). Configure the failover chain (Opus → Sonnet → Cooldown).
 
-5. **Conectar ao Telegram** — Me guie passo a passo pra criar um bot no BotFather e conectar ao OpenClaw. Me explique por que Telegram com tópicos é melhor que WhatsApp (sessão única vs múltiplas). Use `openclaw channels login` e `openclaw channels status --probe` pra validar.
+5. **Connect to Telegram** — Guide me step by step to create a bot in BotFather and connect it to OpenClaw. Explain why Telegram with topics is better than WhatsApp (single session vs multiple). Use `openclaw channels login` and `openclaw channels status --probe` to validate.
 
-6. **Primeiro teste** — Depois de tudo configurado, rode um health check e confirme que tá tudo funcionando. Inclua um teste de execução de comando (ex: `echo "SHELL_TEST_OK"`) pra provar que o tools.profile full está ativo.
+6. **First test** — After everything is configured, run a health check and confirm everything is working. Include a command execution test (e.g.: `echo "SHELL_TEST_OK"`) to prove that tools.profile full is active.
 
-7. **Otimização inicial de tokens** — Configure a session initialization rule pra não carregar 50KB de histórico a cada mensagem:
-   - Carregar APENAS: SOUL.md, USER.md, IDENTITY.md, memory/YYYY-MM-DD.md
-   - NÃO carregar automaticamente: MEMORY.md, histórico de sessões, outputs anteriores
-   - Usar `memory_search()` sob demanda quando precisar de contexto anterior
+7. **Initial token optimization** — Configure the session initialization rule to avoid loading 50KB of history with every message:
+   - Load ONLY: SOUL.md, USER.md, IDENTITY.md, memory/YYYY-MM-DD.md
+   - Do NOT load automatically: MEMORY.md, session history, previous outputs
+   - Use `memory_search()` on demand when prior context is needed
 
-**Regras:**
-- Me explique o PORQUÊ de cada passo antes de executar
-- Se algo der erro, me explique o que aconteceu e como resolver
-- No final, me diga quanto isso vai custar por mês aproximadamente
-- Referência de custos: antes da otimização ~$2-3/dia, depois ~$0.10/dia
+**Rules:**
+- Explain the WHY behind each step before executing
+- If something goes wrong, explain what happened and how to fix it
+- At the end, tell me approximately how much this will cost per month
+- Cost reference: before optimization ~$2-3/day, after ~$0.10/day
 
-8. **Timezone (OBRIGATÓRIO se vai usar crons)** — Configure o timezone do gateway para que seus crons disparem no horário correto do Brasil. Sem isso, um cron configurado "às 9h" vai disparar às 12h (UTC):
+8. **Timezone (REQUIRED if you'll use crons)** — Configure the gateway timezone so your crons fire at the correct time for Brazil. Without this, a cron configured for "9am" will fire at 12pm (UTC):
 
 ```bash
 sudo systemctl edit openclaw
-# Adicione dentro de [Service]:
+# Add inside [Service]:
 # Environment="OPENCLAW_TZ=America/Sao_Paulo"
 sudo systemctl daemon-reload && sudo systemctl restart openclaw
 ```
 
-**Comandos úteis pra este módulo:**
+**Useful commands for this module:**
 ```
 openclaw gateway start --mode local
 openclaw config set tools.profile full
@@ -51,4 +51,4 @@ openclaw models list --all
 openclaw models set <model>
 ```
 
-Vamos começar?
+Shall we begin?

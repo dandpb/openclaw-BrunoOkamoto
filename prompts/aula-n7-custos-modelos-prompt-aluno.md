@@ -1,151 +1,151 @@
-# Prompt do Aluno — Aula N-7: Quanto Custa e Qual Modelo Usar
+# Student Prompt — Lesson N-7: How Much It Costs and Which Model to Use
 
-> **Como usar:** Copie o prompt abaixo e cole no chat do seu agente OpenClaw após assistir a aula.
-
----
-
-## 📋 Prompt Principal
-
-```
-Olá! Acabei de assistir a aula N-7 do curso OpenClaw sobre custos e modelos de IA.
-
-Preciso da sua ajuda para:
-1. Verificar quais modelos estão configurados no meu setup
-2. Otimizar a configuração para economizar sem perder qualidade
-3. Entender quanto estou gastando (ou vou gastar)
-
-Vamos começar com um diagnóstico da minha configuração de modelos?
-```
+> **How to use:** Copy the prompt below and paste it in the chat with your OpenClaw agent after watching the lesson.
 
 ---
 
-## 🧪 Exercício 1 — Diagnóstico de Modelos Configurados
+## 📋 Main Prompt
 
 ```
-Por favor, verifique minha configuração atual de modelos:
+Hello! I just watched lesson N-7 of the OpenClaw course on AI costs and models.
 
-1. Execute `openclaw config get model` — qual é o modelo padrão?
-2. Execute `openclaw config get heartbeat.model` — tem modelo específico para heartbeat?
-3. Me diga se estou usando o modelo certo ou se devo otimizar
-4. Calcule o custo estimado por mensagem com o modelo atual
+I need your help to:
+1. Check which models are configured in my setup
+2. Optimize the configuration to save without losing quality
+3. Understand how much I'm spending (or will spend)
 
-Baseado na tabela de preços:
-- Haiku 4.5: $0.80/$4 por M tokens
-- Sonnet 4.5: $3/$15 por M tokens  
-- Opus 4: $15/$75 por M tokens
-- Gemini 3.1 Pro: $1.25/$5 por M tokens
+Let's start with a diagnosis of my model configuration?
 ```
 
 ---
 
-## 💰 Exercício 2 — Calcular Gasto Mensal Estimado
+## 🧪 Exercise 1 — Diagnosis of Configured Models
 
 ```
-Quero estimar quanto vou gastar por mês. Me ajude com esse cálculo:
+Please check my current model configuration:
 
-Meu uso estimado:
-- Heartbeats: [X] vezes por hora, [Y] horas por dia
-- Mensagens diretas: [Z] por dia
-- Análises longas: [W] por semana
+1. Run `openclaw config get model` — what is the default model?
+2. Run `openclaw config get heartbeat.model` — is there a specific model for heartbeat?
+3. Tell me if I'm using the right model or if I should optimize
+4. Calculate the estimated cost per message with the current model
 
-Para cada tipo de uso:
-1. Qual modelo deveria usar?
-2. Qual o custo estimado por execução?
-3. Qual o custo mensal total desse item?
-
-Ao final, some tudo e me dê um total mensal estimado.
-(Preencha os valores acima com o seu uso real ou estimado)
+Based on the pricing table:
+- Haiku 4.5: $0.80/$4 per M tokens
+- Sonnet 4.5: $3/$15 per M tokens
+- Opus 4: $15/$75 per M tokens
+- Gemini 3.1 Pro: $1.25/$5 per M tokens
 ```
 
 ---
 
-## ⚙️ Exercício 3 — Configurar Modelos Otimizados
+## 💰 Exercise 2 — Calculate Estimated Monthly Spend
 
 ```
-Quero configurar modelos diferentes para diferentes situações no meu OpenClaw.
+I want to estimate how much I'll spend per month. Help me with this calculation:
 
-Por favor, me guie pelos comandos para:
-1. Configurar Claude Sonnet 4.5 como modelo padrão para interações
-2. Configurar Claude Haiku 4.5 para heartbeats (econômico)
-3. Verificar que as configurações ficaram corretas
-4. Me dizer o impacto estimado no custo mensal dessa mudança
+My estimated usage:
+- Heartbeats: [X] times per hour, [Y] hours per day
+- Direct messages: [Z] per day
+- Long analyses: [W] per week
 
-Execute os comandos e confirme cada passo.
-```
+For each type of usage:
+1. Which model should I use?
+2. What is the estimated cost per execution?
+3. What is the total monthly cost for that item?
 
----
-
-## 🛡️ Exercício 4 — Configurar Limites de Gasto
-
-```
-Preciso configurar proteções para não ter surpresas na fatura.
-
-Por favor:
-1. Me diga como configurar o limite de gasto mensal no console.anthropic.com (instruções passo a passo)
-2. Configure o rateLimit no OpenClaw: `openclaw config set rateLimit.requestsPerHour 100`
-3. Me ensine a verificar o gasto atual com `openclaw usage report`
-4. Sugira um limite de gasto adequado para o meu perfil de uso
-
-Queremos garantir que se algo der errado (loop infinito, bug em skill), o dano financeiro seja limitado.
+At the end, add everything up and give me an estimated monthly total.
+(Fill in the values above with your real or estimated usage)
 ```
 
 ---
 
-## 📊 Exercício 5 — Comparação Real de Custo: Haiku vs Sonnet vs Opus
+## ⚙️ Exercise 3 — Configure Optimized Models
 
 ```
-Quero ver na prática a diferença de custo entre os modelos.
+I want to configure different models for different situations in my OpenClaw.
 
-Por favor, me faça uma demonstração:
-1. Crie uma tarefa de heartbeat simples (ex: "verifique se há emails urgentes e responda em 1 linha")
-2. Estime o custo dessa tarefa em cada modelo: Haiku, Sonnet e Opus
-3. Calcule quanto isso significa em 30 dias com 2 heartbeats por hora
+Please guide me through the commands to:
+1. Configure Claude Sonnet 4.5 as the default model for interactions
+2. Configure Claude Haiku 4.5 for heartbeats (economical)
+3. Verify the configurations are set correctly
+4. Tell me the estimated impact on monthly cost from this change
 
-Mostre o cálculo detalhado para eu entender por que Haiku é tão importante para tarefas repetitivas.
-```
-
----
-
-## 🔍 Exercício 6 — Análise do Uso Real (se já estiver usando há algum tempo)
-
-```
-Já estou usando o OpenClaw há algum tempo e quero analisar meu uso real.
-
-Por favor:
-1. Execute `openclaw usage report` e me mostre o resultado
-2. Identifique qual modelo estou usando mais
-3. Calcule se estaria gastando menos com uma configuração mais otimizada
-4. Sugira ajustes na minha configuração baseado no uso real
-
-Se `openclaw usage report` não estiver disponível, me explique como ver o uso no console da Anthropic/OpenAI.
+Execute the commands and confirm each step.
 ```
 
 ---
 
-## ✅ Verificação Final de Aprendizado
+## 🛡️ Exercise 4 — Configure Spending Limits
 
 ```
-Para encerrar os exercícios da aula N-7, me faça um quiz rápido com 5 perguntas sobre:
-- Quando usar Haiku vs Sonnet vs Opus
-- Como o preço por token funciona na prática
-- Como configurar modelos diferentes por função
-- Como se proteger de gastos inesperados
-- Diferença entre assinatura e API Key
+I need to configure protections to avoid surprises on my bill.
 
-Após eu responder, me dê feedback sobre o que acertei e o que preciso revisar.
+Please:
+1. Tell me how to configure the monthly spending limit at console.anthropic.com (step-by-step instructions)
+2. Configure the rateLimit in OpenClaw: `openclaw config set rateLimit.requestsPerHour 100`
+3. Teach me how to check current spending with `openclaw usage report`
+4. Suggest an appropriate spending limit for my usage profile
+
+We want to ensure that if something goes wrong (infinite loop, skill bug), the financial damage is limited.
 ```
 
 ---
 
-## 💡 Dica Rápida
-
-> Se quiser uma análise rápida do seu setup atual:
+## 📊 Exercise 5 — Real Cost Comparison: Haiku vs Sonnet vs Opus
 
 ```
-Faça um diagnóstico completo do meu setup de custos:
-1. Modelos configurados atualmente
-2. Frequência de heartbeats ativos
-3. Custo mensal estimado com a configuração atual
-4. Sugestão de otimização se aplicável
-5. Alerta se alguma configuração pode causar custo excessivo
+I want to see in practice the cost difference between models.
+
+Please give me a demonstration:
+1. Create a simple heartbeat task (e.g.: "check if there are urgent emails and respond in 1 line")
+2. Estimate the cost of this task in each model: Haiku, Sonnet, and Opus
+3. Calculate what this means over 30 days with 2 heartbeats per hour
+
+Show the detailed calculation so I understand why Haiku is so important for repetitive tasks.
+```
+
+---
+
+## 🔍 Exercise 6 — Real Usage Analysis (if you've been using it for a while)
+
+```
+I've been using OpenClaw for some time and I want to analyze my real usage.
+
+Please:
+1. Run `openclaw usage report` and show me the result
+2. Identify which model I'm using the most
+3. Calculate whether I would be spending less with a more optimized configuration
+4. Suggest adjustments to my configuration based on real usage
+
+If `openclaw usage report` is not available, explain how to see usage in the Anthropic/OpenAI console.
+```
+
+---
+
+## ✅ Final Learning Check
+
+```
+To close the exercises for lesson N-7, give me a quick quiz with 5 questions about:
+- When to use Haiku vs Sonnet vs Opus
+- How pricing per token works in practice
+- How to configure different models per function
+- How to protect yourself from unexpected spending
+- Difference between subscription and API Key
+
+After I answer, give me feedback on what I got right and what I need to review.
+```
+
+---
+
+## 💡 Quick Tip
+
+> If you want a quick analysis of your current setup:
+
+```
+Do a complete diagnosis of my cost setup:
+1. Currently configured models
+2. Frequency of active heartbeats
+3. Estimated monthly cost with current configuration
+4. Optimization suggestion if applicable
+5. Alert if any configuration may cause excessive cost
 ```

@@ -1,37 +1,37 @@
-# 📄 Use Case: Reports Profissionais em PDF
+# 📄 Use Case: Professional PDF Reports
 
-> Gere reports com design moderno, gráficos e dados reais.
+> Generate reports with modern design, charts, and real data.
 
-## O que faz
+## What it does
 
-Transforma dados brutos em PDFs profissionais com:
-- Design moderno (funis, gráficos, tabelas)
-- Branding personalizado (cores, logo)
-- Análise com insights e recomendações
-- Formato executivo (pronto pra apresentar)
+Transforms raw data into professional PDFs with:
+- Modern design (funnels, charts, tables)
+- Custom branding (colors, logo)
+- Analysis with insights and recommendations
+- Executive format (ready to present)
 
 ## Prompt
 
 ```
-Gere um report profissional em PDF sobre [TEMA].
+Generate a professional PDF report about [TOPIC].
 
-Dados a incluir:
-[COLE OS DADOS OU PEÇA PRA ELE PUXAR DAS INTEGRAÇÕES]
+Data to include:
+[PASTE THE DATA OR ASK IT TO PULL FROM INTEGRATIONS]
 
-Requisitos do report:
-- Design ultra moderno, landscape
-- Use as cores do meu branding: [CORES]
-- Inclua visualizações dos dados (funis, gráficos de barra, tendências)
-- Máximo 5 páginas
-- Formato executivo: cover → dados → análise → ações recomendadas
-- Salve como PDF e me envie
+Report requirements:
+- Ultra modern design, landscape
+- Use my branding colors: [COLORS]
+- Include data visualizations (funnels, bar charts, trends)
+- Maximum 5 pages
+- Executive format: cover → data → analysis → recommended actions
+- Save as PDF and send to me
 
-Estilo de referência: mídia kit profissional, não planilha.
+Reference style: professional media kit, not a spreadsheet.
 ```
 
-## Exemplos de reports
+## Report examples
 
-- Report mensal de gargalos do SaaS (conversão, churn, failed payments)
-- Mídia kit com métricas de redes sociais
-- Análise de concorrentes com comparativo visual
-- Report de performance de conteúdo por plataforma
+- Monthly SaaS bottleneck report (conversion, churn, failed payments)
+- Media kit with social media metrics
+- Competitor analysis with visual comparison
+- Content performance report by platform

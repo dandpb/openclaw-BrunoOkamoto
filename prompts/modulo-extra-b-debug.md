@@ -1,111 +1,111 @@
-# Prompt — Aula Extra B: Debug na VPS com Claude Code
+# Prompt — Extra Lesson B: Debugging on the VPS with Claude Code
 
-> Cole este prompt no chat do seu agente **dentro da VPS** (via `claude` no terminal) depois de assistir a Aula Extra B.
-
----
-
-Acabei de assistir a aula sobre debug na VPS. Agora quero que você me ajude a garantir que meu ambiente está saudável e me ensine a resolver problemas quando aparecerem.
-
-**O que preciso fazer:**
-
-## 1. Health Check completo
-
-Rode um diagnóstico completo do sistema:
-1. Status do gateway (`openclaw gateway status`)
-2. Espaço em disco disponível
-3. Uso de memória RAM
-4. Tamanho dos logs
-5. Tamanho do meu workspace
-6. Conexões ativas (Telegram, etc.)
-7. Última vez que o gateway reiniciou
-
-Me mostre tudo de forma clara e me diga:
-- ✅ O que tá OK
-- ⚠️ O que precisa de atenção
-- 🔴 O que precisa ser corrigido agora
-
-## 2. Limpar o que for necessário
-
-Se tiver algo pra limpar (logs velhos, arquivos temporários, workspace bagunçado):
-1. Me mostre O QUE vai ser limpo e QUANTO espaço vai liberar
-2. Me peça confirmação
-3. Faça a limpeza
-4. Me mostre o antes/depois
-
-**Regras de limpeza:**
-- ❌ NUNCA deletar arquivos do workspace sem minha aprovação explícita
-- ✅ Pode comprimir/arquivar `memory/YYYY-MM-DD.md` com mais de 30 dias
-- ✅ Pode limpar logs com mais de 7 dias
-- ✅ Pode limpar `/tmp`
-
-## 3. Revisar meu workspace
-
-Vá pro meu workspace principal e me diga:
-- Quantos arquivos tenho?
-- Qual o tamanho total?
-- Tem arquivos grandes ou duplicados?
-- Tem arquivos de teste esquecidos?
-- A estrutura tá organizada?
-
-Se encontrar algo estranho, me sugira o que fazer.
-
-## 4. Ensinar comandos úteis
-
-Me ensine 5 comandos que vou usar sempre:
-1. Ver logs do gateway em tempo real
-2. Reiniciar o gateway
-3. Ver espaço em disco
-4. Ver processos rodando
-5. Ir pro meu workspace rapidamente
-
-Pra cada um, me explique:
-- O que o comando faz
-- Quando usar
-- Como interpretar a saída
-
-## 5. Simular 3 problemas comuns
-
-Me explique o que fazer em cada cenário:
-
-**Cenário A:** Agente parou de responder no Telegram
-- Passo 1: ...
-- Passo 2: ...
-- Como saber se resolveu: ...
-
-**Cenário B:** Erro "context window exceeded"
-- O que significa: ...
-- Como resolver: ...
-- Como prevenir: ...
-
-**Cenário C:** VPS ficou sem espaço
-- Como identificar: ...
-- O que limpar primeiro: ...
-- Como evitar no futuro: ...
-
-## 6. Configurar alertas preventivos (se possível)
-
-Me ajude a configurar um sistema que me avise ANTES dos problemas:
-- Se disco passar de 80% cheio
-- Se logs passarem de 1GB
-- Se gateway cair
-- Se contexto de sessão passar de 80% do limite
-
-Se não rolar via OpenClaw nativo, me sugira alternativas (cron job, script simples).
+> Paste this prompt in your agent chat **inside the VPS** (via `claude` in the terminal) after watching Extra Lesson B.
 
 ---
 
-**Ao final, me dê um resumo tipo:**
+I just watched the lesson on VPS debugging. Now I want you to help me ensure my environment is healthy and teach me how to solve problems when they arise.
+
+**What I need to do:**
+
+## 1. Full Health Check
+
+Run a complete system diagnostic:
+1. Gateway status (`openclaw gateway status`)
+2. Available disk space
+3. RAM memory usage
+4. Log size
+5. My workspace size
+6. Active connections (Telegram, etc.)
+7. Last time the gateway restarted
+
+Show me everything clearly and tell me:
+- ✅ What's OK
+- ⚠️ What needs attention
+- 🔴 What needs to be fixed now
+
+## 2. Clean up what's necessary
+
+If there's something to clean up (old logs, temporary files, messy workspace):
+1. Show me WHAT will be cleaned and HOW MUCH space will be freed
+2. Ask for my confirmation
+3. Perform the cleanup
+4. Show me the before/after
+
+**Cleanup rules:**
+- ❌ NEVER delete workspace files without my explicit approval
+- ✅ Can compress/archive `memory/YYYY-MM-DD.md` files older than 30 days
+- ✅ Can clean logs older than 7 days
+- ✅ Can clean `/tmp`
+
+## 3. Review my workspace
+
+Go to my main workspace and tell me:
+- How many files do I have?
+- What is the total size?
+- Are there any large or duplicate files?
+- Are there any forgotten test files?
+- Is the structure organized?
+
+If you find anything unusual, suggest what to do.
+
+## 4. Teach useful commands
+
+Teach me 5 commands I'll always use:
+1. View gateway logs in real time
+2. Restart the gateway
+3. View disk space
+4. View running processes
+5. Navigate to my workspace quickly
+
+For each one, explain:
+- What the command does
+- When to use it
+- How to interpret the output
+
+## 5. Simulate 3 common problems
+
+Explain what to do in each scenario:
+
+**Scenario A:** Agent stopped responding on Telegram
+- Step 1: ...
+- Step 2: ...
+- How to know if resolved: ...
+
+**Scenario B:** "context window exceeded" error
+- What it means: ...
+- How to resolve: ...
+- How to prevent: ...
+
+**Scenario C:** VPS ran out of disk space
+- How to identify: ...
+- What to clean first: ...
+- How to avoid in the future: ...
+
+## 6. Configure preventive alerts (if possible)
+
+Help me set up a system that warns me BEFORE problems occur:
+- If disk passes 80% full
+- If logs exceed 1GB
+- If gateway goes down
+- If session context exceeds 80% of the limit
+
+If it's not possible natively through OpenClaw, suggest alternatives (cron job, simple script).
+
+---
+
+**At the end, give me a summary like:**
 
 ```
-✅ Sistema saudável
-📊 Disco: XX% usado (XGB livres)
-💾 Memória: XX% usada
-📝 Logs: XMB (últimos 7 dias)
+✅ System healthy
+📊 Disk: XX% used (XGB free)
+💾 Memory: XX% used
+📝 Logs: XMB (last 7 days)
 📁 Workspace: XMB
-🔗 Telegram: conectado
-⏱️ Uptime: X dias
+🔗 Telegram: connected
+⏱️ Uptime: X days
 
-Próxima manutenção recomendada: [data]
+Next recommended maintenance: [date]
 ```
 
-Vamos começar pelo health check. Me mostre tudo.
+Let's start with the health check. Show me everything.

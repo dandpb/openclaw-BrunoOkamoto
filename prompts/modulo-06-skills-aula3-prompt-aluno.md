@@ -1,104 +1,104 @@
-# Prompt do Aluno — M06 Aula 3: Crie suas skills com o /criar-skill
+# Student Prompt — M06 Lesson 3: Create your skills with /criar-skill
 
-> Use este prompt no seu agente depois de assistir a aula bônus.
+> Use this prompt with your agent after watching the bonus lesson.
 
 ---
 
-## 📦 Passo 1 — Instalar o /criar-skill
+## 📦 Step 1 — Install /criar-skill
 
-A skill está disponível no GitHub. Instale antes de usar:
+The skill is available on GitHub. Install it before using:
 
 ```bash
-# No terminal do seu workspace
+# In your workspace terminal
 cd ~/seu-workspace/skills/operations
 
-# Clone a skill
+# Clone the skill
 git clone https://github.com/okjpg/skill-creator criar-skill
 
-# Pronto. O agente já consegue usar.
+# Done. The agent can now use it.
 ```
 
-Ou peça pro agente instalar:
+Or ask the agent to install it:
 ```
-Instala a skill do /criar-skill no meu workspace. 
-Repositório: https://github.com/okjpg/skill-creator
-Coloca em skills/operations/criar-skill/
+Install the /criar-skill in my workspace.
+Repository: https://github.com/okjpg/skill-creator
+Place it in skills/operations/criar-skill/
 ```
 
 ---
 
-## 🎯 O que você vai praticar
+## 🎯 What you'll practice
 
-Usar o `/criar-skill` nos dois modos: capturar um processo que já resolveram juntos, e criar uma skill nova a partir de uma ideia que você ainda não sabe estruturar.
+Using `/criar-skill` in both modes: capturing a process you've already solved together, and creating a new skill from an idea you don't yet know how to structure.
 
 ---
 
-## Caminho A — Você acabou de resolver algo. Não deixa sumir.
+## Path A — You just solved something. Don't let it disappear.
 
-Use logo depois de uma conversa onde vocês resolveram um problema juntos:
+Use it right after a conversation where you solved a problem together:
 
 ```
 /criar-skill
 ```
 
-Só isso. O agente lê o histórico, extrai o processo e propõe a skill completa.
+Just that. The agent reads the history, extracts the process and proposes the complete skill.
 
-**Quando usar:** Sempre que uma conversa levou mais de 10 minutos pra resolver algo. Se foi trabalhoso uma vez, vai ser de novo — a menos que vire skill.
-
----
-
-## Caminho B — Você tem uma ideia. Quer estruturar.
-
-```
-/criar-skill quero [descreva sua ideia em 1 frase]
-```
-
-**Exemplos reais para testar:**
-
-```
-/criar-skill quero gerar um resumo semanal das minhas métricas mais importantes
-```
-
-```
-/criar-skill quero criar briefings de reunião antes de cada call importante
-```
-
-```
-/criar-skill quero responder comentários do Instagram mantendo meu tom de voz
-```
-
-```
-/criar-skill quero analisar concorrentes e me dar os 3 pontos principais
-```
-
-O agente vai fazer perguntas pra entender o processo — responda naturalmente. No final, ele propõe a skill completa e você aprova o deploy.
+**When to use:** Whenever a conversation took more than 10 minutes to solve something. If it was hard once, it will be again — unless it becomes a skill.
 
 ---
 
-## Desafio da aula
+## Path B — You have an idea. You want to structure it.
 
-Crie **pelo menos 2 skills** esta semana:
+```
+/criar-skill I want to [describe your idea in 1 sentence]
+```
 
-1. **Uma do Caminho A** — Pense num problema que você já resolveu com o agente recentemente. Recrie a conversa e use `/criar-skill` no final.
+**Real examples to test:**
 
-2. **Uma do Caminho B** — Pense num processo que você faz manualmente hoje e gostaria que o agente assumisse. Use `/criar-skill quero [sua ideia]`.
+```
+/criar-skill I want to generate a weekly summary of my most important metrics
+```
+
+```
+/criar-skill I want to create meeting briefs before each important call
+```
+
+```
+/criar-skill I want to respond to Instagram comments while keeping my tone of voice
+```
+
+```
+/criar-skill I want to analyze competitors and give me the 3 main points
+```
+
+The agent will ask questions to understand the process — answer naturally. At the end, it proposes the complete skill and you approve the deploy.
 
 ---
 
-## Pergunta para cada skill que você criar
+## Lesson challenge
 
-Antes de aprovar o deploy, responda:
+Create **at least 2 skills** this week:
 
-- O trigger faz sentido? (Consigo acionar naturalmente?)
-- O output é o que eu esperava?
-- Tem algum detalhe importante que ficou faltando?
+1. **One from Path A** — Think of a problem you've already solved with the agent recently. Recreate the conversation and use `/criar-skill` at the end.
 
-Se sim para os três — aprova. Se não, pede pro agente ajustar antes de salvar.
+2. **One from Path B** — Think of a process you do manually today that you'd like the agent to take over. Use `/criar-skill I want to [your idea]`.
 
 ---
 
-## Lembre-se
+## Question for each skill you create
 
-> "Qualquer processo que você repete mais de 2 vezes é candidato a skill."
+Before approving the deploy, answer:
 
-Toda vez que você se pegar explicando algo pro agente de novo — é sinal de que falta uma skill.
+- Does the trigger make sense? (Can I activate it naturally?)
+- Is the output what I expected?
+- Is there any important detail that was left out?
+
+If yes to all three — approve. If not, ask the agent to adjust before saving.
+
+---
+
+## Remember
+
+> "Any process you repeat more than twice is a candidate for a skill."
+
+Every time you find yourself explaining something to the agent again — that's a sign a skill is missing.

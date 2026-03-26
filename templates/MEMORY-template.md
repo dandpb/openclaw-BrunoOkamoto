@@ -1,40 +1,40 @@
 # MEMORY.md — Template
 
-> Este arquivo é um índice. Conteúdo detalhado vive nos topic files.
+> This file is an index. Detailed content lives in the topic files.
 
 ## 📂 Topic Files
 
-| Arquivo | O que contém |
-|---------|-------------|
-| `memory/projects.md` | Projetos ativos e concluídos |
-| `memory/decisions.md` | Decisões permanentes com contexto |
-| `memory/lessons.md` | Lições aprendidas, erros, padrões |
-| `memory/people.md` | Equipe, parceiros, contatos |
-| `memory/pending.md` | Aguardando input |
-| `memory/YYYY-MM-DD.md` | Notas diárias (raw capture) |
+| File | What it contains |
+|------|-----------------|
+| `memory/projects.md` | Active and completed projects |
+| `memory/decisions.md` | Permanent decisions with context |
+| `memory/lessons.md` | Lessons learned, mistakes, patterns |
+| `memory/people.md` | Team, partners, contacts |
+| `memory/pending.md` | Awaiting input |
+| `memory/YYYY-MM-DD.md` | Daily notes (raw capture) |
 
-## 🔄 Ciclo de Memória
+## 🔄 Memory Cycle
 
 ```
-Sessão (conversa) → memory/YYYY-MM-DD.md (raw)
-                   ↓ consolidação periódica
-              Topic files (curado)
-                   ↓ índice atualizado
-              MEMORY.md (sumário)
+Session (conversation) → memory/YYYY-MM-DD.md (raw)
+                        ↓ periodic consolidation
+                   Topic files (curated)
+                        ↓ updated index
+                   MEMORY.md (summary)
 ```
 
-## 📸 Estado Atual
+## 📸 Current State
 
-[PREENCHA COM O ESTADO ATUAL DOS SEUS PROJETOS E PRIORIDADES]
+[FILL WITH THE CURRENT STATE OF YOUR PROJECTS AND PRIORITIES]
 
-### Projetos Ativos
-- **[PROJETO 1]** — [status]
-- **[PROJETO 2]** — [status]
+### Active Projects
+- **[PROJECT 1]** — [status]
+- **[PROJECT 2]** — [status]
 
-### Pendências
-- [PENDÊNCIA 1]
-- [PENDÊNCIA 2]
+### Pending Items
+- [PENDING ITEM 1]
+- [PENDING ITEM 2]
 
 ---
 
-*Última atualização: [DATA]*
+*Last updated: [DATE]*

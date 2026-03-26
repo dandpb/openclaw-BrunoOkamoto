@@ -1,57 +1,57 @@
 # 🎬 Use Case: Content Waterfall
 
-> Um vídeo vira 10+ peças de conteúdo em múltiplas plataformas.
+> One video becomes 10+ pieces of content across multiple platforms.
 
-## O que faz
+## What it does
 
-Pega um vídeo gravado (YouTube, Tella, Loom) e automaticamente gera:
-- Post LinkedIn (formato longo, storytelling)
-- Thread X/Twitter (5-8 tweets)
-- Carrossel Instagram (slides com design)
-- Newsletter (formato editorial)
-- Reels/Shorts (roteiro de 60s)
-- Tweets avulsos (insights isolados)
+Takes a recorded video (YouTube, Tella, Loom) and automatically generates:
+- LinkedIn post (long format, storytelling)
+- X/Twitter thread (5-8 tweets)
+- Instagram carousel (slides with design)
+- Newsletter (editorial format)
+- Reels/Shorts (60s script)
+- Standalone tweets (isolated insights)
 
-## Como a Amora faz isso
+## How Amora does this
 
-1. Transcreve o vídeo (Whisper API ou Apify)
-2. Extrai os insights principais
-3. Adapta pra cada plataforma (tom, formato, limitações)
-4. Gera todas as peças
-5. Agenda publicação (Late API ou manual)
+1. Transcribes the video (Whisper API or Apify)
+2. Extracts the main insights
+3. Adapts for each platform (tone, format, limitations)
+4. Generates all pieces
+5. Schedules publication (Late API or manual)
 
 ## Prompt
 
 ```
-Acabei de gravar um vídeo sobre [TEMA]. Aqui está a transcrição:
+I just recorded a video about [TOPIC]. Here is the transcript:
 
-[COLE A TRANSCRIÇÃO OU LINK DO VÍDEO]
+[PASTE THE TRANSCRIPT OR VIDEO LINK]
 
-Quero que você aplique o Content Waterfall:
+I want you to apply the Content Waterfall:
 
-1. Extraia os 5-7 insights principais do vídeo
-2. Gere as seguintes peças de conteúdo:
-   - 1 post LinkedIn (formato storytelling, 1200-1500 caracteres, gancho forte na primeira linha)
-   - 1 thread X/Twitter (5-8 tweets, primeiro tweet é o gancho)
-   - 1 roteiro de Reel/Short (60 segundos, formato: hook + conteúdo + CTA)
-   - 1 bloco de newsletter (formato editorial, 300-500 palavras)
-   - 3 tweets avulsos (insights isolados, cada um independente)
+1. Extract the 5-7 main insights from the video
+2. Generate the following content pieces:
+   - 1 LinkedIn post (storytelling format, 1200-1500 characters, strong hook on the first line)
+   - 1 X/Twitter thread (5-8 tweets, first tweet is the hook)
+   - 1 Reel/Short script (60 seconds, format: hook + content + CTA)
+   - 1 newsletter block (editorial format, 300-500 words)
+   - 3 standalone tweets (isolated insights, each one independent)
 
-Regras:
-- Use MEU tom de voz (consulte USER.md)
-- Cada plataforma tem formato diferente — adapte
-- LinkedIn: profissional mas humano, sem hashtags excessivas
-- Twitter: direto, provocativo, opinião forte
-- Reel: visual, dinâmico, gancho nos primeiros 3 segundos
-- Newsletter: mais profundo, contexto, bastidores
+Rules:
+- Use MY tone of voice (consult USER.md)
+- Each platform has a different format — adapt accordingly
+- LinkedIn: professional but human, no excessive hashtags
+- Twitter: direct, provocative, strong opinion
+- Reel: visual, dynamic, hook in the first 3 seconds
+- Newsletter: deeper, with context and behind-the-scenes
 
-Me mostre todas as peças e pergunte se quer ajustar algo antes de finalizar.
+Show me all the pieces and ask if I want to adjust anything before finalizing.
 ```
 
-## Resultado esperado
+## Expected result
 
-De 1 vídeo de 20 minutos → 7+ peças prontas pra publicar em ~10 minutos.
+From 1 20-minute video → 7+ pieces ready to publish in ~10 minutes.
 
-## Dica
+## Tip
 
-Configure um cron pra rodar o waterfall automaticamente toda vez que um novo vídeo é detectado no Tella/YouTube.
+Set up a cron to run the waterfall automatically every time a new video is detected on Tella/YouTube.

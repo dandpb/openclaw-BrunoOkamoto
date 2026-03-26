@@ -1,60 +1,60 @@
-# Prompt do Aluno: Tópicos no Telegram + Arquitetura de Agentes
+# Student Prompt: Telegram Topics + Agent Architecture
 
-**Cole este prompt no chat com sua Amora:**
-
----
-
-Amora, preciso da sua ajuda para configurar tópicos no Telegram e entender a diferença entre ter um agente MAIN compartilhado vs agentes isolados.
-
-**Tarefas:**
-
-1. **Me guiar na criação de tópicos no Telegram:**
-   - Como transformar meu grupo em supergrupo
-   - Como ativar e criar tópicos
-   - Como descobrir o chat ID de cada tópico
-
-2. **Configurar você para responder sem menção em tópicos específicos:**
-   - Mostrar como editar o `config.yaml` pra você responder automaticamente
-   - Explicar o `mode: mention` vs `mode: all`
-   - Testar se funcionou
-
-3. **Me explicar as duas arquiteturas:**
-   - **MAIN compartilhado** — um agente respondendo em múltiplos tópicos
-   - **Agentes isolados** — um agente por tópico
-   - Pros e contras de cada
-   - Quando usar cada uma
-
-4. **Impacto em:**
-   - Workspace (onde ficam os arquivos?)
-   - Memória (MEMORY.md compartilhado ou isolado?)
-   - Crons (heartbeats compartilhados ou isolados?)
-   - SOUL.md, USER.md, TOOLS.md (globais ou por agente?)
-
-5. **Me ajudar a decidir qual arquitetura usar:**
-   - Fazer perguntas sobre meu caso de uso
-   - Recomendar a melhor opção
-   - Mostrar exemplo de config completo
-
-**Contexto sobre mim:**
-- [Descreva aqui: você trabalha sozinho? tem múltiplos clientes? precisa de privacidade entre tópicos? projetos relacionados ou isolados?]
-
-**Exemplo:**
-> "Sou freelancer e tenho 3 clientes. Cada cliente tem um tópico no meu grupo do Telegram. Preciso que dados de um cliente NUNCA apareçam pra outro."
+**Paste this prompt in your chat with your Amora:**
 
 ---
 
-**Leia o guia completo em:**
+Amora, I need your help to set up topics in Telegram and understand the difference between having a shared MAIN agent vs. isolated agents.
+
+**Tasks:**
+
+1. **Guide me through creating topics in Telegram:**
+   - How to convert my group into a supergroup
+   - How to enable and create topics
+   - How to find the chat ID of each topic
+
+2. **Configure you to respond without a mention in specific topics:**
+   - Show how to edit `config.yaml` so you respond automatically
+   - Explain `mode: mention` vs `mode: all`
+   - Test if it worked
+
+3. **Explain the two architectures:**
+   - **Shared MAIN** — one agent responding across multiple topics
+   - **Isolated agents** — one agent per topic
+   - Pros and cons of each
+   - When to use each one
+
+4. **Impact on:**
+   - Workspace (where are the files?)
+   - Memory (shared or isolated MEMORY.md?)
+   - Crons (shared or isolated heartbeats?)
+   - SOUL.md, USER.md, TOOLS.md (global or per agent?)
+
+5. **Help me decide which architecture to use:**
+   - Ask me questions about my use case
+   - Recommend the best option
+   - Show a complete config example
+
+**Context about me:**
+- [Describe here: do you work alone? do you have multiple clients? do you need privacy between topics? related or isolated projects?]
+
+**Example:**
+> "I'm a freelancer with 3 clients. Each client has a topic in my Telegram group. I need data from one client to NEVER appear to another."
+
+---
+
+**Read the complete guide at:**
 `/root/.openclaw/workspace-curso-openclaw/prds/topicos-telegram-arquitetura.md`
 
-**Depois de configurar:**
-- Teste mandando mensagem nos tópicos
-- Verifique se você responde automaticamente (quando `mode: all`)
-- Confirme que cada agente isolado **não vê** o workspace dos outros
-- Ajuste o SOUL.md de cada agente (se isolados)
+**After configuring:**
+- Test by sending messages to the topics
+- Verify that you respond automatically (when `mode: all`)
+- Confirm that each isolated agent **does not see** the other agents' workspaces
+- Adjust the SOUL.md of each agent (if isolated)
 
-**Se algo der errado:**
-- `openclaw logs --tail 100` pra ver erros
-- `openclaw gateway restart` pra aplicar mudanças no config
-- Me chame no privado que te ajudo
+**If something goes wrong:**
+- `openclaw logs --tail 100` to see errors
+- `openclaw gateway restart` to apply config changes
+- Message me in private and I'll help you
 
-Tá pronta pra começar?
+Ready to start?

@@ -1,32 +1,32 @@
-# 🔧 Troubleshooting — FAQ de Problemas Comuns
+# 🔧 Troubleshooting — FAQ for Common Problems
 
-> 35+ lições aprendidas em 13 dias de produção. Se deu erro, a resposta provavelmente tá aqui.
+> 35+ lessons learned in 13 days of production. If you got an error, the answer is probably here.
 
 ---
 
-## 🔴 Críticos (quebra tudo se não resolver)
+## 🔴 Critical (breaks everything if not resolved)
 
-### Meu cron dispara mas não executa nada
-**Sintoma:** Cron mostra `status: "ok"` mas `durationMs` é ~0ms. Nada acontece.
-**Causa:** Usar `systemEvent` + `sessionTarget: main`
-**Solução:**
+### My cron fires but doesn't execute anything
+**Symptom:** Cron shows `status: "ok"` but `durationMs` is ~0ms. Nothing happens.
+**Cause:** Using `systemEvent` + `sessionTarget: main`
+**Solution:**
 ```json
 {
   "sessionTarget": "isolated",
   "payload": {
     "kind": "agentTurn",
-    "message": "sua instrução aqui"
+    "message": "your instruction here"
   }
 }
 ```
-**Regra:** SEMPRE usar `isolated` + `agentTurn` + `announce` pra crons.
+**Rule:** ALWAYS use `isolated` + `agentTurn` + `announce` for crons.
 
 ---
 
-### Token overflow — sessão estourou
-**Sintoma:** Agente para de responder, erros de contexto, respostas cortadas.
-**Causa:** Contexto excedeu o limite sem compactação configurada.
-**Solução:**
+### Token overflow — session overflowed
+**Symptom:** Agent stops responding, context errors, truncated responses.
+**Cause:** Context exceeded the limit without compaction configured.
+**Solution:**
 ```json
 {
   "compaction": { "mode": "default" },
@@ -34,160 +34,160 @@
   "reserveTokensFloor": 30000
 }
 ```
-**Dica:** O `reserveTokensFloor` garante que o agente termina o raciocínio antes de compactar.
+**Tip:** The `reserveTokensFloor` ensures the agent finishes its reasoning before compacting.
 
 ---
 
-### Qualquer pessoa comanda meu bot
-**Sintoma:** Estranhos mandando mensagem pro seu bot e ele respondendo.
-**Causa:** `dmPolicy` configurado como `"open"`.
-**Solução:** Mudar pra `"allowlist"` e adicionar só o seu Telegram ID:
+### Anyone can command my bot
+**Symptom:** Strangers messaging your bot and it responding.
+**Cause:** `dmPolicy` configured as `"open"`.
+**Solution:** Change to `"allowlist"` and add only your Telegram ID:
 ```json
 {
   "dmPolicy": "allowlist",
-  "allowedUsers": ["SEU_TELEGRAM_ID"]
+  "allowedUsers": ["YOUR_TELEGRAM_ID"]
 }
 ```
-**Como descobrir seu ID:** Mande `/start` pro @userinfobot no Telegram.
+**How to find your ID:** Send `/start` to @userinfobot on Telegram.
 
 ---
 
-### Me tranquei fora do SSH
-**Sintoma:** Não consigo acessar o servidor depois de configurar firewall.
-**Causa:** UFW bloqueou a porta SSH antes de liberar.
-**Solução:** Acesse pelo console web do painel da Hostinger (ou sua VPS) e rode:
+### I locked myself out of SSH
+**Symptom:** Can't access the server after configuring the firewall.
+**Cause:** UFW blocked the SSH port before allowing it.
+**Solution:** Access via the web console of your Hostinger panel (or your VPS) and run:
 ```bash
 sudo ufw allow ssh
 sudo ufw allow 22/tcp
 ```
-**Prevenção:** SEMPRE rode `sudo ufw allow ssh` ANTES de `sudo ufw enable`.
+**Prevention:** ALWAYS run `sudo ufw allow ssh` BEFORE `sudo ufw enable`.
 
 ---
 
-## 🟠 Importantes (funciona mas com problemas)
+## 🟠 Important (works but with problems)
 
-### Lembrete/cron não notifica no Telegram
-**Sintoma:** Cron roda mas não aparece mensagem no Telegram.
-**Causa:** `systemEvent` não envia pra canais — é evento interno.
-**Solução:** Usar `agentTurn` + `delivery: { mode: "announce" }`. O agente precisa usar a tool `message` pra enviar.
-
----
-
-### Múltiplos crons falhando no mesmo horário
-**Sintoma:** Alguns crons executam, outros dão timeout ou falham.
-**Causa:** Colisão de horários — muitos crons no mesmo minuto causam rate limit.
-**Solução:** Espaçar crons em pelo menos 15-30 minutos entre si.
+### Reminder/cron doesn't notify on Telegram
+**Symptom:** Cron runs but no message appears on Telegram.
+**Cause:** `systemEvent` doesn't send to channels — it's an internal event.
+**Solution:** Use `agentTurn` + `delivery: { mode: "announce" }`. The agent needs to use the `message` tool to send.
 
 ---
 
-### config.patch matou meus crons
-**Sintoma:** Crons pararam depois de alterar a config.
-**Causa:** `config.patch` reinicia o gateway e mata crons em execução.
-**Solução:** Fazer patches em horários sem crons rodando. Verificar schedule antes de alterar.
+### Multiple crons failing at the same time
+**Symptom:** Some crons execute, others time out or fail.
+**Cause:** Schedule collision — many crons at the same minute cause rate limiting.
+**Solution:** Space crons at least 15-30 minutes apart.
 
 ---
 
-### Cloud IP bloqueado pelo YouTube/Instagram/X
-**Sintoma:** Erros ao tentar acessar YouTube transcripts, scraping de redes sociais.
-**Causa:** IPs de cloud (AWS, Hetzner, DigitalOcean) são bloqueados por plataformas.
-**Solução:** Usar **RapidAPI** como proxy:
-- YouTube Transcripts: Apify actor (~$0.007/vídeo)
+### config.patch killed my crons
+**Symptom:** Crons stopped after changing the config.
+**Cause:** `config.patch` restarts the gateway and kills running crons.
+**Solution:** Apply patches at times when no crons are running. Check schedule before changing.
+
+---
+
+### Cloud IP blocked by YouTube/Instagram/X
+**Symptom:** Errors when trying to access YouTube transcripts, social media scraping.
+**Cause:** Cloud IPs (AWS, Hetzner, DigitalOcean) are blocked by platforms.
+**Solution:** Use **RapidAPI** as a proxy:
+- YouTube Transcripts: Apify actor (~$0.007/video)
 - Instagram: RapidAPI Instagram Statistics
 - X/Twitter: RapidAPI API45
-- Free tiers generosos na maioria
+- Generous free tiers on most
 
 ---
 
-### yt-dlp não funciona na VPS
-**Sintoma:** Erro de bot detection ao baixar vídeos.
-**Causa:** YouTube bloqueia downloads de cloud IPs.
-**Solução:** Usar Tella.tv pra gravar (sync automático) ou Apify pra transcrições.
+### yt-dlp doesn't work on VPS
+**Symptom:** Bot detection error when downloading videos.
+**Cause:** YouTube blocks downloads from cloud IPs.
+**Solution:** Use Tella.tv to record (automatic sync) or Apify for transcriptions.
 
 ---
 
-### Agente carregando 50KB de histórico toda sessão
-**Sintoma:** Tokens queimando rápido, respostas lentas, custo alto.
-**Causa:** Session initialization sem regra de carregamento.
-**Solução:** Configurar session initialization rule:
-- Carregar APENAS: SOUL.md, USER.md, IDENTITY.md, memory/YYYY-MM-DD.md
-- Usar `memory_search()` sob demanda pro resto
-- Reduz de 50KB → 8KB por sessão
+### Agent loading 50KB of history every session
+**Symptom:** Tokens burning fast, slow responses, high cost.
+**Cause:** Session initialization without a loading rule.
+**Solution:** Configure session initialization rule:
+- Load ONLY: SOUL.md, USER.md, IDENTITY.md, memory/YYYY-MM-DD.md
+- Use `memory_search()` on demand for the rest
+- Reduces from 50KB → 8KB per session
 
 ---
 
-## 🟡 Moderados (inconvenientes)
+## 🟡 Moderate (inconveniences)
 
-### systemd override sobrescreve .env
-**Sintoma:** Troquei a API key no .env mas o agente usa a antiga.
-**Causa:** O override do systemd tem precedência sobre .env.
-**Solução:** Atualizar AMBOS: `.env` E `systemctl edit openclaw` (override).
-
----
-
-### Brave Search intermitente
-**Sintoma:** Buscas falham às vezes.
-**Causa:** API do Brave tem instabilidade ocasional.
-**Solução:** Ter fallback com `web_fetch` direto na URL.
+### systemd override overwrites .env
+**Symptom:** I changed the API key in .env but the agent uses the old one.
+**Cause:** The systemd override takes precedence over .env.
+**Solution:** Update BOTH: `.env` AND `systemctl edit openclaw` (override).
 
 ---
 
-### Sub-agent retorna histórico vazio
-**Sintoma:** Spawn de sub-agente não traz resultado.
-**Causa:** Sub-agents rodam em sandbox isolado — não acessam localhost.
-**Solução:** Ter fallback manual. QA de sub-agents deve rodar na main session.
+### Brave Search intermittent
+**Symptom:** Searches fail sometimes.
+**Cause:** Brave API has occasional instability.
+**Solution:** Have a fallback with `web_fetch` directly to the URL.
 
 ---
 
-### Notion API só retorna parte dos dados
-**Sintoma:** Listagem de pages/databases incompleta.
-**Causa:** Notion API usa paginação — sem paginar, retorna só a primeira página.
-**Solução:** Sempre implementar paginação (`has_more` + `start_cursor`).
+### Sub-agent returns empty history
+**Symptom:** Sub-agent spawn brings no result.
+**Cause:** Sub-agents run in isolated sandbox — they don't access localhost.
+**Solution:** Have a manual fallback. Sub-agent QA should run in the main session.
 
 ---
 
-### Agente esquece de extrair lições antes de compactar
-**Sintoma:** Após compactação, informações importantes sumiram.
-**Causa:** Mesmo com regra "inviolável", o agente às vezes esquece.
-**Solução:**
-1. Reforçar no AGENTS.md como regra inviolável
-2. Configurar consolidação periódica (a cada 15 dias) que revisa notas diárias
-3. Essa consolidação é o safety net — pega o que escapou
+### Notion API only returns part of the data
+**Symptom:** Pages/databases listing is incomplete.
+**Cause:** Notion API uses pagination — without paginating, it only returns the first page.
+**Solution:** Always implement pagination (`has_more` + `start_cursor`).
 
 ---
 
-### trash-cli não encontrado
-**Sintoma:** Erro `trash: command not found`.
-**Causa:** Não vem instalado por padrão no Ubuntu.
-**Solução:** `sudo apt install trash-cli`
+### Agent forgets to extract lessons before compacting
+**Symptom:** After compaction, important information is gone.
+**Cause:** Even with an "inviolable" rule, the agent sometimes forgets.
+**Solution:**
+1. Reinforce in AGENTS.md as an inviolable rule
+2. Configure periodic consolidation (every 15 days) that reviews daily notes
+3. This consolidation is the safety net — catches what slipped through
 
 ---
 
-## 💡 Dicas de Produção
+### trash-cli not found
+**Symptom:** Error `trash: command not found`.
+**Cause:** Not installed by default on Ubuntu.
+**Solution:** `sudo apt install trash-cli`
 
-### Economia de tokens
-- **Heartbeat:** Haiku (~$0.005) ou Ollama local (grátis)
-- **Crons de execução:** Sonnet (~90% economia vs Opus)
-- **Interação:** Opus (quando qualidade importa)
-- **Session initialization:** 8KB startup vs 50KB (~80% economia)
+---
 
-### Segurança
-- Credenciais SEMPRE no 1Password — zero hardcode
-- Rotação trimestral de API keys
-- Audit de segurança semanal (cron)
+## 💡 Production Tips
+
+### Token savings
+- **Heartbeat:** Haiku (~$0.005) or local Ollama (free)
+- **Execution crons:** Sonnet (~90% savings vs Opus)
+- **Interaction:** Opus (when quality matters)
+- **Session initialization:** 8KB startup vs 50KB (~80% savings)
+
+### Security
+- Credentials ALWAYS in 1Password — zero hardcoding
+- Quarterly API key rotation
+- Weekly security audit (cron)
 - `openclaw security-audit` + `openclaw doctor fix`
-- Portas de app: `127.0.0.1` + Cloudflare Tunnel
+- App ports: `127.0.0.1` + Cloudflare Tunnel
 
-### Memória
-- MEMORY.md fica grande? Quebre em topic files
-- Lições estratégicas = permanentes, táticas = expiram em 30 dias
-- Feedback loops em JSON: agente consulta antes de repetir erros
+### Memory
+- MEMORY.md getting too large? Break it into topic files
+- Strategic lessons = permanent, tactical = expire in 30 days
+- Feedback loops in JSON: agent consults before repeating mistakes
 
-### Multi-agentes
-- Todo agente novo começa L1 (Observer) — sem confiança automática
-- Hub model > Mesh model (coordenação central)
-- Agentes que não precisam de Opus não devem usar Opus
-- Sub-agent travou? → retry 2x → se falhar → avisar humano (NUNCA limbo silencioso)
+### Multi-agents
+- Every new agent starts L1 (Observer) — no automatic trust
+- Hub model > Mesh model (central coordination)
+- Agents that don't need Opus should not use Opus
+- Sub-agent stalled? → retry 2x → if it fails → notify human (NEVER silent limbo)
 
 ---
 
-*Baseado em 13 dias de produção real com a Amora 🍇*
+*Based on 13 days of real production with Amora 🍇*

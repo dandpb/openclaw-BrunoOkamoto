@@ -1,14 +1,14 @@
-# Decisões Permanentes
+# Permanent Decisions
 
-> Decisões que o agente deve respeitar SEMPRE.
-> Formato: O que decidiu + Por que + Data
+> Decisions the agent must ALWAYS respect.
+> Format: What was decided + Why + Date
 
-### [Exemplo] Credenciais no 1Password (DD/MM/AAAA)
-Toda credencial vive no 1Password. Sem exceções. Nunca hardcodar chaves em código, .env ou markdown.
+### [Example] Credentials in 1Password (DD/MM/YYYY)
+Every credential lives in 1Password. No exceptions. Never hardcode keys in code, .env or markdown.
 
-### [Exemplo] Horário protegido (DD/MM/AAAA)
-Não enviar notificações entre 13h-16h. Esse horário é de produção.
+### [Example] Protected hours (DD/MM/YYYY)
+Do not send notifications between 1pm-4pm. This is production time.
 
 ---
 
-*Adicione suas decisões conforme for usando o agente.*
+*Add your decisions as you use the agent.*

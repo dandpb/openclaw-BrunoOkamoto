@@ -1,98 +1,98 @@
-# ❓ Q&A — Infraestrutura Básica (Porta, SSH, Conexão)
+# ❓ Q&A — Basic Infrastructure (Port, SSH, Connection)
 
-> Linguagem simples. Sem terminal. Cole o prompt no seu bot e ele resolve.
-
----
-
-## "Apareceu 'address already in use' ou 'port in use'"
-
-**O que aconteceu:** Tem outro programa usando a mesma porta que o OpenClaw quer usar. É como duas pessoas tentando usar a mesma cadeira ao mesmo tempo.
-
-**O que fazer:**
-Cole esse prompt no seu bot:
-
-```
-Apareceu um erro de "port already in use" ou "address already in use".
-Me ajuda a resolver:
-1. Qual porta está em conflito?
-2. Qual processo está usando essa porta?
-3. Como resolver — parar o processo que está atrapalhando ou mudar a porta do OpenClaw?
-4. Como confirmar que resolveu?
-```
+> Plain language. No terminal. Paste the prompt into your bot and it handles the rest.
 
 ---
 
-## "O bot não conecta / 'localhost refused connection'"
+## "'address already in use' or 'port in use' appeared"
 
-**O que aconteceu:** O gateway (o programa principal do OpenClaw) provavelmente não está rodando, ou está em uma porta diferente da que você está tentando acessar.
+**What happened:** Another program is using the same port that OpenClaw wants to use. It's like two people trying to sit in the same chair at the same time.
 
-**O que fazer:**
-Cole esse prompt no seu bot (se tiver acesso por outro canal):
-
-```
-Estou com problema de conexão — "connection refused" no localhost.
-Me ajuda a diagnosticar:
-1. O gateway do OpenClaw está rodando?
-2. Em qual porta ele deveria estar?
-3. Como verificar o status sem usar muito o terminal?
-4. Como reiniciar o gateway de forma segura?
-```
-
-**Se não conseguir acessar o bot de jeito nenhum:** Tente acessar o painel do OpenClaw pelo Mission Control ou pelo link que você configurou no setup.
-
----
-
-## "Apareceu 'command not found' quando tento usar algo"
-
-**O que aconteceu:** O programa que você quer usar não está instalado, ou o caminho não está configurado corretamente.
-
-**O que fazer:**
-Cole esse prompt no seu bot:
+**What to do:**
+Paste this prompt into your bot:
 
 ```
-Apareceu "command not found" quando tentei usar [NOME DO COMANDO].
-Me ajuda:
-1. Esse comando deveria estar instalado no OpenClaw?
-2. Como instalar se não estiver?
-3. Como verificar se está no caminho certo?
+A "port already in use" or "address already in use" error appeared.
+Help me fix it:
+1. Which port is in conflict?
+2. Which process is using that port?
+3. How to resolve it — stop the process that's in the way or change OpenClaw's port?
+4. How do I confirm it's resolved?
 ```
 
 ---
 
-## "Não sei como acessar meu servidor remotamente"
+## "The bot won't connect / 'localhost refused connection'"
 
-**O que aconteceu:** Você precisa se conectar à sua VPS de qualquer lugar com segurança.
+**What happened:** The gateway (the main OpenClaw program) is probably not running, or it's on a different port than the one you're trying to access.
 
-**O que fazer:**
-Cole esse prompt no seu bot:
+**What to do:**
+Paste this prompt into your bot (if you have access via another channel):
 
 ```
-Preciso acessar meu servidor remotamente de forma segura.
-Me explica de forma bem simples:
-1. O que é um túnel SSH e pra que serve?
-2. Como configuro acesso seguro via Tailscale ou Cloudflare Tunnel?
-3. Qual é mais fácil pra iniciante?
-4. Me guia pelo processo de configuração passo a passo.
+I have a connection problem — "connection refused" on localhost.
+Help me diagnose:
+1. Is the OpenClaw gateway running?
+2. Which port should it be on?
+3. How do I check the status without using the terminal too much?
+4. How do I restart the gateway safely?
 ```
 
-**Dica:** Tailscale é a opção mais simples pra iniciantes — instala em 5 minutos e funciona como uma VPN pessoal gratuita.
+**If you can't access the bot at all:** Try accessing the OpenClaw panel via Mission Control or the link you configured during setup.
 
 ---
 
-## "Minha VPS está lenta / usando muita memória"
+## "'command not found' appeared when I try to use something"
 
-**O que fazer:**
-Cole esse prompt no seu bot:
+**What happened:** The program you want to use is not installed, or the path is not configured correctly.
+
+**What to do:**
+Paste this prompt into your bot:
 
 ```
-Minha VPS parece estar lenta ou usando muita memória/CPU.
-Me ajuda a diagnosticar:
-1. Quais processos estão consumindo mais recursos?
-2. Tem algum agente ou cron rodando desnecessariamente?
-3. O que posso fazer pra reduzir o consumo?
-4. Quando faz sentido fazer upgrade da VPS?
+"command not found" appeared when I tried to use [COMMAND NAME].
+Help me:
+1. Should this command be installed in OpenClaw?
+2. How do I install it if it's not?
+3. How do I check if it's in the right path?
 ```
 
 ---
 
-*Última atualização: Fev/2026*
+## "I don't know how to access my server remotely"
+
+**What happened:** You need to connect to your VPS from anywhere securely.
+
+**What to do:**
+Paste this prompt into your bot:
+
+```
+I need to access my server remotely in a secure way.
+Explain in very plain terms:
+1. What is an SSH tunnel and what is it for?
+2. How do I set up secure access via Tailscale or Cloudflare Tunnel?
+3. Which one is easier for a beginner?
+4. Guide me through the setup process step by step.
+```
+
+**Tip:** Tailscale is the simplest option for beginners — it installs in 5 minutes and works like a free personal VPN.
+
+---
+
+## "My VPS is slow / using too much memory"
+
+**What to do:**
+Paste this prompt into your bot:
+
+```
+My VPS seems slow or is using too much memory/CPU.
+Help me diagnose:
+1. Which processes are consuming the most resources?
+2. Is there any agent or cron running unnecessarily?
+3. What can I do to reduce consumption?
+4. When does it make sense to upgrade the VPS?
+```
+
+---
+
+*Last updated: Feb/2026*

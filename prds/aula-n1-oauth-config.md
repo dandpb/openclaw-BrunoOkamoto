@@ -1,167 +1,167 @@
-# PRD — Aula N-1: Configurar Credenciais — API Key Anthropic + OpenAI
+# PRD — Lesson N-1: Configuring Credentials — Anthropic + OpenAI API Key
 
-> **Nível:** Iniciante / Setup  
-> **Duração estimada:** 15–20 minutos  
-> **Pré-requisito:** OpenClaw instalado, acesso à internet
-> **Atualizado:** Anthropic bloqueou OAuth para planos Pro — novo fluxo recomendado
-
----
-
-## 🎯 Objetivo da Aula
-
-Ao final desta aula, o aluno será capaz de:
-
-1. Entender por que o fluxo OAuth/`setup-token` da Anthropic **não funciona mais** para a maioria dos alunos
-2. Configurar a Anthropic via **API Key direta** (fluxo correto e recomendado)
-3. Gerar e configurar API Keys na **OpenAI Platform** (OAuth ainda funciona aqui)
-4. Configurar as credenciais no OpenClaw via `openclaw config`
-5. Verificar se a configuração está funcionando com `openclaw status`
-6. Diagnosticar e resolver os **erros mais comuns** de autenticação
+> **Level:** Beginner / Setup
+> **Estimated Duration:** 15–20 minutes
+> **Prerequisites:** OpenClaw installed, internet access
+> **Updated:** Anthropic blocked OAuth for Pro plans — new recommended flow
 
 ---
 
-## 🚨 AVISO IMPORTANTE — Leia Antes de Começar
+## 🎯 Lesson Objective
 
-> **A Anthropic bloqueou OAuth para planos Pro.**
+By the end of this lesson, the student will be able to:
 
-Se você tem uma assinatura Claude Pro ($20/mês), **o fluxo `setup-token` / `openclaw setup-token` NÃO FUNCIONA MAIS para você.** Isso afeta a maioria dos alunos e é a dúvida #1 do curso (~20 ocorrências nos fóruns).
-
-**Sintoma:** Você tenta rodar `openclaw setup-token` (ou o fluxo OAuth da Anthropic no wizard), parece funcionar, mas na primeira mensagem pro bot aparece erro "OAuth flow not supported for Pro plans" ou "Unauthorized".
-
-**Solução:** Ignorar completamente o fluxo OAuth e usar uma **API Key direta**, que é o que vamos aprender nessa aula.
-
-> ⚠️ **Não é bug do OpenClaw.** A Anthropic mudou a política deles. O OpenClaw se adaptou, mas o wizard de onboarding ainda pode mostrar a opção OAuth — **ignore e use API Key**.
-
----
-
-## 📋 Script de Gravação — Seção por Seção
-
-### 🎬 ABERTURA (0:00 – 2:00)
-
-**[Bruno na tela, tom direto]**
-
-> "Fala, pessoal! Aula N-1 do curso OpenClaw — configurar credenciais. Essa aula existe porque é aqui que a maioria das pessoas trava."
-
-> "E eu preciso te avisar sobre uma mudança importante: a Anthropic, que faz o Claude, bloqueou o login OAuth para planos Pro. Sim — se você paga $20/mês de assinatura do Claude, o fluxo antigo não funciona mais. Vou te mostrar o jeito certo, que é mais simples na verdade."
-
-> "Se você já tentou configurar, viu algum erro de 'setup-token' ou 'OAuth', ou simplesmente nunca conseguiu fazer o Claude responder — essa aula resolve isso de vez."
+1. Understand why Anthropic's OAuth/`setup-token` flow **no longer works** for most students
+2. Configure Anthropic via **direct API Key** (correct and recommended flow)
+3. Generate and configure API Keys on the **OpenAI Platform** (OAuth still works here)
+4. Configure credentials in OpenClaw via `openclaw config`
+5. Verify that the configuration is working with `openclaw status`
+6. Diagnose and resolve the **most common authentication errors**
 
 ---
 
-### 📚 SEÇÃO 1: Por Que o Fluxo Antigo Quebrou (2:00 – 5:00)
+## 🚨 IMPORTANT WARNING — Read Before Starting
 
-**[Tela mostrando diagrama ou slide]**
+> **Anthropic has blocked OAuth for Pro plans.**
 
-> "Antes da mudança, a Anthropic tinha um fluxo onde você podia conectar o OpenClaw via OAuth — basicamente, você autorizava o acesso pela interface web, sem precisar de uma API Key. Parecia mais conveniente."
+If you have a Claude Pro subscription ($20/month), **the `setup-token` / `openclaw setup-token` flow NO LONGER WORKS for you.** This affects most students and is the course's #1 question (~20 occurrences in the forums).
 
-> "Mas em 2026, a Anthropic decidiu que esse fluxo OAuth só funciona para planos API (pay-per-use). Pra planos Pro ($20/mês) — que é o que a maioria tem — eles bloquearam. Motivo? Prevenção de abuso e separação clara entre 'assinatura pra usar no chat' vs 'acesso programático via API'."
+**Symptom:** You try running `openclaw setup-token` (or the Anthropic OAuth flow in the wizard), it seems to work, but on the first message to the bot you get an error "OAuth flow not supported for Pro plans" or "Unauthorized".
 
-**[Pausa para ênfase]**
+**Solution:** Completely ignore the OAuth flow and use a **direct API Key**, which is what we'll learn in this lesson.
 
-> "Então a situação hoje é:"
+> ⚠️ **This is not an OpenClaw bug.** Anthropic changed their policy. OpenClaw adapted, but the onboarding wizard may still show the OAuth option — **ignore it and use API Key**.
 
-| Situação | Funciona? | O que fazer |
+---
+
+## 📋 Recording Script — Section by Section
+
+### 🎬 OPENING (0:00 – 2:00)
+
+**[Bruno on screen, direct tone]**
+
+> "Hey everyone! Lesson N-1 of the OpenClaw course — configuring credentials. This lesson exists because this is where most people get stuck."
+
+> "And I need to warn you about an important change: Anthropic, which makes Claude, has blocked OAuth login for Pro plans. Yes — if you pay $20/month for a Claude subscription, the old flow no longer works. I'm going to show you the right way, which is actually simpler."
+
+> "If you've already tried to configure it, saw some error about 'setup-token' or 'OAuth', or simply never managed to get Claude to respond — this lesson fixes that once and for all."
+
+---
+
+### 📚 SECTION 1: Why the Old Flow Broke (2:00 – 5:00)
+
+**[Screen showing diagram or slide]**
+
+> "Before the change, Anthropic had a flow where you could connect OpenClaw via OAuth — basically, you authorized access through the web interface, without needing an API Key. It seemed more convenient."
+
+> "But in 2026, Anthropic decided that this OAuth flow only works for API plans (pay-per-use). For Pro plans ($20/month) — which most people have — they blocked it. The reason? Abuse prevention and a clear separation between 'subscription to use in chat' vs 'programmatic access via API'."
+
+**[Pause for emphasis]**
+
+> "So the situation today is:"
+
+| Situation | Works? | What to do |
 |----------|-----------|-------------|
-| Plano Pro ($20/mês) + OAuth | ❌ Bloqueado | Criar API Key separada |
-| Plano gratuito da Anthropic + OAuth | ❌ Bloqueado | Criar API Key com billing |
-| API Key direta (qualquer plano) | ✅ Funciona | O que vamos fazer |
+| Pro plan ($20/month) + OAuth | ❌ Blocked | Create a separate API Key |
+| Anthropic free plan + OAuth | ❌ Blocked | Create API Key with billing |
+| Direct API Key (any plan) | ✅ Works | What we're going to do |
 
-> "A boa notícia: a API Key é mais simples de entender e mais flexível. Você controla exatamente quanto gasta. Vamos configurar isso agora."
-
----
-
-### 💳 SEÇÃO 1.5: E se eu tenho assinatura Pro? (5:00 – 7:30)
-
-**[Tela: browser em console.anthropic.com]**
-
-> "Antes de continuar — se você paga pelo Claude Pro, precisa entender algo importante."
-
-> "Sua assinatura Pro ($20/mês) e o acesso via API são **coisas separadas**. Sua assinatura dá acesso ao chat em claude.ai — não à API. São sistemas de billing diferentes."
-
-> "Pra usar o OpenClaw com o Claude, você precisa:"
-> 1. Acessar console.anthropic.com (diferente de claude.ai)
-> 2. Adicionar um método de pagamento SEPARADO (ou créditos)
-> 3. Criar uma API Key
-
-> "Sim, parece injusto pagar duas vezes. Mas é assim que a Anthropic estruturou. A boa notícia: com controle fino de modelo (Haiku para tarefas simples, Sonnet para interação), o gasto real da API costuma ser $5-15/mês — muito menos que a assinatura Pro."
-
-> "Se você quer EVITAR pagar a mais: pode migrar do Pro para API-only. Cancela o Pro, usa só a API. Você perde o acesso ao claude.ai, mas o OpenClaw funciona melhor assim de qualquer forma."
+> "The good news: an API Key is simpler to understand and more flexible. You control exactly how much you spend. Let's configure that now."
 
 ---
 
-### 🔑 SEÇÃO 2: Gerando sua API Key na Anthropic (7:30 – 11:00)
+### 💳 SECTION 1.5: What if I have a Pro subscription? (5:00 – 7:30)
 
-**[Tela: Browser abrindo console.anthropic.com]**
+**[Screen: browser at console.anthropic.com]**
 
-> "Vamos criar a API Key. Acesse **console.anthropic.com** — atenção: é o **console**, não o claude.ai."
+> "Before we continue — if you pay for Claude Pro, you need to understand something important."
 
-**[Mostrar navegação no painel]**
+> "Your Pro subscription ($20/month) and API access are **separate things**. Your subscription gives access to the chat at claude.ai — not to the API. They are different billing systems."
 
-> "Depois que você logar, clique em **'API Keys'** no menu lateral (ou Settings → API Keys)."
+> "To use OpenClaw with Claude, you need:"
+> 1. Access console.anthropic.com (different from claude.ai)
+> 2. Add a SEPARATE payment method (or credits)
+> 3. Create an API Key
 
-> "Clique em **'Create Key'**."
+> "Yes, it seems unfair to pay twice. But that's how Anthropic has structured it. The good news: with fine-grained model control (Haiku for simple tasks, Sonnet for interaction), actual API spending is usually $5-15/month — much less than the Pro subscription."
 
-**[Mostrar o formulário]**
-
-> "Dê um nome pra sua chave — recomendo `openclaw-pessoal`. Isso ajuda a gerenciar depois."
-
-> "**ATENÇÃO agora!** A chave vai aparecer na tela. Parece com `sk-ant-api03-XXXXXX...`"
-
-**[Box de AVISO na tela]**
-
-> "**COPIE AGORA.** Essa é sua única chance de ver a chave completa. Depois disso, a Anthropic não mostra mais. Salva num gerenciador de senhas (1Password, Bitwarden) ou num lugar seguro."
-
-> "Mas antes de sair feliz — verifique se tem billing ativo. Vai em **Settings → Billing** e confirma que tem um cartão cadastrado ou créditos. Sem billing, a chave funciona mas toda chamada retorna erro 402."
+> "If you want to AVOID paying extra: you can migrate from Pro to API-only. Cancel Pro, use only the API. You lose access to claude.ai, but OpenClaw actually works better that way."
 
 ---
 
-### 🔑 SEÇÃO 3: Gerando sua API Key na OpenAI (11:00 – 13:30)
+### 🔑 SECTION 2: Generating your Anthropic API Key (7:30 – 11:00)
 
-**[Tela: Browser abrindo platform.openai.com]**
+**[Screen: Browser opening console.anthropic.com]**
 
-> "Agora vamos pra OpenAI. Aqui é mais direto — OAuth ainda funciona, mas API Key também. Vamos usar API Key pra manter consistência."
+> "Let's create the API Key. Go to **console.anthropic.com** — note: it's the **console**, not claude.ai."
 
-> "Acesse **platform.openai.com/api-keys** e clique em **'Create new secret key'**."
+**[Show navigation in the panel]**
 
-> "Dê um nome, confirma, e copie a chave. Começa com `sk-proj-` ou `sk-`."
+> "After you log in, click on **'API Keys'** in the side menu (or Settings → API Keys)."
 
-> "Mesma regra: **copie agora**, não aparece de novo."
+> "Click on **'Create Key'**."
 
-> "Verifique crédito em **Billing → Usage**. OpenAI precisa de crédito ou free trial ativo pra funcionar."
+**[Show the form]**
+
+> "Give your key a name — I recommend `openclaw-personal`. This helps with management later."
+
+> "**ATTENTION now!** The key will appear on the screen. It looks like `sk-ant-api03-XXXXXX...`"
+
+**[WARNING box on screen]**
+
+> "**COPY IT NOW.** This is your only chance to see the full key. After this, Anthropic doesn't show it again. Save it in a password manager (1Password, Bitwarden) or a secure place."
+
+> "But before you leave happily — check if billing is active. Go to **Settings → Billing** and confirm that you have a card on file or credits. Without billing, the key works but every call returns error 402."
 
 ---
 
-### ⚙️ SEÇÃO 4: Configurando o OpenClaw com `openclaw config` (13:30 – 17:00)
+### 🔑 SECTION 3: Generating your OpenAI API Key (11:00 – 13:30)
 
-**[Tela: Terminal aberto]**
+**[Screen: Browser opening platform.openai.com]**
 
-> "Agora que temos as chaves, vamos configurar. Abre o terminal e digita:"
+> "Now let's go to OpenAI. Here it's more straightforward — OAuth still works, but API Key also works. Let's use API Key for consistency."
+
+> "Go to **platform.openai.com/api-keys** and click **'Create new secret key'**."
+
+> "Give it a name, confirm, and copy the key. It starts with `sk-proj-` or `sk-`."
+
+> "Same rule: **copy it now**, it won't appear again."
+
+> "Check credit at **Billing → Usage**. OpenAI needs credit or an active free trial to work."
+
+---
+
+### ⚙️ SECTION 4: Configuring OpenClaw with `openclaw config` (13:30 – 17:00)
+
+**[Screen: Terminal open]**
+
+> "Now that we have the keys, let's configure. Open the terminal and type:"
 
 ```bash
 openclaw config
 ```
 
-> "Isso abre o assistente interativo. Selecione Anthropic, cole sua API Key quando pedir."
+> "This opens the interactive wizard. Select Anthropic, paste your API Key when prompted."
 
-> "Depois selecione OpenAI (se tiver configurado também) e cole a chave."
+> "Then select OpenAI (if you've set that up too) and paste the key."
 
-**[IMPORTANTE — mostrar isso]**
+**[IMPORTANT — show this]**
 
-> "Atenção: se o wizard mostrar uma opção 'OAuth' ou 'Setup Token' para a Anthropic — **ignore**. Escolha sempre 'API Key'. Eu sei que parece contraditório o próprio OpenClaw mostrar essa opção, mas ela não funciona mais para a maioria das contas."
+> "Attention: if the wizard shows an 'OAuth' or 'Setup Token' option for Anthropic — **ignore it**. Always choose 'API Key'. I know it seems contradictory that OpenClaw itself shows this option, but it no longer works for most accounts."
 
 ---
 
-### ✅ SEÇÃO 5: Testando com `openclaw status` (17:00 – 19:00)
+### ✅ SECTION 5: Testing with `openclaw status` (17:00 – 19:00)
 
-**[Tela: Terminal]**
+**[Screen: Terminal]**
 
-> "Para verificar se tudo está certo, rode:"
+> "To check that everything is correct, run:"
 
 ```bash
 openclaw status
 ```
 
-> "Você vai ver algo assim:"
+> "You'll see something like this:"
 
 ```
 ✅ OpenClaw Status
@@ -173,158 +173,158 @@ Status:   Connected
 
 Provider: OpenAI
 Model:    gpt-4o
-API Key:  sk-proj-...XxXx (valid)  
+API Key:  sk-proj-...XxXx (valid)
 Status:   Connected
 ─────────────────────────────
 All providers configured ✓
 ```
 
-> "Se aparecer 'Connected' — perfeito! Se aparecer erro, próxima seção."
+> "If 'Connected' appears — perfect! If an error appears, see the next section."
 
 ---
 
-### 🔧 SEÇÃO 6: Erros Comuns e Como Resolver (19:00 – 22:00)
+### 🔧 SECTION 6: Common Errors and How to Fix Them (19:00 – 22:00)
 
-**[Tela: Slides com erros]**
+**[Screen: Slides with errors]**
 
-**[Erro 1 — TOP 1 do curso]**
+**[Error 1 — TOP 1 of the course]**
 
-> "**'OAuth flow not supported' ou 'setup-token only'** — esse é o erro #1 no fórum. Causa: você usou o fluxo OAuth ou `openclaw setup-token`. Solução: rode `openclaw config` de novo, escolha 'API Key' (não OAuth), cole sua chave do console.anthropic.com."
+> "**'OAuth flow not supported' or 'setup-token only'** — this is the #1 error in the forum. Cause: you used the OAuth flow or `openclaw setup-token`. Solution: run `openclaw config` again, choose 'API Key' (not OAuth), paste your key from console.anthropic.com."
 
-**[Erro 2]**
+**[Error 2]**
 
-> "**'Invalid API Key'** — a chave está errada, expirada ou foi revogada. Vai no console do provider, cria uma nova, reconfigura."
+> "**'Invalid API Key'** — the key is wrong, expired, or was revoked. Go to the provider's console, create a new one, reconfigure."
 
-**[Erro 3]**
+**[Error 3]**
 
-> "**'HTTP 402 — Payment Required'** — você tem a chave certa mas não tem billing ativo. Anthropic: vai em console.anthropic.com → Billing → adiciona cartão. OpenAI: platform.openai.com → Billing → adiciona crédito."
+> "**'HTTP 402 — Payment Required'** — you have the right key but don't have billing active. Anthropic: go to console.anthropic.com → Billing → add a card. OpenAI: platform.openai.com → Billing → add credit."
 
-**[Erro 4]**
+**[Error 4]**
 
-> "**Rate limit (HTTP 429)** vs credencial inválida (HTTP 401) — são coisas diferentes! Rate limit é temporário, espera uns minutos. Credencial inválida é permanente, precisa reconfigurar."
-
----
-
-### 🎯 ENCERRAMENTO (22:00 – 23:00)
-
-> "Resumo da aula: o fluxo OAuth da Anthropic não funciona mais para planos Pro — use sempre API Key. A OpenAI ainda funciona com OAuth mas API Key é mais simples. Configuramos com `openclaw config`, verificamos com `openclaw status`."
-
-> "Se você tem assinatura Pro — vai precisar de billing separado na API para usar o OpenClaw. Vale a pena: com uso inteligente de modelos, você gasta menos que o Pro e tem muito mais controle."
-
-> "Na próxima aula, a gente começa a usar de verdade. Mas antes, faz o exercício prático!"
+> "**Rate limit (HTTP 429)** vs invalid credential (HTTP 401) — these are different things! Rate limit is temporary, wait a few minutes. Invalid credential is permanent, you need to reconfigure."
 
 ---
 
-## 🛠️ Passo a Passo Técnico Detalhado
+### 🎯 CLOSING (22:00 – 23:00)
 
-### 1. Gerar API Key — Anthropic
+> "Lesson summary: Anthropic's OAuth flow no longer works for Pro plans — always use API Key. OpenAI still works with OAuth but API Key is simpler. We configured with `openclaw config`, verified with `openclaw status`."
 
-1. Acesse [console.anthropic.com](https://console.anthropic.com) (**não** claude.ai)
-2. Faça login ou crie uma conta
-3. No menu lateral: **Settings → API Keys** (ou clique no ícone de chave)
-4. Clique em **"Create Key"**
-5. Dê um nome descritivo (ex: `openclaw-pessoal`)
-6. **COPIE A CHAVE IMEDIATAMENTE** — começa com `sk-ant-api03-`
-7. Salve num gerenciador de senhas (ex: 1Password, Bitwarden)
-8. Verifique billing: Settings → Billing → cartão cadastrado ✅
+> "If you have a Pro subscription — you'll need separate billing on the API to use OpenClaw. It's worth it: with smart model usage, you spend less than Pro and have much more control."
 
-> ⚠️ **Se você tem plano Pro:** Você ainda precisa fazer esses passos. A assinatura Pro e a API são sistemas de billing separados.
-> ⚠️ **A Anthropic só exibe a chave completa uma vez.** Após fechar o modal, não é possível visualizá-la novamente.
+> "In the next lesson, we start using it for real. But first, do the practical exercise!"
 
-### 2. Gerar API Key — OpenAI
+---
 
-1. Acesse [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
-2. Faça login na sua conta OpenAI
-3. Clique em **"Create new secret key"**
-4. Dê um nome (ex: `openclaw`)
-5. **COPIE A CHAVE IMEDIATAMENTE** — começa com `sk-proj-` ou `sk-`
-6. Verifique crédito em **Billing → Usage**
+## 🛠️ Detailed Technical Step-by-Step
 
-### 3. Configurar o OpenClaw
+### 1. Generate API Key — Anthropic
+
+1. Access [console.anthropic.com](https://console.anthropic.com) (**not** claude.ai)
+2. Log in or create an account
+3. In the side menu: **Settings → API Keys** (or click the key icon)
+4. Click **"Create Key"**
+5. Give it a descriptive name (e.g.: `openclaw-personal`)
+6. **COPY THE KEY IMMEDIATELY** — it starts with `sk-ant-api03-`
+7. Save it in a password manager (e.g.: 1Password, Bitwarden)
+8. Check billing: Settings → Billing → card on file ✅
+
+> ⚠️ **If you have a Pro plan:** You still need to do these steps. The Pro subscription and the API are separate billing systems.
+> ⚠️ **Anthropic only displays the full key once.** After closing the modal, it's not possible to view it again.
+
+### 2. Generate API Key — OpenAI
+
+1. Access [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+2. Log in to your OpenAI account
+3. Click **"Create new secret key"**
+4. Give it a name (e.g.: `openclaw`)
+5. **COPY THE KEY IMMEDIATELY** — it starts with `sk-proj-` or `sk-`
+6. Check credit at **Billing → Usage**
+
+### 3. Configure OpenClaw
 
 ```bash
-# Iniciar o assistente de configuração
+# Start the configuration wizard
 openclaw config
 
-# Quando aparecer opção OAuth/setup-token para Anthropic → IGNORE
-# Escolha sempre "API Key"
-# Cole sua chave quando solicitado
+# When OAuth/setup-token option appears for Anthropic → IGNORE
+# Always choose "API Key"
+# Paste your key when prompted
 ```
 
-### 4. Verificar a Configuração
+### 4. Verify the Configuration
 
 ```bash
-# Verificar status de todos os providers
+# Check status of all providers
 openclaw status
 
-# Saída esperada:
+# Expected output:
 # ✅ Provider: Anthropic — Status: Connected
 # ✅ Provider: OpenAI — Status: Connected
 ```
 
-### 5. Onde as Credenciais são Armazenadas
+### 5. Where Credentials are Stored
 
-| Sistema Operacional | Caminho |
+| Operating System | Path |
 |--------------------|---------|
 | Linux / macOS | `~/.openclaw/config.json` |
-| Windows | `C:\Users\<SeuNome>\.openclaw\config.json` |
+| Windows | `C:\Users\<YourName>\.openclaw\config.json` |
 
-> 🔒 **Segurança:** Esse arquivo tem permissões restritas (modo 600 no Linux/Mac). **Nunca commite esse arquivo no git.**
+> 🔒 **Security:** This file has restricted permissions (mode 600 on Linux/Mac). **Never commit this file to git.**
 
 ---
 
-## 🚨 Tabela de Erros Comuns + Solução
+## 🚨 Common Error Table + Solution
 
-| Erro | Causa | Solução |
+| Error | Cause | Solution |
 |------|-------|---------|
-| `OAuth flow not supported` / `setup-token only` | ⭐ **TOP 1** — Usou OAuth com plano Pro | Rode `openclaw config`, escolha "API Key", cole chave do console.anthropic.com |
-| `Invalid API Key` | Chave errada, expirada ou revogada | Verifique/recrie a chave no console. Rode `openclaw config` novamente. |
-| `HTTP 401 Unauthorized` | Credencial inválida | Mesma solução do Invalid API Key. |
-| `HTTP 402 Payment Required` | Sem billing ativo na Anthropic | console.anthropic.com → Billing → adicione cartão/créditos |
-| `HTTP 429 Too Many Requests` | Rate limit atingido (não é problema de chave) | Espere 1-5 minutos. Considere upgrade de plano se recorrente. |
-| `Insufficient credits` | Sem crédito na OpenAI | platform.openai.com → Billing → adicione crédito. |
-| `API Key not configured` | Nunca rodou `openclaw config` | Rode `openclaw config` e configure as chaves. |
-| Chave funciona mas agente não responde | tools.profile = messaging (v2026.3.2) | `openclaw config set tools.profile full` |
-| `model_not_available` | Modelo não disponível na tier | Troque para claude-haiku-4-5 ou claude-sonnet-4-5 |
+| `OAuth flow not supported` / `setup-token only` | ⭐ **TOP 1** — Used OAuth with Pro plan | Run `openclaw config`, choose "API Key", paste key from console.anthropic.com |
+| `Invalid API Key` | Wrong, expired, or revoked key | Check/recreate the key in the console. Run `openclaw config` again. |
+| `HTTP 401 Unauthorized` | Invalid credential | Same solution as Invalid API Key. |
+| `HTTP 402 Payment Required` | No active billing on Anthropic | console.anthropic.com → Billing → add card/credits |
+| `HTTP 429 Too Many Requests` | Rate limit reached (not a key issue) | Wait 1-5 minutes. Consider plan upgrade if recurring. |
+| `Insufficient credits` | No credit on OpenAI | platform.openai.com → Billing → add credit. |
+| `API Key not configured` | Never ran `openclaw config` | Run `openclaw config` and configure the keys. |
+| Key works but agent doesn't respond | tools.profile = messaging (v2026.3.2) | `openclaw config set tools.profile full` |
+| `model_not_available` | Model not available on tier | Switch to claude-haiku-4-5 or claude-sonnet-4-5 |
 
 ---
 
-## ✅ Checklist Final do Aluno
+## ✅ Student Final Checklist
 
-- [ ] Conta criada/acessada em console.anthropic.com (**não** claude.ai)
-- [ ] API Key da Anthropic gerada e salva com segurança
-- [ ] Billing ativo na Anthropic (cartão ou créditos)
-- [ ] (Opcional) API Key da OpenAI gerada e salva
-- [ ] (Opcional) OpenAI: crédito verificado em Billing
-- [ ] `openclaw config` executado — escolheu "API Key" (não OAuth)
-- [ ] `openclaw status` mostrando "Connected" para os providers configurados
-- [ ] Arquivo `~/.openclaw/config.json` NÃO está no git (verificado .gitignore)
-- [ ] Primeiros testes realizados com sucesso
+- [ ] Account created/accessed at console.anthropic.com (**not** claude.ai)
+- [ ] Anthropic API Key generated and saved securely
+- [ ] Active billing on Anthropic (card or credits)
+- [ ] (Optional) OpenAI API Key generated and saved
+- [ ] (Optional) OpenAI: credit verified in Billing
+- [ ] `openclaw config` run — chose "API Key" (not OAuth)
+- [ ] `openclaw status` showing "Connected" for configured providers
+- [ ] File `~/.openclaw/config.json` is NOT in git (checked .gitignore)
+- [ ] First tests completed successfully
 
 ---
 
-## ❓ Dúvidas Frequentes
+## ❓ Frequently Asked Questions
 
-**1. Tenho Claude Pro — preciso pagar a mais?**
+**1. I have Claude Pro — do I need to pay extra?**
 
-> Sim, infelizmente. Sua assinatura Pro dá acesso ao claude.ai (interface web), não à API. Para usar o OpenClaw, você precisa de billing separado no console.anthropic.com. A boa notícia: com modelos econômicos (Haiku para tasks simples), o gasto real costuma ser $5-15/mês.
+> Yes, unfortunately. Your Pro subscription gives access to claude.ai (the web interface), not to the API. To use OpenClaw, you need separate billing at console.anthropic.com. The good news: with economical models (Haiku for simple tasks), actual spending is usually $5-15/month.
 
-**2. Posso cancelar o Pro e usar só a API?**
+**2. Can I cancel Pro and use only the API?**
 
-> Sim! Para uso com OpenClaw, API-only é na verdade a configuração ideal. Você perde o acesso ao claude.ai (a interface web bonita), mas o OpenClaw substitui isso com muito mais poder.
+> Yes! For use with OpenClaw, API-only is actually the ideal setup. You lose access to claude.ai (the nice web interface), but OpenClaw replaces it with much more power.
 
-**3. Por que ainda aparece a opção OAuth no OpenClaw?**
+**3. Why does the OAuth option still appear in OpenClaw?**
 
-> O OpenClaw ainda mantém a opção por compatibilidade com planos API legados. Mas para a grande maioria dos alunos com planos Pro ou contas novas, **não funciona**. Sempre use API Key.
+> OpenClaw still keeps the option for compatibility with legacy API plans. But for the vast majority of students with Pro plans or new accounts, **it doesn't work**. Always use API Key.
 
-**4. Preciso configurar os dois providers (Anthropic E OpenAI)?**
+**4. Do I need to configure both providers (Anthropic AND OpenAI)?**
 
-> Não é obrigatório. Configure apenas os que pretende usar. Para o curso, recomendamos pelo menos o Anthropic (Claude).
+> It's not mandatory. Configure only the ones you intend to use. For the course, we recommend at least Anthropic (Claude).
 
-**5. Como trocar a chave depois de configurada?**
+**5. How do I change the key after it's been configured?**
 
-> Rode `openclaw config` de novo e insira a nova chave. O valor anterior é sobrescrito.
+> Run `openclaw config` again and enter the new key. The previous value is overwritten.
 
-**6. O OpenClaw armazena minhas chaves na nuvem?**
+**6. Does OpenClaw store my keys in the cloud?**
 
-> Não. As chaves ficam apenas localmente em `~/.openclaw/config.json`. O OpenClaw não envia suas credenciais para nenhum servidor externo.
+> No. The keys are stored only locally in `~/.openclaw/config.json`. OpenClaw does not send your credentials to any external server.

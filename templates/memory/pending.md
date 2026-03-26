@@ -1,10 +1,10 @@
-# Pendências
+# Pending Items
 
-> Itens aguardando input, acesso ou decisão.
+> Items awaiting input, access or decision.
 
-## Aguardando [SEU NOME]
-- [ ] [Pendência 1 — contexto]
-- [ ] [Pendência 2 — contexto]
+## Awaiting [YOUR NAME]
+- [ ] [Pending item 1 — context]
+- [ ] [Pending item 2 — context]
 
-## Aguardando Terceiros
-- [ ] [Pendência — quem — desde quando]
+## Awaiting Third Parties
+- [ ] [Pending item — who — since when]

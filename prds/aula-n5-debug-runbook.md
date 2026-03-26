@@ -1,115 +1,115 @@
-# PRD — Aula N-5: Debug Passo a Passo — Runbook Padrão de Diagnóstico
+# PRD — Lesson N-5: Step-by-Step Debug — Standard Diagnostic Runbook
 
-**Módulo:** N — Troubleshooting & Manutenção  
-**Aula:** N-5  
-**Duração estimada:** 25–30 minutos  
-**Nível:** Intermediário / Avançado  
-**Formato:** Screencast com terminal ao vivo + slides de apoio  
-
----
-
-## Objetivo da Aula
-
-Ao final desta aula, o aluno saberá seguir um runbook sistemático de 5 etapas para diagnosticar e resolver qualquer problema no OpenClaw — seja um bot silencioso, credenciais inválidas, configuração quebrada ou um erro desconhecido que precisa ser escalado.
+**Module:** N — Troubleshooting & Maintenance  
+**Lesson:** N-5  
+**Estimated duration:** 25–30 minutes  
+**Level:** Intermediate / Advanced  
+**Format:** Screencast with live terminal + support slides  
 
 ---
 
-## Roteiro de Gravação
+## Lesson Objective
 
-### [00:00–02:00] Abertura
+By the end of this lesson, the student will be able to follow a systematic 5-step runbook to diagnose and resolve any problem in OpenClaw — whether it's a silent bot, invalid credentials, broken configuration, or an unknown error that needs to be escalated.
 
-**Script (Bruno fala):**
+---
 
-> "Olá, pessoal! Nesta aula vamos falar de algo que todo mundo precisa em algum momento: debug. O OpenClaw é robusto, mas coisas acontecem — um bot para de responder, uma chave de API expira, o gateway trava. E quando isso acontece sem você saber por onde começar... vira caos.
+## Recording Script
+
+### [00:00–02:00] Opening
+
+**Script (Bruno speaks):**
+
+> "Hello everyone! In this lesson we're going to talk about something everyone needs at some point: debug. OpenClaw is robust, but things happen — a bot stops responding, an API key expires, the gateway crashes. And when that happens and you don't know where to start... it becomes chaos.
 >
-> Então hoje eu vou te dar o meu runbook pessoal. Cinco etapas, em ordem. Você segue do começo ao fim e, na minha experiência, isso resolve 95% dos problemas. Vamos lá."
+> So today I'll give you my personal runbook. Five steps, in order. You follow from start to finish and, in my experience, this resolves 95% of problems. Let's go."
 
-**O que mostrar na tela:**
-- Diagrama das 5 etapas (slide de abertura)
-- Terminal limpo, pronto para uso
+**What to show on screen:**
+- Diagram of the 5 steps (opening slide)
+- Clean terminal, ready to use
 
 ---
 
-### [02:00–06:00] Etapa 1: Triagem Inicial — O Bot Responde?
+### [02:00–06:00] Step 1: Initial Triage — Is the Bot Responding?
 
 **Script:**
 
-> "A primeira etapa é a triagem. Antes de mexer em qualquer coisa, você precisa entender _o que_ exatamente está errado. Existem três cenários distintos, e cada um aponta para um caminho diferente.
+> "The first step is triage. Before touching anything, you need to understand _what_ exactly is wrong. There are three distinct scenarios, and each points to a different path.
 >
-> **Cenário A: O bot está completamente silencioso.** Você mandou mensagem, esperou, nada aconteceu. Isso quase sempre significa que o gateway não está rodando. O gateway é o processo que fica escutando as mensagens e roteando para o modelo de IA. Se ele cair, o bot simplesmente para de existir. A solução é imediata — vamos ver na Etapa 2.
+> **Scenario A: The bot is completely silent.** You sent a message, waited, nothing happened. This almost always means the gateway isn't running. The gateway is the process that listens for messages and routes them to the AI model. If it goes down, the bot simply stops existing. The solution is immediate — we'll see it in Step 2.
 >
-> **Cenário B: O bot responde, mas com uma mensagem de erro.** Ótimo! Isso significa que o gateway está de pé. Agora você precisa _ler_ a mensagem de erro. Parece óbvio, mas muita gente entra em pânico e sai reiniciando tudo sem ler o que está escrito. O erro geralmente te diz exatamente o que fazer: chave inválida, rate limit atingido, arquivo de configuração com problema.
+> **Scenario B: The bot responds, but with an error message.** Great! That means the gateway is up. Now you need to _read_ the error message. It seems obvious, but many people panic and start restarting everything without reading what's written. The error usually tells you exactly what to do: invalid key, rate limit hit, config file with a problem.
 >
-> **Cenário C: O bot responde, mas lento — muito lento.** Esse é um problema de performance, não de configuração. Eu cobri isso na aula N-4. Se o seu bot está demorando 30 segundos para responder, pula para lá. Aqui a gente foca em erros, não em lentidão.
+> **Scenario C: The bot responds, but slowly — very slowly.** This is a performance problem, not a configuration one. I covered this in lesson N-4. If your bot is taking 30 seconds to respond, jump there. Here we focus on errors, not slowness.
 >
-> Então antes de continuar: qual dos três cenários você está vivendo? Isso define tudo."
+> So before continuing: which of the three scenarios are you experiencing? This defines everything."
 
-**O que mostrar na tela:**
-- Fluxograma de decisão: Silencioso / Erro / Lento
-- Demonstração: mandar mensagem no Telegram e mostrar cada tipo de resposta (ou ausência dela)
+**What to show on screen:**
+- Decision flowchart: Silent / Error / Slow
+- Demo: send a message on Telegram and show each type of response (or lack thereof)
 
 ---
 
-### [06:00–12:00] Etapa 2: Verificar o Gateway
+### [06:00–12:00] Step 2: Check the Gateway
 
 **Script:**
 
-> "Se o bot está silencioso, começa aqui. O comando é simples:"
+> "If the bot is silent, start here. The command is simple:"
 
 ```bash
 openclaw gateway status
 ```
 
-> "Esse comando te diz se o processo do gateway está rodando ou não. Se a saída mostrar algo como `stopped` ou `inactive`, você sabe o problema. Reinicia:
+> "This command tells you if the gateway process is running or not. If the output shows something like `stopped` or `inactive`, you know the problem. Restart:
 
 ```bash
 openclaw gateway restart
 ```
 
-> "Se o gateway estava parado, provavelmente ele volta e o bot começa a funcionar imediatamente. Testa rápido — manda um 'olá' lá.
+> "If the gateway was stopped, it will probably come back and the bot will start working immediately. Quick test — send a 'hello' there.
 >
-> Mas e se o gateway reinicia, mas o problema persiste? Aí você precisa olhar os logs. Os logs do OpenClaw ficam em:
+> But what if the gateway restarts but the problem persists? Then you need to look at the logs. OpenClaw logs are at:
 
 ```bash
 ~/.openclaw/logs/gateway.log
 ```
 
-> "Para ver as últimas linhas em tempo real, usa:
+> "To see the latest lines in real time, use:
 
 ```bash
 tail -f ~/.openclaw/logs/gateway.log
 ```
 
-> "Agora, o que você está procurando nos logs? Existem quatro sinais de alerta que eu sempre busco:
+> "Now, what are you looking for in the logs? There are four warning signs I always look for:
 >
-> **1. `auth error` ou `unauthorized`** — Significa que a API key não está sendo aceita. Vai direto para a Etapa 3.
+> **1. `auth error` or `unauthorized`** — Means the API key isn't being accepted. Go directly to Step 3.
 >
-> **2. `rate limit exceeded`** — Você esgotou o limite de requisições do seu plano. Pode ser um pico de uso, um loop acidental, ou o plano precisando ser upgradado. Espere alguns minutos e tente novamente.
+> **2. `rate limit exceeded`** — You've exhausted the request limit of your plan. It could be a usage spike, an accidental loop, or the plan needing an upgrade. Wait a few minutes and try again.
 >
-> **3. `context error` ou `context length exceeded`** — A conversa ficou longa demais para o modelo processar. Você precisa limpar o histórico da sessão ou ajustar o limite de contexto na configuração.
+> **3. `context error` or `context length exceeded`** — The conversation got too long for the model to process. You need to clear the session history or adjust the context limit in the configuration.
 >
-> **4. `connection refused` ou `timeout`** — Problema de rede ou o endpoint da API está fora. Verifica sua conexão e o status da API do seu provedor (Anthropic, OpenAI, etc.).
+> **4. `connection refused` or `timeout`** — Network problem or the API endpoint is down. Check your connection and the status of your provider's API (Anthropic, OpenAI, etc.).
 >
-> Vou mostrar ao vivo como ler um log real e identificar esses sinais."
+> I'll show live how to read a real log and identify these signals."
 
-**O que mostrar na tela:**
-- `openclaw gateway status` com saída de stopped/running
-- `openclaw gateway restart` e output
-- `tail -f ~/.openclaw/logs/gateway.log` com exemplos de cada tipo de erro destacados
+**What to show on screen:**
+- `openclaw gateway status` with stopped/running output
+- `openclaw gateway restart` and output
+- `tail -f ~/.openclaw/logs/gateway.log` with examples of each error type highlighted
 
 ---
 
-### [12:00–17:00] Etapa 3: Verificar Credenciais
+### [12:00–17:00] Step 3: Check Credentials
 
 **Script:**
 
-> "Chegamos na causa mais comum de problemas: credenciais. A API key expirou, foi rotacionada, ou simplesmente foi copiada errada. Começa com o diagnóstico:
+> "Here we arrive at the most common cause of problems: credentials. The API key expired, was rotated, or was simply copied wrong. Start with the diagnostic:
 
 ```bash
 openclaw status
 ```
 
-> "Esse comando lista todos os modelos configurados e o status de cada um. Você vai ver algo como:
+> "This command lists all configured models and the status of each. You'll see something like:
 
 ```
 Models configured:
@@ -117,188 +117,188 @@ Models configured:
   ✗ openai/gpt-4o             [auth error]
 ```
 
-> "Se algum modelo está com `auth error`, a chave está inválida ou ausente.
+> "If any model shows `auth error`, the key is invalid or missing.
 >
-> O teste mais simples é mandar uma mensagem curta — literalmente 'olá' — e ver o que acontece. Se você receber `401 Unauthorized` nos logs, a chave está errada. Se receber `429 Too Many Requests`, é rate limit.
+> The simplest test is to send a short message — literally 'hello' — and see what happens. If you receive `401 Unauthorized` in the logs, the key is wrong. If you receive `429 Too Many Requests`, it's rate limit.
 >
-> Esses dois erros parecem iguais para o usuário — o bot não responde — mas a solução é completamente diferente:
+> These two errors seem the same to the user — the bot doesn't respond — but the solution is completely different:
 >
-> - **401 / auth error:** Você precisa reautenticar. A chave está inválida.
-> - **429 / rate limit:** A chave é válida, mas você usou demais. Espere e tente de novo.
+> - **401 / auth error:** You need to reauthenticate. The key is invalid.
+> - **429 / rate limit:** The key is valid, but you used it too much. Wait and try again.
 >
-> Para reautenticar, vai no painel do provedor, gera uma nova chave, e atualiza no OpenClaw:
+> To reauthenticate, go to your provider's dashboard, generate a new key, and update in OpenClaw:
 
 ```bash
-openclaw config set api_key <sua-nova-chave>
+openclaw config set api_key <your-new-key>
 openclaw gateway restart
 ```
 
-> "Depois do restart, testa novamente. Na minha experiência, 60% dos problemas que chegam no suporte se resolvem aqui."
+> "After the restart, test again. In my experience, 60% of problems that reach support are resolved here."
 
-**O que mostrar na tela:**
-- `openclaw status` com exemplos de modelos ativos e com erro
-- Comparação visual: 401 vs 429 nos logs
-- Demonstração de como atualizar a chave e reiniciar
+**What to show on screen:**
+- `openclaw status` with examples of active and errored models
+- Visual comparison: 401 vs 429 in logs
+- Demo of how to update the key and restart
 
 ---
 
-### [17:00–22:00] Etapa 4: Verificar Configuração
+### [17:00–22:00] Step 4: Check Configuration
 
 **Script:**
 
-> "Se chegou até aqui e ainda não resolveu, o problema está na configuração. O OpenClaw tem um comando novo que eu recomendo fortemente usar _antes_ de qualquer restart:
+> "If you've gotten here and still haven't resolved it, the problem is in the configuration. OpenClaw has a new command that I strongly recommend using _before_ any restart:
 
 ```bash
 openclaw config validate
 ```
 
-> "Esse comando lê o seu `openclaw.json`, verifica a sintaxe, e aponta exatamente onde está o erro — com número de linha e tudo. Muito melhor do que reiniciar e ficar olhando pra uma tela branca tentando adivinhar.
+> "This command reads your `openclaw.json`, checks the syntax, and points out exactly where the error is — with line number and everything. Much better than restarting and staring at a blank screen trying to guess.
 >
-> Os erros mais comuns que eu vejo no `openclaw.json`:
+> The most common errors I see in `openclaw.json`:
 >
-> **1. Vírgula sobrando ou faltando** — JSON é impiedoso. Uma vírgula a mais no final de um objeto já quebra tudo.
+> **1. Extra or missing comma** — JSON is unforgiving. One extra comma at the end of an object breaks everything.
 >
-> **2. Campo obrigatório ausente** — `model`, `channel`, ou `token` faltando no bloco de configuração.
+> **2. Missing required field** — `model`, `channel`, or `token` missing from the config block.
 >
-> **3. Referência a arquivo que não existe** — O `openclaw.json` apontando para um AGENTS.md num caminho que não existe.
+> **3. Reference to non-existent file** — The `openclaw.json` pointing to an AGENTS.md at a path that doesn't exist.
 >
-> Falando em AGENTS.md: esse arquivo também pode causar problemas. Os erros mais comuns são:
+> Speaking of AGENTS.md: this file can also cause problems. The most common errors are:
 >
-> - **Indentação quebrada** — O AGENTS.md usa markdown. Um bloco de código mal fechado pode bagunçar o parsing.
-> - **Referência circular** — Uma skill que importa outra que importa a primeira.
-> - **Instrução conflitante** — Duas regras que se contradizem. O modelo fica preso tentando obedecer as duas.
+> - **Broken indentation** — AGENTS.md uses markdown. A badly closed code block can mess up the parsing.
+> - **Circular reference** — A skill that imports another that imports the first.
+> - **Conflicting instructions** — Two rules that contradict each other. The model gets stuck trying to obey both.
 >
-> Skills também podem ter conflito. Se você adicionou uma skill nova e o bot começou a se comportar de forma estranha, testa removendo a skill temporariamente para isolar o problema.
+> Skills can also have conflicts. If you added a new skill and the bot started behaving strangely, test by removing the skill temporarily to isolate the problem.
 >
-> Depois de corrigir qualquer coisa no arquivo de configuração, sempre valida antes de reiniciar:
+> After fixing anything in the configuration file, always validate before restarting:
 
 ```bash
 openclaw config validate && openclaw gateway restart
 ```
 
-> "O `&&` garante que o restart só acontece se a validação passar. Boa prática."
+> "The `&&` ensures that the restart only happens if validation passes. Good practice."
 
-**O que mostrar na tela:**
-- `openclaw config validate` com saída de sucesso e com erro
-- Exemplos de `openclaw.json` quebrado vs correto (diff lado a lado)
-- Exemplo de AGENTS.md com problema de formatação
+**What to show on screen:**
+- `openclaw config validate` with success and error output
+- Examples of broken vs correct `openclaw.json` (side-by-side diff)
+- Example of AGENTS.md with formatting problem
 
 ---
 
-### [22:00–27:00] Etapa 5: Escalar o Problema
+### [22:00–27:00] Step 5: Escalate the Problem
 
 **Script:**
 
-> "Se você chegou até aqui e ainda não conseguiu resolver, o problema é mais complexo. Não é vergonha nenhuma — o importante agora é pedir ajuda da forma certa.
+> "If you've gotten here and still couldn't resolve it, the problem is more complex. There's no shame in that — what matters now is asking for help the right way.
 >
-> Tem uma ferramenta específica para isso:
+> There's a specific tool for that:
 
 ```bash
 openclaw doctor
 ```
 
-> "O `doctor` faz uma checagem completa do ambiente: versão do OpenClaw, integridade dos arquivos de configuração, status dos modelos, permissões de arquivo, variáveis de ambiente. Ele gera um relatório que você pode compartilhar.
+> "The `doctor` does a complete environment check: OpenClaw version, config file integrity, model status, file permissions, environment variables. It generates a report you can share.
 >
-> Mas antes de postar no grupo de suporte, existe uma etiqueta importante: **nunca compartilhe suas chaves de API.** O `openclaw doctor` automaticamente mascara credenciais no output, mas se você for copiar logs manualmente, revise antes.
+> But before posting in the support group, there's an important etiquette: **never share your API keys.** The `openclaw doctor` automatically masks credentials in the output, but if you're copying logs manually, review first.
 >
-> O que coletar antes de pedir ajuda:
+> What to collect before asking for help:
 >
-> **1. Versão do OpenClaw:**
+> **1. OpenClaw version:**
 
 ```bash
 openclaw --version
 ```
 
-> **2. Output do `openclaw doctor`** (já com credenciais mascaradas)
+> **2. Output of `openclaw doctor`** (already with credentials masked)
 >
-> **3. Os últimos 50 logs do gateway:**
+> **3. Last 50 gateway logs:**
 
 ```bash
 tail -50 ~/.openclaw/logs/gateway.log
 ```
 
-> **4. Sua config sem credenciais:**
+> **4. Your config without credentials:**
 
 ```bash
 openclaw config export --mask-secrets
 ```
 
-> "Com essas quatro coisas, qualquer pessoa do suporte consegue te ajudar em minutos. Sem isso, a conversa vira um interrogatório e demora muito mais.
+> "With these four things, anyone in support can help you in minutes. Without this, the conversation becomes an interrogation and takes much longer.
 >
-> No grupo de suporte, cole tudo em um único bloco de código, descreva o que você fez antes do problema aparecer, e qual das 5 etapas do runbook você já executou. Isso economiza o tempo de todo mundo."
+> In the support group, paste everything in a single code block, describe what you did before the problem appeared, and which of the 5 runbook steps you've already executed. This saves everyone's time."
 
-**O que mostrar na tela:**
-- `openclaw doctor` com output completo
+**What to show on screen:**
+- `openclaw doctor` with complete output
 - `openclaw --version`
 - `openclaw config export --mask-secrets`
-- Template de post no grupo de suporte
+- Support group post template
 
 ---
 
-### [27:00–30:00] Encerramento — Tabela de Erros & Primeiros Socorros
+### [27:00–30:00] Closing — Error Table & First Aid
 
 **Script:**
 
-> "Antes de terminar, dois recursos que você vai querer ter sempre à mão.
+> "Before finishing, two resources you'll want to always have at hand.
 >
-> O primeiro é a tabela de erros mais comuns — está no material de apoio desta aula. Cola no favoritos.
+> The first is the most common errors table — it's in the supplementary material for this lesson. Bookmark it.
 >
-> O segundo é o checklist de primeiros socorros: cinco comandos que resolvem 80% dos problemas. Quando o bot parar de funcionar, roda esses cinco na ordem, e na maioria das vezes um deles já resolve:
+> The second is the first aid checklist: five commands that resolve 80% of problems. When the bot stops working, run these five in order, and most of the time one of them already solves it:
 
 ```bash
-# 1. Ver status geral
+# 1. Check overall status
 openclaw status
 
-# 2. Ver status do gateway
+# 2. Check gateway status
 openclaw gateway status
 
-# 3. Reiniciar o gateway
+# 3. Restart gateway
 openclaw gateway restart
 
-# 4. Validar configuração
+# 4. Validate configuration
 openclaw config validate
 
-# 5. Diagnóstico completo
+# 5. Complete diagnostic
 openclaw doctor
 ```
 
-> "Salva isso. Imprime se precisar. É o seu kit de ferramentas de debug.
+> "Save this. Print it if needed. It's your debug toolkit.
 >
-> Nos vemos na próxima aula. Se tiver dúvida, o grupo de suporte está lá."
+> See you in the next lesson. If you have questions, the support group is there."
 
 ---
 
-## Tabela de Erros Mais Comuns
+## Most Common Errors Table
 
-| Erro | Sintoma | Causa | Solução |
-|------|---------|-------|---------|
-| `401 Unauthorized` | Bot silencioso ou erro na resposta | API key inválida ou expirada | Gerar nova chave, `openclaw config set api_key <nova>`, restart |
-| `429 Too Many Requests` | Bot silencioso por um período | Rate limit atingido | Aguardar 1-5 minutos, reduzir frequência de uso |
-| `Gateway stopped` | Bot completamente silencioso | Processo do gateway travou ou crashou | `openclaw gateway restart` |
-| `Context length exceeded` | Erro após conversa longa | Histórico de conversa muito extenso | Limpar histórico ou ajustar `max_context` na config |
-| `Connection refused` | Erro de conexão nos logs | Rede instável ou endpoint fora | Verificar internet, checar status do provedor |
-| `JSON parse error` | Gateway falha ao iniciar | `openclaw.json` com erro de sintaxe | `openclaw config validate`, corrigir JSON |
-| `File not found` | Gateway falha ao iniciar | Caminho de arquivo inexistente na config | Verificar todos os caminhos no `openclaw.json` |
-| `Skill conflict` | Comportamento errático do bot | Duas skills com instruções conflitantes | Remover skill recém-adicionada, isolar problema |
-| `AGENTS.md parse error` | Bot ignora instruções | AGENTS.md mal formatado (bloco de código aberto) | Fechar todos os blocos de código no AGENTS.md |
-| `Model not found` | Erro ao processar mensagem | Nome do modelo incorreto na config | Verificar nomenclatura exata no `openclaw status` |
-
----
-
-## Checklist de Primeiros Socorros
-
-- [ ] `openclaw status` — ver estado geral dos modelos
-- [ ] `openclaw gateway status` — confirmar se o gateway está rodando
-- [ ] `openclaw gateway restart` — reiniciar o gateway
-- [ ] `openclaw config validate` — validar o arquivo de configuração
-- [ ] `openclaw doctor` — diagnóstico completo do ambiente
+| Error | Symptom | Cause | Solution |
+|-------|---------|-------|----------|
+| `401 Unauthorized` | Bot silent or error in response | Invalid or expired API key | Generate new key, `openclaw config set api_key <new>`, restart |
+| `429 Too Many Requests` | Bot silent for a period | Rate limit hit | Wait 1-5 minutes, reduce usage frequency |
+| `Gateway stopped` | Bot completely silent | Gateway process froze or crashed | `openclaw gateway restart` |
+| `Context length exceeded` | Error after long conversation | Conversation history too extensive | Clear history or adjust `max_context` in config |
+| `Connection refused` | Connection error in logs | Unstable network or endpoint down | Check internet, check provider status |
+| `JSON parse error` | Gateway fails to start | `openclaw.json` with syntax error | `openclaw config validate`, fix JSON |
+| `File not found` | Gateway fails to start | Non-existent file path in config | Check all paths in `openclaw.json` |
+| `Skill conflict` | Bot erratic behavior | Two skills with conflicting instructions | Remove recently added skill, isolate problem |
+| `AGENTS.md parse error` | Bot ignores instructions | Badly formatted AGENTS.md (open code block) | Close all code blocks in AGENTS.md |
+| `Model not found` | Error processing message | Incorrect model name in config | Check exact naming in `openclaw status` |
 
 ---
 
-## Notas de Produção
+## First Aid Checklist
 
-- **Ambiente de gravação:** Terminal com fonte grande (16px+), tema escuro
-- **Mostrar erros reais:** Preparar arquivos de configuração propositalmente quebrados para demonstração
-- **Pausar nos momentos-chave:** Após cada comando, aguardar o output aparecer completamente antes de falar
-- **Material de apoio:** HTML desta aula deve estar linkado na descrição do vídeo
-- **Thumbnail:** Imagem com "5 etapas" e ícone de bug/ferramentas
+- [ ] `openclaw status` — check overall state of models
+- [ ] `openclaw gateway status` — confirm if gateway is running
+- [ ] `openclaw gateway restart` — restart the gateway
+- [ ] `openclaw config validate` — validate the configuration file
+- [ ] `openclaw doctor` — complete environment diagnostic
+
+---
+
+## Production Notes
+
+- **Recording environment:** Terminal with large font (16px+), dark theme
+- **Show real errors:** Prepare intentionally broken configuration files for demonstration
+- **Pause at key moments:** After each command, wait for the output to appear completely before speaking
+- **Support material:** HTML for this lesson should be linked in the video description
+- **Thumbnail:** Image with "5 steps" and bug/tools icon

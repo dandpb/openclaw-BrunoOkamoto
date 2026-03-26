@@ -1,276 +1,276 @@
-# Skills por Perfil de Usuário
+# Skills by User Profile
 
-> Guia curado de skills OpenClaw organizadas por perfil. Copie o comando de instalação e vá.
+> Curated guide of OpenClaw skills organized by profile. Copy the install command and go.
 
 ---
 
-## ⚠️ Avisos Importantes
+## ⚠️ Important Warnings
 
-### Segurança Primeiro
-**Sempre revise o código antes de instalar uma skill!** Skills têm acesso ao seu workspace, credenciais e podem executar comandos. Instale apenas de fontes confiáveis (ClawHub verificado, repositórios oficiais).
+### Security First
+**Always review the code before installing a skill!** Skills have access to your workspace, credentials, and can execute commands. Only install from trusted sources (verified ClawHub, official repositories).
 
 ```bash
-# Antes de instalar, inspecione o código:
+# Before installing, inspect the code:
 git clone <repo> /tmp/skill-review
 cat /tmp/skill-review/SKILL.md
 ```
 
-### Evite Redundâncias
-- **remind-me ≈ cron nativo** — OpenClaw já tem cron integrado. Só instale remind-me se precisar de features extras (recorrência complexa, snooze)
-- **múltiplos skills de clima** — escolha um (weather built-in é suficiente)
-- **creators duplicados** — um gerador de imagens basta (openai-image-gen built-in ou stable-diffusion)
+### Avoid Redundancies
+- **remind-me ≈ native cron** — OpenClaw already has a built-in cron. Only install remind-me if you need extra features (complex recurrence, snooze)
+- **multiple weather skills** — choose one (built-in weather is sufficient)
+- **duplicate creators** — one image generator is enough (built-in openai-image-gen or stable-diffusion)
 
-### Creators São Skills, Não Agentes
-❌ **Errado:** 8 agentes especializados (ImageAgent, VideoAgent, WriterAgent...)  
-✅ **Certo:** 1 agente principal + 8 skills (image-gen, video-edit, grammar-check...)
+### Creators Are Skills, Not Agents
+❌ **Wrong:** 8 specialized agents (ImageAgent, VideoAgent, WriterAgent...)
+✅ **Right:** 1 main agent + 8 skills (image-gen, video-edit, grammar-check...)
 
-**Por quê?** Um agente com contexto unificado e várias ferramentas > múltiplos agentes desconexos. Agents devem ter *propósitos*, não *funções*.
+**Why?** One agent with unified context and multiple tools > multiple disconnected agents. Agents should have *purposes*, not *functions*.
 
 ---
 
-## Skills Essenciais (Todos os Perfis)
+## Essential Skills (All Profiles)
 
-Independente do seu trabalho, estas são fundamentais:
+Regardless of your work, these are fundamental:
 
 ### 1. **github** (built-in)
-- **O que faz:** Cria issues, PRs, busca código, gerencia repos
-- **Por que é essencial:** Seu workspace está no Git. Este é o controle de versão do seu agente.
-- **Instalação:** `openclaw skill enable github`
+- **What it does:** Creates issues, PRs, searches code, manages repos
+- **Why it's essential:** Your workspace is on Git. This is version control for your agent.
+- **Installation:** `openclaw skill enable github`
 
 ### 2. **1password** (built-in)
-- **O que faz:** Lê/cria/atualiza credenciais no 1Password via CLI
-- **Por que é essencial:** Nunca hardcode credenciais. Seu agente precisa gerenciar segredos com segurança.
-- **Instalação:** `openclaw skill enable 1password` (requer 1Password CLI configurado)
+- **What it does:** Reads/creates/updates credentials in 1Password via CLI
+- **Why it's essential:** Never hardcode credentials. Your agent needs to manage secrets securely.
+- **Installation:** `openclaw skill enable 1password` (requires 1Password CLI configured)
 
 ### 3. **weather** (built-in)
-- **O que faz:** Consulta previsão do tempo via wttr.in
-- **Por que é essencial:** Contexto físico importa. "Devo sair agora?" "Vai chover na reunião externa?"
-- **Instalação:** `openclaw skill enable weather`
+- **What it does:** Checks weather forecast via wttr.in
+- **Why it's essential:** Physical context matters. "Should I go out now?" "Will it rain at the outdoor meeting?"
+- **Installation:** `openclaw skill enable weather`
 
 ### 4. **healthcheck** (built-in)
-- **O que faz:** Monitora serviços HTTP/HTTPS, notifica quando caem
-- **Por que é essencial:** Proatividade. Saiba se seu site/API caiu antes dos clientes reclamarem.
-- **Instalação:** `openclaw skill enable healthcheck`
+- **What it does:** Monitors HTTP/HTTPS services, notifies when they go down
+- **Why it's essential:** Proactivity. Know if your site/API went down before customers complain.
+- **Installation:** `openclaw skill enable healthcheck`
 
 ---
 
-## 👔 Empreendedor / Founder
+## 👔 Entrepreneur / Founder
 
-Foco em operações, métricas, relatórios, tomada de decisão.
+Focus on operations, metrics, reports, decision-making.
 
 ### 1. **gog (Google Workspace)** (built-in)
-- **O que faz:** Acessa Gmail, Calendar, Drive, Sheets, Docs
-- **Por que é útil:** Centraliza comunicação e dados. Leia emails, crie eventos, gere relatórios direto de Sheets.
-- **Instalação:** `openclaw skill enable gog` (requer credenciais OAuth)
+- **What it does:** Accesses Gmail, Calendar, Drive, Sheets, Docs
+- **Why it's useful:** Centralizes communication and data. Read emails, create events, generate reports directly from Sheets.
+- **Installation:** `openclaw skill enable gog` (requires OAuth credentials)
 
 ### 2. **stripe-api** (clawhub.com/stripe)
-- **O que faz:** Consulta receita, clientes, assinaturas, faturas no Stripe
-- **Por que é útil:** Métricas de receita em tempo real. "Quanto faturei hoje?" "Quantas assinaturas novas?"
-- **Instalação:** `openclaw skill install clawhub/stripe`
+- **What it does:** Queries revenue, customers, subscriptions, invoices in Stripe
+- **Why it's useful:** Real-time revenue metrics. "How much did I earn today?" "How many new subscriptions?"
+- **Installation:** `openclaw skill install clawhub/stripe`
 
 ### 3. **analytics-reports** (clawhub.com/analytics)
-- **O que faz:** Puxa dados do Google Analytics e gera relatórios
-- **Por que é útil:** Tráfego, conversão, funil — tudo acessível via chat.
-- **Instalação:** `openclaw skill install clawhub/analytics`
+- **What it does:** Pulls data from Google Analytics and generates reports
+- **Why it's useful:** Traffic, conversion, funnel — all accessible via chat.
+- **Installation:** `openclaw skill install clawhub/analytics`
 
 ### 4. **postgres-query** (clawhub.com/postgres)
-- **O que faz:** Executa queries SQL no seu banco de produção (read-only recomendado)
-- **Por que é útil:** "Quantos usuários ativos?" "Qual feature mais usada?" Respostas instantâneas.
-- **Instalação:** `openclaw skill install clawhub/postgres`
+- **What it does:** Executes SQL queries on your production database (read-only recommended)
+- **Why it's useful:** "How many active users?" "Which feature is used most?" Instant answers.
+- **Installation:** `openclaw skill install clawhub/postgres`
 
 ### 5. **notion-db** (clawhub.com/notion)
-- **O que faz:** Lê/cria/atualiza databases no Notion
-- **Por que é útil:** Se você gerencia projetos/CRM no Notion, o agente acessa e atualiza tudo.
-- **Instalação:** `openclaw skill install clawhub/notion`
+- **What it does:** Reads/creates/updates databases in Notion
+- **Why it's useful:** If you manage projects/CRM in Notion, the agent accesses and updates everything.
+- **Installation:** `openclaw skill install clawhub/notion`
 
 ### 6. **slack-admin** (clawhub.com/slack)
-- **O que faz:** Envia mensagens, lê canais, cria threads no Slack
-- **Por que é útil:** Delegue notificações ao time, resuma conversas importantes.
-- **Instalação:** `openclaw skill install clawhub/slack`
+- **What it does:** Sends messages, reads channels, creates threads in Slack
+- **Why it's useful:** Delegate team notifications, summarize important conversations.
+- **Installation:** `openclaw skill install clawhub/slack`
 
 ### 7. **financial-dashboard** (clawhub.com/finance)
-- **O que faz:** Conecta múltiplas APIs financeiras (Stripe, QuickBooks, PagSeguro) e gera dashboards
-- **Por que é útil:** Visão unificada de receita, despesas, fluxo de caixa.
-- **Instalação:** `openclaw skill install clawhub/finance`
+- **What it does:** Connects multiple financial APIs (Stripe, QuickBooks, PagSeguro) and generates dashboards
+- **Why it's useful:** Unified view of revenue, expenses, cash flow.
+- **Installation:** `openclaw skill install clawhub/finance`
 
 ---
 
-## 🎨 Criador de Conteúdo
+## 🎨 Content Creator
 
-Foco em produção de conteúdo, redes sociais, design, edição.
+Focus on content production, social media, design, editing.
 
 ### 1. **openai-image-gen** (built-in)
-- **O que faz:** Gera imagens com DALL-E
-- **Por que é útil:** Thumbnails, ilustrações, assets visuais sob demanda.
-- **Instalação:** `openclaw skill enable openai-image-gen`
+- **What it does:** Generates images with DALL-E
+- **Why it's useful:** Thumbnails, illustrations, visual assets on demand.
+- **Installation:** `openclaw skill enable openai-image-gen`
 
 ### 2. **openai-whisper-api** (built-in)
-- **O que faz:** Transcreve áudio para texto (podcasts, entrevistas, vídeos)
-- **Por que é útil:** Transcrições automáticas para legendas, blog posts, show notes.
-- **Instalação:** `openclaw skill enable openai-whisper-api`
+- **What it does:** Transcribes audio to text (podcasts, interviews, videos)
+- **Why it's useful:** Automatic transcriptions for captions, blog posts, show notes.
+- **Installation:** `openclaw skill enable openai-whisper-api`
 
 ### 3. **video-frames** (built-in)
-- **O que faz:** Extrai frames de vídeos para análise
-- **Por que é útil:** Escolha o melhor frame para thumbnail, analise composição.
-- **Instalação:** `openclaw skill enable video-frames`
+- **What it does:** Extracts frames from videos for analysis
+- **Why it's useful:** Choose the best frame for thumbnails, analyze composition.
+- **Installation:** `openclaw skill enable video-frames`
 
 ### 4. **ffmpeg-edit** (clawhub.com/ffmpeg)
-- **O que faz:** Corta, concatena, converte vídeos via ffmpeg
-- **Por que é útil:** Edições rápidas sem abrir Premiere. "Corta os primeiros 10s e exporta em 720p."
-- **Instalação:** `openclaw skill install clawhub/ffmpeg`
+- **What it does:** Cuts, concatenates, converts videos via ffmpeg
+- **Why it's useful:** Quick edits without opening Premiere. "Cut the first 10s and export at 720p."
+- **Installation:** `openclaw skill install clawhub/ffmpeg`
 
 ### 5. **youtube-metadata** (clawhub.com/youtube)
-- **O que faz:** Faz upload, atualiza título/descrição/tags de vídeos no YouTube
-- **Por que é útil:** Automatize publicação. "Faz upload desse vídeo com essa thumbnail e essa descrição."
-- **Instalação:** `openclaw skill install clawhub/youtube`
+- **What it does:** Uploads, updates title/description/tags of videos on YouTube
+- **Why it's useful:** Automate publishing. "Upload this video with this thumbnail and this description."
+- **Installation:** `openclaw skill install clawhub/youtube`
 
 ### 6. **twitter-scheduler** (clawhub.com/twitter)
-- **O que faz:** Agenda tweets, threads, analisa engajamento
-- **Por que é útil:** Crie threads inteiras em uma conversa, o agente agenda e publica.
-- **Instalação:** `openclaw skill install clawhub/twitter`
+- **What it does:** Schedules tweets, threads, analyzes engagement
+- **Why it's useful:** Create full threads in one conversation, the agent schedules and publishes.
+- **Installation:** `openclaw skill install clawhub/twitter`
 
 ### 7. **canva-api** (clawhub.com/canva)
-- **O que faz:** Cria designs via Canva API (posts, stories, banners)
-- **Por que é útil:** Geração de assets visuais em escala. "Cria 5 variações desse post."
-- **Instalação:** `openclaw skill install clawhub/canva`
+- **What it does:** Creates designs via Canva API (posts, stories, banners)
+- **Why it's useful:** Visual asset generation at scale. "Create 5 variations of this post."
+- **Installation:** `openclaw skill install clawhub/canva`
 
 ### 8. **subtitle-sync** (clawhub.com/subtitles)
-- **O que faz:** Gera e sincroniza legendas SRT/VTT
-- **Por que é útil:** Acessibilidade automática. Transcrição → legendas sincronizadas.
-- **Instalação:** `openclaw skill install clawhub/subtitles`
+- **What it does:** Generates and synchronizes SRT/VTT subtitles
+- **Why it's useful:** Automatic accessibility. Transcription → synchronized subtitles.
+- **Installation:** `openclaw skill install clawhub/subtitles`
 
 ---
 
-## 💻 Desenvolvedor
+## 💻 Developer
 
-Foco em coding, CI/CD, debugging, deploy, monitoramento.
+Focus on coding, CI/CD, debugging, deploy, monitoring.
 
 ### 1. **github** (built-in)
-- **O que faz:** Cria issues, PRs, busca código, gerencia repos
-- **Por que é útil:** "Abre uma issue pra esse bug." "Lista PRs pendentes de review."
-- **Instalação:** `openclaw skill enable github`
+- **What it does:** Creates issues, PRs, searches code, manages repos
+- **Why it's useful:** "Open an issue for this bug." "List PRs pending review."
+- **Installation:** `openclaw skill enable github`
 
 ### 2. **tmux** (built-in)
-- **O que faz:** Gerencia sessões tmux (cria, lista, mata, envia comandos)
-- **Por que é útil:** Rode servidores/builds em background, monitore processos.
-- **Instalação:** `openclaw skill enable tmux`
+- **What it does:** Manages tmux sessions (create, list, kill, send commands)
+- **Why it's useful:** Run servers/builds in background, monitor processes.
+- **Installation:** `openclaw skill enable tmux`
 
 ### 3. **docker-compose** (clawhub.com/docker)
-- **O que faz:** Sobe/desce containers, lê logs, reinicia serviços
-- **Por que é útil:** "Reinicia o container do Redis." "Logs do backend nos últimos 5min."
-- **Instalação:** `openclaw skill install clawhub/docker`
+- **What it does:** Starts/stops containers, reads logs, restarts services
+- **Why it's useful:** "Restart the Redis container." "Backend logs for the last 5min."
+- **Installation:** `openclaw skill install clawhub/docker`
 
 ### 4. **postgres-query** (clawhub.com/postgres)
-- **O que faz:** Executa queries SQL no banco de dev/staging
-- **Por que é útil:** Debugging rápido. "Mostra o último pedido do usuário X."
-- **Instalação:** `openclaw skill install clawhub/postgres`
+- **What it does:** Executes SQL queries on dev/staging database
+- **Why it's useful:** Quick debugging. "Show the last order from user X."
+- **Installation:** `openclaw skill install clawhub/postgres`
 
 ### 5. **sentry-alerts** (clawhub.com/sentry)
-- **O que faz:** Consulta erros no Sentry, cria issues no GitHub automaticamente
-- **Por que é útil:** Proatividade. Erros críticos viram issues sem intervenção manual.
-- **Instalação:** `openclaw skill install clawhub/sentry`
+- **What it does:** Queries errors in Sentry, automatically creates issues in GitHub
+- **Why it's useful:** Proactivity. Critical errors become issues without manual intervention.
+- **Installation:** `openclaw skill install clawhub/sentry`
 
 ### 6. **cloudflare-dns** (clawhub.com/cloudflare)
-- **O que faz:** Gerencia DNS, cache, firewall rules na Cloudflare
-- **Por que é útil:** "Adiciona um registro A pra staging." "Limpa o cache."
-- **Instalação:** `openclaw skill install clawhub/cloudflare`
+- **What it does:** Manages DNS, cache, firewall rules in Cloudflare
+- **Why it's useful:** "Add an A record for staging." "Clear the cache."
+- **Installation:** `openclaw skill install clawhub/cloudflare`
 
 ### 7. **aws-cli-wrapper** (clawhub.com/aws)
-- **O que faz:** Executa comandos AWS (EC2, S3, Lambda, RDS)
-- **Por que é útil:** "Lista instâncias ativas." "Faz deploy da Lambda." Infraestrutura via chat.
-- **Instalação:** `openclaw skill install clawhub/aws`
+- **What it does:** Executes AWS commands (EC2, S3, Lambda, RDS)
+- **Why it's useful:** "List active instances." "Deploy the Lambda." Infrastructure via chat.
+- **Installation:** `openclaw skill install clawhub/aws`
 
 ### 8. **code-review-ai** (clawhub.com/code-review)
-- **O que faz:** Analisa PRs, sugere melhorias, detecta bugs
-- **Por que é útil:** Review automático antes de pedir ao time. Feedback instantâneo.
-- **Instalação:** `openclaw skill install clawhub/code-review`
+- **What it does:** Analyzes PRs, suggests improvements, detects bugs
+- **Why it's useful:** Automatic review before requesting from the team. Instant feedback.
+- **Installation:** `openclaw skill install clawhub/code-review`
 
 ---
 
-## 📅 Produtividade Pessoal
+## 📅 Personal Productivity
 
-Foco em calendário, notas, tarefas, automação de rotina.
+Focus on calendar, notes, tasks, routine automation.
 
 ### 1. **gog (Google Workspace)** (built-in)
-- **O que faz:** Acessa Gmail, Calendar, Drive, Docs
-- **Por que é útil:** "Qual minha próxima reunião?" "Cria um doc com minhas notas de hoje."
-- **Instalação:** `openclaw skill enable gog`
+- **What it does:** Accesses Gmail, Calendar, Drive, Docs
+- **Why it's useful:** "What is my next meeting?" "Create a doc with my notes for today."
+- **Installation:** `openclaw skill enable gog`
 
 ### 2. **todoist-sync** (clawhub.com/todoist)
-- **O que faz:** Lê/cria/completa tarefas no Todoist
-- **Por que é útil:** Gerenciamento de tarefas via chat. "Adiciona 'comprar café' pra amanhã."
-- **Instalação:** `openclaw skill install clawhub/todoist`
+- **What it does:** Reads/creates/completes tasks in Todoist
+- **Why it's useful:** Task management via chat. "Add 'buy coffee' for tomorrow."
+- **Installation:** `openclaw skill install clawhub/todoist`
 
 ### 3. **notion-db** (clawhub.com/notion)
-- **O que faz:** Lê/cria/atualiza databases no Notion
-- **Por que é útil:** Se você usa Notion como segundo cérebro, o agente acessa tudo.
-- **Instalação:** `openclaw skill install clawhub/notion`
+- **What it does:** Reads/creates/updates databases in Notion
+- **Why it's useful:** If you use Notion as your second brain, the agent accesses everything.
+- **Installation:** `openclaw skill install clawhub/notion`
 
 ### 4. **obsidian-vault** (clawhub.com/obsidian)
-- **O que faz:** Lê/cria/busca notas no Obsidian (vault local)
-- **Por que é útil:** PKM integrado. "Busca minhas notas sobre X." "Cria uma nota com esse conteúdo."
-- **Instalação:** `openclaw skill install clawhub/obsidian`
+- **What it does:** Reads/creates/searches notes in Obsidian (local vault)
+- **Why it's useful:** Integrated PKM. "Search my notes on X." "Create a note with this content."
+- **Installation:** `openclaw skill install clawhub/obsidian`
 
 ### 5. **calendar-assistant** (clawhub.com/calendar)
-- **O que faz:** Agenda reuniões, detecta conflitos, sugere horários
-- **Por que é útil:** "Agenda 30min com João na próxima semana, de manhã."
-- **Instalação:** `openclaw skill install clawhub/calendar`
+- **What it does:** Schedules meetings, detects conflicts, suggests time slots
+- **Why it's useful:** "Schedule 30min with John next week, in the morning."
+- **Installation:** `openclaw skill install clawhub/calendar`
 
 ### 6. **email-summarizer** (clawhub.com/email-summary)
-- **O que faz:** Resume inbox não lida, destaca urgências
-- **Por que é útil:** "Resume meus emails de hoje." Zero-inbox assistido.
-- **Instalação:** `openclaw skill install clawhub/email-summary`
+- **What it does:** Summarizes unread inbox, highlights urgencies
+- **Why it's useful:** "Summarize my emails for today." Assisted zero-inbox.
+- **Installation:** `openclaw skill install clawhub/email-summary`
 
 ### 7. **habit-tracker** (clawhub.com/habits)
-- **O que faz:** Rastreia hábitos diários, envia lembretes
-- **Por que é útil:** "Já bebi 2L de água hoje?" "Lembra de meditar às 19h."
-- **Instalação:** `openclaw skill install clawhub/habits`
+- **What it does:** Tracks daily habits, sends reminders
+- **Why it's useful:** "Have I drunk 2L of water today?" "Remind me to meditate at 7pm."
+- **Installation:** `openclaw skill install clawhub/habits`
 
 ---
 
-## 🔍 Como Descobrir Mais Skills
+## 🔍 How to Discover More Skills
 
-- **ClawHub oficial:** https://clawhub.com
-- **GitHub topic:** procure por `openclaw-skill` no GitHub
-- **Comunidade Discord:** pergunte no #skills o que as pessoas usam
-- **Crie a sua:** se não existe, é uma oportunidade! Skills são só bash + SKILL.md
+- **Official ClawHub:** https://clawhub.com
+- **GitHub topic:** search for `openclaw-skill` on GitHub
+- **Discord community:** ask in #skills what people are using
+- **Create your own:** if it doesn't exist, it's an opportunity! Skills are just bash + SKILL.md
 
 ---
 
-## 📝 Anatomia de uma Skill
+## 📝 Anatomy of a Skill
 
-Uma skill OpenClaw é simplesmente:
+An OpenClaw skill is simply:
 
 ```
 skill-name/
-├── SKILL.md          # Documentação + declaração de tools
-├── tool-one.sh       # Script executável
-└── tool-two.sh       # Outro script
+├── SKILL.md          # Documentation + tool declarations
+├── tool-one.sh       # Executable script
+└── tool-two.sh       # Another script
 ```
 
-O agente lê `SKILL.md`, descobre as tools disponíveis, e executa os scripts quando necessário.
+The agent reads `SKILL.md`, discovers the available tools, and executes the scripts when needed.
 
-**Dica:** Comece simples. Uma skill de 50 linhas que resolve SEU problema > uma skill de 500 linhas genérica.
-
----
-
-## ✅ Checklist de Instalação
-
-Antes de instalar uma skill:
-
-- [ ] Li o `SKILL.md` e entendo o que ela faz
-- [ ] Revisei os scripts bash (procuro por `rm -rf`, `curl` suspeito, `eval`)
-- [ ] Verifiquei que não duplica funcionalidade que já tenho
-- [ ] Sei quais credenciais/APIs ela precisa
-- [ ] Testei em ambiente isolado primeiro (se crítico)
-
-Depois de instalar:
-
-- [ ] Configurei credenciais no `.env` ou 1Password
-- [ ] Testei cada tool manualmente
-- [ ] Documentei uso específico no meu `TOOLS.md`
-- [ ] Atualizei `AGENTS.md` se a skill requer regras especiais
+**Tip:** Start simple. A 50-line skill that solves YOUR problem > a 500-line generic skill.
 
 ---
 
-**Lembre-se:** Skills amplificam o agente. Mas um agente sem identidade forte (SOUL.md, USER.md) continua genérico, independente de quantas skills instalar. Invista tempo em quem o agente É antes de multiplicar o que ele FAZ.
+## ✅ Installation Checklist
+
+Before installing a skill:
+
+- [ ] I read the `SKILL.md` and understand what it does
+- [ ] I reviewed the bash scripts (looking for `rm -rf`, suspicious `curl`, `eval`)
+- [ ] I verified it does not duplicate functionality I already have
+- [ ] I know which credentials/APIs it needs
+- [ ] I tested it in an isolated environment first (if critical)
+
+After installing:
+
+- [ ] Configured credentials in `.env` or 1Password
+- [ ] Tested each tool manually
+- [ ] Documented specific usage in my `TOOLS.md`
+- [ ] Updated `AGENTS.md` if the skill requires special rules
+
+---
+
+**Remember:** Skills amplify the agent. But an agent without a strong identity (SOUL.md, USER.md) remains generic, regardless of how many skills you install. Invest time in who the agent IS before multiplying what it DOES.

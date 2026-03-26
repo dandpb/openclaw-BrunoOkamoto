@@ -1,48 +1,48 @@
-# 📚 Base de Conhecimento Q&A — Curso OpenClaw
+# 📚 Q&A Knowledge Base — OpenClaw Course
 
-> Para alunos com qualquer nível técnico.
-> Linguagem simples. Soluções em prompt (não em terminal).
-
----
-
-## Como usar esta base
-
-1. **Tem um problema?** Comece pelo `qa-00-diagnostico-runbook.md`
-2. **Sabe qual é o tema?** Vai direto pro arquivo do tema
-3. **Encontrou a pergunta?** Copie o prompt e cole no seu bot
+> For students of any technical level.
+> Plain language. Prompt-based solutions (not terminal-based).
 
 ---
 
-## Índice
+## How to use this knowledge base
 
-| Arquivo | Tema | Quando usar |
+1. **Have a problem?** Start with `qa-00-diagnostico-runbook.md`
+2. **Know the topic?** Go directly to the relevant file
+3. **Found your question?** Copy the prompt and paste it into your bot
+
+---
+
+## Index
+
+| File | Topic | When to use |
 |---|---|---|
-| `qa-00-diagnostico-runbook.md` | 🚨 Primeiro socorro | Bot com problema, não sei o que é |
-| `qa-01-auth-modelo.md` | 🔑 Auth & Modelo | Erro 401, troca de API, cooldown |
-| `qa-02-telegram.md` | 💬 Telegram | Allowlist, grupo, privacidade |
-| `qa-03-contexto-memoria.md` | 🧠 Contexto & Memória | Bot lento, /compact vs /new, esqueceu algo |
-| `qa-04-infra-basica.md` | 🖥️ Infraestrutura | Porta em uso, conexão, VPS lenta |
-| `qa-05-arquitetura.md` | 🏗️ Arquitetura | Cérebro/braços, subagentes, n8n vs OpenClaw |
-| `qa-06-llms-comparativo.md` | 🤖 Modelos de IA | Claude vs ChatGPT, preços, Claude bloqueado |
+| `qa-00-diagnostico-runbook.md` | 🚨 First aid | Bot has a problem, I don't know what it is |
+| `qa-01-auth-modelo.md` | 🔑 Auth & Model | Error 401, API switch, cooldown |
+| `qa-02-telegram.md` | 💬 Telegram | Allowlist, group, privacy |
+| `qa-03-contexto-memoria.md` | 🧠 Context & Memory | Slow bot, /compact vs /new, forgot something |
+| `qa-04-infra-basica.md` | 🖥️ Infrastructure | Port in use, connection, slow VPS |
+| `qa-05-arquitetura.md` | 🏗️ Architecture | Brain/arms, subagents, n8n vs OpenClaw |
+| `qa-06-llms-comparativo.md` | 🤖 AI Models | Claude vs ChatGPT, pricing, Claude blocked |
 
 ---
 
-## Filosofia desta base
+## Philosophy of this knowledge base
 
-- **Zero terminal sempre que possível** — as soluções usam prompts em linguagem natural
-- **Linguagem de criança de 5 anos** — sem jargão técnico desnecessário
-- **O bot resolve pra você** — o prompt é o comando
-- **Separado por tema** — fácil de manter e expandir
-
----
-
-## Como contribuir / atualizar
-
-Quando surgir uma dúvida nova recorrente:
-1. Identifica o tema (qual arquivo?)
-2. Adiciona a pergunta no formato padrão (pergunta + explicação + prompt)
-3. Mantém a linguagem simples
+- **Zero terminal whenever possible** — solutions use natural language prompts
+- **Plain language for everyone** — no unnecessary technical jargon
+- **The bot solves it for you** — the prompt is the command
+- **Organized by topic** — easy to maintain and expand
 
 ---
 
-*Base criada em Fev/2026 com base nas dúvidas reais da turma.*
+## How to contribute / update
+
+When a new recurring question comes up:
+1. Identify the topic (which file?)
+2. Add the question in the standard format (question + explanation + prompt)
+3. Keep the language simple
+
+---
+
+*Knowledge base created in Feb/2026 based on real questions from the cohort.*

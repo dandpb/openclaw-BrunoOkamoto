@@ -1,52 +1,52 @@
-# 🎓 Estrutura Final do Curso
+# 🎓 Final Course Structure
 
-**"Construa Seu AI COO: De Zero a Agente Pessoal com OpenClaw"**
+**"Build Your AI COO: From Zero to Personal Agent with OpenClaw"**
 
-> 11 módulos, ~3h30 de conteúdo. Do zero ao agente em produção.
-> Cada módulo entrega: 🎥 Vídeo + 📄 PDF + 💬 Prompt pro agente
-
----
-
-## Módulo 0 — Abertura & Contexto (10 min)
-**Formato:** Slides + talking head
-
-**Conteúdo:**
-- Por que agentes AI pessoais são o "next big thing"
-- A analogia do Matrix (Trinity + skills = superpoderes)
-- Demo rápido da Amora no Telegram (1 min, comandos reais)
-- Mapa do curso: o que vamos construir juntos
-- Apresentar o Kit: "Cada módulo vem com arquivos prontos pra jogar no seu agente"
-
-**Kit do módulo:** Nenhum (só slides)
+> 11 modules, ~3h30 of content. From zero to agent in production.
+> Each module delivers: 🎥 Video + 📄 PDF + 💬 Prompt for the agent
 
 ---
 
-## Módulo 1 — Setup: Do Zero ao Primeiro "Oi" (25 min)
-**Formato:** Live coding (tela + face cam)
+## Module 0 — Opening & Context (10 min)
+**Format:** Slides + talking head
 
-**Conteúdo:**
-1. O que é o OpenClaw e como funciona (arquitetura: gateway + agente + canal)
-2. Criando a VPS na Hostinger (plano KVM 1, Ubuntu 24.04)
-   - Docker vs Bare Metal — por que bare metal é melhor pra quem não é dev
-3. Conectar via SSH (terminal local + painel Hostinger)
-4. Instalar OpenClaw:
+**Content:**
+- Why personal AI agents are the "next big thing"
+- The Matrix analogy (Trinity + skills = superpowers)
+- Quick demo of Amora on Telegram (1 min, real commands)
+- Course map: what we'll build together
+- Introduce the Kit: "Each module comes with ready-to-use files to send to your agent"
+
+**Module kit:** None (slides only)
+
+---
+
+## Module 1 — Setup: From Zero to First "Hi" (25 min)
+**Format:** Live coding (screen + face cam)
+
+**Content:**
+1. What is OpenClaw and how it works (architecture: gateway + agent + channel)
+2. Creating the VPS on Hostinger (KVM 1 plan, Ubuntu 24.04)
+   - Docker vs Bare Metal — why bare metal is better for non-developers
+3. Connect via SSH (local terminal + Hostinger panel)
+4. Install OpenClaw:
    ```bash
    curl -fsSL https://openclaw.ai/install.sh | bash
    openclaw onboard --install-daemon
    ```
-5. Wizard de configuração (provider, model, serviço)
-6. Criar bot no Telegram (BotFather → /newbot → token)
-7. Conectar Telegram + primeiro "Oi" 🎉
+5. Configuration wizard (provider, model, service)
+6. Create bot on Telegram (BotFather → /newbot → token)
+7. Connect Telegram + first "Hi" 🎉
 
-**Quanto custa:**
-| Item | Custo/mês |
+**How much it costs:**
+| Item | Cost/month |
 |------|-----------|
 | VPS Hostinger (KVM 1) | ~$5-10 |
-| API Anthropic (uso moderado) | ~$10-30 |
-| Telegram | Grátis |
+| Anthropic API (moderate use) | ~$10-30 |
+| Telegram | Free |
 | **Total** | **~$15-40** |
 
-**Checkpoint:** Agente respondendo no Telegram ✅
+**Checkpoint:** Agent responding on Telegram ✅
 
 **Kit:**
 - `prds/vps-setup-hostinger.md`
@@ -55,23 +55,23 @@
 
 ---
 
-## Módulo 2 — Segurança: Blindando Seu Agente (15 min)
-**Formato:** Live coding
+## Module 2 — Security: Hardening Your Agent (15 min)
+**Format:** Live coding
 
-**Conteúdo:**
-1. Por que agora? Mostrar log real: 1.015+ tentativas de brute force em 24h
-2. Telegram Allowlist (dmPolicy) — de "open" pra "allowlist" com seu ID
-3. Firewall UFW:
+**Content:**
+1. Why now? Show real log: 1,015+ brute force attempts in 24h
+2. Telegram Allowlist (dmPolicy) — from "open" to "allowlist" with your ID
+3. UFW Firewall:
    ```bash
    sudo ufw default deny incoming
    sudo ufw allow ssh
    sudo ufw --force enable
    ```
-4. Fail2ban (proteção SSH): 5 tentativas → ban 1h
-5. Credenciais seguras: 1Password CLI ou variáveis de ambiente (NUNCA hardcodar)
-6. Portas de aplicação: 127.0.0.1 (não 0.0.0.0) + Cloudflare Tunnel
+4. Fail2ban (SSH protection): 5 attempts → ban 1h
+5. Secure credentials: 1Password CLI or environment variables (NEVER hardcode)
+6. Application ports: 127.0.0.1 (not 0.0.0.0) + Cloudflare Tunnel
 
-**Checkpoint:** Servidor blindado ✅
+**Checkpoint:** Hardened server ✅
 
 **Kit:**
 - `prds/security-hardening.md`
@@ -79,33 +79,33 @@
 
 ---
 
-## Módulo 3 — Identidade: Dando Personalidade ao Agente (25 min)
-**Formato:** Demo + slides
+## Module 3 — Identity: Giving the Agent Personality (25 min)
+**Format:** Demo + slides
 
-**Conteúdo:**
-1. SOUL.md: a alma do agente
-   - Mostrar diff: genérico vs personalizado da Amora
-   - Anti-patterns concretos: exemplos ❌/✅
-   - "Never dos" explícitos
-   - Inspirational anchors (fale como X, nunca como Y)
-2. USER.md: quem é você?
-   - Contexto profundo > superficial
-   - Tom de voz por plataforma
-   - Dica: importar CLAUDE.md se já usa Claude Code
-3. IDENTITY.md: dados concretos vs personalidade
-   - Nome, email próprio, cofre de senhas próprio
-   - "Trate como uma pessoa, não como um robô"
-4. AGENTS.md: regras operacionais
-   - O que pode fazer sozinho vs perguntar
-5. Escolhendo modelo: Opus vs Sonnet vs Haiku
-   - Economia real: Haiku pra heartbeats (90% economia)
-6. Thinking mode: quando ligar o turbo e quanto custa
+**Content:**
+1. SOUL.md: the agent's soul
+   - Show diff: generic vs Amora's personalized version
+   - Concrete anti-patterns: ❌/✅ examples
+   - Explicit "Never dos"
+   - Inspirational anchors (speak like X, never like Y)
+2. USER.md: who are you?
+   - Deep context > surface level
+   - Tone of voice by platform
+   - Tip: import CLAUDE.md if you already use Claude Code
+3. IDENTITY.md: concrete data vs personality
+   - Name, own email, own password vault
+   - "Treat as a person, not a robot"
+4. AGENTS.md: operational rules
+   - What it can do alone vs ask about
+5. Choosing model: Opus vs Sonnet vs Haiku
+   - Real savings: Haiku for heartbeats (90% savings)
+6. Thinking mode: when to rev the engine and how much it costs
 
-**Insight do Dia 7:** Amora reescreveu o próprio SOUL.md — a diferença foi absurda.
+**Day 7 Insight:** Amora rewrote her own SOUL.md — the difference was enormous.
 
-**Exercício:** Aluno pega templates, preenche os [campos], joga no agente.
+**Exercise:** Student takes templates, fills in [fields], sends to agent.
 
-**Checkpoint:** Agente com personalidade e contexto ✅
+**Checkpoint:** Agent with personality and context ✅
 
 **Kit:**
 - `templates/SOUL-template.md`
@@ -118,66 +118,66 @@
 
 ---
 
-## Módulo 4 — Memória: O Segredo que Ninguém Ensina (25 min) ⭐
-**Formato:** Demo + diagramas
+## Module 4 — Memory: The Secret Nobody Teaches (25 min) ⭐
+**Format:** Demo + diagrams
 
-**Conteúdo:**
-1. O problema: agentes esquecem tudo a cada sessão (Alzheimer reset)
-2. Arquitetura de memória em camadas:
-   - Sessão → Nota diária → Topic files → MEMORY.md (índice)
-3. Topic files especializados:
-   - `decisions.md` — permanentes
-   - `lessons.md` — categorizadas (estratégicas permanentes, táticas 30 dias)
-   - `projects.md` — estado atual
-   - `people.md` — contatos, equipe
-   - `pending.md` — aguardando input
-4. Regra INVIOLÁVEL: extrair lições/decisões ANTES de cada compactação
-   - "Se não extrair antes de compactar, perde 80% do valor"
-5. Compactação: tokens de contexto, reserva, evitar overflow
-   - Caso real: token overflow de 173k+ no Dia 2
-6. Consolidação periódica (a cada 15 dias)
-7. Feedback Loops: approve/reject → evolução do agente
-   - 4 domínios: content, tasks, recommendations, digest
-   - Agente consulta ANTES de sugerir → evita repetir erros
+**Content:**
+1. The problem: agents forget everything each session (Alzheimer reset)
+2. Layered memory architecture:
+   - Session → Daily note → Topic files → MEMORY.md (index)
+3. Specialized topic files:
+   - `decisions.md` — permanent decisions
+   - `lessons.md` — categorized (strategic permanent, tactical 30 days)
+   - `projects.md` — current state
+   - `people.md` — contacts, team
+   - `pending.md` — awaiting input
+4. INVIOLABLE rule: extract lessons/decisions BEFORE each compaction
+   - "If you don't extract before compacting, you lose 80% of the value"
+5. Compaction: context tokens, reserve, avoid overflow
+   - Real case: token overflow of 173k+ on Day 2
+6. Periodic consolidation (every 15 days)
+7. Feedback Loops: approve/reject → agent evolution
+   - 4 domains: content, tasks, recommendations, digest
+   - Agent consults BEFORE suggesting → avoids repeating mistakes
 
-**Demo ao vivo:** Mostrar como a Amora lembra de uma decisão do Dia 4 no Dia 13.
+**Live demo:** Show how Amora remembers a decision from Day 4 on Day 13.
 
-**Este é o módulo diferenciador.** Ninguém cobre memória estruturada + feedback loops.
+**This is the differentiator module.** Nobody covers structured memory + feedback loops.
 
-**Checkpoint:** Sistema de memória configurado ✅
+**Checkpoint:** Memory system configured ✅
 
 **Kit:**
 - `prds/memory-architecture.md`
 - `templates/MEMORY-template.md`
 - `templates/HEARTBEAT-template.md`
-- `templates/memory/` (5 arquivos)
+- `templates/memory/` (5 files)
 - `prompts/modulo-04-memoria.md`
 
 ---
 
-## Módulo 5 — Integrações & Crons: Conectando ao Mundo Real (25 min)
-**Formato:** Live coding + demo
+## Module 5 — Integrations & Crons: Connecting to the Real World (25 min)
+**Format:** Live coding + demo
 
-**Conteúdo:**
-1. 1Password: segurança de credenciais (NUNCA hardcodar)
-   - Cuidado: systemd override sobrescreve .env — atualizar AMBOS
+**Content:**
+1. 1Password: credential security (NEVER hardcode)
+   - Caution: systemd override overwrites .env — update BOTH
 2. Google Calendar & Drive via GOG CLI
 3. YouTube: Data API + OAuth
-4. RapidAPI como proxy universal:
-   - Cloud IPs bloqueados por YouTube, X, Instagram → RapidAPI resolve
+4. RapidAPI as universal proxy:
+   - Cloud IPs blocked by YouTube, X, Instagram → RapidAPI solves it
    - APIs: Instagram Statistics, X/Twitter API45, YouTube Transcripts
-5. Telegram como hub operacional:
-   - Tópicos = war room organizado
-   - Por que não WhatsApp (sessão única vs múltiplas)
-6. Crons — automatizar tarefas recorrentes:
-   - **O bug que TODO MUNDO vai encontrar:**
-     - systemEvent + main = dispara mas NÃO executa (durationMs ~0ms)
-     - **Solução:** `sessionTarget: isolated` + `agentTurn` + `announce`
-   - Colisão de horários → espaçar 15-30min
-   - config.patch reinicia gateway e mata crons → fazer em horários sem crons
-   - Lembretes: systemEvent NÃO notifica → usar agentTurn + message send
+5. Telegram as operational hub:
+   - Topics = organized war room
+   - Why not WhatsApp (single session vs multiple)
+6. Crons — automate recurring tasks:
+   - **The bug EVERYONE will hit:**
+     - systemEvent + main = fires but does NOT execute (durationMs ~0ms)
+     - **Solution:** `sessionTarget: isolated` + `agentTurn` + `announce`
+   - Schedule collision → space 15-30min
+   - config.patch restarts gateway and kills crons → do it at times with no crons
+   - Reminders: systemEvent does NOT notify → use agentTurn + message send
 
-**Checkpoint:** Pelo menos 1 integração + 1 cron funcionando ✅
+**Checkpoint:** At least 1 integration + 1 cron working ✅
 
 **Kit:**
 - `prds/integrations-setup.md`
@@ -186,26 +186,26 @@
 
 ---
 
-## Módulo 6 — Skills: Superpoderes Instantâneos (15 min)
-**Formato:** Demo
+## Module 6 — Skills: Instant Superpowers (15 min)
+**Format:** Demo
 
-**Conteúdo:**
-1. O que são skills e como instalar (ClawHub + GitHub)
-2. Skills essenciais por perfil:
-   - Empreendedor: nano-pdf, excalidraw, perplexity
+**Content:**
+1. What skills are and how to install them (ClawHub + GitHub)
+2. Essential skills by profile:
+   - Entrepreneur: nano-pdf, excalidraw, perplexity
    - Creator: hand-draw-graphics, video-frames, openai-image-gen
    - Dev: github, coding-agent, tmux
-3. Criando sua primeira skill customizada
-4. Segurança de skills:
-   - Referência: estudo sobre vulnerabilidades em skills de terceiros
-   - Sempre revisar antes de instalar
-5. Skills redundantes: remind-me ≈ cron nativo → auditar
-6. Creators como skills, não agentes:
-   - 1 agente com 8 skills > 8 agentes especializados
+3. Creating your first custom skill
+4. Skill security:
+   - Reference: study on vulnerabilities in third-party skills
+   - Always review before installing
+5. Redundant skills: remind-me ≈ native cron → audit
+6. Creators as skills, not agents:
+   - 1 agent with 8 skills > 8 specialized agents
 
-**Analogia Matrix:** "Tank, I need a pilot program"
+**Matrix analogy:** "Tank, I need a pilot program"
 
-**Checkpoint:** 2-3 skills instaladas e testadas ✅
+**Checkpoint:** 2-3 skills installed and tested ✅
 
 **Kit:**
 - `skills/skills-by-profile.md`
@@ -213,31 +213,31 @@
 
 ---
 
-## Módulo 7 — Proatividade: Heartbeats & Automações (15 min)
-**Formato:** Demo + slides
+## Module 7 — Proactivity: Heartbeats & Automations (15 min)
+**Format:** Demo + slides
 
-**Conteúdo:**
-1. Heartbeats: o que são e como configurar
-   - HEARTBEAT.md: checklist periódico (emails, calendário, projetos)
-   - Modelo econômico: Haiku pra heartbeats (~$0.005 vs ~$0.10 em Opus)
-2. O que checar automaticamente:
-   - Emails urgentes
-   - Eventos nas próximas 24-48h
-   - Projetos parados há >5 dias
-   - Métricas de negócio
-3. Quando falar vs ficar quieto:
-   - Horário silencioso (23h-8h)
-   - Nada novo = HEARTBEAT_OK
-4. Trabalho proativo sem pedir:
-   - Organizar memória
-   - Git status de projetos
-   - Atualizar documentação
-5. Exemplos reais da Amora:
-   - Daily briefing de redes sociais
-   - Alertas de agenda
-   - Revisão semanal de projetos
+**Content:**
+1. Heartbeats: what they are and how to configure
+   - HEARTBEAT.md: periodic checklist (emails, calendar, projects)
+   - Economic model: Haiku for heartbeats (~$0.005 vs ~$0.10 on Opus)
+2. What to check automatically:
+   - Urgent emails
+   - Events in the next 24-48h
+   - Projects stalled for >5 days
+   - Business metrics
+3. When to speak vs stay quiet:
+   - Quiet hours (11pm-8am)
+   - Nothing new = HEARTBEAT_OK
+4. Proactive work without asking:
+   - Organize memory
+   - Git status of projects
+   - Update documentation
+5. Real examples from Amora:
+   - Daily social media briefing
+   - Schedule alerts
+   - Weekly project review
 
-**Checkpoint:** Heartbeat configurado + 2 automações ativas ✅
+**Checkpoint:** Heartbeat configured + 2 active automations ✅
 
 **Kit:**
 - `templates/HEARTBEAT-template.md`
@@ -245,33 +245,33 @@
 
 ---
 
-## Módulo 8 — Multi-Agentes: De Solo a Time (20 min)
-**Formato:** Slides + demo
+## Module 8 — Multi-Agents: From Solo to Team (20 min)
+**Format:** Slides + demo
 
-**Conteúdo:**
-1. Quando um agente não é suficiente (e quando É — menos é mais)
-2. Arquitetura: single gateway + agents.list
+**Content:**
+1. When one agent isn't enough (and when it IS — less is more)
+2. Architecture: single gateway + agents.list
 3. Leveling System (Kevin Simback): L1→L4
    - L1 Observer → L2 Contributor → L3 Operator → L4 Trusted
-   - Promoção via performance review semanal
-   - Caso real: Content Agent caiu de L3 → L2 quando começou a "rushar"
-4. Criando agentes com o Orchestrator:
-   - Agente que cria agentes (SOUL, AGENTS, USER, memória)
+   - Promotion via weekly performance review
+   - Real case: Content Agent dropped from L3 → L2 when it started "rushing"
+4. Creating agents with the Orchestrator:
+   - Agent that creates agents (SOUL, AGENTS, USER, memory)
 5. Shared Context:
-   - TEAM.md → registry (quem faz o quê)
-   - shared/outputs/ → resultados compartilhados
-   - shared/lessons/ → aprendizados do time
-6. Coordenação: hub model > mesh model
-   - Agente principal curadoria > todos leem tudo
-   - Agentes sem binding Telegram — comunicam via principal
-7. Economia real:
-   - Sonnet pra execução/crons, Opus pra interação/análise
-   - "Agentes que não precisam de Opus não devem usar Opus"
-8. Sub-agents e delegação:
-   - sessions_spawn para tasks paralelas
-   - Retry + aviso ao usuário (NUNCA limbo silencioso)
+   - TEAM.md → registry (who does what)
+   - shared/outputs/ → shared results
+   - shared/lessons/ → team learnings
+6. Coordination: hub model > mesh model
+   - Main agent curates > everyone reads everything
+   - Agents without Telegram binding — communicate via main
+7. Real savings:
+   - Sonnet for execution/crons, Opus for interaction/analysis
+   - "Agents that don't need Opus should not use Opus"
+8. Sub-agents and delegation:
+   - sessions_spawn for parallel tasks
+   - Retry + notify user (NEVER silent limbo)
 
-**Checkpoint:** 1-2 agentes extras configurados com leveling ✅
+**Checkpoint:** 1-2 extra agents configured with leveling ✅
 
 **Kit:**
 - `prds/multi-agent-setup.md`
@@ -279,33 +279,33 @@
 
 ---
 
-## Módulo 9 — O Sistema Imunológico: Manter Tudo Funcionando (20 min) ⭐
-**Formato:** Slides + demo
+## Module 9 — The Immune System: Keeping Everything Running (20 min) ⭐
+**Format:** Slides + demo
 
-**Conteúdo:**
+**Content:**
 1. "Agents are 30% of the work. The other 70% is the immune system." — Eric Siu
-2. Watchdog com auto-retry (3x antes de alertar):
-   - Monitora crons, detecta falhas, retry automático
-3. Feedback Loops universais:
-   - Ciclo: Feedback (JSON) → Lessons (curado) → Decisions (permanente)
-4. Security hardening avançado:
-   - Audit de segurança semanal (cron)
+2. Watchdog with auto-retry (3x before alerting):
+   - Monitors crons, detects failures, automatic retry
+3. Universal Feedback Loops:
+   - Cycle: Feedback (JSON) → Lessons (curated) → Decisions (permanent)
+4. Advanced security hardening:
+   - Weekly security audit (cron)
    - `openclaw security-audit` + `openclaw doctor fix`
-   - Rotação trimestral de credenciais
-5. Monitoramento de custos:
+   - Quarterly credential rotation
+5. Cost monitoring:
    - Sonnet/Opus/Haiku split
-   - Breakdown real: quanto custa rodar 17 crons/dia + interação
-6. Backup antes de mudanças estruturais:
-   - Config + ROLLBACK.md com instruções
-7. Sub-agents com autonomia = risco:
-   - Capability Evolver: NÃO rodar automaticamente
-   - Sempre revisar output antes de aprovar
+   - Real breakdown: how much it costs to run 17 crons/day + interaction
+6. Backup before structural changes:
+   - Config + ROLLBACK.md with instructions
+7. Sub-agents with autonomy = risk:
+   - Capability Evolver: DO NOT run automatically
+   - Always review output before approving
 8. Ralph Loop vs Feedback Loop:
-   - Ralph (coding loop) vs Feedback (aprendizado entre sessões)
+   - Ralph (coding loop) vs Feedback (learning between sessions)
 
-**Este módulo separa "tô brincando" de "tô em produção".**
+**This module separates "just playing around" from "in production".**
 
-**Checkpoint:** Watchdog + feedback loops + audit configurados ✅
+**Checkpoint:** Watchdog + feedback loops + audit configured ✅
 
 **Kit:**
 - `prds/immune-system.md`
@@ -313,88 +313,88 @@
 
 ---
 
-## Módulo 10 — Mission Control: Seu Painel Operacional (10 min)
-**Formato:** Demo
+## Module 10 — Mission Control: Your Operational Panel (10 min)
+**Format:** Demo
 
-**Conteúdo:**
-1. Por que uma UI visual ajuda (mesmo tendo Telegram)
-2. Overview do Mission Control da Amora:
-   - Kanban de tarefas
+**Content:**
+1. Why a visual UI helps (even with Telegram)
+2. Overview of Amora's Mission Control:
+   - Task Kanban
    - Memory Page
    - Crons Page
-   - Content HQ (229 packs, 773 peças)
-3. Como construir o seu:
+   - Content HQ (229 packs, 773 pieces)
+3. How to build yours:
    - Stack: Express + React + Supabase + Cloudflare Tunnel
-   - QA automatizado: sub-agent rodou 23 endpoints, encontrou 5 bugs em 7min
-4. Alternativas mais simples:
-   - NocoDB (self-hosted, grátis)
-   - Notion (integra com skill)
-   - Google Sheets (simples e funcional)
+   - Automated QA: sub-agent ran 23 endpoints, found 5 bugs in 7min
+4. Simpler alternatives:
+   - NocoDB (self-hosted, free)
+   - Notion (integrates with skill)
+   - Google Sheets (simple and functional)
 
-**Checkpoint:** Pelo menos uma alternativa visual configurada ✅
+**Checkpoint:** At least one visual alternative configured ✅
 
 **Kit:**
 - `reports/report-templates.md`
 
 ---
 
-## Módulo 11 — Wrap-up & Próximos Passos (10 min)
-**Formato:** Talking head + slides
+## Module 11 — Wrap-up & Next Steps (10 min)
+**Format:** Talking head + slides
 
-**Conteúdo:**
-1. Recap: o que construímos juntos (checklist visual)
-2. Os erros que eu cometi (consolidação real):
-   - Token overflow no Dia 2
-   - Crons que não executavam por 3 dias
-   - Sub-agent que travou no limbo
-   - Security "open" nos primeiros dias
-3. Quanto custa rodar um agente AI? (breakdown REAL)
-   - API costs com split Sonnet/Opus/Haiku
-   - VPS + ferramentas + APIs externas
-4. 10 regras invioláveis (consolidação)
-5. Comunidade: Discord OpenClaw, ClawHub, awesome-skills
-6. O futuro: agent-to-agent, MCP, Claude Code integration
-7. CTA: Comunidade + próximos conteúdos
+**Content:**
+1. Recap: what we built together (visual checklist)
+2. Mistakes I made (real consolidation):
+   - Token overflow on Day 2
+   - Crons that weren't executing for 3 days
+   - Sub-agent stuck in limbo
+   - Security "open" in the first days
+3. How much does it cost to run an AI agent? (REAL breakdown)
+   - API costs with Sonnet/Opus/Haiku split
+   - VPS + tools + external APIs
+4. 10 inviolable rules (consolidation)
+5. Community: Discord OpenClaw, ClawHub, awesome-skills
+6. The future: agent-to-agent, MCP, Claude Code integration
+7. CTA: Community + upcoming content
 
 **Kit:**
-- Checklist final de validação
-- Links de recursos
-- `docs/custos.md` (breakdown detalhado)
+- Final validation checklist
+- Resource links
+- `docs/custos.md` (detailed breakdown)
 
 ---
 
-## Resumo por Módulo
+## Summary by Module
 
-| # | Módulo | Tempo | Formato | Kit |
+| # | Module | Time | Format | Kit |
 |---|--------|-------|---------|-----|
-| 0 | Abertura & Contexto | 10 min | Slides + face | — |
-| 1 | Setup: Do Zero ao "Oi" | 25 min | Live coding | PRD + config + prompt |
-| 2 | Segurança | 15 min | Live coding | PRD + prompt |
-| 3 | Identidade & Personalidade | 25 min | Demo + slides | 4 templates + 3 prompts |
-| 4 | Memória ⭐ | 25 min | Demo + diagramas | PRD + templates + prompt |
-| 5 | Integrações & Crons | 25 min | Live coding | PRD + config + prompt |
-| 6 | Skills | 15 min | Demo | Curadoria + prompt |
-| 7 | Proatividade | 15 min | Demo + slides | Template + prompt |
-| 8 | Multi-Agentes | 20 min | Slides + demo | PRD + prompt |
+| 0 | Opening & Context | 10 min | Slides + face | — |
+| 1 | Setup: From Zero to "Hi" | 25 min | Live coding | PRD + config + prompt |
+| 2 | Security | 15 min | Live coding | PRD + prompt |
+| 3 | Identity & Personality | 25 min | Demo + slides | 4 templates + 3 prompts |
+| 4 | Memory ⭐ | 25 min | Demo + diagrams | PRD + templates + prompt |
+| 5 | Integrations & Crons | 25 min | Live coding | PRD + config + prompt |
+| 6 | Skills | 15 min | Demo | Curated list + prompt |
+| 7 | Proactivity | 15 min | Demo + slides | Template + prompt |
+| 8 | Multi-Agents | 20 min | Slides + demo | PRD + prompt |
 | 9 | Immune System ⭐ | 20 min | Slides + demo | PRD + prompt |
 | 10 | Mission Control | 10 min | Demo | Templates |
-| 11 | Wrap-up | 10 min | Talking head | Checklist + custos |
-| **Total** | | **~3h35** | | **~50 arquivos** |
+| 11 | Wrap-up | 10 min | Talking head | Checklist + costs |
+| **Total** | | **~3h35** | | **~50 files** |
 
 ---
 
-## Referências
+## References
 
 - **Kevin Simback:** Agent team management, leveling L1-L4
-- **Bhanu Teja (@pbteja1998):** Blueprint de 10 agentes (3.7M views)
+- **Bhanu Teja (@pbteja1998):** Blueprint of 10 agents (3.7M views)
 - **Eric Siu:** "30 OpenClaw Jobs A Day" — immune system
 - **Geoffrey Huntley:** Ralph Loop
 - **Lenny's Newsletter:** Context engineering
 - **Reddit Ultimate Guide:** r/ThinkingDeeplyAI
 - **Alex Finn / Vibe Coding Academy:** Use cases, proactive mandate
-- **Simon Willison:** Security research — 900+ servidores expostos
+- **Simon Willison:** Security research — 900+ exposed servers
 
 ---
 
-*Estrutura final v1 — 16/02/2026*
-*Curado pelo agente curso-openclaw 🍇*
+*Final structure v1 — 02/16/2026*
+*Curated by the curso-openclaw agent 🍇*

@@ -1,188 +1,188 @@
-# Prompt do Aluno — Aula N-8: Telegram Bot Não Responde no Grupo
+# Student Prompt — Lesson N-8: Telegram Bot Not Responding in a Group
 
-> **Como usar:** Copie o prompt abaixo e cole no chat do seu agente OpenClaw após assistir a aula.
-
----
-
-## 📋 Prompt Principal
-
-```
-Olá! Assisti a aula N-8 sobre configuração de bot em grupos do Telegram.
-
-Estou tentando fazer meu bot funcionar em um grupo, mas [ele não responde / só responde comandos / responde às vezes].
-
-Me ajude a:
-1. Diagnosticar o problema específico no meu caso
-2. Aplicar os fixes necessários
-3. Verificar que funcionou
-
-Vamos começar com o diagnóstico?
-```
+> **How to use:** Copy the prompt below and paste it in the chat with your OpenClaw agent after watching the lesson.
 
 ---
 
-## 🔍 Exercício 1 — Diagnóstico Completo
+## 📋 Main Prompt
 
 ```
-Por favor, faça um diagnóstico completo do meu setup de bot para grupos:
+Hello! I watched lesson N-8 on configuring a bot in Telegram groups.
 
-1. Verifique a configuração atual:
+I'm trying to get my bot to work in a group, but [it doesn't respond / only responds to commands / responds sometimes].
+
+Help me:
+1. Diagnose the specific problem in my case
+2. Apply the necessary fixes
+3. Verify it worked
+
+Let's start with the diagnosis?
+```
+
+---
+
+## 🔍 Exercise 1 — Complete Diagnosis
+
+```
+Please do a complete diagnosis of my bot setup for groups:
+
+1. Check the current configuration:
    - `openclaw config get channels.telegram.groupPolicy`
    - `openclaw config get channels.telegram.groupAllowlist`
-   
-2. Me diga qual das 3 causas é mais provável:
-   - Privacy mode ativado no BotFather
-   - groupPolicy não configurado
-   - Chat ID não está no allowlist
 
-3. Cheque os logs por mensagens de grupo:
+2. Tell me which of the 3 causes is most likely:
+   - Privacy mode enabled in BotFather
+   - groupPolicy not configured
+   - Chat ID is not in the allowlist
+
+3. Check the logs for group messages:
    `openclaw gateway logs | tail -50`
 
-Após o diagnóstico, me diga exatamente o que preciso fazer.
+After the diagnosis, tell me exactly what I need to do.
 ```
 
 ---
 
-## 🤖 Exercício 2 — Fix do Privacy Mode
+## 🤖 Exercise 2 — Privacy Mode Fix
 
 ```
-Preciso verificar e corrigir o privacy mode do meu bot.
+I need to check and fix my bot's privacy mode.
 
-Por favor, me guie pelo processo completo:
-1. Como verificar se o privacy mode está ativado (sinal no comportamento do bot)
-2. Passo a passo para desativar via BotFather:
-   - Qual comando enviar ao BotFather
-   - O que selecionar quando ele perguntar
-   - Como confirmar que foi desativado
-3. Por que preciso remover e re-adicionar o bot ao grupo
-4. Como confirmar que a mudança funcionou
+Please guide me through the complete process:
+1. How to check if privacy mode is enabled (signal in bot behavior)
+2. Step-by-step to disable it via BotFather:
+   - Which command to send to BotFather
+   - What to select when it asks
+   - How to confirm it was disabled
+3. Why I need to remove and re-add the bot to the group
+4. How to confirm the change worked
 
-(Se já verificou e o privacy mode está desativado, me confirme isso e vamos para o próximo passo)
+(If you've already checked and privacy mode is disabled, confirm that and let's move to the next step)
 ```
 
 ---
 
-## ⚙️ Exercício 3 — Configurar groupPolicy
+## ⚙️ Exercise 3 — Configure groupPolicy
 
 ```
-Quero configurar o groupPolicy do OpenClaw corretamente.
+I want to configure the OpenClaw groupPolicy correctly.
 
-Por favor:
-1. Explique a diferença entre groupPolicy = "allowlist" e "open"
-2. Configure o allowlist (recomendado para segurança):
+Please:
+1. Explain the difference between groupPolicy = "allowlist" and "open"
+2. Configure the allowlist (recommended for security):
    `openclaw config set channels.telegram.groupPolicy allowlist`
-3. Me ajude a descobrir o chat ID do meu grupo:
-   - Execute `openclaw gateway logs | grep -i "chat_id"` 
-   - Ou me diga outro método se não aparecer
-4. Após encontrar o ID, configure o allowlist:
+3. Help me find the chat ID of my group:
+   - Run `openclaw gateway logs | grep -i "chat_id"`
+   - Or tell me another method if it doesn't appear
+4. After finding the ID, configure the allowlist:
    `openclaw config set channels.telegram.groupAllowlist "[-100XXXXXXXXXX]"`
-5. Reinicie o gateway: `openclaw gateway restart`
-6. Teste: envie uma mensagem no grupo e verifique nos logs
+5. Restart the gateway: `openclaw gateway restart`
+6. Test: send a message in the group and check the logs
 
-(Meu grupo é: [DESCREVA SEU GRUPO — ex: "grupo familiar de 5 pessoas"])
+(My group is: [DESCRIBE YOUR GROUP — e.g.: "family group of 5 people"])
 ```
 
 ---
 
-## 📍 Exercício 4 — Descobrir Chat ID na Prática
+## 📍 Exercise 4 — Finding Chat ID in Practice
 
 ```
-Preciso descobrir o chat ID do meu grupo do Telegram.
+I need to find the chat ID of my Telegram group.
 
-Por favor, me guie por TODOS os métodos disponíveis:
+Please guide me through ALL available methods:
 
-Método 1 — Via logs do OpenClaw:
-- Como enviar uma mensagem de teste no grupo
-- Onde exatamente o chat ID aparece nos logs
-- Formato do comando correto para filtrar
+Method 1 — Via OpenClaw logs:
+- How to send a test message in the group
+- Where exactly the chat ID appears in the logs
+- The correct command format to filter
 
-Método 2 — Via @userinfobot:
-- Como usar esse bot para descobrir o ID
-- O que fazer com a informação que ele retorna
+Method 2 — Via @userinfobot:
+- How to use this bot to find the ID
+- What to do with the information it returns
 
-Método 3 — Via Telegram API (se necessário):
-- Como usar a URL da API para ver updates recentes
+Method 3 — Via Telegram API (if necessary):
+- How to use the API URL to see recent updates
 
-Qual método é mais fácil para iniciantes?
+Which method is easiest for beginners?
 ```
 
 ---
 
-## 🔄 Exercício 5 — dmPolicy vs groupPolicy na Prática
+## 🔄 Exercise 5 — dmPolicy vs groupPolicy in Practice
 
 ```
-Quero entender de vez a diferença entre dmPolicy e groupPolicy.
+I want to fully understand the difference between dmPolicy and groupPolicy.
 
-Por favor:
-1. Mostre minha configuração atual dos dois:
+Please:
+1. Show my current configuration of both:
    - `openclaw config get channels.telegram.dmPolicy`
    - `openclaw config get channels.telegram.groupPolicy`
-   
-2. Me explique o que cada configuração atual significa na prática:
-   - Quem consegue mandar mensagem privada pro bot?
-   - Em quais grupos o bot responde?
-   
-3. Me recomende a configuração ideal para segurança:
-   - dmPolicy para uso pessoal (só eu)
-   - groupPolicy para um grupo específico que eu quero
 
-4. Se precisar ajustar, me dê os comandos exatos.
+2. Explain what each current setting means in practice:
+   - Who can send a private message to the bot?
+   - In which groups does the bot respond?
+
+3. Recommend the ideal configuration for security:
+   - dmPolicy for personal use (just me)
+   - groupPolicy for a specific group I want
+
+4. If I need to adjust, give me the exact commands.
 ```
 
 ---
 
-## 🗺️ Exercício 6 — Fluxograma de Diagnóstico (use se ainda tiver problemas)
+## 🗺️ Exercise 6 — Diagnostic Flowchart (use if you still have problems)
 
 ```
-Ainda não consegui fazer o bot funcionar no grupo. Vamos ser sistemáticos.
+I still can't get the bot to work in the group. Let's be systematic.
 
-Por favor, me leve pelo fluxograma de diagnóstico passo a passo:
+Please take me through the diagnostic flowchart step by step:
 
-Passo 1: O bot responde no grupo quando manda /start?
-[Sim → Passo 2] [Não → Privacy mode ou bot não está no grupo]
+Step 1: Does the bot respond in the group when you send /start?
+[Yes → Step 2] [No → Privacy mode or bot is not in the group]
 
-Passo 2: O groupPolicy está configurado?
-[Sim → Passo 3] [Não → configurar groupPolicy]
+Step 2: Is groupPolicy configured?
+[Yes → Step 3] [No → configure groupPolicy]
 
-Passo 3: O chat ID do grupo está no allowlist?
-[Sim → Passo 4] [Não → adicionar chat ID]
+Step 3: Is the group's chat ID in the allowlist?
+[Yes → Step 4] [No → add chat ID]
 
-Passo 4: O gateway foi reiniciado após as mudanças?
-[Sim → ver logs] [Não → openclaw gateway restart]
+Step 4: Was the gateway restarted after the changes?
+[Yes → check logs] [No → openclaw gateway restart]
 
-Para cada passo, execute o diagnóstico e me diga o resultado. Vamos resolver isso juntos.
-```
-
----
-
-## ✅ Verificação Final de Aprendizado
-
-```
-Para encerrar os exercícios da aula N-8, me faça um quiz rápido com 5 perguntas sobre:
-- O que é privacy mode e quando causa problemas
-- Diferença entre dmPolicy e groupPolicy
-- Como descobrir o chat ID de um grupo
-- Por que precisa remover e re-adicionar o bot ao mudar o privacy mode
-- Quando usar groupPolicy "open" vs "allowlist"
-
-Após eu responder, me dê feedback sobre o que acertei e o que preciso revisar.
+For each step, run the diagnosis and tell me the result. Let's solve this together.
 ```
 
 ---
 
-## 💡 Prompt de Emergência (se nada funcionar)
-
-> Se você tentou tudo e o bot ainda não responde no grupo:
+## ✅ Final Learning Check
 
 ```
-Meu bot NÃO está respondendo no grupo e já tentei de tudo. Me ajude com um debug completo:
+To close the exercises for lesson N-8, give me a quick quiz with 5 questions about:
+- What privacy mode is and when it causes problems
+- Difference between dmPolicy and groupPolicy
+- How to find the chat ID of a group
+- Why you need to remove and re-add the bot when changing privacy mode
+- When to use groupPolicy "open" vs "allowlist"
 
-1. Execute `openclaw gateway logs | tail -100` e analise tudo
-2. Verifique se há erros relacionados ao Telegram
-3. Verifique se o webhook está funcionando: `openclaw provider status telegram`
-4. Me mostre TODA a configuração atual do canal Telegram:
+After I answer, give me feedback on what I got right and what I need to review.
+```
+
+---
+
+## 💡 Emergency Prompt (if nothing works)
+
+> If you've tried everything and the bot still doesn't respond in the group:
+
+```
+My bot is NOT responding in the group and I've already tried everything. Help me with a complete debug:
+
+1. Run `openclaw gateway logs | tail -100` and analyze everything
+2. Check if there are Telegram-related errors
+3. Check if the webhook is working: `openclaw provider status telegram`
+4. Show me ALL the current Telegram channel configuration:
    `openclaw config get channels.telegram`
-5. Baseado no que encontrar, me dê a solução específica
+5. Based on what you find, give me the specific solution
 
-Estou disposto a seguir qualquer passo — só preciso que o bot funcione no grupo.
+I'm willing to follow any step — I just need the bot to work in the group.
 ```

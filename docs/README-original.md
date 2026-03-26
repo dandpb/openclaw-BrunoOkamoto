@@ -1,61 +1,61 @@
-# 🎓 Curso: Construa Seu AI COO com OpenClaw
+# 🎓 Course: Build Your AI COO with OpenClaw
 
-> Kit completo do curso — cada pasta é um tipo de material entregável.
+> Complete course kit — each folder is a type of deliverable material.
 
-## 📂 Estrutura
+## 📂 Structure
 
 ```
 curso-openclaw/
-├── README.md              ← Você está aqui
-├── templates/             ← Arquivos .md prontos pra copiar pro agente
+├── README.md              ← You are here
+├── templates/             ← Ready-to-use .md files to copy to your agent
 │   ├── SOUL-template.md
 │   ├── USER-template.md
 │   ├── AGENTS-template.md
 │   ├── IDENTITY-template.md
 │   ├── MEMORY-template.md
 │   ├── HEARTBEAT-template.md
-│   └── memory/            ← Estrutura de pastas de memória
+│   └── memory/            ← Memory folder structure
 │       ├── decisions.md
 │       ├── lessons.md
 │       ├── projects.md
 │       ├── people.md
 │       └── pending.md
-├── configs/               ← Configurações técnicas do OpenClaw
+├── configs/               ← OpenClaw technical configurations
 │   ├── modelo-config.md
 │   └── cron-examples.md
-├── prompts/               ← Prompts prontos pra jogar no agente
+├── prompts/               ← Ready prompts to send to the agent
 │   ├── onboarding.md
 │   ├── proactive-mandate.md
 │   └── interview-your-agent.md
-├── prds/                  ← PRDs copy-paste (joga no agente, ele executa)
+├── prds/                  ← Copy-paste PRDs (send to agent, it executes)
 │   ├── security-hardening.md
 │   ├── integrations-setup.md
 │   ├── memory-architecture.md
 │   ├── multi-agent-setup.md
 │   └── immune-system.md
-├── skills/                ← Skills recomendadas por perfil
+├── skills/                ← Recommended skills by profile
 │   └── skills-by-profile.md
-└── reports/               ← Templates de reports visuais
+└── reports/               ← Visual report templates
     └── report-templates.md
 ```
 
-## 🚀 Como usar
+## 🚀 How to use
 
-1. **Assista o módulo** do curso
-2. **Baixe o kit** do módulo correspondente
-3. **Copie os arquivos** pro workspace do seu OpenClaw
-4. **Jogue o PRD** no chat do agente → ele executa sozinho
+1. **Watch the module** from the course
+2. **Download the kit** for the corresponding module
+3. **Copy the files** to your OpenClaw workspace
+4. **Send the PRD** to the agent chat → it executes on its own
 
-## 📹 Módulos → Materiais
+## 📹 Modules → Materials
 
-| Módulo | Materiais |
+| Module | Materials |
 |--------|-----------|
 | M1 - Setup | `configs/modelo-config.md` |
-| M2 - Segurança | `prds/security-hardening.md` |
-| M3 - Personalidade | `templates/SOUL, USER, AGENTS, IDENTITY` |
-| M4 - Memória | `templates/MEMORY + memory/` + `prds/memory-architecture.md` |
-| M5 - Integrações | `prds/integrations-setup.md` + `configs/cron-examples.md` |
+| M2 - Security | `prds/security-hardening.md` |
+| M3 - Personality | `templates/SOUL, USER, AGENTS, IDENTITY` |
+| M4 - Memory | `templates/MEMORY + memory/` + `prds/memory-architecture.md` |
+| M5 - Integrations | `prds/integrations-setup.md` + `configs/cron-examples.md` |
 | M6 - Skills | `skills/skills-by-profile.md` |
-| M7 - Multi-agentes | `prds/multi-agent-setup.md` |
+| M7 - Multi-agents | `prds/multi-agent-setup.md` |
 | M8 - Immune System | `prds/immune-system.md` |
-| M9 - Wrap-up | Todos os materiais consolidados |
+| M9 - Wrap-up | All consolidated materials |

@@ -1,71 +1,71 @@
-# Prompt — Aula Extra A: Integrar Suas Ferramentas
+# Prompt — Extra Lesson A: Integrating Your Tools
 
-> Cole este prompt no chat do seu agente depois de assistir a Aula Extra A.
+> Paste this prompt in your agent chat after watching Extra Lesson A.
 
 ---
 
-Acabei de assistir a aula sobre integração de ferramentas. Agora quero conectar meu agente às ferramentas que eu uso no dia a dia.
+I just watched the lesson on tool integration. Now I want to connect my agent to the tools I use daily.
 
-**O que preciso fazer:**
+**What I need to do:**
 
-## 1. Mapear minhas ferramentas
+## 1. Map my tools
 
-Me ajude a listar as ferramentas/plataformas que eu uso mais:
-- Gestão de projetos? (Notion, Trello, Asana, Monday...)
-- Pagamentos? (Stripe, PayPal, Mercado Pago...)
+Help me list the tools/platforms I use most:
+- Project management? (Notion, Trello, Asana, Monday...)
+- Payments? (Stripe, PayPal, Mercado Pago...)
 - Analytics? (Google Analytics, Mixpanel, Amplitude...)
-- CRM/Vendas? (HubSpot, Pipedrive, RD Station...)
+- CRM/Sales? (HubSpot, Pipedrive, RD Station...)
 - Email marketing? (ConvertKit, Mailchimp...)
 - Social media? (Buffer, Later, Hootsuite...)
-- Outras ferramentas críticas?
+- Other critical tools?
 
-Pra cada uma, me diga:
-- ✅ Tem skill pronta no ClawHub? (`clawhub search nome`)
-- ❌ Precisa integrar API direto?
+For each one, tell me:
+- ✅ Is there a ready-made skill on ClawHub? (`clawhub search name`)
+- ❌ Needs direct API integration?
 
-## 2. Instalar skills prontas
+## 2. Install ready-made skills
 
-Para as ferramentas que **têm skill pronta**, me guie pra:
-1. Instalar a skill (`clawhub install nome`)
-2. Configurar credenciais (se necessário)
-3. Testar se funciona
-4. Documentar no TOOLS.md
+For tools that **have a ready-made skill**, guide me to:
+1. Install the skill (`clawhub install name`)
+2. Configure credentials (if necessary)
+3. Test if it works
+4. Document in TOOLS.md
 
-## 3. Integrar APIs diretas
+## 3. Integrate direct APIs
 
-Para as ferramentas **sem skill pronta**, me guie pra:
-1. Descobrir onde fica a API key na ferramenta
-2. Guardar no 1Password (ou me ensinar a configurar 1Password se eu não tiver)
-3. Testar a API com você
-4. Documentar no TOOLS.md com:
-   - Nome da integração
-   - Item no 1Password
-   - Permissões (read/write)
-   - Limitações ou guardrails
+For tools **without a ready-made skill**, guide me to:
+1. Find where the API key is in the tool
+2. Store it in 1Password (or teach me how to set up 1Password if I don't have it)
+3. Test the API with you
+4. Document in TOOLS.md with:
+   - Integration name
+   - Item in 1Password
+   - Permissions (read/write)
+   - Limitations or guardrails
 
-## 4. Documentar tudo no TOOLS.md
+## 4. Document everything in TOOLS.md
 
-Crie ou atualize meu `TOOLS.md` com:
-- Lista de todas integrações ativas
-- Como acessar cada uma
-- Guardrails de segurança (o que você pode/não pode fazer)
+Create or update my `TOOLS.md` with:
+- List of all active integrations
+- How to access each one
+- Security guardrails (what you can/cannot do)
 
-## 5. Casos de uso práticos
+## 5. Practical use cases
 
-Depois de tudo configurado, me sugira **3 casos de uso práticos** pra testar as integrações. Exemplos:
-- "Me mostre meu MRR atual do Stripe"
-- "Liste as tasks do Notion com status 'In Progress'"
-- "Quantas visitas teve no site ontem?"
+After everything is configured, suggest **3 practical use cases** to test the integrations. Examples:
+- "Show me my current MRR from Stripe"
+- "List Notion tasks with status 'In Progress'"
+- "How many site visits did we get yesterday?"
 
-**Regras importantes:**
+**Important rules:**
 
-🔴 **NUNCA** colocar API keys direto no código ou config — sempre 1Password
-🔴 **SEMPRE** me perguntar antes de fazer operações de escrita (criar, atualizar, deletar)
-🔴 **SEMPRE** documentar no TOOLS.md quando adicionar uma integração nova
+🔴 **NEVER** put API keys directly in code or config — always 1Password
+🔴 **ALWAYS** ask me before performing write operations (create, update, delete)
+🔴 **ALWAYS** document in TOOLS.md when adding a new integration
 
-**Se eu não tiver 1Password instalado:**
-Me explique como instalar e configurar (ou me sugira alternativas como Bitwarden).
+**If I don't have 1Password installed:**
+Explain how to install and configure it (or suggest alternatives like Bitwarden).
 
 ---
 
-Vamos começar pelo mapeamento das minhas ferramentas. Me faça as perguntas e vamos integrando uma por uma.
+Let's start by mapping my tools. Ask me the questions and we'll integrate them one by one.

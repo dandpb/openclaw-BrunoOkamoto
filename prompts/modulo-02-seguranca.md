@@ -1,23 +1,23 @@
-# Prompt — Módulo 2: Segurança
+# Prompt — Module 2: Security
 
-> Cole este prompt no chat do seu OpenClaw depois de assistir o Módulo 2.
-> Anexe junto o arquivo: `prds/security-hardening.md`
+> Paste this prompt in your OpenClaw chat after watching Module 2.
+> Also attach the file: `prds/security-hardening.md`
 
 ---
 
-Acabei de assistir o Módulo 2 do curso sobre segurança. Leia o PRD de security hardening que estou anexando e me guie passo a passo.
+I just finished watching Module 2 of the course on security. Read the security hardening PRD I'm attaching and guide me step by step.
 
-**Importante:**
-- Antes de CADA ação, me explique O QUE vai fazer e POR QUÊ
-- Me peça confirmação antes de executar qualquer mudança no servidor
-- Se algo já estiver configurado, me avise e pule pro próximo passo
-- No final, rode um audit de segurança e me mostre o resultado
+**Important:**
+- Before EACH action, explain WHAT you're going to do and WHY
+- Ask for my confirmation before executing any changes on the server
+- If something is already configured, let me know and skip to the next step
+- At the end, run a security audit and show me the result
 
-**O que espero que cubra:**
-1. Telegram allowlist (dmPolicy) — pra ninguém comandar meu bot
-2. Firewall UFW — bloquear portas desnecessárias
-3. Fail2ban — proteger contra brute force SSH
-4. Credenciais — guardar API keys com `openclaw secrets` (não em .env ou hardcodado). Use `openclaw secrets audit` pra verificar se há credenciais expostas e `openclaw secrets apply` pra migrar. Se usar 1Password, configure via `op` CLI.
-5. Portas de aplicação — não expor nada em 0.0.0.0
+**What I expect you to cover:**
+1. Telegram allowlist (dmPolicy) — so nobody can command my bot
+2. UFW Firewall — block unnecessary ports
+3. Fail2ban — protect against SSH brute force
+4. Credentials — store API keys with `openclaw secrets` (not in .env or hardcoded). Use `openclaw secrets audit` to check for exposed credentials and `openclaw secrets apply` to migrate. If using 1Password, configure via `op` CLI.
+5. Application ports — don't expose anything on 0.0.0.0
 
-Vamos blindar meu servidor?
+Shall we harden my server?

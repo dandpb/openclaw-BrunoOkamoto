@@ -1,11 +1,11 @@
-# Pessoas & Contatos
+# People & Contacts
 
-## Equipe
-| Nome | Papel | Contato | Notas |
-|------|-------|---------|-------|
-| [Nome] | [Papel] | [Email/Telegram] | [Contexto] |
+## Team
+| Name | Role | Contact | Notes |
+|------|------|---------|-------|
+| [Name] | [Role] | [Email/Telegram] | [Context] |
 
-## Parceiros & Fornecedores
-| Nome | Empresa | Relação | Notas |
-|------|---------|---------|-------|
-| [Nome] | [Empresa] | [Tipo] | [Contexto] |
+## Partners & Vendors
+| Name | Company | Relationship | Notes |
+|------|---------|-------------|-------|
+| [Name] | [Company] | [Type] | [Context] |

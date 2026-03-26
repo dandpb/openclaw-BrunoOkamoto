@@ -1,86 +1,86 @@
-# PRD — Aula N-2: Bot sem acesso ao shell — identificar e corrigir
+# PRD — Lesson N-2: Bot without shell access — identify and fix
 
-**Módulo:** N — Diagnóstico & Troubleshooting  
-**Aula:** N-2  
-**Duração estimada:** 15 minutos  
-**Nível:** Intermediário / Debug  
-**Instrutor:** Bruno  
-**Formato:** Screencast com narração + slides/terminal ao vivo
-
----
-
-## Objetivo da Aula
-
-Ao final desta aula, o aluno será capaz de:
-1. Identificar quando o agente perdeu acesso ao shell
-2. Diagnosticar a causa exata do problema
-3. Aplicar a correção correta em cada caso
-4. Verificar que o acesso foi restaurado
+**Module:** N — Diagnostics & Troubleshooting  
+**Lesson:** N-2  
+**Estimated duration:** 15 minutes  
+**Level:** Intermediate / Debug  
+**Instructor:** Bruno  
+**Format:** Screencast with narration + live slides/terminal
 
 ---
 
-## Roteiro de Gravação
+## Lesson Objective
 
-### [00:00 – 01:30] — ABERTURA
-
-> **Bruno (câmera ou voice-over):**
-
-"Fala, pessoal! Bruno aqui. Nessa aula a gente vai resolver um dos problemas mais comuns que vejo acontecer com quem tá começando a usar o OpenClaw: o agente para de executar comandos.
-
-Você pede pra ele instalar uma ferramenta. Ele diz 'não consigo fazer isso'. Você pede pra criar um arquivo. Ele diz 'não tenho permissão'. Parece que o agente virou só um chatbot — responde texto mas não faz nada.
-
-Isso tem causa. E tem solução. Vou te mostrar as 5 causas mais comuns — incluindo a novidade da versão 3.2 que está pegando muita gente. Nos próximos 15 minutos você vai aprender a identificar e corrigir cada uma.
-
-Vamos lá!"
+By the end of this lesson, the student will be able to:
+1. Identify when the agent has lost shell access
+2. Diagnose the exact cause of the problem
+3. Apply the correct fix for each case
+4. Verify that access has been restored
 
 ---
 
-### [01:30 – 03:00] — SINTOMAS DO PROBLEMA
+## Recording Script
 
-> **Bruno (tela do terminal + agente aberto):**
+### [00:00 – 01:30] — OPENING
 
-"Primeiro, como saber que você está com esse problema?
+> **Bruno (camera or voice-over):**
 
-Os sintomas clássicos são esses:"
+"Hey everyone! Bruno here. In this lesson we're going to solve one of the most common problems I see happening with people who are starting to use OpenClaw: the agent stops executing commands.
 
-**[Mostrar na tela — lista de sintomas:]**
+You ask it to install a tool. It says 'I can't do that.' You ask it to create a file. It says 'I don't have permission.' It seems like the agent has turned into just a chatbot — it responds with text but doesn't do anything.
+
+This has a cause. And it has a solution. I'll show you the 5 most common causes — including the new one from version 3.2 that's catching a lot of people. In the next 15 minutes you'll learn to identify and fix each one.
+
+Let's go!"
+
+---
+
+### [01:30 – 03:00] — SYMPTOMS OF THE PROBLEM
+
+> **Bruno (terminal screen + agent open):**
+
+"First, how do you know you have this problem?
+
+The classic symptoms are these:"
+
+**[Show on screen — list of symptoms:]**
 
 ```
-Sintoma 1: Você pede ao agente pra rodar um comando e ele diz:
-  → "Não consigo executar comandos no seu sistema"
-  → "Não tenho acesso ao shell"
-  → "Essa ferramenta não está disponível"
+Symptom 1: You ask the agent to run a command and it says:
+  → "I can't execute commands on your system"
+  → "I don't have shell access"
+  → "This tool is not available"
 
-Sintoma 2: O agente responde texto perfeitamente, mas qualquer
-  tarefa que envolva o sistema operacional falha.
+Symptom 2: The agent responds to text perfectly, but any
+  task involving the operating system fails.
 
-Sintoma 3: Você recebe mensagens de erro como:
+Symptom 3: You receive error messages like:
   → "Permission denied"
   → "exec: not in allowlist"
   → "Sandbox restriction"
 ```
 
-> "Se você tá vendo qualquer um desses, o problema é de permissão de acesso ao shell. Agora vamos entender por quê isso acontece — tem 4 causas principais."
+> "If you're seeing any of these, the problem is shell access permissions. Now let's understand why this happens — there are 4 main causes."
 
 ---
 
-### [03:00 – 08:30] — AS 5 CAUSAS
+### [03:00 – 08:30] — THE 5 CAUSES
 
-#### ⚠️ Causa 0 (NOVA, MAIS COMUM): `tools.profile = messaging` [03:00 – 03:45]
+#### ⚠️ Cause 0 (NEW, MOST COMMON): `tools.profile = messaging` [03:00 – 03:45]
 
 > **Bruno:**
 
-"Mas antes de qualquer coisa — desde a versão 3.2 do OpenClaw, a causa número um do 'bot não faz nada' mudou. E muita gente está caindo nessa agora.
+"But before anything else — since OpenClaw version 3.2, the number one cause of 'bot does nothing' has changed. And a lot of people are falling into this now.
 
-Quando você configura o agente com `tools.profile = messaging`, o OpenClaw coloca o agente em modo mensageria — otimizado para responder texto no Telegram ou WhatsApp, mas sem acesso ao shell, sem exec, sem nada de sistema.
+When you configure the agent with `tools.profile = messaging`, OpenClaw puts the agent in messaging mode — optimized for responding to text on Telegram or WhatsApp, but without shell access, no exec, no system operations at all.
 
-É exatamente o que acontece quando você copia uma config de exemplo de bot Telegram e não percebe que tem esse parâmetro.
+This is exactly what happens when you copy an example Telegram bot config and don't notice that parameter.
 
-O sintoma é claro: o agente responde fluentemente, parece esperto, mas quando você pede qualquer coisa que envolva o sistema operacional, ele diz 'não consigo'.
+The symptom is clear: the agent responds fluently, seems smart, but when you ask for anything involving the operating system, it says 'I can't do it.'
 
-A correção é simples: remover o `tools.profile` ou trocá-lo para um perfil que inclua exec, como `full` ou `default`."
+The fix is simple: remove the `tools.profile` or change it to a profile that includes exec, like `full` or `default`."
 
-**[Mostrar config com o problema:]**
+**[Show config with the problem:]**
 ```json
 {
   "agents": {
@@ -93,7 +93,7 @@ A correção é simples: remover o `tools.profile` ou trocá-lo para um perfil q
 }
 ```
 
-**[Mostrar a correção:]**
+**[Show the fix:]**
 ```json
 {
   "agents": {
@@ -106,115 +106,115 @@ A correção é simples: remover o `tools.profile` ou trocá-lo para um perfil q
 }
 ```
 
-> "Ou simplesmente remova a chave `tools.profile` — o padrão já inclui exec."
+> "Or simply remove the `tools.profile` key — the default already includes exec."
 
-#### Causa 1: Ferramenta `exec` não está no allowlist [03:45 – 04:45]
-
-> **Bruno:**
-
-"A causa mais comum. O OpenClaw controla quais ferramentas cada agente pode usar. Se a ferramenta `exec` não estiver na lista de ferramentas permitidas, o agente simplesmente não consegue rodar comandos.
-
-Isso acontece quando alguém configura o agente de forma restrita — talvez pra um agente de suporte que não devia ter acesso ao sistema. Faz sentido nesse contexto, mas não faz sentido se você quer um agente que executa tarefas.
-
-A correção vai estar na configuração do allowlist. Vou mostrar como daqui a pouco."
-
-#### Causa 2: Sandbox ativo sem permissão correta [04:00 – 05:00]
+#### Cause 1: `exec` tool not in allowlist [03:45 – 04:45]
 
 > **Bruno:**
 
-"A segunda causa é o sandbox. O OpenClaw tem um sistema de sandbox que isola a execução de comandos. Dependendo de como tá configurado, o agente pode estar rodando num ambiente isolado que não deixa comandos passarem.
+"The most common cause. OpenClaw controls which tools each agent can use. If the `exec` tool isn't in the list of allowed tools, the agent simply can't run commands.
 
-O sandbox tem três modos:
-- `off` — sem sandbox, acesso total ao sistema
-- `non-main` — sandbox ativo só pra sub-agentes
-- `all` — sandbox ativo pra todos os agentes, incluindo o principal
+This happens when someone configures the agent in a restricted way — perhaps for a support agent that shouldn't have system access. That makes sense in that context, but not if you want an agent that executes tasks.
 
-Se você colocou `all` sem configurar as permissões de sandbox corretamente, o agente principal também fica preso.
+The fix will be in the allowlist configuration. I'll show you how shortly."
 
-A diferença entre esses modos importa. Vou mostrar na configuração."
-
-#### Causa 3: Security mode "deny" [05:00 – 06:00]
+#### Cause 2: Sandbox active without correct permissions [04:00 – 05:00]
 
 > **Bruno:**
 
-"A terceira causa é o security mode. O OpenClaw tem um parâmetro chamado `security` que controla como o agente lida com execução de comandos. Quando esse parâmetro está configurado como `deny`, o agente bloqueia qualquer tentativa de executar comandos no sistema.
+"The second cause is the sandbox. OpenClaw has a sandbox system that isolates command execution. Depending on how it's configured, the agent may be running in an isolated environment that doesn't let commands through.
 
-Esse modo existe por uma razão: segurança. Em alguns casos você quer um agente que só lê, não que executa. Mas se você configurou isso por engano no agente errado, ele vai ficar travado.
+The sandbox has three modes:
+- `off` — no sandbox, full system access
+- `non-main` — sandbox active only for sub-agents
+- `all` — sandbox active for all agents, including the main one
 
-A solução é simples: mudar o security mode para `allowlist` ou `full`."
+If you set `all` without correctly configuring the sandbox permissions, the main agent also gets stuck.
 
-#### Causa 4: BotFather privacy mode — bot não responde no grupo [06:00 – 07:00]
+The difference between these modes matters. I'll show you in the configuration."
+
+#### Cause 3: Security mode "deny" [05:00 – 06:00]
 
 > **Bruno:**
 
-"Essa causa é específica pra quem usa o agente em grupos do Telegram. Você adiciona o bot ao grupo, manda mensagem — nada. O bot responde em DM normalmente, mas no grupo, silêncio total.
+"The third cause is the security mode. OpenClaw has a parameter called `security` that controls how the agent handles command execution. When this parameter is set to `deny`, the agent blocks any attempt to execute commands on the system.
 
-O culpado é o **Group Privacy Mode** do BotFather. Por padrão, quando você cria um bot no BotFather, ele vem com privacy mode ATIVO. Isso significa que o bot só recebe mensagens que começam com `/comando` — mensagens normais no grupo são invisíveis pra ele.
+This mode exists for a reason: security. In some cases you want an agent that only reads, not one that executes. But if you configured this by mistake on the wrong agent, it will get stuck.
 
-Como corrigir:"
+The solution is simple: change the security mode to `allowlist` or `full`."
 
-**[Mostrar passo a passo:]**
+#### Cause 4: BotFather privacy mode — bot doesn't respond in group [06:00 – 07:00]
+
+> **Bruno:**
+
+"This cause is specific to those who use the agent in Telegram groups. You add the bot to the group, send a message — nothing. The bot responds in DM normally, but in the group, total silence.
+
+The culprit is the **Group Privacy Mode** from BotFather. By default, when you create a bot in BotFather, it comes with privacy mode ACTIVE. This means the bot only receives messages that start with `/command` — normal messages in the group are invisible to it.
+
+How to fix:"
+
+**[Show step by step:]**
 ```
-1. Abra @BotFather no Telegram
-2. Envie: /mybots
-3. Selecione seu bot
-4. Clique em "Bot Settings"
-5. Clique em "Group Privacy"
-6. Clique em "Turn off"
-7. Confirmação: "Privacy mode is disabled"
+1. Open @BotFather on Telegram
+2. Send: /mybots
+3. Select your bot
+4. Click "Bot Settings"
+5. Click "Group Privacy"
+6. Click "Turn off"
+7. Confirmation: "Privacy mode is disabled"
 
-IMPORTANTE: remova e adicione o bot ao grupo novamente
-para as novas permissões valerem.
+IMPORTANT: remove and re-add the bot to the group
+for the new permissions to take effect.
 ```
 
-> "Depois de desativar o privacy mode e re-adicionar o bot, ele começa a receber todas as mensagens do grupo. Simples assim."
+> "After disabling privacy mode and re-adding the bot, it starts receiving all messages from the group. Simple as that."
 
-#### Causa 5: Path do shell não encontrado [07:00 – 08:00]
+#### Cause 5: Shell path not found [07:00 – 08:00]
 
 > **Bruno:**
 
-"A quinta causa é menos comum mas acontece especialmente em VPS — o OpenClaw não consegue encontrar o shell do sistema.
+"The fifth cause is less common but happens especially on VPS — OpenClaw can't find the system shell.
 
-Em ambientes Linux padrão, o shell fica em `/bin/bash` ou `/bin/sh`. Mas em algumas distribuições minimalistas, containers Docker, ou VPS mal configurados, o path pode ser diferente. Ou o usuário que roda o OpenClaw não tem permissão pra usar o shell.
+In standard Linux environments, the shell is at `/bin/bash` or `/bin/sh`. But in some minimal distributions, Docker containers, or poorly configured VPS, the path may be different. Or the user running OpenClaw doesn't have permission to use the shell.
 
-A correção é configurar o path correto do shell na configuração do agente."
+The fix is to configure the correct shell path in the agent configuration."
 
 ---
 
-### [08:00 – 08:30] — FLUXOGRAMA DE DIAGNÓSTICO
+### [08:00 – 08:30] — DIAGNOSTIC FLOWCHART
 
 > **Bruno:**
 
-"Antes de entrar no diagnóstico passo a passo, deixa eu te mostrar o mapa mental. Quando o bot não faz nada, siga essa ordem:"
+"Before diving into the step-by-step diagnosis, let me show you the mind map. When the bot does nothing, follow this order:"
 
-**[Mostrar fluxograma na tela:]**
+**[Show flowchart on screen:]**
 
 ```
-Bot não executa comandos?
+Bot doesn't execute commands?
          │
          ▼
 ┌─────────────────────────────────┐
-│  tools.profile = messaging?    │ ──YES──▶ Remover ou trocar para "default"
+│  tools.profile = messaging?    │ ──YES──▶ Remove or change to "default"
 └─────────────────────────────────┘
          │ NO
          ▼
 ┌─────────────────────────────────┐
-│  Bot em grupo e não responde?  │ ──YES──▶ BotFather → desativar Group Privacy
+│  Bot in group and not responding? │ ──YES──▶ BotFather → disable Group Privacy
 └─────────────────────────────────┘
          │ NO
          ▼
 ┌─────────────────────────────────┐
-│  sandbox = "all" ?             │ ──YES──▶ Mudar para "off" ou "non-main"
+│  sandbox = "all" ?             │ ──YES──▶ Change to "off" or "non-main"
 └─────────────────────────────────┘
          │ NO
          ▼
 ┌─────────────────────────────────┐
-│  security = "deny" ?           │ ──YES──▶ Mudar para "allowlist"
+│  security = "deny" ?           │ ──YES──▶ Change to "allowlist"
 └─────────────────────────────────┘
          │ NO
          ▼
 ┌─────────────────────────────────┐
-│  "exec" no allowlist?          │ ──NO───▶ Adicionar "exec" ao allowlist
+│  "exec" in allowlist?          │ ──NO───▶ Add "exec" to allowlist
 └─────────────────────────────────┘
          │ YES
          ▼
@@ -224,72 +224,72 @@ Bot não executa comandos?
     echo "SHELL_TEST_OK"
          │
     ┌────┴────┐
-   OK?      Falhou?
+   OK?      Failed?
     │           │
-  Resolvido   Ver logs
-              gateway
+  Resolved   Check gateway
+              logs
 ```
 
-> "Testa nessa ordem. A causa 0 — o tools.profile — resolve 60% dos casos que aparecem no grupo."
+> "Test in this order. Cause 0 — the tools.profile — resolves 60% of cases that appear in the group."
 
 ---
 
-### [08:30 – 09:00] — TESTE RÁPIDO
+### [08:30 – 09:00] — QUICK TEST
 
-> **Bruno (mostrando terminal):**
+> **Bruno (showing terminal):**
 
-"Antes de mergulhar no diagnóstico, tem um teste rápido que você pode fazer. Peça pro seu agente executar isso:"
+"Before diving into the diagnosis, there's a quick test you can do. Ask your agent to execute this:"
 
-**[Mostrar no terminal/chat:]**
+**[Show on terminal/chat:]**
 ```
 execute: echo test
 ```
 
-> "Se o agente responder com 'test', ele tem acesso ao shell. Se der erro, você tem um dos problemas que acabamos de ver. Simples assim."
+> "If the agent responds with 'test', it has shell access. If it errors, you have one of the problems we just saw. Simple as that."
 
 ---
 
-### [08:00 – 10:30] — COMO DIAGNOSTICAR
+### [08:00 – 10:30] — HOW TO DIAGNOSE
 
-> **Bruno (tela do terminal):**
+> **Bruno (terminal screen):**
 
-"Agora vamos ao diagnóstico. Passo a passo:"
+"Now let's go to the diagnosis. Step by step:"
 
-#### Passo 1: Verificar os logs do gateway
+#### Step 1: Check the gateway logs
 
 ```bash
 openclaw gateway logs --tail 50
 ```
 
-> "Procure por mensagens como `exec blocked`, `not in allowlist`, `sandbox restriction` ou `permission denied`. O log vai te dizer exatamente o que está bloqueando."
+> "Look for messages like `exec blocked`, `not in allowlist`, `sandbox restriction` or `permission denied`. The log will tell you exactly what's blocking."
 
-#### Passo 2: Verificar a configuração do agente
+#### Step 2: Check the agent configuration
 
 ```bash
 cat ~/.openclaw/config.json
 ```
 
-ou, se estiver num workspace específico:
+or, if it's in a specific workspace:
 
 ```bash
 cat openclaw.json
 ```
 
-> "Você precisa checar três coisas nesse arquivo: o `allowlist` de tools, o parâmetro `sandbox`, e o `security` mode. Vou mostrar como cada um deve estar configurado."
+> "You need to check three things in this file: the tools `allowlist`, the `sandbox` parameter, and the `security` mode. I'll show you how each should be configured."
 
-#### Passo 3: Usar o diagnóstico interativo
+#### Step 3: Use the interactive diagnostic
 
-> "Você também pode colar o prompt de diagnóstico que disponibilizamos junto com esta aula — ele vai guiar o agente a verificar a própria configuração e identificar o problema automaticamente."
+> "You can also paste the diagnostic prompt we provided with this lesson — it will guide the agent to check its own configuration and identify the problem automatically."
 
 ---
 
-### [10:30 – 13:00] — COMO CORRIGIR CADA CAUSA
+### [10:30 – 13:00] — HOW TO FIX EACH CAUSE
 
-> **Bruno (editor de código aberto com o config):**
+> **Bruno (code editor open with config):**
 
-"Agora a parte boa — as correções. Vou mostrar cada uma."
+"Now the good part — the fixes. I'll show you each one."
 
-#### Correção 1: Adicionar `exec` ao allowlist
+#### Fix 1: Add `exec` to the allowlist
 
 ```json
 {
@@ -303,9 +303,9 @@ cat openclaw.json
 }
 ```
 
-> "Simples. Adicione `exec` na lista. Se não existia a chave `tools`, crie ela. Salve o arquivo e reinicie o gateway."
+> "Simple. Add `exec` to the list. If the `tools` key didn't exist, create it. Save the file and restart the gateway."
 
-#### Correção 2: Ajustar configuração de sandbox
+#### Fix 2: Adjust sandbox configuration
 
 ```json
 {
@@ -317,17 +317,17 @@ cat openclaw.json
 }
 ```
 
-> "Para o agente principal, use `sandbox: off`. Se quiser sandboxing em sub-agentes mas não no principal, use `non-main`. Só use `all` se você entende bem as implicações e configurou as permissões de sandbox corretamente."
+> "For the main agent, use `sandbox: off`. If you want sandboxing in sub-agents but not the main one, use `non-main`. Only use `all` if you understand the implications well and have correctly configured the sandbox permissions."
 
-**Tabela explicativa:**
+**Explanation table:**
 
-| Valor       | Comportamento |
-|-------------|---------------|
-| `off`       | Sem sandbox — acesso total ao sistema |
-| `non-main`  | Sandbox só em sub-agentes |
-| `all`       | Sandbox em todos — **inclui agente principal** |
+| Value       | Behavior |
+|-------------|----------|
+| `off`       | No sandbox — full system access |
+| `non-main`  | Sandbox only on sub-agents |
+| `all`       | Sandbox on all — **includes main agent** |
 
-#### Correção 3: Ajustar security mode
+#### Fix 3: Adjust security mode
 
 ```json
 {
@@ -339,9 +339,9 @@ cat openclaw.json
 }
 ```
 
-> "Mude de `deny` para `allowlist`. Com `allowlist`, só os comandos e ferramentas na sua lista permitida vão funcionar — é seguro e funcional. `full` desabilita restrições mas só use se souber o que está fazendo."
+> "Change from `deny` to `allowlist`. With `allowlist`, only commands and tools in your allowed list will work — it's secure and functional. `full` disables restrictions but only use if you know what you're doing."
 
-#### Correção 4: Configurar path do shell
+#### Fix 4: Configure shell path
 
 ```json
 {
@@ -353,77 +353,77 @@ cat openclaw.json
 }
 ```
 
-> "Se o shell não está sendo encontrado, especifique o path completo. No Ubuntu/Debian é `/bin/bash`, em alguns Alpine/containers pode ser `/bin/sh`. Rode `which bash` ou `which sh` no terminal pra confirmar o path correto."
+> "If the shell isn't being found, specify the full path. On Ubuntu/Debian it's `/bin/bash`, on some Alpine/containers it may be `/bin/sh`. Run `which bash` or `which sh` in the terminal to confirm the correct path."
 
 ---
 
-### [13:00 – 14:30] — CHECKLIST DE VERIFICAÇÃO PÓS-CORREÇÃO
+### [13:00 – 14:30] — POST-FIX VERIFICATION CHECKLIST
 
 > **Bruno:**
 
-"Depois de aplicar qualquer correção, siga esse checklist:"
+"After applying any fix, follow this checklist:"
 
-**[Mostrar na tela:]**
+**[Show on screen:]**
 
 ```
-CHECKLIST PÓS-CORREÇÃO
+POST-FIX CHECKLIST
 
-□ 1. Reiniciar o gateway:
+□ 1. Restart the gateway:
      openclaw gateway restart
 
-□ 2. Verificar status do gateway:
+□ 2. Check gateway status:
      openclaw gateway status
 
-□ 3. Testar acesso básico — pedir pro agente:
-     execute: echo "shell funcionando"
+□ 3. Test basic access — ask the agent:
+     execute: echo "shell working"
 
-□ 4. Testar criação de arquivo:
-     execute: touch /tmp/teste-openclaw && echo "OK"
+□ 4. Test file creation:
+     execute: touch /tmp/test-openclaw && echo "OK"
 
-□ 5. Verificar logs por erros residuais:
+□ 5. Check logs for residual errors:
      openclaw gateway logs --tail 20
 
-□ 6. Testar uma tarefa real simples:
-     "liste os arquivos do diretório atual"
+□ 6. Test a simple real task:
+     "list the files in the current directory"
 ```
 
 ---
 
-### [14:30 – 15:00] — ENCERRAMENTO
+### [14:30 – 15:00] — CLOSING
 
 > **Bruno:**
 
-"Pronto! Agora você sabe identificar e corrigir os cinco tipos de problema que tiram o acesso ao shell do seu agente.
+"Done! Now you know how to identify and fix the five types of problems that remove shell access from your agent.
 
-Pra recapitular:
-- Causa 0 (mais comum!): `tools.profile = messaging` → remova ou troque para `default`
-- Causa 1: `exec` não está no allowlist → adicione na lista de tools
-- Causa 2: Sandbox mal configurado → ajuste o modo de sandbox
-- Causa 3: Security mode `deny` → mude para `allowlist`
-- Causa 4: Bot no grupo sem resposta → desativar Group Privacy no BotFather
-- Causa 5: Shell não encontrado → configure o path correto
+To recap:
+- Cause 0 (most common!): `tools.profile = messaging` → remove or change to `default`
+- Cause 1: `exec` not in allowlist → add to the tools list
+- Cause 2: Misconfigured sandbox → adjust the sandbox mode
+- Cause 3: Security mode `deny` → change to `allowlist`
+- Cause 4: Bot in group not responding → disable Group Privacy in BotFather
+- Cause 5: Shell not found → configure the correct path
 
-Use o prompt de diagnóstico que deixamos disponível pra você fazer esse processo de forma interativa com o próprio agente.
+Use the diagnostic prompt we made available to do this process interactively with the agent itself.
 
-Qualquer dúvida, joga no grupo. Até a próxima!"
-
----
-
-## Notas de Produção
-
-- **Mostrar terminal ao vivo** ao explicar logs e config
-- **Editor de código** aberto ao mostrar as correções JSON
-- **Destacar** as linhas relevantes no config com zoom ou destaque
-- **Demonstrar** o teste rápido (`echo test`) ao vivo pra mostrar o agente funcionando depois da correção
-- **Adicionar captions/legendas** nas partes técnicas
-
-## Assets Necessários
-
-- [ ] Arquivo `openclaw.json` de exemplo (com erro deliberado)
-- [ ] Versão corrigida do `openclaw.json`
-- [ ] Screenshot dos logs com mensagem de erro
-- [ ] GIF/video do teste `echo test` funcionando
+Any questions, drop them in the group. See you next time!"
 
 ---
 
-*PRD gerado em 2026-03-04 · Curso OpenClaw · Pixel Educação*
+## Production Notes
+
+- **Show live terminal** when explaining logs and config
+- **Code editor** open when showing JSON fixes
+- **Highlight** relevant lines in the config with zoom or highlight
+- **Demonstrate** the quick test (`echo test`) live to show the agent working after the fix
+- **Add captions/subtitles** on the technical parts
+
+## Required Assets
+
+- [ ] Example `openclaw.json` file (with deliberate error)
+- [ ] Fixed version of `openclaw.json`
+- [ ] Screenshot of logs with error message
+- [ ] GIF/video of the `echo test` working
+
+---
+
+*PRD generated on 2026-03-04 · OpenClaw Course · Pixel Educação*

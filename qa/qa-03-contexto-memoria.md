@@ -1,104 +1,104 @@
-# ❓ Q&A — Contexto & Memória (Token, /compact, /new)
+# ❓ Q&A — Context & Memory (Token, /compact, /new)
 
-> Linguagem simples. Sem terminal. Cole o prompt no seu bot e ele resolve.
-
----
-
-## "Meu bot ficou lento e as respostas pioraram muito"
-
-**O que provavelmente aconteceu:** A conversa ficou longa demais. Imagine tentar lembrar de TUDO que você fez nos últimos 6 meses de uma vez só — o cérebro trava. Com o bot é igual.
-
-**O que fazer:**
-Cole esse prompt no seu bot:
-
-```
-Estou sentindo que você ficou mais lento e as respostas pioraram.
-Me diz:
-1. Qual é o tamanho atual do contexto? (use /status)
-2. Está perto do limite?
-3. O que você recomenda: /compact ou /new?
-4. Qual a diferença entre os dois pra mim decidir?
-```
+> Plain language. No terminal. Paste the prompt into your bot and it handles the rest.
 
 ---
 
-## "Qual a diferença entre /compact e /new? Tenho medo de perder tudo"
+## "My bot got slow and the responses got much worse"
 
-**Em linguagem simples:**
+**What probably happened:** The conversation got too long. Imagine trying to remember EVERYTHING you did over the last 6 months all at once — your brain freezes. It's the same for the bot.
+
+**What to do:**
+Paste this prompt into your bot:
+
+```
+I feel like you've gotten slower and the responses have gotten worse.
+Tell me:
+1. What is the current context size? (use /status)
+2. Is it close to the limit?
+3. What do you recommend: /compact or /new?
+4. What is the difference between the two so I can decide?
+```
+
+---
+
+## "What's the difference between /compact and /new? I'm afraid of losing everything"
+
+**In plain language:**
 
 | | /compact | /new |
 |---|---|---|
-| **O que faz** | Resume a conversa atual | Começa uma conversa zerada |
-| **Perde memória?** | Não — resume, não apaga | A conversa some, mas arquivos de memória ficam |
-| **Quando usar** | Conversa longa mas quer continuar | Quer um começo fresco |
-| **Analogia** | Tirar uma foto do que aconteceu | Abrir um caderno novo |
+| **What it does** | Summarizes the current conversation | Starts a fresh conversation |
+| **Lose memory?** | No — it summarizes, not deletes | The conversation disappears, but memory files remain |
+| **When to use** | Long conversation but want to continue | Want a fresh start |
+| **Analogy** | Taking a photo of what happened | Opening a new notebook |
 
-**Resposta curta:** Use `/compact` primeiro. Se ainda estiver lento depois, use `/new`.
+**Short answer:** Use `/compact` first. If it's still slow afterward, use `/new`.
 
-**Importante:** Mesmo com `/new`, o bot lembra de você! Ele tem arquivos de memória (MEMORY.md, memory/) que persistem entre conversas.
-
----
-
-## "O bot 'esqueceu' algo que eu tinha contado"
-
-**O que aconteceu:** Ou a conversa foi compactada e aquela informação não ficou no resumo, ou foi iniciada uma sessão nova.
-
-**O que fazer:**
-Cole esse prompt no seu bot:
-
-```
-Você parece ter esquecido [DESCREVA O QUE ELE ESQUECEU].
-Me ajuda a recuperar isso:
-1. Verifica seus arquivos de memória (MEMORY.md, memory/)
-2. Essa informação está salva em algum lugar?
-3. Se não estiver, vou te recontar agora: [REESCREVA A INFORMAÇÃO]
-4. Por favor, salva isso no arquivo de memória adequado pra não esquecer mais.
-```
+**Important:** Even with `/new`, the bot still remembers you! It has memory files (MEMORY.md, memory/) that persist between conversations.
 
 ---
 
-## "Apareceu um erro de 'token limit' ou 'context too long'"
+## "The bot 'forgot' something I had told it"
 
-**O que aconteceu:** A conversa ultrapassou o limite de memória do modelo. É como tentar colocar 10 litros em um copo de 2 litros.
+**What happened:** Either the conversation was compacted and that information didn't make it into the summary, or a new session was started.
 
-**O que fazer imediatamente:**
-Cole esse prompt no seu bot:
-
-```
-Apareceu um erro de limite de contexto/tokens.
-Precisa que você:
-1. Faça um /compact agora para resumir a conversa
-2. Me confirme quando terminar
-3. Continue de onde paramos depois do compact
-```
-
-**Para evitar que aconteça de novo:**
-Cole esse prompt:
+**What to do:**
+Paste this prompt into your bot:
 
 ```
-Quero configurar a compactação automática pra você nunca mais estourar o limite.
-Me guia como configurar o "compaction: { mode: default }" no meu openclaw.json.
-Explica o que cada opção faz antes de eu aplicar.
+You seem to have forgotten [DESCRIBE WHAT IT FORGOT].
+Help me recover it:
+1. Check your memory files (MEMORY.md, memory/)
+2. Is that information saved somewhere?
+3. If not, I'll tell you again now: [RESTATE THE INFORMATION]
+4. Please save it in the appropriate memory file so you don't forget again.
 ```
 
 ---
 
-## "O que é memória vetorial? Preciso disso?"
+## "A 'token limit' or 'context too long' error appeared"
 
-**Em linguagem simples:** É uma forma do bot guardar muita informação e encontrar a parte certa na hora certa — como um índice de livro inteligente.
+**What happened:** The conversation exceeded the model's memory limit. It's like trying to fit 10 liters into a 2-liter cup.
 
-**Precisa?** Provavelmente não agora. A maioria dos alunos usa muito bem só com os arquivos de memória normais (MEMORY.md). A memória vetorial é para casos avançados com muita informação.
-
-**Se quiser entender mais:**
-Cole esse prompt no seu bot:
+**What to do immediately:**
+Paste this prompt into your bot:
 
 ```
-Me explica de forma bem simples:
-1. O que são os arquivos MEMORY.md e memory/ que você usa?
-2. O que seria "memória vetorial" e quando faz sentido?
-3. Para o meu uso atual, o que você recomenda?
+A context/token limit error appeared.
+I need you to:
+1. Run /compact now to summarize the conversation
+2. Confirm when you're done
+3. Continue from where we left off after the compact
+```
+
+**To prevent it from happening again:**
+Paste this prompt:
+
+```
+I want to configure automatic compaction so you never hit the limit again.
+Guide me on how to configure "compaction: { mode: default }" in my openclaw.json.
+Explain what each option does before I apply it.
 ```
 
 ---
 
-*Última atualização: Fev/2026*
+## "What is vector memory? Do I need it?"
+
+**In plain language:** It's a way for the bot to store a lot of information and find the right part at the right time — like a smart book index.
+
+**Do you need it?** Probably not right now. Most students get along very well using only normal memory files (MEMORY.md). Vector memory is for advanced use cases with a large amount of information.
+
+**If you want to understand more:**
+Paste this prompt into your bot:
+
+```
+Explain to me in very simple terms:
+1. What are the MEMORY.md and memory/ files you use?
+2. What is "vector memory" and when does it make sense?
+3. For my current use, what do you recommend?
+```
+
+---
+
+*Last updated: Feb/2026*

@@ -1,21 +1,21 @@
 # HEARTBEAT.md — Template
 
-> O que o agente checa a cada heartbeat (pulso periódico).
-> Mantenha enxuto — cada item consome tokens.
+> What the agent checks at each heartbeat (periodic pulse).
+> Keep it lean — each item consumes tokens.
 
-## Checklist (a cada heartbeat)
+## Checklist (each heartbeat)
 
-- [ ] Compromissos próximos (24-48h)
-- [ ] Tarefas pendentes / follow-ups atrasados
-- [ ] Crons saudáveis
+- [ ] Upcoming commitments (24-48h)
+- [ ] Pending tasks / overdue follow-ups
+- [ ] Healthy crons
 
-## Semanal ([DIA DA SEMANA])
+## Weekly ([DAY OF WEEK])
 
-- [ ] Revisar projetos ativos
-- [ ] Consolidar notas diárias em topic files
-- [ ] Atualizar MEMORY.md
+- [ ] Review active projects
+- [ ] Consolidate daily notes into topic files
+- [ ] Update MEMORY.md
 
-## Regras
+## Rules
 
-- **EVITAR notificações [HORÁRIO DE FOCO]** (produção protegida)
-- Se nada precisa de atenção → HEARTBEAT_OK
+- **AVOID notifications [FOCUS HOURS]** (production protected)
+- If nothing needs attention → HEARTBEAT_OK

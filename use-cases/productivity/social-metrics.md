@@ -1,53 +1,53 @@
 # 📱 Use Case: Social Media Metrics Sync
 
-> Todas as métricas de redes sociais num único report.
+> All social media metrics in a single report.
 
-## O que faz
+## What it does
 
-Puxa dados de todas as plataformas e consolida:
-- YouTube: subscribers, views, vídeos com melhor performance
-- Instagram: followers, engagement rate, texto vs reels
-- LinkedIn: impressions, likes/post avg, crescimento
-- X/Twitter: followers, tweets, engajamento
-- Comparativo semana a semana
+Pulls data from all platforms and consolidates:
+- YouTube: subscribers, views, best-performing videos
+- Instagram: followers, engagement rate, text vs reels
+- LinkedIn: impressions, avg likes/post, growth
+- X/Twitter: followers, tweets, engagement
+- Week-over-week comparison
 
-## Prompt para configurar
+## Setup prompt
 
 ```
-Quero que você monitore minhas redes sociais automaticamente.
+I want you to automatically monitor my social media.
 
-Minhas redes:
-- YouTube: [CANAL]
-- Instagram: [PERFIL]
-- LinkedIn: [PERFIL]
-- X/Twitter: [PERFIL]
+My profiles:
+- YouTube: [CHANNEL]
+- Instagram: [PROFILE]
+- LinkedIn: [PROFILE]
+- X/Twitter: [PROFILE]
 
 Configure:
-1. **Sync diário** (cron às 22h, Sonnet):
-   - Puxa métricas atualizadas de todas as plataformas
-   - Salva snapshot no banco/arquivo
+1. **Daily sync** (cron at 10pm, Sonnet):
+   - Pulls updated metrics from all platforms
+   - Saves snapshot to database/file
 
-2. **Report semanal** (segunda às 9h):
-   - Comparativo semana atual vs anterior
-   - Top 3 posts que mais performaram (com link)
-   - Plataforma que mais cresceu
-   - Recomendação: onde focar essa semana
+2. **Weekly report** (Monday at 9am):
+   - Current week vs previous week comparison
+   - Top 3 best-performing posts (with link)
+   - Platform that grew the most
+   - Recommendation: where to focus this week
 
-3. **Alertas** (imediato):
-   - Post viralizando (>5x média de engajamento)
-   - Queda brusca de followers
-   - Comentário negativo com muito alcance
+3. **Alerts** (immediate):
+   - Post going viral (>5x average engagement)
+   - Sharp drop in followers
+   - Negative comment with high reach
 
-Use RapidAPI como proxy para Instagram e X (cloud IPs são bloqueados).
+Use RapidAPI as a proxy for Instagram and X (cloud IPs are blocked).
 
-Entregue no tópico Métricas do Telegram.
+Deliver to the Metrics topic on Telegram.
 ```
 
-## Exemplo real
+## Real example
 
-Métricas da Amora:
-- YouTube: 69.8k subs, 1.4M views, 276 vídeos
+Amora's metrics:
+- YouTube: 69.8k subs, 1.4M views, 276 videos
 - Instagram: 52.7k followers, 0.87% ER
 - Twitter: 2.3k followers, 338 tweets
-- LinkedIn: 247 likes/post avg
-- Insight descoberto: Instagram texto > reels (21x mais ER!)
+- LinkedIn: 247 avg likes/post
+- Insight discovered: Instagram text > reels (21x more ER!)

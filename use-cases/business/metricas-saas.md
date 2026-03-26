@@ -1,53 +1,53 @@
-# 📊 Use Case: Métricas SaaS Automáticas
+# 📊 Use Case: Automatic SaaS Metrics
 
-> Dashboard de MRR, churn, LTV e conversão direto no Telegram.
+> MRR, churn, LTV and conversion dashboard delivered directly to Telegram.
 
-## O que faz
+## What it does
 
-Conecta na API do seu billing (ChartMogul, Stripe, Paddle) e gera reports automáticos:
-- MRR atual e variação mês a mês
-- Churn rate e motivos de cancelamento
-- LTV médio e por plano
-- Conversão de trial → pagante
-- Failed payments e recuperação
-- Top clientes e riscos de churn
+Connects to your billing API (ChartMogul, Stripe, Paddle) and generates automatic reports:
+- Current MRR and month-over-month variation
+- Churn rate and cancellation reasons
+- Average LTV and per plan
+- Trial → paid conversion
+- Failed payments and recovery
+- Top customers and churn risks
 
 ## Prompt
 
 ```
-Quero que você monitore as métricas do meu SaaS automaticamente.
+I want you to automatically monitor my SaaS metrics.
 
-Configuração:
-- Meu billing é [CHARTMOGUL/STRIPE/PADDLE]
-- API key está no 1Password no cofre [NOME DO COFRE]
+Configuration:
+- My billing is [CHARTMOGUL/STRIPE/PADDLE]
+- API key is in 1Password in the [VAULT NAME] vault
 
-Crie os seguintes reports automáticos:
+Create the following automatic reports:
 
-1. **Daily quick** (todo dia às 9h, via cron):
-   - MRR atual
-   - Novos clientes ontem
-   - Cancelamentos ontem
-   - Failed payments pendentes
+1. **Daily quick** (every day at 9am, via cron):
+   - Current MRR
+   - New customers yesterday
+   - Cancellations yesterday
+   - Pending failed payments
 
-2. **Weekly digest** (segunda às 10h):
-   - MRR variação semana
-   - Top 5 motivos de churn
-   - Conversão trial→paid
-   - Comparativo com semana anterior
+2. **Weekly digest** (Monday at 10am):
+   - MRR weekly variation
+   - Top 5 churn reasons
+   - Trial→paid conversion
+   - Comparison with previous week
 
-3. **Monthly deep dive** (dia 1 de cada mês):
-   - Report completo com gráficos
-   - Análise de tendências
-   - Previsão de MRR próximo mês
-   - Ações recomendadas
+3. **Monthly deep dive** (1st of each month):
+   - Full report with charts
+   - Trend analysis
+   - Next month MRR forecast
+   - Recommended actions
 
-Entregue no tópico [NOME DO TÓPICO] do Telegram.
-Me avise IMEDIATAMENTE se churn subir >5% ou MRR cair >3% em um dia.
+Deliver to the [TOPIC NAME] topic on Telegram.
+Notify me IMMEDIATELY if churn rises >5% or MRR drops >3% in a single day.
 ```
 
-## Exemplo real
+## Real example
 
-A Amora monitora o MyGroupMetrics via ChartMogul:
-- MRR: R$8.000 (+11.2% mês)
-- Churn: 8% (caiu de 23% → 8% com a nova versão)
-- Alerta: R$3.347 em failed payments (principalmente saldo insuficiente)
+Amora monitors MyGroupMetrics via ChartMogul:
+- MRR: R$8,000 (+11.2% month)
+- Churn: 8% (dropped from 23% → 8% with the new version)
+- Alert: R$3,347 in failed payments (mainly insufficient balance)

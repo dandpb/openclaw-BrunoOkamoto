@@ -1,107 +1,107 @@
-# Prompt Guiado — Aula Bônus: Multi-Agent OS v2.0
+# Guided Prompt — Bonus Lesson: Multi-Agent OS v2.0
 
-> Anexe junto os arquivos: `prds/multi-agent-v2.md`, `prds/multi-agent-setup.md`, `templates/BOSS-WORKSPACE/` (todos os 8 arquivos), `templates/WORKER-WORKSPACE/` (todos os 6 arquivos)
-> ⚠️ Nota: `TOOLS-SHARED.md` e `shared/lessons/` no PRD v2 foram reorganizados na v2.1. Ver nota no topo do PRD.
+> Attach the files: `prds/multi-agent-v2.md`, `prds/multi-agent-setup.md`, `templates/BOSS-WORKSPACE/` (all 8 files), `templates/WORKER-WORKSPACE/` (all 6 files)
+> ⚠️ Note: `TOOLS-SHARED.md` and `shared/lessons/` in PRD v2 were reorganized in v2.1. See the note at the top of the PRD.
 
 ---
 
 ```
-Acabei de assistir a aula bônus sobre Multi-Agent OS v2.0 — a evolução de um agente único para uma organização completa com Chief of Staff, Bosses e Workers. Leia os PRDs e templates que estou anexando e me guie na migração.
+I just watched the bonus lesson on Multi-Agent OS v2.0 — the evolution from a single agent to a complete organization with a Chief of Staff, Bosses, and Workers. Read the PRDs and templates I'm attaching and guide me through the migration.
 
-## O QUE PRECISO
+## WHAT I NEED
 
-### Fase 1: Diagnóstico (antes de mudar qualquer coisa)
+### Phase 1: Diagnosis (before changing anything)
 
-1. **Analise meu setup atual:**
-   - Quantos agentes eu tenho?
-   - Quem faz o quê?
-   - Onde estão os gargalos? (agente sobrecarregado, context rot, custo descontrolado)
+1. **Analyze my current setup:**
+   - How many agents do I have?
+   - Who does what?
+   - Where are the bottlenecks? (overloaded agent, context rot, runaway costs)
 
-2. **Identifique meus domínios:**
-   - Me faça perguntas sobre meu trabalho/negócio
-   - Baseado nas respostas, sugira 3-5 domínios para bosses
-   - Explique POR QUE cada domínio faz sentido separado
+2. **Identify my domains:**
+   - Ask me questions about my work/business
+   - Based on the answers, suggest 3-5 domains for bosses
+   - Explain WHY each domain makes sense separately
 
-3. **Plano de migração personalizado:**
-   - Qual a ordem ideal dos bosses? (começar pelo mais crítico)
-   - Quais workers cada boss precisa? (Watcher vs Maker)
-   - Estimativa de custo mensal
+3. **Personalized migration plan:**
+   - What is the ideal order for bosses? (start with the most critical)
+   - Which workers does each boss need? (Watcher vs Maker)
+   - Monthly cost estimate
 
-### Fase 2: Foundation (executar)
+### Phase 2: Foundation (execute)
 
-4. **Backup obrigatório:**
-   - Faça backup completo do workspace atual
-   - Confirme que é restaurável antes de prosseguir
+4. **Mandatory backup:**
+   - Make a full backup of the current workspace
+   - Confirm it is restorable before proceeding
 
-5. **Promover CoS:**
-   - Atualize seu próprio SOUL.md: de COO/Hub para Chief of Staff
-   - Defina claramente o que você PARA de fazer vs. o que continua
-   - Atualize HEARTBEAT.md para foco em governance
+5. **Promote CoS:**
+   - Update your own SOUL.md: from COO/Hub to Chief of Staff
+   - Clearly define what you STOP doing vs. what you continue
+   - Update HEARTBEAT.md to focus on governance
 
-6. **Criar shared/:**
-   - Estrutura completa: context/, governance/, costs/, audit/, templates/, outputs/, lessons/
-   - TEAM.md como fonte de verdade
-   - USER.md canonical que todos herdam
-   - TOOLS-SHARED.md com integrações compartilhadas
+6. **Create shared/:**
+   - Full structure: context/, governance/, costs/, audit/, templates/, outputs/, lessons/
+   - TEAM.md as the source of truth
+   - Canonical USER.md that everyone inherits
+   - TOOLS-SHARED.md with shared integrations
    - Governance docs: daily digest template, cross-boss protocol, quality gates, escalation rules
    - Scripts: cost tracking, context sync
 
-7. **Ativar governance Day 1:**
-   - Cron: daily digest (manhã)
-   - Cron: kill switch (noite)
-   - Me mostre os crons criados e explique cada um
+7. **Activate governance on Day 1:**
+   - Cron: daily digest (morning)
+   - Cron: kill switch (night)
+   - Show me the created crons and explain each one
 
-### Fase 3: Primeiro Boss
+### Phase 3: First Boss
 
-8. **Criar Boss A (o mais prioritário):**
-   - Criar workspace usando template BOSS-WORKSPACE
-   - Personalizar SOUL.md com domínio específico
-   - Configurar binding Telegram (topic próprio)
-   - Adicionar ao agents.list
-   - Cron: summary do boss (horário que faz sentido)
+8. **Create Boss A (the highest priority):**
+   - Create workspace using the BOSS-WORKSPACE template
+   - Customize SOUL.md with specific domain
+   - Configure Telegram binding (dedicated topic)
+   - Add to agents.list
+   - Cron: boss summary (at a time that makes sense)
 
-9. **Criar Workers do Boss A:**
-   - Para cada worker, decidir: Watcher ou Maker?
-   - Watchers: criar workspace + heartbeat
-   - Makers: criar workspace (sem heartbeat — spawnados sob demanda)
+9. **Create Boss A's Workers:**
+   - For each worker, decide: Watcher or Maker?
+   - Watchers: create workspace + heartbeat
+   - Makers: create workspace (no heartbeat — spawned on demand)
 
-10. **Teste crítico:**
-    - Testar spawn chain: CoS → Boss → Worker
-    - Testar que o boss responde no topic dele
-    - Testar que o daily digest inclui o boss
-    - SÓ avance para o Boss B depois que Boss A funcionar 100%
+10. **Critical test:**
+    - Test spawn chain: CoS → Boss → Worker
+    - Test that the boss responds in their topic
+    - Test that the daily digest includes the boss
+    - ONLY move on to Boss B after Boss A works 100%
 
-### Fase 4: Expandir
+### Phase 4: Expand
 
-11. **Repetir para Boss B e Boss C:**
-    - Mesmo processo do Boss A
-    - Testar cross-boss communication
-    - Validar que governance acompanha
+11. **Repeat for Boss B and Boss C:**
+    - Same process as Boss A
+    - Test cross-boss communication
+    - Validate that governance keeps up
 
 12. **Hardening:**
-    - Context sync automático (cron semanal)
-    - Performance review semanal
-    - Ajustar workers: remover os que não usam, adicionar os que faltam
-    - Revisar custos: algum agente caro demais vs. valor que entrega?
+    - Automatic context sync (weekly cron)
+    - Weekly performance review
+    - Adjust workers: remove unused ones, add missing ones
+    - Review costs: any agent too expensive vs. the value it delivers?
 
-## REGRAS
+## RULES
 
-- SEMPRE backup antes de cada etapa
-- NUNCA pular o teste — se Boss A não funciona, não crie Boss B
-- Governance é Dia 1, não "depois"
-- Começar com 2-3 bosses, NUNCA 5 de uma vez
-- Worker idle (Maker) = $0 — não tenha medo de criar, mas também não crie sem necessidade
-- Todo agente novo começa L1 (Observer) — confiança se ganha
-- Se algo der errado: rollback do backup, respirar, tentar de novo
+- ALWAYS backup before each step
+- NEVER skip the test — if Boss A doesn't work, don't create Boss B
+- Governance is Day 1, not "later"
+- Start with 2-3 bosses, NEVER 5 at once
+- Idle worker (Maker) = $0 — don't be afraid to create, but also don't create without need
+- Every new agent starts L1 (Observer) — trust is earned
+- If something goes wrong: rollback from backup, breathe, try again
 
-## FORMATO
+## FORMAT
 
-Para cada passo:
-1. Explique O QUE vai fazer e POR QUE
-2. Peça minha confirmação
+For each step:
+1. Explain WHAT you're going to do and WHY
+2. Ask for my confirmation
 3. Execute
-4. Mostre o resultado
-5. Confirme se posso avançar
+4. Show the result
+5. Confirm whether I can move on
 
-Não automatize tudo de uma vez. Quero entender cada decisão.
+Don't automate everything at once. I want to understand each decision.
 ```

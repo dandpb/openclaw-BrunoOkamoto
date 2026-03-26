@@ -1,63 +1,63 @@
-# Roteiro de Gravação — "Memória 2.0"
-**Aula nova separada | ~20 min | Atualização Março 2026**
+# Recording Script — "Memory 2.0"
+**New separate lesson | ~20 min | March 2026 Update**
 
 ---
 
-## Setup antes de gravar
+## Setup before recording
 
-- Abrir terminal com workspace limpo (sessão nova)
-- Ter aberto: VS Code com `memory/` visível, terminal lateral
-- Deixar `memory/sessions/` com 2–3 arquivos visíveis (para mostrar o diário)
-- Desativar notificações
-
----
-
-## BLOCO 1 — Abertura (1:30 min)
-
-**[CÂMERA FRONTAL]**
-
-> "Galera, memória 2.0. Se você assistiu a aula de fundação, lembra que a gente configurou o sistema de memória, os arquivos decisions, lessons, pending… e na hora de testar o memory search, travou pedindo chave de API do OpenAI.
->
-> Duas coisas aconteceram desde então. Primeiro: esse bug foi corrigido. O memory search agora funciona nativamente, sem precisar de nenhuma chave externa. Segundo: eu aprendi — usando o meu próprio agente todo dia — que a estrutura de pastas que a gente criou na primeira aula funciona, mas tem uns ajustes que fazem diferença enorme.
->
-> Essa aula cobre os dois. É curta. Uns 20 minutos. E você vai sair com o sistema de memória do seu agente rodando de verdade."
+- Open terminal with a clean workspace (new session)
+- Have open: VS Code with `memory/` visible, side terminal
+- Leave `memory/sessions/` with 2–3 visible files (to show the diary)
+- Disable notifications
 
 ---
 
-## BLOCO 2 — O que o agente carrega vs. busca (4 min)
+## BLOCK 1 — Opening (1:30 min)
 
-**[CÂMERA FRONTAL → COMPARTILHA TELA: terminal]**
+**[FRONT CAMERA]**
 
-> "Antes de qualquer coisa, preciso deixar isso muito claro, porque muda como você pensa na estrutura:"
-
-**[MOSTRAR NA TELA: digitar `/status` no agente e mostrar output]**
-
-> "Toda sessão nova, o agente carrega automaticamente 5 coisas:
-> SOUL.md, USER.md, AGENTS.md, MEMORY.md — e as notas de hoje e ontem.
+> "Everyone, Memory 2.0. If you watched the foundation lesson, you'll remember we configured the memory system, the decisions, lessons, pending files… and when testing the memory search, it got stuck asking for an OpenAI API key.
 >
-> Só isso. Mais nada.
+> Two things have happened since then. First: that bug was fixed. Memory search now works natively, without needing any external key. Second: I learned — using my own agent every day — that the folder structure we created in the first lesson works, but there are some adjustments that make a huge difference.
 >
-> Tudo o mais — decisions, lessons, projetos, integrações — fica FORA do contexto. O agente vai buscar quando precisar. Isso é a busca semântica, e já vou mostrar como funciona."
-
-**[MOSTRAR: estrutura de pastas no VS Code]**
-
-> "O MEMORY.md — o índice — é o único arquivo que está sempre presente. E ele não guarda conteúdo. Ele aponta onde o conteúdo está. Olha aqui o meu:"
-
-**[MOSTRAR: MEMORY.md aberto — seções com links para os arquivos de memória]**
-
-> "É um mapa. Não é o território."
+> This lesson covers both. It's short. About 20 minutes. And you'll come out with your agent's memory system actually running."
 
 ---
 
-## BLOCO 3 — Estrutura de subpastas (4 min)
+## BLOCK 2 — What the agent loads vs. searches (4 min)
 
-**[COMPARTILHA TELA: VS Code, árvore de pastas memory/]**
+**[FRONT CAMERA → SHARE SCREEN: terminal]**
 
-> "Na aula de fundação a gente criou tudo na raiz da pasta memory. Decisions.md, lessons.md, pending.md, tudo junto. Funciona — mas quando o volume cresce, a busca semântica começa a trazer contexto misturado.
+> "Before anything else, I need to make this very clear, because it changes how you think about the structure:"
+
+**[SHOW ON SCREEN: type `/status` in the agent and show output]**
+
+> "Every new session, the agent automatically loads 5 things:
+> SOUL.md, USER.md, AGENTS.md, MEMORY.md — and today's and yesterday's notes.
 >
-> O que eu uso hoje:"
+> Just that. Nothing else.
+>
+> Everything else — decisions, lessons, projects, integrations — stays OUTSIDE the context. The agent will search for it when needed. That's semantic search, and I'll show you how it works in a moment."
 
-**[MOSTRAR: tree da pasta memory/ no terminal]**
+**[SHOW: folder structure in VS Code]**
+
+> "MEMORY.md — the index — is the only file that's always present. And it doesn't store content. It points to where the content is. Look at mine:"
+
+**[SHOW: MEMORY.md open — sections with links to memory files]**
+
+> "It's a map. Not the territory."
+
+---
+
+## BLOCK 3 — Subfolder structure (4 min)
+
+**[SHARE SCREEN: VS Code, memory/ folder tree]**
+
+> "In the foundation lesson we created everything at the root of the memory folder. Decisions.md, lessons.md, pending.md, all together. It works — but when volume grows, semantic search starts bringing mixed context.
+>
+> What I use today:"
+
+**[SHOW: tree of the memory/ folder in terminal]**
 
 ```
 memory/
@@ -81,119 +81,119 @@ memory/
     └── 2026-03-12-mission-control.md
 ```
 
-> "Subpastas por categoria. A lógica é simples: quando eu pergunto 'qual o status do Metricaas?', o agente busca em projects/ e encontra exatamente o arquivo certo. Se tivesse tudo num projects.md gigante, ele traria contexto do MGM, da Comunidade IA, de tudo junto.
+> "Subfolders by category. The logic is simple: when I ask 'what's the status of Metricaas?', the agent searches in projects/ and finds exactly the right file. If everything were in one giant projects.md, it would bring context from MGM, from AI Community, from everything mixed together.
 >
-> Projetos separados por arquivo. Isso é a mudança mais importante."
+> Separate projects per file. That's the most important change."
 
-**[MOSTRAR: abrir metricaas.md — conteúdo real do arquivo]**
+**[SHOW: open metricaas.md — real file content]**
 
-> "Cada projeto tem: status atual, próximas ações, pendências. O agente atualiza quando você pede. Na próxima sessão, ele encontra tudo aqui."
+> "Each project has: current status, next actions, pending items. The agent updates it when you ask. In the next session, it finds everything here."
 
 ---
 
-## BLOCO 4 — Como a busca semântica funciona (4 min)
+## BLOCK 4 — How semantic search works (4 min)
 
-**[CÂMERA FRONTAL → COMPARTILHA TELA: terminal com agente]**
+**[FRONT CAMERA → SHARE SCREEN: terminal with agent]**
 
-> "Agora o que mudou de verdade. Na aula antiga, o memory search exigia chave de API do OpenAI pra funcionar. Isso gerou muita confusão. Aluno configurava tudo certo, chegava nessa parte, travava.
+> "Now what really changed. In the old lesson, memory search required an OpenAI API key to work. That caused a lot of confusion. Students would set everything up correctly, reach this part, and get stuck.
 >
-> Não precisa mais. Funciona nativamente."
+> Not anymore. It works natively."
 
-**[DEMO AO VIVO: abrir sessão nova no terminal]**
+**[LIVE DEMO: open new session in terminal]**
 
-> "Deixa eu mostrar. Sessão nova — contexto zerado. Nenhum arquivo de projeto carregado."
+> "Let me show you. New session — zeroed context. No project files loaded."
 
-**[DIGITAR: "qual o status atual do Metricaas?"]**
+**[TYPE: "what is the current status of Metricaas?"]**
 
-> "O agente vai buscar nos arquivos... olha aqui — ele usou o memory_search, encontrou o arquivo projects/metricaas.md, e trouxe exatamente o trecho relevante. Sem eu ter aberto nada manualmente."
+> "The agent will search through the files... look here — it used memory_search, found the file projects/metricaas.md, and brought exactly the relevant section. Without me manually opening anything."
 
-**[MOSTRAR O OUTPUT — agente encontrando a info]**
+**[SHOW OUTPUT — agent finding the info]**
 
-> "Isso é busca semântica. Não é grep, não é palavra-chave exata. Ele entende o significado. Se eu perguntar 'como está meu SaaS de métricas', ele vai achar o mesmo arquivo.
+> "This is semantic search. It's not grep, it's not exact keyword matching. It understands meaning. If I ask 'how is my metrics SaaS doing', it will find the same file.
 >
-> Dois tools por baixo dos panos:
-> - `memory_search` — busca em tudo, traz os chunks mais relevantes
-> - `memory_get` — lê só as linhas específicas que precisa
+> Two tools under the hood:
+> - `memory_search` — searches everything, brings the most relevant chunks
+> - `memory_get` — reads only the specific lines it needs
 >
-> Você não precisa chamar esses tools manualmente. O agente usa automaticamente quando você pergunta algo."
+> You don't need to call these tools manually. The agent uses them automatically when you ask something."
 
 ---
 
-## BLOCO 5 — Como pedir para salvar (3 min)
+## BLOCK 5 — How to ask it to save (3 min)
 
-**[CÂMERA FRONTAL]**
+**[FRONT CAMERA]**
 
-> "Maior erro de quem começa: achar que o agente vai lembrar sozinho.
+> "The biggest mistake beginners make: thinking the agent will remember on its own.
 >
-> Não vai. Se não está em arquivo, não existe na próxima sessão.
+> It won't. If it's not in a file, it doesn't exist in the next session.
 >
-> A diferença:"
+> The difference:"
 
-**[MOSTRAR NA TELA — slide simples ou digitar no terminal]**
+**[SHOW ON SCREEN — simple slide or type in terminal]**
 
-> "❌ 'Lembra disso' → morre quando você fechar a janela
-> ✅ 'Salva em memory/context/decisions.md' → permanente"
+> "❌ 'Remember this' → dies when you close the window
+> ✅ 'Save in memory/context/decisions.md' → permanent"
 
-**[DEMO AO VIVO: digitar uma decisão e pedir pra salvar]**
+**[LIVE DEMO: type a decision and ask it to save]**
 
-> "Vou tomar uma decisão agora: todas as integrações novas precisam ter documentação antes de ir pra produção. Vou pedir pra salvar:"
+> "I'm going to make a decision now: all new integrations need documentation before going to production. I'll ask it to save:"
 
-**[DIGITAR: "Ficou decidido: toda integração nova precisa ter documentação antes de ir pra produção. Salva em memory/context/decisions.md como decisão permanente."]**
+**[TYPE: "It's decided: every new integration needs documentation before going to production. Save in memory/context/decisions.md as a permanent decision."]**
 
-**[MOSTRAR: agente abrindo o arquivo e salvando]**
+**[SHOW: agent opening the file and saving]**
 
-> "Feito. Sessão nova, esse contexto vai estar lá.
+> "Done. New session, that context will be there.
 >
-> Critério rápido de onde salvar:
-> - Decisão que não muda → context/decisions.md
-> - Erro que não pode repetir → context/lessons.md
-> - Status de projeto → projects/nome.md
-> - Aguardando seu input → pending.md"
+> Quick guide on where to save:
+> - Decision that doesn't change → context/decisions.md
+> - Error that can't repeat → context/lessons.md
+> - Project status → projects/name.md
+> - Waiting for your input → pending.md"
 
 ---
 
-## BLOCO 6 — Encerramento (1:30 min)
+## BLOCK 6 — Closing (1:30 min)
 
-**[CÂMERA FRONTAL]**
+**[FRONT CAMERA]**
 
-> "Recapitulando o que mudou:
+> "Recap of what changed:
 >
-> Um — busca semântica funciona nativamente, sem chave de API.
+> One — semantic search works natively, no API key needed.
 >
-> Dois — subpastas por categoria. Projects com um arquivo por projeto. Context separado de integrations separado de sessions.
+> Two — subfolders by category. Projects with one file per project. Context separate from integrations, separate from sessions.
 >
-> Três — o agente só carrega automaticamente SOUL, USER, AGENTS, MEMORY e as sessões de hoje e ontem. Todo o resto é sob demanda.
+> Three — the agent only loads automatically SOUL, USER, AGENTS, MEMORY, and today's and yesterday's sessions. Everything else is on demand.
 >
-> Quatro — para salvar, você precisa ser explícito. 'Salva em memory/context/decisions.md'. Sem isso, não existe.
+> Four — to save, you need to be explicit. 'Save in memory/context/decisions.md'. Without that, it doesn't exist.
 >
-> O material desta aula tá no Drive — tem o guia em PDF com a estrutura completa, o prompt pra você pedir pro agente reorganizar a memória, e o PRD atualizado. Linka na descrição.
+> The material for this lesson is on Drive — there's a PDF guide with the full structure, the prompt to ask the agent to reorganize memory, and the updated PRD. Link in the description.
 >
-> Qualquer dúvida, manda no grupo. Até a próxima."
+> Any questions, post in the group. See you next time."
 
 ---
 
-## Checklist pré-gravação
+## Pre-recording checklist
 
-- [ ] Sessão nova aberta no terminal (contexto zerado)
-- [ ] VS Code com `memory/` visível e arquivos reais (metricaas.md, decisions.md)
-- [ ] MEMORY.md aberto em outra aba
-- [ ] Notificações desativadas
-- [ ] Testou a demo do memory_search antes de gravar
+- [ ] New session open in terminal (zeroed context)
+- [ ] VS Code with `memory/` visible and real files (metricaas.md, decisions.md)
+- [ ] MEMORY.md open in another tab
+- [ ] Notifications disabled
+- [ ] Tested the memory_search demo before recording
 
-## Timings aproximados
+## Approximate timings
 
-| Bloco | Conteúdo | Tempo |
-|-------|----------|-------|
-| 1 | Abertura | 1:30 |
-| 2 | Carrega vs. busca | 4:00 |
-| 3 | Estrutura de subpastas | 4:00 |
-| 4 | Busca semântica (demo) | 4:00 |
-| 5 | Como salvar (demo) | 3:00 |
-| 6 | Encerramento | 1:30 |
+| Block | Content | Time |
+|-------|---------|------|
+| 1 | Opening | 1:30 |
+| 2 | Loads vs. searches | 4:00 |
+| 3 | Subfolder structure | 4:00 |
+| 4 | Semantic search (demo) | 4:00 |
+| 5 | How to save (demo) | 3:00 |
+| 6 | Closing | 1:30 |
 | **Total** | | **~18 min** |
 
-## Links para colocar na descrição
+## Links to put in the description
 
-- Material do aluno (PDF): Drive → Curso OpenClaw → aula-04-memoria → modulo-04-memoria.pdf
-- Prompt de implementação: Drive → aula-04-memoria → prompts → modulo-04-memoria.md
-- PRD atualizado: Drive → aula-04-memoria → prd → memory-architecture.md
+- Student material (PDF): Drive → OpenClaw Course → aula-04-memoria → modulo-04-memoria.pdf
+- Implementation prompt: Drive → aula-04-memoria → prompts → modulo-04-memoria.md
+- Updated PRD: Drive → aula-04-memoria → prd → memory-architecture.md

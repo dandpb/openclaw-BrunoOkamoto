@@ -1,44 +1,44 @@
-# Prompt — Módulo 7: Multi-Agentes
+# Prompt — Module 7: Multi-Agents
 
-> Cole este prompt no chat do seu OpenClaw depois de assistir o Módulo 7.
-> Anexe junto o arquivo: `prds/multi-agent-setup.md`
-> ⚠️ Nota: `shared/lessons/` referenciado abaixo = `shared/lessons.md` na estrutura real.
+> Paste this prompt in your OpenClaw chat after watching Module 7.
+> Attach the file: `prds/multi-agent-setup.md`
+> ⚠️ Note: `shared/lessons/` referenced below = `shared/lessons.md` in the actual structure.
 
 ---
 
-Acabei de assistir o Módulo 7 do curso sobre multi-agentes. Leia o PRD e me guie na criação do meu primeiro time de agentes.
+I just watched Module 7 of the course on multi-agents. Read the PRD and guide me through creating my first agent team.
 
-**O que preciso que você faça:**
+**What I need you to do:**
 
-1. **Avalie se eu preciso de multi-agentes agora** — se meu uso ainda é simples, me diga honestamente que é cedo. Multi-agentes sem fundação = bagunça.
+1. **Assess whether I need multi-agents right now** — if my usage is still simple, tell me honestly that it's too early. Multi-agents without a foundation = chaos.
 
-2. **Se fizer sentido, me ajude a criar 1-2 agentes extras:**
-   - Me faça perguntas sobre que tarefas eu quero delegar
-   - Crie o SOUL.md e AGENTS.md de cada agente
-   - Configure no gateway (agents.list)
+2. **If it makes sense, help me create 1-2 extra agents:**
+   - Ask me about which tasks I want to delegate
+   - Create the SOUL.md and AGENTS.md for each agent
+   - Configure in the gateway (agents.list)
 
-3. **Implemente o sistema de leveling:**
+3. **Implement the leveling system:**
    - L1 Observer → L2 Contributor → L3 Operator → L4 Trusted
-   - Todo agente novo começa em L1 (output revisado por mim)
-   - Me explique como promover e rebaixar
+   - Every new agent starts at L1 (output reviewed by me)
+   - Explain how to promote and demote
 
-4. **Configure o contexto compartilhado:**
-   - TEAM.md — registry de todos os agentes
-   - shared/outputs/ — resultados compartilhados
-   - shared/lessons/ — aprendizados do time
+4. **Configure shared context:**
+   - TEAM.md — registry of all agents
+   - shared/outputs/ — shared results
+   - shared/lessons/ — team learnings
 
-5. **Defina a economia e demonstre o ciclo completo:**
-   - Qual modelo pra cada agente (nem todo agente precisa de Opus)
-   - Quando spawnar sub-agents vs fazer na main session
-   - Me demonstre ao vivo o ciclo de orquestração com sessions_yield:
-     1. Spawna um sub-agent com sessions_spawn para uma task simples
-     2. Chama sessions_yield para encerrar o turno limpo
-     3. Mostra o resultado chegando na próxima mensagem
-   - Explique a diferença de tokens com e sem sessions_yield
+5. **Define the economics and demonstrate the full cycle:**
+   - Which model for each agent (not every agent needs Opus)
+   - When to spawn sub-agents vs. doing it in the main session
+   - Demonstrate the orchestration cycle live with sessions_yield:
+     1. Spawn a sub-agent with sessions_spawn for a simple task
+     2. Call sessions_yield to cleanly close the turn
+     3. Show the result arriving in the next message
+   - Explain the token difference with and without sessions_yield
 
-**Regras:**
-- Menos é mais — 2 agentes bem feitos > 6 agentes bagunçados
-- Eu (humano) sempre no loop de decisões importantes
-- No final, me mostre o time completo e quem faz o quê
+**Rules:**
+- Less is more — 2 well-built agents > 6 messy agents
+- I (the human) am always in the loop for important decisions
+- At the end, show me the full team and who does what
 
-Vamos montar o time?
+Shall we build the team?

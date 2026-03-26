@@ -1,40 +1,40 @@
-# Prompt — Módulo 7: Proatividade (Heartbeats & Automações)
+# Prompt — Module 7: Proactivity (Heartbeats & Automations)
 
-> Cole este prompt no chat do seu OpenClaw depois de assistir o Módulo 7.
-> Anexe junto o arquivo: `templates/HEARTBEAT-template.md`
+> Paste this prompt in your OpenClaw chat after watching Module 7.
+> Also attach the file: `templates/HEARTBEAT-template.md`
 
 ---
 
-Acabei de assistir o Módulo 7 do curso sobre proatividade. Quero que você se torne proativo — não fique só esperando eu falar.
+I just finished watching Module 7 of the course on proactivity. I want you to become proactive — not just wait for me to speak.
 
-**O que preciso que você faça:**
+**What I need you to do:**
 
-1. **Configure o HEARTBEAT.md** — Me ajude a definir o que você deve checar periodicamente:
-   - Emails urgentes?
-   - Eventos na agenda nas próximas 24-48h?
-   - Projetos parados?
-   - Métricas de negócio?
+1. **Configure HEARTBEAT.md** — Help me define what you should check periodically:
+   - Urgent emails?
+   - Events on the calendar in the next 24-48h?
+   - Stalled projects?
+   - Business metrics?
 
-2. **Defina os horários de silêncio** — quando NÃO me incomodar (madrugada, fins de semana, etc.)
+2. **Define silence hours** — when NOT to bother me (late night, weekends, etc.)
 
-3. **Configure o modelo econômico:**
-   - Use Haiku pra heartbeats (custa ~$0.005 vs ~$0.10 em Opus)
-   - Opção avançada: Ollama local para heartbeats (custo ZERO!)
-   - Configure rate limits e budgets pra prevenir runaway de automações
+3. **Configure the cost-efficient model:**
+   - Use Haiku for heartbeats (costs ~$0.005 vs ~$0.10 in Opus)
+   - Advanced option: local Ollama for heartbeats (ZERO cost!)
+   - Configure rate limits and budgets to prevent automation runaway
 
-4. **Crie 2 automações proativas:**
-   - Uma de checagem (ex: emails/agenda a cada 4h)
-   - Uma de organização (ex: revisar memória, atualizar docs)
-   - Dica: self-updates automáticos — sync com GitHub, auto-update diário, daily config review, audit de segurança
+4. **Create 2 proactive automations:**
+   - One for checking (e.g.: emails/calendar every 4h)
+   - One for organizing (e.g.: review memory, update docs)
+   - Tip: automatic self-updates — GitHub sync, daily auto-update, daily config review, security audit
 
-5. **Defina regras de quando falar vs calar:**
-   - Algo urgente encontrado → me avisa
-   - Nada novo → HEARTBEAT_OK (não me manda nada)
-   - Trabalho de fundo (organizar memória) → faz sozinho sem avisar
+5. **Define rules for when to speak vs. stay silent:**
+   - Something urgent found → notify me
+   - Nothing new → HEARTBEAT_OK (don't send me anything)
+   - Background work (organizing memory) → do it alone without notifying
 
-**Regras:**
-- Menos é mais — não quero 10 notificações por dia
-- Me explique o custo de cada heartbeat/cron antes de criar
-- No final, me mostre o schedule completo de automações
+**Rules:**
+- Less is more — I don't want 10 notifications per day
+- Explain the cost of each heartbeat/cron before creating it
+- At the end, show me the complete automation schedule
 
-Vamos te deixar proativo?
+Shall we make you proactive?

@@ -1,255 +1,255 @@
-# PRD — Aula N-8: Telegram: Bot Não Responde no Grupo
+# PRD — Lesson N-8: Telegram: Bot Not Responding in Group
 
-> **Nível:** Intermediário / Troubleshooting  
-> **Duração estimada:** 10 minutos  
-> **Pré-requisito:** OpenClaw configurado, bot no Telegram funcionando em DM
-
----
-
-## 🎯 Objetivo da Aula
-
-Ao final desta aula, o aluno será capaz de:
-
-1. Entender por que o bot funciona em DM mas não no grupo
-2. Corrigir o privacy mode do BotFather
-3. Configurar `groupPolicy` no OpenClaw
-4. Descobrir o chat ID de qualquer grupo
-5. Entender a diferença entre `dmPolicy` e `groupPolicy`
-6. Diagnosticar problemas de grupo sistematicamente
+> **Level:** Intermediate / Troubleshooting
+> **Estimated duration:** 10 minutes
+> **Prerequisite:** OpenClaw configured, Telegram bot working in DM
 
 ---
 
-## 🎬 ABERTURA (0:00 – 0:45)
+## 🎯 Lesson Objective
 
-**[Bruno na tela, tom direto]**
+By the end of this lesson, the student will be able to:
 
-> "Fala! Aula N-8 — uma das dúvidas mais comuns do curso: 'adicionei meu bot no grupo, mas ele não responde'. Em 10 minutos você vai entender por que isso acontece e como resolver."
-
-> "Spoiler: quase sempre são 3 causas. Vou te mostrar as 3 e o diagnóstico pra saber qual é a sua."
-
----
-
-## 📚 SEÇÃO 1: Por Que o Bot Não Fala no Grupo (0:45 – 3:00)
-
-**[Tela: slide com 3 causas]**
-
-> "O bot funciona em DM mas não no grupo? Existem 3 causas possíveis, e elas são independentes — qualquer uma delas já basta para o bot ficar mudo:"
-
-**Causa 1: Privacy Mode ATIVADO no BotFather (mais comum)**
-
-> "Por padrão, o Telegram cria bots com 'privacy mode' ATIVADO. Isso significa que o bot NÃO RECEBE mensagens do grupo — ele só recebe mensagens que comecem com `/comando` ou que mencionem diretamente o bot com @username."
-
-> "É uma medida de privacidade do Telegram. Mas pra um agente AI que deve participar das conversas, isso é um problema."
-
-**Causa 2: `groupPolicy` não configurado no OpenClaw**
-
-> "Mesmo que o bot receba as mensagens, o OpenClaw tem uma camada de segurança própria: por padrão, ele não processa mensagens de grupos a menos que você configure explicitamente."
-
-**Causa 3: Chat ID do grupo não está no allowlist**
-
-> "Se você usou `groupPolicy = allowlist`, precisa adicionar o chat ID do grupo específico. Sem o ID correto, o OpenClaw ignora as mensagens mesmo com tudo configurado."
+1. Understand why the bot works in DM but not in the group
+2. Fix the privacy mode in BotFather
+3. Configure `groupPolicy` in OpenClaw
+4. Find the chat ID of any group
+5. Understand the difference between `dmPolicy` and `groupPolicy`
+6. Systematically diagnose group issues
 
 ---
 
-## 🔧 FIX 1: BotFather — Desativar Privacy Mode (3:00 – 5:00)
+## 🎬 OPENING (0:00 – 0:45)
 
-**[Tela: Telegram aberto no BotFather]**
+**[Bruno on screen, direct tone]**
 
-> "Vamos resolver a Causa 1. Abre o Telegram e fala com o **@BotFather**."
+> "Hey! Lesson N-8 — one of the most common questions in the course: 'I added my bot to the group, but it doesn't respond'. In 10 minutes you'll understand why this happens and how to fix it."
+
+> "Spoiler: it's almost always 3 causes. I'll show you all 3 and the diagnosis to find out which one is yours."
+
+---
+
+## 📚 SECTION 1: Why the Bot Doesn't Talk in the Group (0:45 – 3:00)
+
+**[Screen: slide with 3 causes]**
+
+> "The bot works in DM but not in the group? There are 3 possible causes, and they are independent — any one of them is enough to make the bot go silent:"
+
+**Cause 1: Privacy Mode ENABLED in BotFather (most common)**
+
+> "By default, Telegram creates bots with 'privacy mode' ENABLED. This means the bot DOES NOT RECEIVE group messages — it only receives messages that start with `/command` or that directly mention the bot with @username."
+
+> "It's a privacy measure from Telegram. But for an AI agent that should participate in conversations, this is a problem."
+
+**Cause 2: `groupPolicy` not configured in OpenClaw**
+
+> "Even if the bot receives the messages, OpenClaw has its own security layer: by default, it doesn't process group messages unless you explicitly configure it."
+
+**Cause 3: Group chat ID is not in the allowlist**
+
+> "If you used `groupPolicy = allowlist`, you need to add the specific group's chat ID. Without the correct ID, OpenClaw ignores the messages even with everything configured."
+
+---
+
+## 🔧 FIX 1: BotFather — Disable Privacy Mode (3:00 – 5:00)
+
+**[Screen: Telegram open in BotFather]**
+
+> "Let's fix Cause 1. Open Telegram and talk to **@BotFather**."
 
 ```
-1. Abra o chat com @BotFather
-2. Envie: /setprivacy
-3. BotFather vai listar seus bots — selecione o seu
-4. Escolha: Disable
-5. Confirmação: "Success! Privacy mode is disabled."
+1. Open the chat with @BotFather
+2. Send: /setprivacy
+3. BotFather will list your bots — select yours
+4. Choose: Disable
+5. Confirmation: "Success! Privacy mode is disabled."
 ```
 
-> "Agora o bot vai receber TODAS as mensagens do grupo, não só comandos. Isso é necessário para o agente participar das conversas normalmente."
+> "Now the bot will receive ALL group messages, not just commands. This is necessary for the agent to participate in conversations normally."
 
-> "**Atenção:** Após mudar o privacy mode, você precisa **remover o bot do grupo e adicionar de volta**. O Telegram só aplica a nova configuração quando o bot entra no grupo. Se o bot já estava no grupo, a mudança não vai funcionar até você fazer isso."
+> "**Attention:** After changing the privacy mode, you need to **remove the bot from the group and add it back**. Telegram only applies the new configuration when the bot enters the group. If the bot was already in the group, the change won't work until you do this."
 
 ---
 
-## 🔧 FIX 2: Configurar groupPolicy no OpenClaw (5:00 – 7:30)
+## 🔧 FIX 2: Configure groupPolicy in OpenClaw (5:00 – 7:30)
 
-**[Tela: Terminal]**
+**[Screen: Terminal]**
 
-> "Agora vamos resolver a Causa 2 e 3 juntas. No terminal da VPS:"
+> "Now let's fix Causes 2 and 3 together. In the VPS terminal:"
 
 ```bash
-# Configurar política para grupos
-# allowlist = só responde em grupos específicos (recomendado)
+# Configure policy for groups
+# allowlist = only responds in specific groups (recommended)
 openclaw config set channels.telegram.groupPolicy allowlist
 
-# Adicionar o chat ID do grupo ao allowlist
-# (Veja a seção abaixo para descobrir o chat ID)
+# Add the group chat ID to the allowlist
+# (See the section below to find the chat ID)
 openclaw config set channels.telegram.groupAllowlist "[-100XXXXXXXXXX]"
 ```
 
-> "Se tiver mais de um grupo:"
+> "If you have more than one group:"
 ```bash
 openclaw config set channels.telegram.groupAllowlist "[-100111111111, -100222222222]"
 ```
 
-> "Para permitir qualquer grupo sem allowlist (menos seguro):"
+> "To allow any group without allowlist (less secure):"
 ```bash
 openclaw config set channels.telegram.groupPolicy open
 ```
 
-> "Recomendo `allowlist` — você controla exatamente em quais grupos o agente atua."
+> "I recommend `allowlist` — you control exactly which groups the agent acts in."
 
 ---
 
-## 🔍 Como Descobrir o Chat ID do Grupo (7:30 – 8:30)
+## 🔍 How to Find the Group Chat ID (7:30 – 8:30)
 
-**[Tela: Terminal + Telegram]**
+**[Screen: Terminal + Telegram]**
 
-> "Para descobrir o chat ID do seu grupo, siga estes passos:"
+> "To find your group's chat ID, follow these steps:"
 
 ```bash
-# 1. Adicione o bot ao grupo (se ainda não fez)
-# 2. Envie qualquer mensagem no grupo
-# 3. Verifique os logs do OpenClaw
+# 1. Add the bot to the group (if you haven't already)
+# 2. Send any message in the group
+# 3. Check OpenClaw logs
 openclaw gateway logs | grep "chat_id"
-# ou
+# or
 openclaw gateway logs | tail -50
 ```
 
-> "Nos logs você vai ver algo como:"
+> "In the logs you'll see something like:"
 ```
-Received message from chat_id: -1001234567890, user: João
+Received message from chat_id: -1001234567890, user: John
 ```
 
-> "O chat ID de grupos começa com `-100` seguido de números. Anote esse ID — é ele que vai no allowlist."
+> "Group chat IDs start with `-100` followed by numbers. Note this ID — it's the one that goes in the allowlist."
 
-> "Dica alternativa: adicione o bot @userinfobot ao grupo, mande `/start`, ele retorna o ID do grupo também."
+> "Alternative tip: add the bot @userinfobot to the group, send `/start`, it also returns the group ID."
 
 ---
 
-## 📘 SEÇÃO 5: dmPolicy vs groupPolicy — A Diferença (8:30 – 9:30)
+## 📘 SECTION 5: dmPolicy vs groupPolicy — The Difference (8:30 – 9:30)
 
-**[Tela: comparativo]**
+**[Screen: comparison]**
 
-> "Essa é uma confusão comum. Deixa eu esclarecer de vez:"
+> "This is a common source of confusion. Let me clarify it once and for all:"
 
 | | dmPolicy | groupPolicy |
 |---|---|---|
-| **Controla** | Mensagens diretas (DM/privadas) | Mensagens em grupos |
-| **Default** | allowlist | não configurado |
-| **Escopo** | 1-para-1 com você | Muitos usuários no mesmo chat |
-| **Risco** | Alguém comandar seu agente | Agente ativo em grupos não autorizados |
+| **Controls** | Direct messages (DM/private) | Messages in groups |
+| **Default** | allowlist | not configured |
+| **Scope** | 1-on-1 with you | Multiple users in the same chat |
+| **Risk** | Someone commanding your agent | Agent active in unauthorized groups |
 
-> "São dois guardiões independentes. O `dmPolicy` cuida da sua conversa privada com o bot. O `groupPolicy` cuida de quando o bot está em grupos."
+> "They are two independent gatekeepers. `dmPolicy` guards your private conversation with the bot. `groupPolicy` guards when the bot is in groups."
 
-> "Você pode ter: DM aberta (só você) + grupos no allowlist. Ou DM só para você + nenhum grupo ativo. A combinação depende do seu caso de uso."
+> "You can have: open DM (just you) + groups in the allowlist. Or DM only for you + no active groups. The combination depends on your use case."
 
 ---
 
-## 🗺️ SEÇÃO 6: Diagnóstico Passo a Passo (Fluxograma)
+## 🗺️ SECTION 6: Step-by-Step Diagnosis (Flowchart)
 
 ```
-Bot adicionado ao grupo mas não responde
+Bot added to group but not responding
 │
-├── [1] Privacy mode está ATIVO?
-│   → Teste: envie /start ou /help no grupo
-│   → Se o bot RESPONDE a comandos mas ignora mensagens normais → Privacy mode ATIVO
-│   → FIX: BotFather → /setprivacy → Disable → Remover e re-adicionar bot ao grupo
+├── [1] Privacy mode is ACTIVE?
+│   → Test: send /start or /help in the group
+│   → If the bot RESPONDS to commands but ignores regular messages → Privacy mode ACTIVE
+│   → FIX: BotFather → /setprivacy → Disable → Remove and re-add bot to group
 │
-├── [2] groupPolicy configurado?
-│   → Teste: openclaw config get channels.telegram.groupPolicy
-│   → Se retornar vazio ou "none" → não configurado
+├── [2] groupPolicy configured?
+│   → Test: openclaw config get channels.telegram.groupPolicy
+│   → If it returns empty or "none" → not configured
 │   → FIX: openclaw config set channels.telegram.groupPolicy allowlist
 │
-├── [3] Chat ID no allowlist?
-│   → Teste: openclaw config get channels.telegram.groupAllowlist
-│   → Verifique se o ID do grupo está na lista
+├── [3] Chat ID in allowlist?
+│   → Test: openclaw config get channels.telegram.groupAllowlist
+│   → Check if the group ID is in the list
 │   → FIX: openclaw config set channels.telegram.groupAllowlist "[-100XXXXXXX]"
 │
-└── [4] Ainda não funciona?
+└── [4] Still not working?
     → openclaw gateway logs | tail -100
-    → Procure mensagens de erro relacionadas ao chat
+    → Look for error messages related to the chat
     → openclaw gateway restart
 ```
 
 ---
 
-## 💡 SEÇÃO 7: Tópicos (Forum Mode) — Referência
+## 💡 SECTION 7: Topics (Forum Mode) — Reference
 
-> "Se o seu grupo usa **tópicos** (grupos com forum mode ativado), há uma configuração adicional. O bot precisa ser admin do grupo para ter acesso a todos os tópicos, e você pode precisar configurar quais tópicos o agente monitora."
+> "If your group uses **topics** (groups with forum mode enabled), there's an additional configuration. The bot needs to be an admin of the group to have access to all topics, and you may need to configure which topics the agent monitors."
 
-> "Para configuração detalhada de tópicos, consulte a **Aula Extra C** — ela cobre o forum mode completo com exemplos práticos."
+> "For detailed topic configuration, refer to **Extra Lesson C** — it covers the full forum mode with practical examples."
 
 ---
 
-## 📋 Configuração Completa (Referência Rápida)
+## 📋 Full Configuration (Quick Reference)
 
 ```bash
-# 1. BotFather: /setprivacy → Disable (no Telegram)
-# 2. Remover e re-adicionar o bot ao grupo
+# 1. BotFather: /setprivacy → Disable (in Telegram)
+# 2. Remove and re-add the bot to the group
 
-# 3. Configurar groupPolicy
+# 3. Configure groupPolicy
 openclaw config set channels.telegram.groupPolicy allowlist
 
-# 4. Adicionar chat ID do grupo
+# 4. Add group chat ID
 openclaw config set channels.telegram.groupAllowlist "[-100XXXXXXXXXX]"
 
-# 5. Verificar configuração
+# 5. Verify configuration
 openclaw config get channels.telegram.groupPolicy
 openclaw config get channels.telegram.groupAllowlist
 
-# 6. Reiniciar gateway
+# 6. Restart gateway
 openclaw gateway restart
 
-# 7. Checar logs
+# 7. Check logs
 openclaw gateway logs | tail -30
 ```
 
 ---
 
-## ✅ Checklist Final do Aluno
+## ✅ Student Final Checklist
 
-- [ ] Privacy mode desativado no BotFather (`/setprivacy → Disable`)
-- [ ] Bot removido e re-adicionado ao grupo após mudança de privacy mode
-- [ ] Chat ID do grupo descoberto (começa com `-100...`)
-- [ ] `groupPolicy = allowlist` configurado
-- [ ] Chat ID adicionado ao `groupAllowlist`
-- [ ] Gateway reiniciado
-- [ ] Teste: mensagem enviada no grupo → bot respondeu ✅
+- [ ] Privacy mode disabled in BotFather (`/setprivacy → Disable`)
+- [ ] Bot removed and re-added to the group after privacy mode change
+- [ ] Group chat ID found (starts with `-100...`)
+- [ ] `groupPolicy = allowlist` configured
+- [ ] Chat ID added to `groupAllowlist`
+- [ ] Gateway restarted
+- [ ] Test: message sent in group → bot responded ✅
 
 ---
 
-## 🚨 Erros Comuns
+## 🚨 Common Errors
 
-| Sintoma | Causa | Solução |
+| Symptom | Cause | Solution |
 |---------|-------|---------|
-| Bot responde `/start` mas ignora mensagens | Privacy mode ATIVADO | BotFather → /setprivacy → Disable |
-| Bot não responde nada no grupo | groupPolicy não configurado | `openclaw config set channels.telegram.groupPolicy allowlist` |
-| groupPolicy configurado mas não responde | Chat ID não está no allowlist | Adicione o ID correto ao groupAllowlist |
-| Bot funciona em DM, mudo no grupo | Qualquer das 3 causas | Seguir fluxograma de diagnóstico |
-| Após mudança de privacy mode, ainda mudo | Bot ainda no grupo com config antiga | Remover bot do grupo e adicionar de volta |
-| Chat ID inválido | Copiou ID errado | Ver logs: `openclaw gateway logs | grep chat_id` |
+| Bot responds `/start` but ignores messages | Privacy mode ENABLED | BotFather → /setprivacy → Disable |
+| Bot doesn't respond at all in group | groupPolicy not configured | `openclaw config set channels.telegram.groupPolicy allowlist` |
+| groupPolicy configured but still not responding | Chat ID not in allowlist | Add the correct ID to groupAllowlist |
+| Bot works in DM, silent in group | Any of the 3 causes | Follow the diagnosis flowchart |
+| After privacy mode change, still silent | Bot still in group with old config | Remove bot from group and add back |
+| Invalid chat ID | Copied wrong ID | Check logs: `openclaw gateway logs | grep chat_id` |
 
 ---
 
-## ❓ Dúvidas Frequentes
+## ❓ Frequently Asked Questions
 
-**1. Preciso remover o bot e adicionar de volta sempre que mudar o privacy mode?**
+**1. Do I need to remove the bot and add it back every time I change the privacy mode?**
 
-> Sim. O Telegram processa a configuração de privacy mode no momento em que o bot entra no grupo. Mudanças retroativas não se aplicam — precisa sair e entrar de novo.
+> Yes. Telegram processes the privacy mode configuration at the moment the bot enters the group. Retroactive changes don't apply — it needs to leave and rejoin.
 
-**2. Posso ter groupPolicy = open?**
+**2. Can I have groupPolicy = open?**
 
-> Sim, mas não recomendo para uso geral. Com `open`, o agente responde em qualquer grupo onde estiver adicionado — qualquer pessoa que adicione o bot a um grupo pode usá-lo. Prefira `allowlist`.
+> Yes, but I don't recommend it for general use. With `open`, the agent responds in any group it's been added to — anyone who adds the bot to a group can use it. Prefer `allowlist`.
 
-**3. O bot pode ser admin do grupo?**
+**3. Can the bot be a group admin?**
 
-> Sim, e é necessário para alguns recursos (deletar mensagens, acessar todos os tópicos em forum mode). Para uso básico de resposta, ser membro comum é suficiente.
+> Yes, and it's required for some features (deleting messages, accessing all topics in forum mode). For basic response usage, being a regular member is sufficient.
 
-**4. Funciona com grupos grandes (centenas de pessoas)?**
+**4. Does it work with large groups (hundreds of people)?**
 
-> Tecnicamente sim. Mas pense no custo: cada mensagem no grupo vai para o agente. Com 200 pessoas no grupo e muitas mensagens por dia, o custo de tokens pode ser alto. Configure bem o `groupPolicy` e considere usar `groupMentionOnly` (o bot só responde quando @mencionado) para grupos grandes.
+> Technically yes. But think about the cost: every message in the group goes to the agent. With 200 people in the group and many messages per day, the token cost can be high. Configure `groupPolicy` well and consider using `groupMentionOnly` (the bot only responds when @mentioned) for large groups.
 
-**5. Tópicos (forum mode) exigem configuração extra?**
+**5. Do topics (forum mode) require extra configuration?**
 
-> Sim. Consulte a Aula Extra C para configuração completa de forum mode com tópicos.
+> Yes. Refer to Extra Lesson C for full forum mode configuration with topics.

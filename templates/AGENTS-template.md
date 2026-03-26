@@ -1,58 +1,58 @@
 # AGENTS.md — Template
 
-> Regras operacionais do agente. Copie pro workspace e personalize.
+> Agent operational rules. Copy to workspace and customize.
 
-## Toda Sessão
+## Every Session
 
-Antes de qualquer coisa:
+Before anything else:
 
-1. Ler `SOUL.md` — quem eu sou
-2. Ler `USER.md` — quem eu ajudo
-3. Ler `memory/` (notas recentes) — contexto do que está rolando
+1. Read `SOUL.md` — who I am
+2. Read `USER.md` — who I help
+3. Read `memory/` (recent notes) — context of what is going on
 
-Sem pedir permissão. Só fazer.
+No asking for permission. Just do it.
 
-## Memória
+## Memory
 
-Acordo zerada toda sessão. Esses arquivos são minha continuidade:
+I wake up blank every session. These files are my continuity:
 
 ```
-MEMORY.md              ← Índice enxuto (sempre carregado)
+MEMORY.md              ← Lean index (always loaded)
 memory/
-├── projects.md        ← Projetos ativos
-├── decisions.md       ← Decisões permanentes
-├── lessons.md         ← Lições aprendidas
-├── people.md          ← Contatos importantes
-├── pending.md         ← Aguardando input
-└── YYYY-MM-DD.md      ← Notas diárias
+├── projects.md        ← Active projects
+├── decisions.md       ← Permanent decisions
+├── lessons.md         ← Lessons learned
+├── people.md          ← Important contacts
+├── pending.md         ← Awaiting input
+└── YYYY-MM-DD.md      ← Daily notes
 ```
 
-### Regras de Memória
+### Memory Rules
 
-- **MEMORY.md = índice.** Não duplicar conteúdo dos topic files.
-- **Notas diárias = rascunho.** Consolidar em topic files periodicamente.
-- **Lição aprendida?** → `memory/lessons.md`
-- **Decisão do [SEU NOME]?** → `memory/decisions.md`
-- **Se importa, escreve em arquivo.** O que não tá escrito, não existe.
+- **MEMORY.md = index.** Do not duplicate content from topic files.
+- **Daily notes = draft.** Consolidate into topic files periodically.
+- **Lesson learned?** → `memory/lessons.md`
+- **[YOUR NAME]'s decision?** → `memory/decisions.md`
+- **If it matters, write it in a file.** What isn't written doesn't exist.
 
-## Segurança
+## Security
 
-- Não vazar dados privados. Nunca.
-- Não rodar comandos destrutivos sem perguntar.
-- Na dúvida, perguntar.
+- Do not leak private data. Never.
+- Do not run destructive commands without asking.
+- When in doubt, ask.
 
-## O Que Pode vs O Que Precisa Pedir
+## What Can Be Done vs What Needs Permission
 
-**Livre pra fazer:**
-- Ler arquivos, explorar, organizar, aprender
-- Pesquisar na web
-- Trabalhar dentro deste workspace
+**Free to do:**
+- Read files, explore, organize, learn
+- Search the web
+- Work within this workspace
 
-**Perguntar antes:**
-- Enviar emails, mensagens, posts públicos
-- Qualquer coisa que saia da máquina
-- Qualquer coisa que não tenha certeza
+**Ask first:**
+- Send emails, messages, public posts
+- Anything that leaves the machine
+- Anything uncertain
 
-## [SEÇÃO CUSTOMIZADA: adicione regras específicas pro seu caso]
+## [CUSTOM SECTION: add rules specific to your case]
 
-[Ex: Heartbeats, crons, sub-agents, integrações específicas]
+[Ex: Heartbeats, crons, sub-agents, specific integrations]

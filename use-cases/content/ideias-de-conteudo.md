@@ -1,36 +1,36 @@
-# 💡 Use Case: Gerador de Ideias de Conteúdo
+# 💡 Use Case: Content Idea Generator
 
-> Nunca mais fique sem ideia do que postar.
+> Never run out of ideas for what to post.
 
-## O que faz
+## What it does
 
-Cruza múltiplas fontes de dados pra gerar ideias de conteúdo relevantes:
-- Perguntas da comunidade (Circle, Discord, grupos)
-- Tickets de suporte (Crisp, Intercom, Zendesk)
+Cross-references multiple data sources to generate relevant content ideas:
+- Community questions (Circle, Discord, groups)
+- Support tickets (Crisp, Intercom, Zendesk)
 - Trending topics (X, Reddit, HN)
-- Concorrentes (o que estão postando)
-- Analytics (o que performou bem no passado)
+- Competitors (what they are posting)
+- Analytics (what has performed well in the past)
 
 ## Prompt
 
 ```
-Preciso de ideias de conteúdo para as próximas 2 semanas. 
+I need content ideas for the next 2 weeks.
 
-Faça uma análise cruzada de:
-1. As últimas perguntas frequentes da minha comunidade/suporte
-2. Trending topics no meu nicho ([SEU NICHO])
-3. O que meus concorrentes ([LISTA DE CONCORRENTES]) postaram recentemente
-4. Quais dos meus conteúdos anteriores performaram melhor
+Do a cross-analysis of:
+1. The latest frequently asked questions from my community/support
+2. Trending topics in my niche ([YOUR NICHE])
+3. What my competitors ([LIST OF COMPETITORS]) have posted recently
+4. Which of my previous content performed best
 
-Me entregue:
-- 10 ideias de conteúdo rankeadas por potencial de engajamento
-- Pra cada ideia: título, gancho, plataforma ideal, formato sugerido
-- Marque com ⚡ as ideias que posso produzir rapidamente (< 30 min)
-- Marque com 🎯 as que têm maior potencial de viralizar
+Deliver:
+- 10 content ideas ranked by engagement potential
+- For each idea: title, hook, ideal platform, suggested format
+- Mark with ⚡ the ideas I can produce quickly (< 30 min)
+- Mark with 🎯 the ones with the highest viral potential
 
-Formato: tabela organizada com prioridade.
+Format: organized table with priority.
 ```
 
-## Resultado esperado
+## Expected result
 
-Calendário editorial de 2 semanas com ideias baseadas em dados reais, não achismo.
+A 2-week editorial calendar with ideas based on real data, not guesswork.

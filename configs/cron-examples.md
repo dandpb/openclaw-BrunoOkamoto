@@ -1,8 +1,8 @@
-# Exemplos de Crons Úteis
+# Useful Cron Examples
 
-> Copie e adapte. Todos usam isolated + agentTurn (a forma que funciona).
+> Copy and adapt. All use isolated + agentTurn (the approach that works).
 
-## 📅 Check de Agenda (diário, 8h)
+## 📅 Schedule Check (daily, 8am)
 
 ```json
 {
@@ -11,64 +11,64 @@
   "sessionTarget": "isolated",
   "payload": {
     "kind": "agentTurn",
-    "message": "Checar agenda do Google Calendar para hoje e amanhã. Se tiver compromissos, avisar no Telegram com horários e contexto.",
+    "message": "Check Google Calendar for today and tomorrow. If there are appointments, notify on Telegram with times and context.",
     "model": "anthropic/claude-sonnet-4-5"
   },
   "delivery": { "mode": "announce" }
 }
 ```
 
-## 🔍 Watchdog de Crons (diário, 8h30)
+## 🔍 Cron Watchdog (daily, 8:30am)
 
 ```json
 {
-  "name": "Watchdog - Monitor de Crons",
+  "name": "Watchdog - Cron Monitor",
   "schedule": { "kind": "cron", "expr": "30 8 * * *", "tz": "America/Sao_Paulo" },
   "sessionTarget": "isolated",
   "payload": {
     "kind": "agentTurn",
-    "message": "Listar todos os crons. Checar último run de cada um. Se algum falhou nas últimas 24h, tentar re-executar. Se falhar de novo, alertar no Telegram.",
+    "message": "List all crons. Check the last run of each one. If any failed in the last 24h, try to re-execute. If it fails again, alert on Telegram.",
     "model": "anthropic/claude-sonnet-4-5"
   },
   "delivery": { "mode": "announce" }
 }
 ```
 
-## 📊 Revisão Semanal (sexta, 16h)
+## 📊 Weekly Review (Friday, 4pm)
 
 ```json
 {
-  "name": "Revisão Semanal",
+  "name": "Weekly Review",
   "schedule": { "kind": "cron", "expr": "0 16 * * 5", "tz": "America/Sao_Paulo" },
   "sessionTarget": "isolated",
   "payload": {
     "kind": "agentTurn",
-    "message": "Fazer revisão semanal: 1) Ler notas diárias da semana 2) Consolidar em topic files 3) Atualizar MEMORY.md 4) Listar pendências 5) Reportar resumo no Telegram.",
+    "message": "Do weekly review: 1) Read daily notes from the week 2) Consolidate into topic files 3) Update MEMORY.md 4) List pending items 5) Report summary on Telegram.",
     "model": "anthropic/claude-sonnet-4-5"
   },
   "delivery": { "mode": "announce" }
 }
 ```
 
-## ⏰ Lembrete One-shot (exemplo)
+## ⏰ One-shot Reminder (example)
 
 ```json
 {
-  "name": "Lembrete: Reunião com Fulano",
+  "name": "Reminder: Meeting with Someone",
   "schedule": { "kind": "at", "at": "2026-02-15T09:00:00-03:00" },
   "sessionTarget": "isolated",
   "payload": {
     "kind": "agentTurn",
-    "message": "Lembrete: Reunião com Fulano em 30 minutos. Enviar mensagem no Telegram.",
+    "message": "Reminder: Meeting with Someone in 30 minutes. Send message on Telegram.",
     "model": "anthropic/claude-sonnet-4-5"
   },
   "delivery": { "mode": "announce" }
 }
 ```
 
-## 🔴 Dicas Importantes
+## 🔴 Important Tips
 
-1. **Sempre** usar `model: "anthropic/claude-sonnet-4-5"` (nome completo, não alias)
-2. **Espaçar** crons por 15-30 min (evita rate limit)
-3. **Nunca** usar `sessionTarget: "main"` com `systemEvent` (não funciona direito)
-4. **Teste** com `cron run <id>` antes de confiar que vai funcionar
+1. **Always** use `model: "anthropic/claude-sonnet-4-5"` (full name, not alias)
+2. **Space** crons by 15-30 min (avoids rate limit)
+3. **Never** use `sessionTarget: "main"` with `systemEvent` (doesn't work properly)
+4. **Test** with `cron run <id>` before trusting it will work

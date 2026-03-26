@@ -1,33 +1,33 @@
-# Prompt — Módulo 6: Skills e Superpoderes
+# Prompt — Module 6: Skills and Superpowers
 
-> Cole este prompt no chat do seu OpenClaw depois de assistir o Módulo 6.
-> Anexe junto o arquivo: `skills/skills-by-profile.md`
+> Paste this prompt in your OpenClaw chat after watching Module 6.
+> Also attach the file: `skills/skills-by-profile.md`
 
 ---
 
-Acabei de assistir o Módulo 6 do curso sobre skills. Me ajude a instalar os superpoderes certos pro meu perfil.
+I just finished watching Module 6 of the course on skills. Help me install the right superpowers for my profile.
 
-**O que preciso que você faça:**
+**What I need you to do:**
 
-1. **Analise meu perfil** — baseado no USER.md, me recomende as skills mais úteis da lista por perfil que anexei
+1. **Analyze my profile** — based on USER.md, recommend the most useful skills from the profile list I attached
 
-2. **Me ensine a instalar skills:**
-   - Como instalar do ClawHub
-   - Como instalar de um repositório GitHub
-   - Como verificar se a skill é segura antes de instalar
+2. **Teach me how to install skills:**
+   - How to install from ClawHub
+   - How to install from a GitHub repository
+   - How to verify a skill is safe before installing
 
-3. **Instale 2-3 skills essenciais** que façam sentido pro meu uso:
-   - Me explique o que cada uma faz
-   - Teste se funcionou com um exemplo prático
+3. **Install 2-3 essential skills** that make sense for my use case:
+   - Explain what each one does
+   - Test if it worked with a practical example
 
-4. **Me explique quando NÃO instalar uma skill:**
-   - Skills redundantes (ex: remind-me quando cron nativo já resolve)
-   - Skills com vulnerabilidades de segurança
-   - Skills que são agentes disfarçados (quando usar skill vs criar agente)
+4. **Explain when NOT to install a skill:**
+   - Redundant skills (e.g.: remind-me when the native cron already solves it)
+   - Skills with security vulnerabilities
+   - Skills that are disguised agents (when to use a skill vs creating an agent)
 
-**Regras:**
-- Qualidade > quantidade — poucas skills bem configuradas > muitas jogadas
-- Me avise sobre skills que precisam de API key antes de instalar
-- No final, me liste tudo que está instalado e funcionando
+**Rules:**
+- Quality > quantity — a few well-configured skills > many thrown in
+- Warn me about skills that need an API key before installing
+- At the end, list everything that is installed and working
 
-Vamos ganhar superpoderes?
+Shall we gain superpowers?

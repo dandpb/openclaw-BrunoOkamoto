@@ -1,239 +1,239 @@
-# PRD — Aula N-6: VPS vs Mac Mini — Quando Usar Cada Infraestrutura
+# PRD — Lesson N-6: VPS vs Mac Mini — When to Use Each Infrastructure
 
-**Módulo:** Núcleo (N)  
-**Aula:** N-6  
-**Duração estimada:** 15–20 minutos  
-**Nível:** Iniciante / Setup  
-**Instrutor:** Bruno  
-
----
-
-## 🎯 Objetivo da Aula
-
-Ao final desta aula, o aluno deve conseguir decidir com confiança qual infraestrutura usar para rodar o OpenClaw: VPS na nuvem ou Mac Mini local.
-
-## 📋 Pré-requisitos
-
-- Ter assistido N-1 a N-5 (introdução ao OpenClaw e configuração básica)
-- Saber o que é SSH (não precisa dominar, só saber que existe)
+**Module:** Core (N)  
+**Lesson:** N-6  
+**Estimated duration:** 15–20 minutes  
+**Level:** Beginner / Setup  
+**Instructor:** Bruno  
 
 ---
 
-## 🎬 ROTEIRO DE GRAVAÇÃO
+## 🎯 Lesson Objective
 
-### [00:00 – 01:30] ABERTURA — A Dúvida Que Todo Mundo Tem
+By the end of this lesson, the student should be able to confidently decide which infrastructure to use for running OpenClaw: cloud VPS or local Mac Mini.
 
-**[Bruno na câmera, tom casual, como se tivesse batendo papo]**
+## 📋 Prerequisites
 
-> "Fala pessoal. Se você chegou até essa aula, provavelmente você já testou o OpenClaw e tá pensando: *'Mas onde eu vou rodar isso de verdade?'* Laptop é bom pra testar, mas fica travado. Você não pode desligar. E se você usa o agente o dia todo, precisa de algo mais robusto.
->
-> Essa é a pergunta que eu recebo toda semana: *VPS ou Mac Mini?*
->
-> E a resposta honesta é: depende do seu caso. Mas eu vou te dar um framework pra decidir em menos de 5 minutos. Vamos lá."
+- Watched N-1 through N-5 (OpenClaw introduction and basic configuration)
+- Know what SSH is (no need to master it, just know it exists)
 
 ---
 
-### [01:30 – 05:00] PARTE 1 — O Que É VPS e Quando Usar
+## 🎬 RECORDING SCRIPT
 
-**[Tela compartilhada: slides ou browser mostrando Hostinger/DigitalOcean]**
+### [00:00 – 01:30] OPENING — The Question Everyone Has
 
-> "VPS significa *Virtual Private Server* — basicamente é um computador que fica ligado em um datacenter em algum lugar do mundo. Você paga uma mensalidade baixa e tem acesso remoto via terminal.
->
-> Pensa assim: você contrata o computador de outra pessoa, mas tem controle total dele."
+**[Bruno on camera, casual tone, as if chatting]**
 
-**[Mostra lista na tela]**
-
-> "As vantagens do VPS são claras:
+> "Hey everyone. If you've made it to this lesson, you've probably already tested OpenClaw and are thinking: *'But where am I going to run this for real?'* A laptop is fine for testing, but it freezes. You can't turn it off. And if you use the agent all day, you need something more robust.
 >
-> **Primeiro: custo baixo.** Você consegue um VPS decente por 20, 30 dólares por mês. Às vezes menos. Hostinger tem planos que começam em 10 dólares.
+> That's the question I get every week: *VPS or Mac Mini?*
 >
-> **Segundo: sempre ligado.** Você não precisa se preocupar com queda de luz, computador travado, nada disso. O servidor fica rodando 24/7.
->
-> **Terceiro: acesso de qualquer lugar.** Você tá no celular, no café, em viagem — você acessa o seu agente de qualquer lugar com internet.
->
-> **Quarto: sem manutenção física.** Não tem hardware pra cuidar. Queimou alguma coisa, é problema do datacenter."
-
-> "Mas VPS também tem desvantagens. A principal: você vai usar a API de algum modelo de IA, seja Claude, GPT, o que for. Seus dados *passam* por servidores de terceiros. Se você lida com informação muito sensível, isso pode ser um ponto.
->
-> Outra coisa: a performance é limitada pelo plano que você pagou. Se você precisa rodar modelos locais pesados como Llama, um VPS básico não vai dar conta."
+> And the honest answer is: it depends on your case. But I'll give you a framework to decide in under 5 minutes. Let's go."
 
 ---
 
-### [05:00 – 08:30] PARTE 2 — O Que É Mac Mini e Quando Usar
+### [01:30 – 05:00] PART 1 — What Is VPS and When to Use It
 
-**[Corte pra câmera ou slide com imagem de Mac Mini]**
+**[Shared screen: slides or browser showing Hostinger/DigitalOcean]**
 
-> "Mac Mini é um computador da Apple. Pequeno, silencioso, bem eficiente. E nos últimos anos, com os chips M1, M2, M3 e M4, ele ficou absurdamente poderoso.
+> "VPS stands for *Virtual Private Server* — basically it's a computer that stays on in a datacenter somewhere in the world. You pay a low monthly fee and have remote access via terminal.
 >
-> A grande sacada do Mac Mini é que você pode rodar modelos de IA *localmente*. Sem API. Sem custo de token. Seus dados ficam na sua máquina."
+> Think of it this way: you're renting someone else's computer, but you have full control over it."
 
-> "As vantagens do Mac Mini pra rodar OpenClaw:
->
-> **Poder local real.** Um Mac Mini M4 Pro, por exemplo, consegue rodar modelos de 30, 70 bilhões de parâmetros com velocidade razoável. Isso significa agente funcionando mesmo sem internet.
->
-> **Privacidade total.** Nada sai da sua rede local. Se você lida com dados de clientes, contratos, informações sigilosas, isso muda tudo.
->
-> **Zero latência de rede.** O agente responde na velocidade da máquina, não depende de ping pra servidor.
->
-> **Uma vez comprado, não paga mais.** Não tem mensalidade. Compra uma vez e usa por anos."
+**[Show list on screen]**
 
-> "Mas tem desvantagens claras:
+> "The advantages of VPS are clear:
 >
-> **Custo inicial alto.** Um Mac Mini M4 básico começa em 600 dólares. O M4 Pro, que realmente faz diferença pra IA, está na faixa de 1.400 a 2.000 dólares.
+> **First: low cost.** You can get a decent VPS for 20, 30 dollars a month. Sometimes less. Hostinger has plans starting at 10 dollars.
 >
-> **Você precisa mantê-lo ligado.** Se cair a luz, desligar acidentalmente, ou precisar reiniciar, o agente vai offline.
+> **Second: always on.** You don't need to worry about power outages, computer crashes, none of that. The server runs 24/7.
 >
-> **Setup mais complexo.** Você precisa configurar acesso remoto, manter o sistema, resolver problemas de hardware se aparecerem."
+> **Third: access from anywhere.** You're on your phone, at a café, traveling — you access your agent from anywhere with internet.
+>
+> **Fourth: no physical maintenance.** No hardware to care for. If something burns out, it's the datacenter's problem."
+
+> "But VPS also has disadvantages. The main one: you'll be using some AI model's API, whether Claude, GPT, whatever. Your data *passes through* third-party servers. If you deal with very sensitive information, this can be an issue.
+>
+> Another thing: performance is limited by the plan you paid for. If you need to run heavy local models like Llama, a basic VPS won't handle it."
 
 ---
 
-### [08:30 – 11:00] PARTE 3 — Tabela Comparativa
+### [05:00 – 08:30] PART 2 — What Is Mac Mini and When to Use It
 
-**[Tela compartilhada: tabela visual]**
+**[Cut to camera or slide with Mac Mini image]**
 
-> "Deixa eu colocar isso lado a lado pra ficar mais claro."
+> "Mac Mini is an Apple computer. Small, quiet, very efficient. And in recent years, with the M1, M2, M3, and M4 chips, it's become absurdly powerful.
+>
+> The big deal about Mac Mini is that you can run AI models *locally*. No API. No token cost. Your data stays on your machine."
 
-| Critério | VPS | Mac Mini |
+> "The advantages of Mac Mini for running OpenClaw:
+>
+> **Real local power.** A Mac Mini M4 Pro, for example, can run models with 30, 70 billion parameters at reasonable speed. That means the agent works even without internet.
+>
+> **Total privacy.** Nothing leaves your local network. If you deal with client data, contracts, confidential information, this changes everything.
+>
+> **Zero network latency.** The agent responds at the speed of the machine, doesn't depend on ping to a server.
+>
+> **Once purchased, no more payments.** No monthly fee. Buy once and use for years."
+
+> "But there are clear disadvantages:
+>
+> **High initial cost.** A basic Mac Mini M4 starts at 600 dollars. The M4 Pro, which actually makes a difference for AI, is in the 1,400 to 2,000 dollar range.
+>
+> **You need to keep it on.** If the power goes out, it gets turned off accidentally, or needs a restart, the agent goes offline.
+>
+> **More complex setup.** You need to configure remote access, maintain the system, solve hardware problems if they arise."
+
+---
+
+### [08:30 – 11:00] PART 3 — Comparison Table
+
+**[Shared screen: visual table]**
+
+> "Let me put this side by side to make it clearer."
+
+| Criterion | VPS | Mac Mini |
 |---|---|---|
-| **Custo mensal** | $10–$30/mês | ~$0 (hardware pago) |
-| **Custo inicial** | Zero | $600–$2.000+ |
-| **Setup** | Médio (SSH + CLI) | Mais complexo (acesso remoto local) |
-| **Manutenção** | Mínima | Você cuida do hardware |
-| **Performance** | Limitada ao plano | Alta (M4 é muito poderoso) |
-| **Privacidade** | API de terceiros | Dados locais |
-| **Modelos locais** | Não (geralmente) | Sim |
-| **Acesso remoto** | Nativo | Precisa configurar |
-| **Disponibilidade** | 99.9%+ garantido | Depende de você |
-| **Ideal para** | Começar, freelancer | Empresa, privacidade |
+| **Monthly cost** | $10–$30/month | ~$0 (hardware paid for) |
+| **Initial cost** | Zero | $600–$2,000+ |
+| **Setup** | Medium (SSH + CLI) | More complex (local remote access) |
+| **Maintenance** | Minimal | You handle hardware |
+| **Performance** | Limited by plan | High (M4 is very powerful) |
+| **Privacy** | Third-party API | Local data |
+| **Local models** | No (usually) | Yes |
+| **Remote access** | Native | Needs configuration |
+| **Availability** | 99.9%+ guaranteed | Depends on you |
+| **Ideal for** | Getting started, freelancer | Business, privacy |
 
-> "Olhando assim, fica mais fácil de decidir. Mas deixa eu falar sobre os perfis de usuário."
-
----
-
-### [11:00 – 13:30] PARTE 4 — Cenários de Uso: Qual É o Seu?
-
-**[Câmera, tom direto]**
-
-> "Eu vou falar sobre três perfis que aparecem bastante nos alunos do curso."
-
-**Cenário 1: Freelancer Solo**
-> "Você trabalha sozinho. Usa o agente pra organizar tarefas, responder clientes, gerar relatórios. Não tem dado ultra-sensível. Quer começar rápido e gastar pouco.
->
-> **Recomendação: VPS.** Custa 15–20 dólares por mês, fica sempre ligado, você acessa de qualquer lugar. Perfeito."
-
-**Cenário 2: Empresa Pequena**
-> "Você tem uma equipe de 2 a 10 pessoas. Lida com dados de clientes, contratos, informações financeiras. Privacidade é importante. Já tem estrutura de TI mínima.
->
-> **Recomendação: Mac Mini.** O investimento inicial compensa pela privacidade e pelo poder de processamento. Você pode rodar modelos locais pra dados sensíveis."
-
-**Cenário 3: Uso Pessoal / Hobby**
-> "Você quer experimentar, aprender, ver o que o OpenClaw pode fazer. Não tem necessidade crítica de uptime.
->
-> **Recomendação: VPS básico ou até o próprio computador.** Não precisa gastar muito ainda. Testa, aprende, depois decide."
+> "Looking at it this way, it's easier to decide. But let me talk about user profiles."
 
 ---
 
-### [13:30 – 16:00] PARTE 5 — Configuração Básica de Cada Opção
+### [11:00 – 13:30] PART 4 — Use Scenarios: Which Is Yours?
 
-**[Tela compartilhada: terminal]**
+**[Camera, direct tone]**
 
-> "Agora vou mostrar como você *começa* em cada caso. Não é aula de setup completo — isso tem aula separada — mas quero te dar uma noção do que esperar."
+> "I'm going to talk about three profiles that appear a lot among course students."
 
-**VPS — O Fluxo Básico:**
-> "Com VPS, você vai:
+**Scenario 1: Solo Freelancer**
+> "You work alone. You use the agent to organize tasks, respond to clients, generate reports. No ultra-sensitive data. Want to start fast and spend little.
 >
-> 1. Contratar o servidor (Hostinger, DigitalOcean, Contabo)
-> 2. Conectar via SSH: `ssh root@seu-ip`
-> 3. Instalar o OpenClaw com o comando de instalação
-> 4. Configurar seu agente
+> **Recommendation: VPS.** Costs 15–20 dollars a month, always on, you access from anywhere. Perfect."
+
+**Scenario 2: Small Business**
+> "You have a team of 2 to 10 people. You deal with client data, contracts, financial information. Privacy is important. You already have minimal IT infrastructure.
 >
-> É isso. Em 30 a 60 minutos você tá funcionando. Sem dor de cabeça com hardware."
+> **Recommendation: Mac Mini.** The initial investment pays off in privacy and processing power. You can run local models for sensitive data."
+
+**Scenario 3: Personal Use / Hobby**
+> "You want to experiment, learn, see what OpenClaw can do. No critical uptime need.
+>
+> **Recommendation: Basic VPS or even your own computer.** No need to spend much yet. Test, learn, then decide."
+
+---
+
+### [13:30 – 16:00] PART 5 — Basic Configuration of Each Option
+
+**[Shared screen: terminal]**
+
+> "Now I'll show you how you *start* in each case. This isn't a full setup lesson — that has its own lesson — but I want to give you an idea of what to expect."
+
+**VPS — The Basic Flow:**
+> "With a VPS, you'll:
+>
+> 1. Rent the server (Hostinger, DigitalOcean, Contabo)
+> 2. Connect via SSH: `ssh root@your-ip`
+> 3. Install OpenClaw with the install command
+> 4. Configure your agent
+>
+> That's it. In 30 to 60 minutes you're up and running. No hardware headaches."
 
 ```bash
-# Conectar ao VPS
+# Connect to VPS
 ssh root@123.456.789.0
 
-# Instalar OpenClaw (exemplo)
+# Install OpenClaw (example)
 curl -fsSL https://openclaw.com/install.sh | bash
 
-# Iniciar o agente
+# Start the agent
 openclaw start
 ```
 
-**Mac Mini — O Fluxo Básico:**
-> "Com Mac Mini, você vai:
+**Mac Mini — The Basic Flow:**
+> "With a Mac Mini, you'll:
 >
-> 1. Ligar o Mac Mini e conectar na rede
-> 2. Ativar Compartilhamento Remoto nas Preferências do Sistema
-> 3. Instalar o OpenClaw normalmente
-> 4. Configurar acesso remoto (SSH ou VNC)
-> 5. Opcionalmente instalar Ollama pra modelos locais
+> 1. Turn on the Mac Mini and connect to the network
+> 2. Enable Remote Sharing in System Preferences
+> 3. Install OpenClaw normally
+> 4. Configure remote access (SSH or VNC)
+> 5. Optionally install Ollama for local models
 >
-> É um pouco mais longo, mas você faz uma vez."
+> It's a bit longer, but you do it once."
 
 ---
 
-### [16:00 – 17:30] PARTE 6 — Quando Migrar e o Setup Híbrido
+### [16:00 – 17:30] PART 6 — When to Migrate and the Hybrid Setup
 
-**[Câmera, tom consultivo]**
+**[Camera, consultative tone]**
 
-> "Uma pergunta que aparece bastante: *quando devo migrar de VPS pro Mac Mini (ou vice-versa)?*"
+> "A question that comes up a lot: *when should I migrate from VPS to Mac Mini (or vice versa)?*"
 
-**Migrar de VPS para Mac Mini quando:**
-> "Você começou com VPS, o negócio cresceu, e agora você lida com dados de clientes que não podem ir pra cloud. Ou você começa a querer rodar modelos locais pesados. Ou o custo mensal do VPS começa a parecer alto comparado com investir uma vez no hardware."
+**Migrate from VPS to Mac Mini when:**
+> "You started with VPS, the business grew, and now you deal with client data that can't go to the cloud. Or you start wanting to run heavy local models. Or the VPS monthly cost starts to seem high compared to investing once in hardware."
 
-**Migrar de Mac Mini para VPS quando:**
-> "O Mac Mini tá gerando problemas de disponibilidade — cai a luz, alguém desliga acidentalmente. Ou você precisa de acesso 100% garantido de qualquer lugar do mundo. Nesse caso, ou você resolve o problema de infraestrutura do Mac Mini, ou usa um VPS como camada extra."
+**Migrate from Mac Mini to VPS when:**
+> "The Mac Mini is causing availability problems — power outages, someone accidentally turns it off. Or you need guaranteed access from anywhere in the world. In that case, either you solve the Mac Mini's infrastructure problem, or you use a VPS as an extra layer."
 
-**O Setup Híbrido:**
-> "Meu setup favorito pra quem já tem Mac Mini: usa o Mac Mini como servidor principal — pra dados sensíveis, modelos locais — e mantém um VPS pequeno como backup e ponto de acesso externo. Se o Mac Mini cair, o VPS ainda funciona pra tarefas básicas.
+**The Hybrid Setup:**
+> "My favorite setup for those who already have a Mac Mini: use the Mac Mini as the main server — for sensitive data, local models — and keep a small VPS as backup and external access point. If the Mac Mini goes down, the VPS still works for basic tasks.
 >
-> É o melhor dos dois mundos. Mas custa um pouco mais e adiciona complexidade."
+> It's the best of both worlds. But it costs a bit more and adds complexity."
 
 ---
 
-### [17:30 – 18:30] FECHAMENTO — Recomendação do Bruno
+### [17:30 – 18:30] CLOSING — Bruno's Recommendation
 
-**[Câmera, direto ao ponto]**
+**[Camera, straight to the point]**
 
-> "Então, minha recomendação final:
+> "So, my final recommendation:
 >
-> **Se você tá começando agora: VPS.** Simples assim. É mais barato pra começar, mais fácil de configurar, e você vai aprender sem se preocupar com hardware.
+> **If you're starting now: VPS.** Simple as that. It's cheaper to start, easier to configure, and you'll learn without worrying about hardware.
 >
-> **Se você já usa o OpenClaw há algum tempo, tem dados sensíveis, ou quer o máximo de performance: Mac Mini M4 Pro.**
+> **If you've been using OpenClaw for a while, have sensitive data, or want maximum performance: Mac Mini M4 Pro.**
 >
-> **Se você quer o melhor setup possível e pode investir: Mac Mini + VPS como backup.**
+> **If you want the best possible setup and can invest: Mac Mini + VPS as backup.**
 >
-> Não existe resposta errada. Existe a resposta certa pro seu momento.
+> There's no wrong answer. There's the right answer for your moment.
 >
-> Na próxima aula, vamos configurar o VPS do zero — do contrato até o agente rodando. Até lá!"
+> In the next lesson, we'll set up a VPS from scratch — from signing up to the agent running. See you there!"
 
 ---
 
-## 📊 Estrutura de Tópicos
+## 📊 Topic Structure
 
-1. Introdução — a dúvida comum (1,5 min)
-2. O que é VPS — prós e contras (3,5 min)
-3. O que é Mac Mini — prós e contras (3,5 min)
-4. Tabela comparativa (2,5 min)
-5. Cenários de uso (2,5 min)
-6. Configuração básica de cada (2,5 min)
-7. Quando migrar + híbrido (1,5 min)
-8. Recomendação final (1 min)
+1. Introduction — the common question (1.5 min)
+2. What is VPS — pros and cons (3.5 min)
+3. What is Mac Mini — pros and cons (3.5 min)
+4. Comparison table (2.5 min)
+5. Use scenarios (2.5 min)
+6. Basic configuration of each (2.5 min)
+7. When to migrate + hybrid (1.5 min)
+8. Final recommendation (1 min)
 
-**Total:** ~19 minutos
+**Total:** ~19 minutes
 
 ---
 
-## 🎨 Assets Necessários
+## 🎨 Required Assets
 
-- [ ] Slide com tabela comparativa (HTML/Notion ou Figma)
-- [ ] Terminal mostrando comandos de SSH e instalação
-- [ ] Screenshot de painel Hostinger/DigitalOcean
-- [ ] Imagem Mac Mini M4 (site Apple ou foto própria)
+- [ ] Slide with comparison table (HTML/Notion or Figma)
+- [ ] Terminal showing SSH and installation commands
+- [ ] Hostinger/DigitalOcean panel screenshot
+- [ ] Mac Mini M4 image (Apple website or own photo)
 
-## 📦 Entregáveis Relacionados
+## 📦 Related Deliverables
 
-- `docs/aula-n6-vps-vs-macmini.html` — Material de apoio visual
-- `docs/aula-n6-vps-vs-macmini.pdf` — Versão para download
-- `prompts/aula-n6-vps-vs-macmini-prompt-aluno.md` — Prompt pós-aula
+- `docs/aula-n6-vps-vs-macmini.html` — Visual support material
+- `docs/aula-n6-vps-vs-macmini.pdf` — Download version
+- `prompts/aula-n6-vps-vs-macmini-prompt-aluno.md` — Post-lesson prompt

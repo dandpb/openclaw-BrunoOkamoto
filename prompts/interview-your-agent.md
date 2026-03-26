@@ -1,28 +1,28 @@
-# Prompt: Entreviste Seu Agente
+# Prompt: Interview Your Agent
 
-> Use este prompt pra descobrir capacidades que você nem sabia que o agente tinha.
-> Conceito do Alex Finn: "unknown unknowns"
-
----
-
-Baseado no que você sabe sobre mim (USER.md), meu negócio e minhas prioridades:
-
-1. Liste 10 coisas que você pode fazer pra facilitar minha vida que eu provavelmente não pensei em pedir
-2. Para cada uma, explique: o que faz, como faz, e quanto tempo leva
-3. Priorize por impacto (o que economiza mais tempo ou gera mais valor primeiro)
-
-Seja específico — não quero "posso te ajudar com pesquisas". Quero "posso monitorar 15 subreddits relevantes pro seu nicho e te mandar um digest semanal com as threads mais relevantes".
+> Use this prompt to discover capabilities you didn't even know the agent had.
+> Concept by Alex Finn: "unknown unknowns"
 
 ---
 
-## Prompt de Follow-up
+Based on what you know about me (USER.md), my business, and my priorities:
 
-> Depois de ver a lista, use este:
+1. List 10 things you can do to make my life easier that I probably haven't thought to ask
+2. For each one, explain: what it does, how it does it, and how long it takes
+3. Prioritize by impact (what saves the most time or generates the most value first)
 
-Das 10 coisas que você listou, vamos implementar as 3 primeiras. Para cada uma:
+Be specific — I don't want "I can help with research". I want "I can monitor 15 subreddits relevant to your niche and send you a weekly digest with the most relevant threads".
 
-1. O que você precisa de mim pra começar (acessos, decisões, preferências)
-2. Quanto tempo leva pra configurar
-3. Qual o primeiro resultado que eu vou ver
+---
 
-Comece pela mais fácil de implementar.
+## Follow-up Prompt
+
+> After seeing the list, use this:
+
+Of the 10 things you listed, let's implement the first 3. For each one:
+
+1. What do you need from me to get started (access, decisions, preferences)
+2. How long does it take to set up
+3. What is the first result I'll see
+
+Start with the easiest one to implement.

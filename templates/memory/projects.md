@@ -1,17 +1,17 @@
-# Projetos
+# Projects
 
-## 🚀 Ativos
+## 🚀 Active
 
-### [Nome do Projeto]
-- **Status:** [em andamento / planejamento / parado]
-- **Próximo passo:** [o que precisa acontecer]
-- **Bloqueios:** [se houver]
+### [Project Name]
+- **Status:** [in progress / planning / on hold]
+- **Next step:** [what needs to happen]
+- **Blockers:** [if any]
 
-## ✅ Concluídos
+## ✅ Completed
 
-- [Projeto concluído] — [data] — [resultado]
+- [Completed project] — [date] — [result]
 
 ## 💡 Backlog
 
-- [Ideia 1]
-- [Ideia 2]
+- [Idea 1]
+- [Idea 2]

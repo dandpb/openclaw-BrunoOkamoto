@@ -1,52 +1,52 @@
 # 🔬 Use Case: Deep Research
 
-> Pesquisa profunda sobre qualquer tópico com múltiplas fontes.
+> In-depth research on any topic with multiple sources.
 
-## O que faz
+## What it does
 
-Spawna sub-agentes que pesquisam em paralelo e consolida tudo:
-- Busca na web (Brave, Perplexity)
-- Análise de papers e artigos longos
-- Monitoramento de concorrentes
-- Comparação de ferramentas/soluções
-- Resumo executivo com recomendações
+Spawns sub-agents that research in parallel and consolidates everything:
+- Web search (Brave, Perplexity)
+- Analysis of papers and long articles
+- Competitor monitoring
+- Comparison of tools/solutions
+- Executive summary with recommendations
 
 ## Prompt
 
 ```
-Faça uma pesquisa profunda sobre [TÓPICO].
+Do in-depth research on [TOPIC].
 
-Quero que você:
-1. Pesquise em pelo menos 5 fontes diferentes (web, papers, artigos, discussões)
-2. Analise os pontos de vista diferentes (prós, contras, debates)
-3. Identifique tendências e o que está mudando
-4. Compare as principais soluções/abordagens
-5. Me dê uma recomendação baseada no meu contexto
+I want you to:
+1. Research at least 5 different sources (web, papers, articles, discussions)
+2. Analyze different points of view (pros, cons, debates)
+3. Identify trends and what is changing
+4. Compare the main solutions/approaches
+5. Give me a recommendation based on my context
 
-Formato do output:
-- **Resumo executivo** (3 parágrafos, pra quem tem pressa)
-- **Análise detalhada** (por fonte, com links)
-- **Comparativo** (tabela se aplicável)
-- **Recomendação** (o que EU deveria fazer, considerando meu perfil)
-- **Fontes** (links pra eu aprofundar se quiser)
+Output format:
+- **Executive summary** (3 paragraphs, for those in a hurry)
+- **Detailed analysis** (by source, with links)
+- **Comparison** (table if applicable)
+- **Recommendation** (what I should do, considering my profile)
+- **Sources** (links so I can dive deeper if I want)
 
-Use thinking mode pra isso — quero qualidade, não velocidade.
+Use thinking mode for this — I want quality, not speed.
 ```
 
-## Variações
+## Variations
 
-### Pesquisa de concorrentes
+### Competitor research
 ```
-Pesquise meus concorrentes: [LISTA].
-Pra cada um, me diga: preço, features, pontos fortes, pontos fracos, o que postaram recentemente, e onde eu tenho vantagem.
-```
-
-### Preparação para entrevista/podcast
-```
-Vou entrevistar [PESSOA]. Pesquise tudo sobre ela: trajetória, projetos, opiniões polêmicas, conteúdos recentes. Me dê 10 perguntas que NINGUÉM fez ainda.
+Research my competitors: [LIST].
+For each one, tell me: price, features, strengths, weaknesses, what they posted recently, and where I have an advantage.
 ```
 
-### Análise de tendências
+### Interview/podcast preparation
 ```
-Quais são as tendências emergentes em [NICHO] para os próximos 6 meses? Pesquise newsletters, Twitter, Reddit, e HN. Me dê as 5 tendências com mais sinal.
+I'm going to interview [PERSON]. Research everything about them: background, projects, controversial opinions, recent content. Give me 10 questions that NOBODY has asked yet.
+```
+
+### Trend analysis
+```
+What are the emerging trends in [NICHE] for the next 6 months? Research newsletters, Twitter, Reddit, and HN. Give me the 5 trends with the strongest signal.
 ```
